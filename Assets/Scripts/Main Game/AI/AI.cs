@@ -3,7 +3,7 @@ using System.Collections.Generic;
 //Outline:
 //Goal: Lower the attack power of the enemy
 
-public class AI
+public abstract class AI
 {
     Stack<State> StateMachine = new();
     Dictionary<State, System.Action> StateMap = new();

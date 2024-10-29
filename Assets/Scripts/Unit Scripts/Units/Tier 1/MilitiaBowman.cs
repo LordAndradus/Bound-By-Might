@@ -15,4 +15,14 @@ public class MilitiaBowman : Unit
 
         GoldCost = 100;
     }
+
+    private protected override void SetAttributes()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    private protected override void SetCosts()
+    {
+        throw new System.NotImplementedException();
+    }
 }

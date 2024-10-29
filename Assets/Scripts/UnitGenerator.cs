@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class UnitGenerator : MonoBehaviour
@@ -59,7 +60,9 @@ public class UnitGenerator : MonoBehaviour
     {
         TraitFactory tf = new();
         
-        u.traits = new();
+        u.SetTraits(new());
+
+        List<Trait> traits = u.GetTraits();
         
         int numTraits = (int) UnityEngine.Random.Range(0.0f, (float) Unit.AbsoluteMaxTraits + 0.5f);
 
@@ -71,13 +74,15 @@ public class UnitGenerator : MonoBehaviour
 
             if(t == null) break;
 
-            if(u.traits.Contains(t))
+            if(traits.Any((trait) => {
+                return trait.GetType() == t.GetType();
+            }))
             {
                 i--;
                 continue;
             }
 
-            u.traits.Add(t);
+            traits.Add(t);
         }
     }
 

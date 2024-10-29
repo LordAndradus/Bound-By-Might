@@ -11,82 +11,83 @@ using UnityEngine;
 */
 
 [Serializable]
-public class Unit
+public abstract class Unit
 {
-    [SerializeField] public Sprite spriteView;
-    [SerializeField] public string Name;
-    [SerializeField] public string UIFriendlyClassName;
-    [SerializeField] public string Description = "Make sure to fill in the description, young game maker";
-    [SerializeField] public Sprite Icon;
-/*     public static Dictionary<Type, List<Type>> PromotionMap = new(){
-        { typeof(MilitiaMale), new(){ typeof(Footman), typeof(Spearman), typeof(JourneymanMage), typeof(Yeoman), typeof(Knight), typeof(Chasseur), typeof(Archer) }},
-        { typeof(MilitiaBowman), PromotionMap[typeof(MilitiaMale)] },
-        { typeof(MilitiaFemale), new(){ typeof(Sorceress), typeof(Priestess), typeof(Commando) }},
-        { typeof(NeophyteMagus), new(){ typeof(JourneymanMage), typeof(Footman), typeof(Spearman), typeof(Yeoman) }},
-    }; */
+    public Sprite spriteView;
+    public string Name;
+    public string UIFriendlyClassName;
+    public string Description = "Make sure to fill in the description, young game maker";
+    public Sprite Icon;
+
+    public SerializableDictionary<Type, Snapshot> CareerHistory = new();
+    public List<Type> UpgradePath = new();
+
+
 
     [SerializeField] public MoveType movement;
 
     [Header("Base Attribute Scores")]
     //Base Threat = 100. Calculation goes as follows: Threat += 3 per normal stat, += 1 per armor & weapon; Threat += 1000 * tier level; Threat += 100 * Per Traits rarity
-    [SerializeField] int Threat = 100;
-    [SerializeField] int HP = 100, MaxHP = 100;
-    [SerializeField] int Armor = 100;
-    [SerializeField] int WeaponPower = 100;
-    [SerializeField] int Strength = 100;
-    [SerializeField] int Agility = 100;
-    [SerializeField] int Magic = 100;
-    [SerializeField] int Leadership = 100;
-    [SerializeField] int FieldCost = 10; //base cose = 10; Mercenary = 12 to loyal = 8
+    [SerializeField] private protected int Threat = 100;
+    [SerializeField] private protected int HP = 100, MaxHP = 100;
+    [SerializeField] private protected int Armor = 30;
+    [SerializeField] private protected int WeaponPower = 30;
+    [SerializeField] private protected int Strength = 15;
+    [SerializeField] private protected int Agility = 15;
+    [SerializeField] private protected int Magic = 15;
+    [SerializeField] private protected int Leadership = 25;
+    [SerializeField] private protected int FieldCost = 10; //base cose = 10; Mercenary = 12 to loyal = 8
 
-    [Header("Equipment and Trait Additions")]
-    [SerializeField] List<int> HPAdd = new();
-    [SerializeField] List<int> ArmorAdd = new();
-    [SerializeField] List<int> WeaponPowerAdd = new();
-    [SerializeField] List<int> StrengthAdd = new();
-    [SerializeField] List<int> AgilityAdd = new();
-    [SerializeField] List<int> MagicAdd = new();
-    [SerializeField] List<int> LeadershipAdd = new();
+    [Header("Equipment, Trait, and Class Additions")]
+    [SerializeField] private protected List<int> HPAdd = new();
+    [SerializeField] private protected List<int> ArmorAdd = new();
+    [SerializeField] private protected List<int> WeaponPowerAdd = new();
+    [SerializeField] private protected List<int> StrengthAdd = new();
+    [SerializeField] private protected List<int> AgilityAdd = new();
+    [SerializeField] private protected List<int> MagicAdd = new();
+    [SerializeField] private protected List<int> LeadershipAdd = new();
 
-    [Header("Total Attributes")]
-    [SerializeField] int TotalHP = 100;
-    [SerializeField] int TotalArmor = 100;
-    [SerializeField] int TotalWeapon = 100;
-    [SerializeField] int TotalStrength = 100;
-    [SerializeField] int TotalMagic = 100;
-    [SerializeField] int TotalAgility = 100;
-    [SerializeField] int TotalLeadership = 100;
+    [Header("Total Attributes - Calculated")]
+    [SerializeField] public int TotalHP = 100;
+    [SerializeField] public int TotalArmor = 100;
+    [SerializeField] public int TotalWeapon = 100;
+    [SerializeField] public int TotalStrength = 100;
+    [SerializeField] public int TotalMagic = 100;
+    [SerializeField] public int TotalAgility = 100;
+    [SerializeField] public int TotalLeadership = 100;
 
     //This is only for promotion classes that require certain attributes
     [Header("Required Attribute Scores")]
-    [SerializeField] int StrengthRequirement;
-    [SerializeField] int AgilityRequirement;
-    [SerializeField] int MagicRequirement;
+    [SerializeField] private protected int StrengthRequirement;
+    [SerializeField] private protected int AgilityRequirement;
+    [SerializeField] private protected int MagicRequirement;
 
     [Header("Attribute Growth Factors")]
     //Range of growth is from 1.0f to 5.0f - This affects the BASE stats of a unit
     //Savant tier is if the total growth is around 22f, Genius is 15f, Above-Average is 12f, Average is 10f, Poor is 8f, and Farmer is 5f 
-    [SerializeField] GrowthType Growth; //Averaged based on growth scores. Tiers: Savant, Genius, Above-Average, Average, Below-Average, Poor, Farmer
-    [SerializeField] float HPGrowth;
-    [SerializeField] float DexterityGrowth;
-    [SerializeField] float MagicGrowth;
-    [SerializeField] float LeadershipGrowth;
+    [SerializeField] private protected GrowthType Growth; //Averaged based on growth scores. Tiers: Savant, Genius, Above-Average, Average, Below-Average, Poor, Farmer
+    [SerializeField] private protected float HPGrowth;
+    [SerializeField] private protected float StrengthGrowth;
+    [SerializeField] private protected float AgilityGrowth;
+    [SerializeField] private protected float MagicGrowth;
+    [SerializeField] private protected float LeadershipGrowth;
 
     [Header("Attribute Generation Range")]
-    [SerializeField] Pair<float, float> HPRange;
-    [SerializeField] Pair<float, float> DexterityRange;
-    [SerializeField] Pair<float, float> MagicRange;
-    [SerializeField] Pair<float, float> LeadershipRange;
+    [SerializeField] public Pair<float, float> HPRange;
+    [SerializeField] public Pair<float, float> StrengthRange;
+    [SerializeField] public Pair<float, float> AgilityRange;
+    [SerializeField] public Pair<float, float> MagicRange;
+    [SerializeField] public Pair<float, float> LeadershipRange;
 
     [Header("Progession Meters")]
-    [SerializeField] int Level;
-    [SerializeField] int TierLevel;
-    [SerializeField] int PromotionPoints;
-    [SerializeField] int ExperiencePoints;
+    [SerializeField] private protected int Level;
+    [SerializeField] public int TierLevel;
+    [SerializeField] int PromotionPoints = 0;
+    [SerializeField] int ExperiencePoints = 0;
 
     [Header("Progression Caps Per Level")]
-    [SerializeField] int PromotionCap; //Tier 1 = 500, Tier 2 = 3000, Tier 3 = 4500, MaxTier = 8000
-    [SerializeField] int ExperienceCap; //The higher the tier, the higher the experience cap, yet the growth rate is multiplied by the tier
+    [SerializeField] private protected int PromotionCap; //Tier 1 = 500, Tier 2 = 3000, Tier 3 = 4500, MaxTier = 8000
+    [SerializeField] private protected int ExperienceCap; //The higher the tier, the higher the experience cap, yet the growth rate is multiplied by the tier
 
     //Cost when adding to squad, and when trying to spawn it
     [Header("Material Cost")]
@@ -100,11 +101,19 @@ public class Unit
     [SerializeField] public int AdamntiumCost;
 
     [Header("Traits")]
-    public List<Trait> traits;
+    private protected List<Trait> traits;
     public static readonly int AbsoluteMaxTraits = 6;
     [SerializeField] public int MaxTraits = 6; //How many traits the unit can learn in its lifetime. Absolute maxmium is 6
 
-    public Unit() {}
+    public Unit() 
+    {
+        SetAttributes();
+        SetCosts();
+    }
+
+    private protected abstract void SetAttributes();
+
+    private protected abstract void SetCosts();
 
     public string displayQuickInfo()
     {
@@ -156,6 +165,9 @@ public class Unit
     public int GetAgility() { return Agility; }
     public int GetMagic() { return Magic; }
     public int GetLeadership() { return Leadership; }
+
+    public List<Trait> GetTraits() { return traits; }
+    public void SetTraits(List<Trait> traits) { this.traits = traits; }
 
     public int GetLevel() { return Level; }
     public int GetFieldCost() { return FieldCost; }

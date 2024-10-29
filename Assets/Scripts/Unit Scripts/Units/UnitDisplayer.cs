@@ -101,7 +101,7 @@ public class UnitDisplayer : MonoBehaviour
         }
 
         int elementNum = 0;
-        foreach(Trait trait in Display.traits)
+        foreach(Trait trait in Display.GetTraits())
         {
             GameObject TraitBox = UtilityClass.CreatePrefabObject("Assets/PreFabs/TransitionMenu/Marketplace/TraitView.prefab", TraitViewParent.transform, "Trait_" + elementNum);
 

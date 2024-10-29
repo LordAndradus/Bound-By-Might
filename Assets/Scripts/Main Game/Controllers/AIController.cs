@@ -7,7 +7,13 @@ public class AIController : Controller
     [SerializeField] int TeamNumber = 1;
     List<SquadMovementHandler> IdleSquads = new();
     List<SquadMovementHandler> DefensiveSquads = new(); //Essentially, they were already placed and cannot move unless threatened
-    AI Processor = new EnemyAI();
+    
+    AI Overview = new GrandStrategyAI(GrandStrategyAI.directive.KillSpecificSquad);
+    AI Strategizer = new StrategicAI();
+    AI Operator = new OperationAI();
+    AI Tactician = new TacticsAI();
+
+
     public static Vector3 InitialPlayerViewport;
     public static float InitialOrthographicSize;
     bool PickSemaphore = false;

@@ -15,4 +15,14 @@ public class Squire : Unit
         GoldCost = 175;
         HorseCost = 1;
     }
+
+    private protected override void SetAttributes()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    private protected override void SetCosts()
+    {
+        throw new System.NotImplementedException();
+    }
 }

@@ -15,4 +15,14 @@ public class NeophyteMagus : Unit
         GoldCost = 250;
         MagicGemCost = 1;
     }
+
+    private protected override void SetAttributes()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    private protected override void SetCosts()
+    {
+        throw new System.NotImplementedException();
+    }
 }
