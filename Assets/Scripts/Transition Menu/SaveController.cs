@@ -35,13 +35,9 @@ public class SaveController : MonoBehaviour
     [SerializeField] GameObject RosterContent;
 
     [Header("Save Information")]
-    string RootSaveDirectory;
     [SerializeField] GameObject ActiveSaveInteractable;
     [SerializeField] List<string> SaveFiles;
-    [SerializeField] string ActiveSave;
-    [SerializeField] SaveFileWrapper ActiveSFW;
-    List<Unit> UnitList;
-    List<Squad> SquadList;
+    [SerializeField] SaveSystem.SaveFileWrapper ActiveSFW;
 
     public enum SaveOp {save, load}
     public SaveOp operation = SaveOp.save;
@@ -49,12 +45,6 @@ public class SaveController : MonoBehaviour
     private void Awake()
     {
         BackButton.onClick.AddListener(BackToMenu);
-
-        #if UNITY_EDITOR
-            RootSaveDirectory = Path.Combine(Application.dataPath, "Save Files");
-        #else
-            RootSaveDirectory = Path.Combine(Application.persistentDataPath, "Save Files");
-        #endif
 
         FileContent.transform.GetChild(0).AddComponent<InteractableObject>().LeftClickEvent += () => {
             SaveCurrentInformation();
@@ -85,16 +75,16 @@ public class SaveController : MonoBehaviour
 //General Purpose
     private void LoadSaveFiles()
     {   
-        if(!Directory.Exists(RootSaveDirectory))
+        if(!Directory.Exists(GlobalSettings.RootSaveDirectory))
         {
-            Directory.CreateDirectory(RootSaveDirectory);
-            Debug.LogError("Created root save directory @: " + RootSaveDirectory);
+            Directory.CreateDirectory(GlobalSettings.RootSaveDirectory);
+            Debug.LogError("Created root save directory @: " + GlobalSettings.RootSaveDirectory);
             return;
         }
 
         SaveFiles.Clear();
 
-        string[] files = Directory.GetFiles(RootSaveDirectory);
+        string[] files = Directory.GetFiles(GlobalSettings.RootSaveDirectory);
         foreach(string file in files) if(Path.GetExtension(file).Equals(".json")) SaveFiles.Add(Path.GetFileName(file));
 
         foreach(Transform child in FileContent.transform.Cast<Transform>().Skip(1)) Destroy(child.gameObject);
@@ -109,7 +99,7 @@ public class SaveController : MonoBehaviour
             GameObject SaveFile = UtilityClass.CreatePrefabObject("Assets/PreFabs/TransitionMenu/Save Interface/NormalSaveSlot.prefab", FileContent.transform);
             SaveFile.name = file;
             
-            SaveFileWrapper LoadInfo = JsonUtility.FromJson<SaveFileWrapper>(Cryptographer.Decrypt(System.IO.File.ReadAllText(Path.Combine(RootSaveDirectory, file)), GlobalSettings.KeyPartOne + Cryptographer.KeyPartTwo));
+            SaveSystem.SaveFileWrapper LoadInfo = JsonUtility.FromJson<SaveSystem.SaveFileWrapper>(Cryptographer.Decrypt(System.IO.File.ReadAllText(Path.Combine(GlobalSettings.RootSaveDirectory, file)), GlobalSettings.KeyPartOne + Cryptographer.KeyPartTwo));
 
             //Set text
             TextMeshProUGUI[] text = SaveFile.GetComponentsInChildren<TextMeshProUGUI>();
@@ -143,7 +133,7 @@ public class SaveController : MonoBehaviour
             io.RightClickEvent += () => {
                 Debug.LogWarning("Need to implement context menu! For now, me delete");
                 Debug.LogError("Name of file: " + SaveFiles[InstanceIndex]);
-                System.IO.File.Delete(Path.Combine(RootSaveDirectory, SaveFiles[InstanceIndex]));
+                System.IO.File.Delete(Path.Combine(GlobalSettings.RootSaveDirectory, SaveFiles[InstanceIndex]));
                 LoadSaveFiles();
             };
         }
@@ -163,9 +153,8 @@ public class SaveController : MonoBehaviour
         }
         else
         {
-            ActiveSave = SaveFiles[index];
-            string data = Cryptographer.Decrypt(System.IO.File.ReadAllText(Path.Combine(RootSaveDirectory, SaveFiles[index])), GlobalSettings.KeyPartOne + Cryptographer.KeyPartTwo);
-            ActiveSFW = JsonUtility.FromJson<SaveFileWrapper>(data);
+            string data = Cryptographer.Decrypt(System.IO.File.ReadAllText(Path.Combine(GlobalSettings.RootSaveDirectory, SaveFiles[index])), GlobalSettings.KeyPartOne + Cryptographer.KeyPartTwo);
+            ActiveSFW = JsonUtility.FromJson<SaveSystem.SaveFileWrapper>(data);
         }
         
         if(ActiveSFW == null)
@@ -242,19 +231,20 @@ public class SaveController : MonoBehaviour
 
     private void SaveCurrentInformation()
     {
-        SaveFileWrapper sfw = CreateSaveFileWrapper();
+        SaveSystem.SaveFileWrapper sfw = CreateSaveFileWrapper();
 
-        //Use JsonUtility to save information
         string FileName = string.Format("Save {0:D3} - {1}.json", SaveFiles.Count, "Placeholder Name");
-        System.IO.File.WriteAllText(Path.Combine(RootSaveDirectory, FileName), Cryptographer.Encrypt(JsonUtility.ToJson(sfw, true), GlobalSettings.KeyPartOne + Cryptographer.KeyPartTwo));
+        //Use JsonUtility to save information
+        //SaveSystem.Save<SaveSystem.SaveFileWrapper>(sfw, Path.Combine(GlobalSettings.RootSaveDirectory, FileName));
+        System.IO.File.WriteAllText(Path.Combine(GlobalSettings.RootSaveDirectory, FileName), Cryptographer.Encrypt(JsonUtility.ToJson(sfw, true), GlobalSettings.KeyPartOne + Cryptographer.KeyPartTwo));
         SaveFiles.Add(FileName);
 
         LoadSaveFiles();
     }
 
-    private SaveFileWrapper CreateSaveFileWrapper()
+    private SaveSystem.SaveFileWrapper CreateSaveFileWrapper()
     {
-        SaveFileWrapper sfw = new();
+        SaveSystem.SaveFileWrapper sfw = new();
 
         //Save Current time and date
         sfw.SaveFileDateTime = DateTime.Now.ToString("MM/dd/yyyy - HH:mm:ss");
@@ -284,7 +274,7 @@ public class SaveController : MonoBehaviour
     private void LoadCurrentInformation(string file)
     {
         //Essentially the opposite of saving
-        SaveFileWrapper sfw = JsonUtility.FromJson<SaveFileWrapper>(Cryptographer.Decrypt(System.IO.File.ReadAllText(Path.Combine(RootSaveDirectory, file)), GlobalSettings.KeyPartOne + Cryptographer.KeyPartTwo));
+        SaveSystem.SaveFileWrapper sfw = JsonUtility.FromJson<SaveSystem.SaveFileWrapper>(Cryptographer.Decrypt(System.IO.File.ReadAllText(Path.Combine(GlobalSettings.RootSaveDirectory, file)), GlobalSettings.KeyPartOne + Cryptographer.KeyPartTwo));
         mc.UnitList.Clear();
         mc.SquadList.Clear();
         mc.UnitList.AddRange(sfw.units);
@@ -299,21 +289,4 @@ public class SaveController : MonoBehaviour
             }
         }
     }
-}
-
-[Serializable]
-public class SaveFileWrapper
-{
-    public bool NewGamePlus = false;
-    public string SaveFileDateTime;
-    public int ArmyCount;
-    public int ArmyMax;
-
-    public List<Unit> units;
-    public List<Squad> squads;
-
-    //Current Chapter Information
-
-
-    UnitResourceManager.Wrapper resources = new();
 }

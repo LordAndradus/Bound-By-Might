@@ -149,9 +149,9 @@ public class CombatGridSystem
     {
         UnitGrid.GetSquadCoordinate(attacked, out int attackX, out int attackY);
         UnitGrid.GetSquadCoordinate(attacked, out Pair<int, int> AttackedCoordinate);
+        UnitGrid.GetSquadCoordinate(attacking, out Pair<int, int> CurrentCoordinate);
 
-        bool InCoordinate = false;
-        InCoordinate = attacking.GetAttackCoordinates().Any((coordinate) => {
+        bool InCoordinate = attacking.GetAttackCoordinates().Any((coordinate) => {
             return coordinate.equals(AttackedCoordinate);
         });
         
@@ -190,17 +190,21 @@ public class CombatGridSystem
         }
 
         //Check if the NeighborTile is within the AttackVector bounds
-        InCoordinate = false;
         Pair<int, int> NeighborCoordinate = new(NeighborTile.First, NeighborTile.Second);
         InCoordinate = attacking.GetAttackCoordinates().Any((coordinate) => {
+            Debug.Log("Coordinate = " + coordinate +
+            "\nNeighbor Coordinate = " + NeighborCoordinate + 
+            "\ncoordiante == NeighborCoordinate? " + coordinate.equals(NeighborCoordinate));
             return coordinate.equals(NeighborCoordinate);
         });
+
+        if(!InCoordinate) InCoordinate = CurrentCoordinate.equals(NeighborCoordinate);
 
         if(!InCoordinate)
         {
             Debug.LogError("The controller tried to attack outside of the Attack Vector bounds" +
             "\nController = " + attacking.GetController().ToString() +
-            "Entry Side = " + attacking.EntrySide.ToString());
+            "\nEntry Side = " + attacked.EntrySide.ToString());
             return false;
         }
 
@@ -219,6 +223,8 @@ public class CombatGridSystem
             Controller.selectedSquad = null;
             Controller.attackedSquad = null;
         };
+
+        if(CurrentCoordinate.equals(NeighborTile)) attacking.moved = true;
 
         attacked.StartDeletionCallback(attacking);
 

@@ -63,6 +63,7 @@ public class UnitPositionGrid
         }
         grid.SetGridObject(x1, y1, null);
         grid.SetGridObject(x2, y2, temp);
+        temp.GetController().TurnHistory.Add((temp, new(x1, y1), new(x2, y2)));
         temp.StartMovementCallback();
     }
     
