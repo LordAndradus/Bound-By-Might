@@ -87,12 +87,14 @@ public class Unit
 
     private protected virtual void SetAttributes()
     {
+        return;
         Debug.LogError("Did not implement SetAttributes()");
         //throw new Exception("Did not implement SetAttributes");
     }
 
     private protected virtual void SetCosts()
     {
+        return;
         Debug.LogError("Did not implement SetCosts()");
         //throw new Exception("Did not implement SetCosts");
     }
@@ -106,20 +108,23 @@ public class Unit
     {
         float MaxGrowth =  (float) UnitAttributes.Count * MaxRange / divisor;
         float GrowthSum = UnitAttributes.Sum(pair => pair.Value.GetGrowthValue());
+
+        if(GrowthSum <= 0f || MaxGrowth <= 0f)
+        {
+            GrowthDefintion = GrowthType.Abysmal;
+            return;
+        }
+
         float GrowthRatio = GrowthSum / MaxGrowth;
 
-        Debug.Log(Name + " Growth Ratio = " + GrowthRatio);
-
         if(GrowthRatio >= 0.9f) GrowthDefintion = GrowthType.Savant;
-        if(GrowthRatio < 0.9f && GrowthRatio >= 0.75f) GrowthDefintion = GrowthType.Genius;
-        if(GrowthRatio < 0.75f && GrowthRatio >= 0.6f) GrowthDefintion = GrowthType.Gifted;
-        if(GrowthRatio < 0.6f && GrowthRatio >= 0.4f) GrowthDefintion = GrowthType.Avgerage;
-        if(GrowthRatio < 0.4f && GrowthRatio >= 0.3f) GrowthDefintion = GrowthType.Subpar;
-        if(GrowthRatio < 0.3f && GrowthRatio >= 0.1f) GrowthDefintion = GrowthType.Poor;
-        if(GrowthRatio < 0.1f && GrowthRatio >= 0.05f) GrowthDefintion = GrowthType.Talentless;
-        if(GrowthRatio < 0.05f && GrowthRatio >= 0.0f) GrowthDefintion = GrowthType.Abysmal;
-
-        Debug.Log(Name + " Growth Type = " + GrowthDefintion);
+        else if(GrowthRatio < 0.9f && GrowthRatio >= 0.75f) GrowthDefintion = GrowthType.Genius;
+        else if(GrowthRatio < 0.75f && GrowthRatio >= 0.6f) GrowthDefintion = GrowthType.Gifted;
+        else if(GrowthRatio < 0.6f && GrowthRatio >= 0.4f) GrowthDefintion = GrowthType.Avgerage;
+        else if(GrowthRatio < 0.4f && GrowthRatio >= 0.3f) GrowthDefintion = GrowthType.Subpar;
+        else if(GrowthRatio < 0.3f && GrowthRatio >= 0.1f) GrowthDefintion = GrowthType.Poor;
+        else if(GrowthRatio < 0.1f && GrowthRatio >= 0.05f) GrowthDefintion = GrowthType.Talentless;
+        else if(GrowthRatio < 0.05f && GrowthRatio >= 0.0f) GrowthDefintion = GrowthType.Abysmal;
     }
 
     public string displayQuickInfo()
@@ -172,11 +177,11 @@ public class Unit
 [Serializable]
 public class AttributeScore
 {
-    int total;
-    int value, requirement;
-    float growth;
-    float leftover;
-    Pair<int, int> GenerationRange;
+    [SerializeField] int total;
+    [SerializeField] int value, requirement;
+    [SerializeField] float growth;
+    [SerializeField] float leftover;
+    [SerializeField] Pair<int, int> GenerationRange;
     public List<int> additions;
 
     public AttributeScore(int value, float growth, int requirement, Pair<int, int> GenerationRange)

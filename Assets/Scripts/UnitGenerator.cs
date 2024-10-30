@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.Collections.LowLevel.Unsafe;
 using UnityEngine;
 
 public class UnitGenerator : MonoBehaviour
@@ -83,6 +84,12 @@ public class UnitGenerator : MonoBehaviour
             }
 
             traits.Add(t);
+        }
+
+        foreach(KeyValuePair<Tkey, TValue> kv in u.UnitAttributes)
+        {
+            Pair<int, int> range = kv.Value.GetGenerationRange();
+            kv.Value += UnityEngine.Random.Range(range.First, range.Second);
         }
     }
 

@@ -12,11 +12,10 @@ public class Squad
 
     [Header("Parameters")]
     public string Name;
-    public MoveType MovementType = default(MoveType);
+    public MoveType MovementType = default;
     public int MoveSpeed = 6;
 
     [Header("Information")]
-    public Unit Leader;
     [SerializeField] List<Unit> units = new();
     [SerializeField] Unit[,] fieldedUnits = new Unit[3,3];
     [SerializeField] Equipment[] equipment = new Equipment[3];

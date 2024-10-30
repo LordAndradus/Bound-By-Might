@@ -670,6 +670,11 @@ MonoBehaviour:
     Name: Lord Andradus's Squad
     MovementType: 0
     MoveSpeed: 6
+    units: []
+    equipment:
+    - Icon: {fileID: 0}
+    - Icon: {fileID: 0}
+    - Icon: {fileID: 0}
   EntrySide: 0
   moved: 0
   moving: 0
@@ -827,6 +832,11 @@ MonoBehaviour:
     Name: Lord Andradus's Squad
     MovementType: 0
     MoveSpeed: 6
+    units: []
+    equipment:
+    - Icon: {fileID: 0}
+    - Icon: {fileID: 0}
+    - Icon: {fileID: 0}
   EntrySide: 0
   moved: 0
   moving: 0
@@ -984,6 +994,11 @@ MonoBehaviour:
     Name: Lord Andradus's Squad
     MovementType: 0
     MoveSpeed: 6
+    units: []
+    equipment:
+    - Icon: {fileID: 0}
+    - Icon: {fileID: 0}
+    - Icon: {fileID: 0}
   EntrySide: 0
   moved: 0
   moving: 0
@@ -1384,6 +1399,11 @@ MonoBehaviour:
     Name: Lord Andradus's Squad
     MovementType: 0
     MoveSpeed: 6
+    units: []
+    equipment:
+    - Icon: {fileID: 0}
+    - Icon: {fileID: 0}
+    - Icon: {fileID: 0}
   EntrySide: 0
   moved: 0
   moving: 0
@@ -1578,6 +1598,78 @@ MonoBehaviour:
     Name: Lord Andradus's Squad
     MovementType: 0
     MoveSpeed: 6
+    units:
+    - spriteView: {fileID: 0}
+      Name: 
+      UIFriendlyClassName: 
+      Description: Make sure to fill in the description, young game maker
+      Icon: {fileID: 0}
+      GrowthDefintion: 0
+      CareerHistory:
+        elements: []
+      divisor: 1000
+      MaxRange: 5001
+      movement: 0
+      FieldCost: 10
+      threat: 1000
+      UnitAttributes:
+        elements:
+        - key: 0
+          value:
+            total: 0
+            value: 0
+            requirement: 0
+            growth: 0
+            leftover: 0
+            GenerationRange:
+              <First>k__BackingField: 0
+              <Second>k__BackingField: 0
+            additions: 
+      Level: 0
+      TierLevel: 0
+      PromotionPoints: 0
+      ExperiencePoints: 0
+      PromotionCap: 0
+      ExperienceCap: 0
+      GoldCost: 0
+      IronCost: 0
+      MagicGemCost: 0
+      HorseCost: 0
+      HolyTearCost: 0
+      AdamntiumCost: 0
+      MaxTraits: 6
+    - spriteView: {fileID: 0}
+      Name: 
+      UIFriendlyClassName: 
+      Description: Make sure to fill in the description, young game maker
+      Icon: {fileID: 0}
+      GrowthDefintion: 0
+      CareerHistory:
+        elements: []
+      divisor: 1000
+      MaxRange: 5001
+      movement: 0
+      FieldCost: 10
+      threat: 1000
+      UnitAttributes:
+        elements: []
+      Level: 0
+      TierLevel: 0
+      PromotionPoints: 0
+      ExperiencePoints: 0
+      PromotionCap: 0
+      ExperienceCap: 0
+      GoldCost: 0
+      IronCost: 0
+      MagicGemCost: 0
+      HorseCost: 0
+      HolyTearCost: 0
+      AdamntiumCost: 0
+      MaxTraits: 6
+    equipment:
+    - Icon: {fileID: 0}
+    - Icon: {fileID: 0}
+    - Icon: {fileID: 0}
   EntrySide: 0
   moved: 0
   moving: 0
@@ -3545,6 +3637,11 @@ MonoBehaviour:
     Name: 
     MovementType: 0
     MoveSpeed: 6
+    units: []
+    equipment:
+    - Icon: {fileID: 0}
+    - Icon: {fileID: 0}
+    - Icon: {fileID: 0}
   EntrySide: 0
   moved: 0
   moving: 0
@@ -4575,7 +4672,7 @@ MonoBehaviour:
   spawnerParent: {fileID: 57077465}
   FollowCamera: {fileID: 0}
   MainCamera: {fileID: 0}
-  Finished: 1
+  Finished: 0
   ReserveSquadList: []
   cc: {fileID: 634278555}
   EndTurn: {fileID: 1292555801}
@@ -4959,6 +5056,11 @@ MonoBehaviour:
     Name: 
     MovementType: 0
     MoveSpeed: 6
+    units: []
+    equipment:
+    - Icon: {fileID: 0}
+    - Icon: {fileID: 0}
+    - Icon: {fileID: 0}
   EntrySide: 0
   moved: 0
   moving: 0
@@ -5150,6 +5252,11 @@ MonoBehaviour:
     Name: Lord Andradus's Squad
     MovementType: 0
     MoveSpeed: 6
+    units: []
+    equipment:
+    - Icon: {fileID: 0}
+    - Icon: {fileID: 0}
+    - Icon: {fileID: 0}
   EntrySide: 0
   moved: 0
   moving: 0
@@ -5517,6 +5624,11 @@ MonoBehaviour:
     Name: Lord Andradus's Squad
     MovementType: 0
     MoveSpeed: 6
+    units: []
+    equipment:
+    - Icon: {fileID: 0}
+    - Icon: {fileID: 0}
+    - Icon: {fileID: 0}
   EntrySide: 0
   moved: 0
   moving: 0
@@ -5674,6 +5786,11 @@ MonoBehaviour:
     Name: 
     MovementType: 0
     MoveSpeed: 6
+    units: []
+    equipment:
+    - Icon: {fileID: 0}
+    - Icon: {fileID: 0}
+    - Icon: {fileID: 0}
   EntrySide: 0
   moved: 0
   moving: 0
@@ -5984,6 +6101,11 @@ MonoBehaviour:
     Name: 
     MovementType: 0
     MoveSpeed: 6
+    units: []
+    equipment:
+    - Icon: {fileID: 0}
+    - Icon: {fileID: 0}
+    - Icon: {fileID: 0}
   EntrySide: 0
   moved: 0
   moving: 0
@@ -13294,6 +13416,11 @@ MonoBehaviour:
     Name: 
     MovementType: 0
     MoveSpeed: 6
+    units: []
+    equipment:
+    - Icon: {fileID: 0}
+    - Icon: {fileID: 0}
+    - Icon: {fileID: 0}
   EntrySide: 0
   moved: 0
   moving: 0
@@ -13819,6 +13946,11 @@ MonoBehaviour:
     Name: 
     MovementType: 0
     MoveSpeed: 6
+    units: []
+    equipment:
+    - Icon: {fileID: 0}
+    - Icon: {fileID: 0}
+    - Icon: {fileID: 0}
   EntrySide: 0
   moved: 0
   moving: 0
@@ -14981,6 +15113,11 @@ MonoBehaviour:
     Name: Lord Andradus's Squad
     MovementType: 0
     MoveSpeed: 6
+    units: []
+    equipment:
+    - Icon: {fileID: 0}
+    - Icon: {fileID: 0}
+    - Icon: {fileID: 0}
   EntrySide: 0
   moved: 0
   moving: 0
@@ -15307,6 +15444,11 @@ MonoBehaviour:
     Name: Lord Andradus's Squad
     MovementType: 0
     MoveSpeed: 6
+    units: []
+    equipment:
+    - Icon: {fileID: 0}
+    - Icon: {fileID: 0}
+    - Icon: {fileID: 0}
   EntrySide: 0
   moved: 0
   moving: 0
@@ -18242,6 +18384,11 @@ MonoBehaviour:
     Name: 
     MovementType: 0
     MoveSpeed: 6
+    units: []
+    equipment:
+    - Icon: {fileID: 0}
+    - Icon: {fileID: 0}
+    - Icon: {fileID: 0}
   EntrySide: 0
   moved: 0
   moving: 0
@@ -18772,6 +18919,11 @@ MonoBehaviour:
     Name: Lord Andradus's Squad
     MovementType: 0
     MoveSpeed: 6
+    units: []
+    equipment:
+    - Icon: {fileID: 0}
+    - Icon: {fileID: 0}
+    - Icon: {fileID: 0}
   EntrySide: 0
   moved: 0
   moving: 0
@@ -19116,6 +19268,11 @@ MonoBehaviour:
     Name: Lord Andradus's Squad
     MovementType: 0
     MoveSpeed: 6
+    units: []
+    equipment:
+    - Icon: {fileID: 0}
+    - Icon: {fileID: 0}
+    - Icon: {fileID: 0}
   EntrySide: 0
   moved: 0
   moving: 0
@@ -19273,6 +19430,11 @@ MonoBehaviour:
     Name: Lord Andradus's Squad
     MovementType: 0
     MoveSpeed: 6
+    units: []
+    equipment:
+    - Icon: {fileID: 0}
+    - Icon: {fileID: 0}
+    - Icon: {fileID: 0}
   EntrySide: 0
   moved: 0
   moving: 0
