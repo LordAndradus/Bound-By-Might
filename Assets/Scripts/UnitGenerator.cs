@@ -86,21 +86,32 @@ public class UnitGenerator : MonoBehaviour
             traits.Add(t);
         }
 
-        foreach(KeyValuePair<Tkey, TValue> kv in u.UnitAttributes)
+        List<AttributeType> attributes = new(u.UnitAttributes.Keys);
+
+        foreach(AttributeType aType in attributes)
         {
-            Pair<int, int> range = kv.Value.GetGenerationRange();
-            kv.Value += UnityEngine.Random.Range(range.First, range.Second);
+            Pair<int, int> range = u.UnitAttributes[aType].GetGenerationRange();
+            u.UnitAttributes[aType] += UnityEngine.Random.Range(range.First, range.Second);
         }
     }
 
     public static Unit generateMerc()
     {
-        TraitFactory tf = new();
         UnitFactory uf = new();
 
         Unit u = uf.get(true);
 
         AssignUnitQualities(u);
+
+        List<Trait> traits = u.GetTraits();
+
+        foreach(Trait trait in traits)
+        {
+            if(trait is Loyalty)
+            traits.Remove(trait);
+        }
+
+        traits.Add(new Mercenary());
 
         //Generate fake snapshots
 
@@ -115,10 +126,11 @@ class TraitFactory
     public TraitFactory()
     {
         buildFactory(() => new Loyal(),
+                     () => new Sympathizer(),
                      () => new Mercenary(),
+                     () => new Sworn(),
                      () => new Intelligent(),
                      () => new Heroic(),
-                     () => new Sworn(),
                      () => new Bulwark(),
                      () => new NaturalLeader());
     }

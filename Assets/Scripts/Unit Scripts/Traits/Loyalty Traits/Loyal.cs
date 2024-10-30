@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class Loyal : Trait
+public class Loyal : Trait, Loyalty
 {
     public Loyal()
     {
@@ -12,15 +12,8 @@ public class Loyal : Trait
         EffectText = "-2 Field Cost and a 50% reduction in Gold cost to field";
     }
 
-    
-
-    public override void add()
+    public bool IsLoyaltyTrait()
     {
-        Debug.Log("The most loyal of soldiers!");
-    }
-
-    public override void remove()
-    {
-        Debug.Log("Removing this trait!");
+        return true;
     }
 }

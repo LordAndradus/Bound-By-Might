@@ -25,7 +25,7 @@ public class Unit
     [SerializeField] int MaxRange = (5 * 1000) + 1;
     [SerializeField] public MoveType movement;
     [SerializeField] public int FieldCost = 10; //Depends on Traits. 12 if Merc, to 8 if Loyal
-    [SerializeField] public int threat = 1000;
+    [SerializeField] public int threat = 256;
 
     [Header("Attribute Dictionary")]
     public SerializableDictionary<AttributeType, AttributeScore> UnitAttributes;
@@ -88,15 +88,11 @@ public class Unit
     private protected virtual void SetAttributes()
     {
         return;
-        Debug.LogError("Did not implement SetAttributes()");
-        //throw new Exception("Did not implement SetAttributes");
     }
 
     private protected virtual void SetCosts()
     {
         return;
-        Debug.LogError("Did not implement SetCosts()");
-        //throw new Exception("Did not implement SetCosts");
     }
 
     private protected float Range()

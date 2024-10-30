@@ -4,11 +4,9 @@ using UnityEngine;
 [Serializable]
 public class Trait
 {
-    Unit reference;
-    
-    public event Action addEffect;
-    public event Action removeEffect;
-    public event Action triggerEffect;
+    public event Action<Unit> addEffect;
+    public event Action<Unit> removeEffect;
+    public event Action<Unit> triggerEffect;
 
     public Sprite icon;
 
@@ -26,8 +24,13 @@ public class Trait
     public Trait()
     {
         UIFriendlyClassName = UtilityClass.UIFriendlyClassName(GetType().Name);
-        addEffect += add;
-        removeEffect += remove;
+    }
+
+    public void AssignActions(Action<Unit> Add, Action<Unit> Remove, Action<Unit> Trigger)
+    {
+        Add += add;
+        Remove += remove;
+        Trigger += trigger;
     }
 
     public String getDescription()
@@ -36,14 +39,19 @@ public class Trait
     }
 
 //Overriden functions========================================================================================================================
-    public virtual void add()
+    public virtual void add(Unit u)
     {
-        Debug.Log("Don't forget to add an effect!");
+        Debug.Log("Don't forget to add the trait!");
     }
 
-    public virtual void remove() //For non-combat effects
+    public virtual void remove(Unit u) //For non-combat effects
     {
-        Debug.Log("Make sure to actually remove the effect!");
+        Debug.Log("Make sure to actually remove the trait!");
+    }
+
+    public virtual void trigger(Unit u)
+    {
+        Debug.LogError("Make sure to have a trigger for this trait!");
     }
 
     public virtual String toString()
