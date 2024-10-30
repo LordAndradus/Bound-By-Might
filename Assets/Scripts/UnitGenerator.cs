@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using Unity.Collections.LowLevel.Unsafe;
 using UnityEngine;
 
 public class UnitGenerator : MonoBehaviour
@@ -59,7 +61,9 @@ public class UnitGenerator : MonoBehaviour
     {
         TraitFactory tf = new();
         
-        u.traits = new();
+        u.SetTraits(new());
+
+        List<Trait> traits = u.GetTraits();
         
         int numTraits = (int) UnityEngine.Random.Range(0.0f, (float) Unit.AbsoluteMaxTraits + 0.5f);
 
@@ -71,24 +75,43 @@ public class UnitGenerator : MonoBehaviour
 
             if(t == null) break;
 
-            if(u.traits.Contains(t))
+            if(traits.Any((trait) => {
+                return trait.GetType() == t.GetType();
+            }))
             {
                 i--;
                 continue;
             }
 
-            u.traits.Add(t);
+            traits.Add(t);
+        }
+
+        List<AttributeType> attributes = new(u.UnitAttributes.Keys);
+
+        foreach(AttributeType aType in attributes)
+        {
+            Pair<int, int> range = u.UnitAttributes[aType].GetGenerationRange();
+            u.UnitAttributes[aType] += UnityEngine.Random.Range(range.First, range.Second);
         }
     }
 
     public static Unit generateMerc()
     {
-        TraitFactory tf = new();
         UnitFactory uf = new();
 
         Unit u = uf.get(true);
 
         AssignUnitQualities(u);
+
+        List<Trait> traits = u.GetTraits();
+
+        foreach(Trait trait in traits)
+        {
+            if(trait is Loyalty)
+            traits.Remove(trait);
+        }
+
+        traits.Add(new Mercenary());
 
         //Generate fake snapshots
 
@@ -103,10 +126,11 @@ class TraitFactory
     public TraitFactory()
     {
         buildFactory(() => new Loyal(),
+                     () => new Sympathizer(),
                      () => new Mercenary(),
+                     () => new Sworn(),
                      () => new Intelligent(),
                      () => new Heroic(),
-                     () => new Sworn(),
                      () => new Bulwark(),
                      () => new NaturalLeader());
     }

@@ -39,7 +39,7 @@ public class LoadController : MonoBehaviour
     [SerializeField] GameObject ActiveLoadInteractable;
     [SerializeField] List<string> LoadFiles;
     [SerializeField] string ActiveLoad;
-    [SerializeField] SaveFileWrapper ActiveSFW;
+    [SerializeField] SaveSystem.SaveFileWrapper ActiveSFW;
     List<Unit> UnitList;
     List<Squad> SquadList;
 

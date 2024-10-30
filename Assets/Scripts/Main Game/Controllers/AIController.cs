@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,10 +8,35 @@ public class AIController : Controller
     [SerializeField] int TeamNumber = 1;
     List<SquadMovementHandler> IdleSquads = new();
     List<SquadMovementHandler> DefensiveSquads = new(); //Essentially, they were already placed and cannot move unless threatened
-    AI Processor = new EnemyAI();
+    
+    AI Overview = new GrandStrategyAI(GrandStrategyAI.directive.KillSpecificSquad);
+    AI Strategizer = new StrategicAI();
+    AI Operator = new OperationAI();
+    AI Tactician = new TacticsAI();
+
+    Coroutine MoveBack;
+
+
     public static Vector3 InitialPlayerViewport;
     public static float InitialOrthographicSize;
     bool PickSemaphore = false;
+    
+    private IEnumerator MoveCameraBack()
+    {
+        float TargetTime = 2f;
+        float MinPan = 4f;
+        float Distance = Vector3.Distance(InitialPlayerViewport, Camera.main.transform.position);
+        float UniformPan = Mathf.Max(Distance / TargetTime, MinPan);
+        while(Vector3.Distance(Camera.main.transform.position, InitialPlayerViewport) > 0.1f)
+        {
+            Vector3 Direction = (InitialPlayerViewport - Camera.main.transform.position).normalized;
+            Camera.main.transform.position += Direction * UniformPan * Time.deltaTime;
+            yield return null;
+        }
+
+        Finished = true;
+        MoveBack = null;
+    }
 
     Timer WaitToPick;
 
@@ -21,6 +47,9 @@ public class AIController : Controller
 
         TeamNumbers.Add(this, TeamNumber);
 
+        InitialPlayerViewport = Camera.main.transform.position;
+        InitialOrthographicSize = 5f;
+
         WaitToPick = new(2f, true, () => {
             Debug.Log("Posting semaphore");
             PickSemaphore = true;
@@ -30,6 +59,8 @@ public class AIController : Controller
 
     public override void ControllerLogic()
     {
+        if(MoveBack != null) return;
+
         WaitToPick.update();
 
         foreach(SquadMovementHandler smh in SquadMoverList) smh.ClearHighlighting();
@@ -41,7 +72,7 @@ public class AIController : Controller
             selectedSquadPosition.z = -10f;
             Camera.main.transform.position = selectedSquadPosition;
 
-            Camera.main.transform.GetComponent<CameraController>().ClampFollow(selectedSquadPosition);
+            Camera.main.transform.GetComponent<CameraController>().ClampFollow();
             
             if(selectedSquad.moving) return;
         }
@@ -61,11 +92,12 @@ public class AIController : Controller
 
         if(IdleSquads.Count == 0)
         {
-            Finished = true;
+            //Finished = true;
             attackedSquad = null;
             selectedSquad = null;
-            Camera.main.transform.position = InitialPlayerViewport;
-            Camera.main.orthographicSize = InitialOrthographicSize;
+            //Camera.main.transform.position = InitialPlayerViewport;
+            //Camera.main.orthographicSize = InitialOrthographicSize;
+            MoveBack = StartCoroutine(MoveCameraBack());
             return;
         }
 

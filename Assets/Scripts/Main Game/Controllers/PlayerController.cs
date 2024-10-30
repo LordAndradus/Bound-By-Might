@@ -204,8 +204,8 @@ public class PlayerController : Controller
         {
             if(SquadMoverList.Contains(selectedSquad))
             {
-                if(attackedSquad != null) CombatGridSystem.instance.SetSquadAttackPath(selectedSquad, attackedSquad);
-                else CombatGridSystem.instance.SetSquadNormalPath(selectedSquad, UtilityClass.GetScreenMouseToWorld());
+                if(attackedSquad != null) if(!CombatGridSystem.instance.SetSquadAttackPath(selectedSquad, attackedSquad)) attackedSquad = null;
+                if(attackedSquad == null) CombatGridSystem.instance.SetSquadNormalPath(selectedSquad, UtilityClass.GetScreenMouseToWorld());
 
                 return;
             }
@@ -215,7 +215,9 @@ public class PlayerController : Controller
         {
             foreach(SquadMovementHandler smh in SquadMoverList) smh.ClearHighlighting();
             if(selectedSquad == CurrentSelection && !selectedSquad.moving) selectedSquad = null;
-            else CombatGridSystem.instance.LoadValidTiles(selectedSquad);
+            else CombatGridSystem.instance.LoadValidTiles(CurrentSelection = selectedSquad);
+
+            if(selectedSquad == null) StateMachine.Pop();
         }
 
         CycleSquad();
@@ -257,6 +259,8 @@ public class PlayerController : Controller
         {
 
         }
+
+        //If all else fails. Generate some random squads lol
     }
 
     private bool CycleSquad()
@@ -281,7 +285,7 @@ public class PlayerController : Controller
             Vector3 position = UtilityClass.CopyVector(selectedSquad.transform.position);
             position.z = Camera.main.transform.position.z;
             Camera.main.transform.position = position;
-            cc.ClampFollow(position);
+            cc.ClampFollow();
 
             return true;
         }
@@ -293,6 +297,7 @@ public class PlayerController : Controller
     {
         if(Input.GetKey(KeyCode.LeftControl) && Input.GetKeyDown(KeyCode.R))
         {
+            ClearSelections();
             foreach(SpawnTile spawner in spawners)
             {
                 if(!spawner.IsOccupied())

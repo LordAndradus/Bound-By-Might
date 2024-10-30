@@ -12,4 +12,14 @@ public class General : Unit
     {
         UIFriendlyClassName = "General";        
     }
+
+    private protected override void SetAttributes()
+    {
+        
+    }
+
+    private protected override void SetCosts()
+    {
+
+    }
 }

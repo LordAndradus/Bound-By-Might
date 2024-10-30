@@ -19,10 +19,17 @@ public class CameraController : MonoBehaviour
         GlobalSettings.ZoomSettings[CameraKey.targetZoom] = camera.orthographicSize;
     }
 
-    public void ClampFollow(Vector3 EdgeChecker)
+    public void ClampFollow()
     {
-        clampCameraPan(EdgeChecker);
+        clampCameraToMap();
         clampCameraZoom();
+    }
+
+    private void Update()
+    {
+        Vector3 camPos = UtilityClass.CopyVector(camera.transform.position);
+        camPos.z = -10f;
+        camera.transform.position = camPos;
     }
 
     public void Move()
@@ -33,9 +40,9 @@ public class CameraController : MonoBehaviour
 
         dragPanCamera();
 
-        clampCameraPan(InitialCamPosition);
-
         zoomCamera();
+
+        clampCameraToMap();
 
         clampCameraZoom();
 
@@ -98,22 +105,12 @@ public class CameraController : MonoBehaviour
         camera.orthographicSize = newCamSize;
     }
 
-    void clampCameraPan(Vector3 ResetVector)
-    {
-        //If Camera transform position exceeds the width and height bounds of the level, then reset the position to its initial position
-        Vector3 FauxCamPos = UtilityClass.CopyAbsVector(camera.transform.position) + new Vector3(camera.orthographicSize * camera.aspect, camera.orthographicSize);
-        //Reset X position of camera
-        if(FauxCamPos.x > Level.MapSize.First/2) camera.transform.position = new Vector3(ResetVector.x, camera.transform.position.y, camera.transform.position.z);
-        //Reset Y position of camera
-        if(FauxCamPos.y > Level.MapSize.Second/2) camera.transform.position = new Vector3(camera.transform.position.x, ResetVector.y, camera.transform.position.z);
-    }
-
-    void clampCameraZoom()
+    void clampCameraToMap()
     {
         float MapMaxWidth = Level.MapSize.First/2;
         float MapMaxHeight = Level.MapSize.Second/2;
 
-        //Check to see if by scrolling out, we need to move the camera
+        //Clamp Camera to MapSize
         Vector3 FauxCameraPosition = UtilityClass.CopyVector(camera.transform.position);
 
         FauxCameraPosition.x += FauxCameraPosition.x > 0 ? camera.orthographicSize * camera.aspect : -camera.orthographicSize * camera.aspect;
@@ -128,12 +125,23 @@ public class CameraController : MonoBehaviour
         FauxCameraPosition.x -= FauxCameraPosition.x > 0 ? camera.orthographicSize * camera.aspect : -camera.orthographicSize * camera.aspect;
         FauxCameraPosition.y -= FauxCameraPosition.y > 0 ? camera.orthographicSize : -camera.orthographicSize;
 
-        camera.transform.position = UtilityClass.CopyVector(FauxCameraPosition);
+        camera.transform.position = FauxCameraPosition;
+    }
+
+    void clampCameraZoom()
+    {
+        float MapMaxWidth = Level.MapSize.First/2;
+        float MapMaxHeight = Level.MapSize.Second/2;
 
         //Clamp camera size to size restriction
         Vector3 AbsFauxCamera = UtilityClass.CopyAbsVector(camera.transform.position) + new Vector3(camera.orthographicSize * camera.aspect, camera.orthographicSize);
         if(AbsFauxCamera.x > MapMaxWidth || AbsFauxCamera.y > MapMaxHeight)
         {
+            Vector3 CamPos = UtilityClass.CopyVector(camera.transform.position);
+            CamPos.x = Mathf.Round(CamPos.x * 10f) / 10f;
+            CamPos.y = Mathf.Round(CamPos.y * 10f) / 10f;
+            camera.transform.position = CamPos;
+
             oldCamSize = Mathf.Round(oldCamSize * 10) / 10;
             camera.orthographicSize = oldCamSize;
             GlobalSettings.ZoomSettings[CameraKey.targetZoom] = oldCamSize;

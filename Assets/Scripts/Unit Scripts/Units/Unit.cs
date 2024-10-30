@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using UnityEditor;
 using UnityEngine;
 
 /* TODO
@@ -13,80 +12,33 @@ using UnityEngine;
 [Serializable]
 public class Unit
 {
-    [SerializeField] public Sprite spriteView;
-    [SerializeField] public string Name;
-    [SerializeField] public string UIFriendlyClassName;
-    [SerializeField] public string Description = "Make sure to fill in the description, young game maker";
-    [SerializeField] public Sprite Icon;
-/*     public static Dictionary<Type, List<Type>> PromotionMap = new(){
-        { typeof(MilitiaMale), new(){ typeof(Footman), typeof(Spearman), typeof(JourneymanMage), typeof(Yeoman), typeof(Knight), typeof(Chasseur), typeof(Archer) }},
-        { typeof(MilitiaBowman), PromotionMap[typeof(MilitiaMale)] },
-        { typeof(MilitiaFemale), new(){ typeof(Sorceress), typeof(Priestess), typeof(Commando) }},
-        { typeof(NeophyteMagus), new(){ typeof(JourneymanMage), typeof(Footman), typeof(Spearman), typeof(Yeoman) }},
-    }; */
+    public Sprite spriteView;
+    public string Name;
+    public string UIFriendlyClassName;
+    public string Description = "Make sure to fill in the description, young game maker";
+    public Sprite Icon;
+    public GrowthType GrowthDefintion;
 
+    [SerializeField] public SerializableDictionary<Type, Snapshot> CareerHistory = new();
+    [SerializeField] public List<Type> UpgradePath = new();
+    [SerializeField] float divisor = 1000;    
+    [SerializeField] int MaxRange = (5 * 1000) + 1;
     [SerializeField] public MoveType movement;
+    [SerializeField] public int FieldCost = 10; //Depends on Traits. 12 if Merc, to 8 if Loyal
+    [SerializeField] public int threat = 256;
 
-    [Header("Base Attribute Scores")]
-    //Base Threat = 100. Calculation goes as follows: Threat += 3 per normal stat, += 1 per armor & weapon; Threat += 1000 * tier level; Threat += 100 * Per Traits rarity
-    [SerializeField] int Threat = 100;
-    [SerializeField] int HP = 100, MaxHP = 100;
-    [SerializeField] int Armor = 100;
-    [SerializeField] int WeaponPower = 100;
-    [SerializeField] int Strength = 100;
-    [SerializeField] int Agility = 100;
-    [SerializeField] int Magic = 100;
-    [SerializeField] int Leadership = 100;
-    [SerializeField] int FieldCost = 10; //base cose = 10; Mercenary = 12 to loyal = 8
-
-    [Header("Equipment and Trait Additions")]
-    [SerializeField] List<int> HPAdd = new();
-    [SerializeField] List<int> ArmorAdd = new();
-    [SerializeField] List<int> WeaponPowerAdd = new();
-    [SerializeField] List<int> StrengthAdd = new();
-    [SerializeField] List<int> AgilityAdd = new();
-    [SerializeField] List<int> MagicAdd = new();
-    [SerializeField] List<int> LeadershipAdd = new();
-
-    [Header("Total Attributes")]
-    [SerializeField] int TotalHP = 100;
-    [SerializeField] int TotalArmor = 100;
-    [SerializeField] int TotalWeapon = 100;
-    [SerializeField] int TotalStrength = 100;
-    [SerializeField] int TotalMagic = 100;
-    [SerializeField] int TotalAgility = 100;
-    [SerializeField] int TotalLeadership = 100;
-
-    //This is only for promotion classes that require certain attributes
-    [Header("Required Attribute Scores")]
-    [SerializeField] int StrengthRequirement;
-    [SerializeField] int AgilityRequirement;
-    [SerializeField] int MagicRequirement;
-
-    [Header("Attribute Growth Factors")]
-    //Range of growth is from 1.0f to 5.0f - This affects the BASE stats of a unit
-    //Savant tier is if the total growth is around 22f, Genius is 15f, Above-Average is 12f, Average is 10f, Poor is 8f, and Farmer is 5f 
-    [SerializeField] GrowthType Growth; //Averaged based on growth scores. Tiers: Savant, Genius, Above-Average, Average, Below-Average, Poor, Farmer
-    [SerializeField] float HPGrowth;
-    [SerializeField] float DexterityGrowth;
-    [SerializeField] float MagicGrowth;
-    [SerializeField] float LeadershipGrowth;
-
-    [Header("Attribute Generation Range")]
-    [SerializeField] Pair<float, float> HPRange;
-    [SerializeField] Pair<float, float> DexterityRange;
-    [SerializeField] Pair<float, float> MagicRange;
-    [SerializeField] Pair<float, float> LeadershipRange;
+    [Header("Attribute Dictionary")]
+    public SerializableDictionary<AttributeType, AttributeScore> UnitAttributes;
 
     [Header("Progession Meters")]
-    [SerializeField] int Level;
-    [SerializeField] int TierLevel;
-    [SerializeField] int PromotionPoints;
-    [SerializeField] int ExperiencePoints;
+    [SerializeField] private protected int Level;
+    [SerializeField] public int TierLevel;
+    [SerializeField] int PromotionPoints = 0;
+    [SerializeField] int ExperiencePoints = 0;
 
     [Header("Progression Caps Per Level")]
-    [SerializeField] int PromotionCap; //Tier 1 = 500, Tier 2 = 3000, Tier 3 = 4500, MaxTier = 8000
-    [SerializeField] int ExperienceCap; //The higher the tier, the higher the experience cap, yet the growth rate is multiplied by the tier
+    [SerializeField] private protected int PromotionCap; //Tier 1 = 500, Tier 2 = 3000, Tier 3 = 4500, MaxTier = 8000
+    [SerializeField] private protected int ExperienceCap; //The higher the tier, the higher the experience cap, yet the growth rate is multiplied by the tier
 
     //Cost when adding to squad, and when trying to spawn it
     [Header("Material Cost")]
@@ -100,15 +52,80 @@ public class Unit
     [SerializeField] public int AdamntiumCost;
 
     [Header("Traits")]
-    public List<Trait> traits;
+    private protected List<Trait> traits;
     public static readonly int AbsoluteMaxTraits = 6;
     [SerializeField] public int MaxTraits = 6; //How many traits the unit can learn in its lifetime. Absolute maxmium is 6
 
-    public Unit() {}
+    public Unit() 
+    {
+        UnitAttributes = new();
+        SetAttributes();
+        SetCosts();
+        SetGrowthType();
+
+        ExperienceCap = 500 * TierLevel;
+
+        switch(TierLevel)
+        {
+            case 1:
+                PromotionCap = 500;
+                break;
+
+            case 2:
+                PromotionCap = 3000;
+                break;
+
+            case 3:
+                PromotionCap = 4500;
+                break;
+
+            case 4:
+                PromotionCap = 8000;
+                break;
+        }
+    }
+
+    private protected virtual void SetAttributes()
+    {
+        return;
+    }
+
+    private protected virtual void SetCosts()
+    {
+        return;
+    }
+
+    private protected float Range()
+    {
+        return UnityEngine.Random.Range(0, MaxRange) / (float) divisor;
+    }
+
+    private void SetGrowthType()
+    {
+        float MaxGrowth =  (float) UnitAttributes.Count * MaxRange / divisor;
+        float GrowthSum = UnitAttributes.Sum(pair => pair.Value.GetGrowthValue());
+
+        if(GrowthSum <= 0f || MaxGrowth <= 0f)
+        {
+            GrowthDefintion = GrowthType.Abysmal;
+            return;
+        }
+
+        float GrowthRatio = GrowthSum / MaxGrowth;
+
+        if(GrowthRatio >= 0.9f) GrowthDefintion = GrowthType.Savant;
+        else if(GrowthRatio < 0.9f && GrowthRatio >= 0.75f) GrowthDefintion = GrowthType.Genius;
+        else if(GrowthRatio < 0.75f && GrowthRatio >= 0.6f) GrowthDefintion = GrowthType.Gifted;
+        else if(GrowthRatio < 0.6f && GrowthRatio >= 0.4f) GrowthDefintion = GrowthType.Avgerage;
+        else if(GrowthRatio < 0.4f && GrowthRatio >= 0.3f) GrowthDefintion = GrowthType.Subpar;
+        else if(GrowthRatio < 0.3f && GrowthRatio >= 0.1f) GrowthDefintion = GrowthType.Poor;
+        else if(GrowthRatio < 0.1f && GrowthRatio >= 0.05f) GrowthDefintion = GrowthType.Talentless;
+        else if(GrowthRatio < 0.05f && GrowthRatio >= 0.0f) GrowthDefintion = GrowthType.Abysmal;
+    }
 
     public string displayQuickInfo()
     {
-        return string.Format("{0}\nSTR: {1}\nAGI: {2}\nMAG: {3}\nLDR: {4}\nFCC: {5}\nGRO: {6}", Name, Strength, Agility, Magic, Leadership, FieldCost, Growth.ToString());
+        return string.Format("{0}\nSTR: {1}\nAGI: {2}\nMAG: {3}\nLDR: {4}\nFCC: {5}\nGRO: {6}", Name, UnitAttributes[AttributeType.Strength], UnitAttributes[AttributeType.Agility], UnitAttributes[AttributeType.Magic], UnitAttributes[AttributeType.Leadership], FieldCost, GrowthDefintion.ToString());
     }
     
     public override string ToString()
@@ -131,31 +148,18 @@ public class Unit
 
     public void LevelUp()
     {
-        HP += (int) HPGrowth;
+        
         CalculateTotals();
     }
 
     public void CalculateTotals()
     {
-        TotalHP = HP + HPAdd.Sum();
-        TotalArmor = Armor + ArmorAdd.Sum();
-        TotalWeapon = WeaponPower + WeaponPowerAdd.Sum();
-        TotalStrength = Strength + StrengthAdd.Sum();
-        TotalMagic = Magic + MagicAdd.Sum();
-        TotalAgility = Agility + AgilityAdd.Sum();
-        TotalLeadership = Leadership + LeadershipAdd.Sum();
+        
     }
 
     //Getters and Setters for Attribute Scores
-    public int GetThreat() { return Threat; }
-    public int GetHealth() { return HP; }
-    public int GetMaxHealth() { return MaxHP; }
-    public int GetArmor() { return Armor; }
-    public int GetWeapon() { return WeaponPower; }
-    public int GetStrength() { return Strength; }
-    public int GetAgility() { return Agility; }
-    public int GetMagic() { return Magic; }
-    public int GetLeadership() { return Leadership; }
+    public List<Trait> GetTraits() { return traits; }
+    public void SetTraits(List<Trait> traits) { this.traits = traits; }
 
     public int GetLevel() { return Level; }
     public int GetFieldCost() { return FieldCost; }
@@ -166,6 +170,265 @@ public class Unit
     public int GetPP() { return PromotionPoints; }
 }
 
+[Serializable]
+public class AttributeScore
+{
+    [SerializeField] int total;
+    [SerializeField] int value, requirement;
+    [SerializeField] float growth;
+    [SerializeField] float leftover;
+    [SerializeField] Pair<int, int> GenerationRange;
+    public List<int> additions;
+
+    public AttributeScore(int value, float growth, int requirement, Pair<int, int> GenerationRange)
+    {
+        this.value = value;
+        this.growth = growth;
+        this.requirement = requirement;
+        this.GenerationRange = GenerationRange;
+        additions = new();
+        leftover = 0f;
+        SetTotal();
+    }
+
+    public void SetBaseValue(int value)
+    {
+        if(value < 0)
+        {
+            Debug.LogError("There is a negative value being passed in attribute. What. The. Fuck.");
+            return;
+        }
+
+        this.value = value;
+    }
+
+    public void LevelUp()
+    {
+        float val = (float) value + growth + leftover;
+        value = (int) val;
+        leftover = val - value;
+    }
+
+    public void SetTotal()
+    {
+        total = value + additions.Sum();
+    }
+
+    public int GetTotal()
+    {
+        return total;
+    }
+
+    public int GetRequirement()
+    {
+        return requirement;
+    }
+
+    public float GetGrowthValue()
+    {
+        return growth;
+    }
+
+    public Pair<int, int> GetGenerationRange()
+    {
+        return GenerationRange;
+    }
+
+    public override string ToString()
+    {
+        return value.ToString();
+    }
+
+    public static implicit operator int(AttributeScore a)
+    {
+        return a.value;
+    }
+
+    //Operations
+    public static AttributeScore operator +(AttributeScore a1, AttributeScore a2)
+    {
+        a1.value += a2.value;
+        return a1;
+    }
+
+    public static AttributeScore operator +(AttributeScore asVal, int val)
+    {
+        asVal.value += val;
+        return asVal;
+    }
+
+    public static int operator +(int val, AttributeScore asVal)
+    {
+        val += asVal.value;
+        return val;
+    }
+
+    public static AttributeScore operator -(AttributeScore a1, AttributeScore a2)
+    {
+        a1.value -= a2.value;
+        return a1;
+    }
+
+    public static AttributeScore operator -(AttributeScore asVal, int val)
+    {
+        asVal.value -= val;
+        return asVal;
+    }
+
+    public static int operator -(int val, AttributeScore asVal)
+    {
+        val -= asVal.value;
+        return val;
+    }
+
+    public static AttributeScore operator *(AttributeScore a1, AttributeScore a2)
+    {
+        a1.value *= a2.value;
+        return a1;
+    }
+
+    public static AttributeScore operator *(AttributeScore asVal, int val)
+    {
+        asVal.value *= val;
+        return asVal;
+    }
+
+    public static int operator *(int val, AttributeScore asVal)
+    {
+        val *= asVal.value;
+        return val;
+    }
+
+    public static AttributeScore operator /(AttributeScore a1, AttributeScore a2)
+    {
+        a1.value /= a2.value;
+        return a1;
+    }
+
+    public static AttributeScore operator /(AttributeScore asVal, int val)
+    {
+        asVal.value /= val;
+        return asVal;
+    }
+
+    public static int operator /(int val, AttributeScore asVal)
+    {
+        val /= asVal.value;
+        return val;
+    }
+
+    public static bool operator ==(AttributeScore a1, AttributeScore a2)
+    {
+        return a1.value == a2.value;
+    }
+
+    public static bool operator ==(AttributeScore asVal, int val)
+    {
+        return asVal.value == val;
+    }
+
+    public static bool operator ==(int val, AttributeScore asVal)
+    {
+        return asVal.value == val;
+    }
+
+    public static bool operator !=(AttributeScore a1, AttributeScore a2)
+    {
+        return a1.value != a2.value;
+    }
+
+    public static bool operator !=(AttributeScore asVal, int val)
+    {
+        return asVal.value != val;
+    }
+
+    public static bool operator !=(int val, AttributeScore asVal)
+    {
+        return asVal.value != val;
+    }
+
+    public static bool operator <=(AttributeScore a1, AttributeScore a2)
+    {
+        return a1.value <= a2.value;
+    }
+
+    public static bool operator <=(AttributeScore asVal, int val)
+    {
+        return asVal.value <= val;
+    }
+
+    public static bool operator <=(int val, AttributeScore asVal)
+    {
+        return val <= asVal.value;
+    }
+
+    public static bool operator >=(AttributeScore a1, AttributeScore a2)
+    {
+        return a1.value >= a2.value;
+    }
+
+    public static bool operator >=(AttributeScore asVal, int val)
+    {
+        return asVal.value >= val;
+    }
+
+    public static bool operator >=(int val, AttributeScore asVal)
+    {
+        return val >= asVal.value;
+    }
+
+    public static bool operator <(AttributeScore a1, AttributeScore a2)
+    {
+        return a1.value < a2.value;
+    }
+
+    public static bool operator <(AttributeScore asVal, int val)
+    {
+        return asVal.value < val;
+    }
+
+    public static bool operator <(int val, AttributeScore asVal)
+    {
+        return val < asVal.value;
+    }
+
+    public static bool operator >(AttributeScore a1, AttributeScore a2)
+    {
+        return a1.value > a2.value;
+    }
+
+    public static bool operator >(AttributeScore asVal, int val)
+    {
+        return asVal.value > val;
+    }
+
+    public static bool operator >(int val, AttributeScore asVal)
+    {
+        return val > asVal.value;
+    }
+
+    public override bool Equals(object obj)
+    {
+        return base.Equals(obj);
+    }
+
+    public override int GetHashCode()
+    {
+        return base.GetHashCode();
+    }
+}
+
+public enum AttributeType
+{
+    Armor,
+    Weapon,
+    HP, MaxHP,
+    Strength,
+    Agility,
+    Magic,
+    Leadership
+}
+
 public enum GrowthType
 {
     Savant,
@@ -174,7 +437,8 @@ public enum GrowthType
     Avgerage,
     Subpar,
     Poor,
-    Talentless
+    Talentless,
+    Abysmal
 }
 
 public enum MoveType

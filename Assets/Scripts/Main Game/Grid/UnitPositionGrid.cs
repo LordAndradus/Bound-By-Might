@@ -63,6 +63,7 @@ public class UnitPositionGrid
         }
         grid.SetGridObject(x1, y1, null);
         grid.SetGridObject(x2, y2, temp);
+        temp.GetController().TurnHistory.Add((temp, new(x1, y1), new(x2, y2)));
         temp.StartMovementCallback();
     }
     
@@ -73,6 +74,13 @@ public class UnitPositionGrid
 
     public void GetSquadCoordinate(SquadMovementHandler smh, out int x, out int y)
     {
+        if(!PositionMap.ContainsKey(smh))
+        {
+            Debug.LogError("PositionMap does not contain: " + smh.name);
+            x = 0;
+            y = 0;
+            return;
+        }
         Pair<int, int> pair = PositionMap[smh];
         x = pair.First;
         y = pair.Second;

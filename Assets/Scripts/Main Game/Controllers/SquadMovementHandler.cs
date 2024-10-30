@@ -11,6 +11,7 @@ public class SquadMovementHandler : InteractableObject
 
     public Coroutine FinishedMoving;
     public event Action DeleteSquadCallback;
+    public event Action MovementCallback;
 
     List<Vector3> pathList;
     List<Vector3> ValidatedMoves = new();
@@ -20,8 +21,7 @@ public class SquadMovementHandler : InteractableObject
     List<GameObject> HighlightedTiles = new();
     int currentPathIdx = 0;
     Vector3 targetPosition;
-    Vector3 mouseTarget;
-
+    (Pair<int, int>, Pair<int, int>) FromToCoordinates;
     public Side EntrySide = Side.none;
 
     public bool moved = false;
@@ -145,7 +145,6 @@ public class SquadMovementHandler : InteractableObject
         }
 
         DeleteSquadCallback?.Invoke();
-
         FinishedMoving = null;
     }
 
@@ -156,8 +155,9 @@ public class SquadMovementHandler : InteractableObject
             yield return null;
         }
 
-        Controller.selectedSquad = null;
-
+        MovementCallback?.Invoke();
+        Deactivate();
+        Controller.ClearSelections();
         FinishedMoving = null;
     }
 
@@ -165,7 +165,7 @@ public class SquadMovementHandler : InteractableObject
     {
         if(FinishedMoving != null) StopCoroutine(FinishedMoving);
         FinishedMoving = StartCoroutine(DeleteSquad(() => {
-            return Controller.attackedSquad != null && attacker.moved == true && attacker.moving == false;
+            return attacker.moved == true && attacker.moving == false;
         }));
     }
 
@@ -190,6 +190,11 @@ public class SquadMovementHandler : InteractableObject
         moving = false;
         moved = false;
         GetComponent<SpriteRenderer>().color = Color.white;
+    }
+
+    public void ToFromMovement((Pair<int, int> Prev, Pair<int, int> Curr) Coordinates)
+    {
+        FromToCoordinates = Coordinates;
     }
 
     public void ClearHighlighting()

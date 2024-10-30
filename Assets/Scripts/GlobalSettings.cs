@@ -19,6 +19,7 @@ public class GlobalSettings : MonoBehaviour
     public static string DefaultUnitSpriteView = "Sprites/Sample_Unit";
     public static string DefaultUnitSpriteIcon = "Sprites/SpriteDefaultIcon";
     public static string UnknownQuestionMarkIcon = "Sprites/UI/Question Mark";
+    public static string RootSaveDirectory;
 
     public static SerializableDictionary<SettingKey, bool> GameplayBool = new(){
         {SettingKey.InstantMovement, false}, {SettingKey.Tutorial, true}, {SettingKey.MapGrid, false},
@@ -87,15 +88,16 @@ public class GlobalSettings : MonoBehaviour
     public void Awake()
     {
         GameObject EngagedEditor = GameObject.Find("UnityEditorText");
-        
         #if UNITY_EDITOR
             if(SceneManager.GetActiveScene().name.Equals("Main Menu")) EngagedEditor.SetActive(true);
             Settings.appdataPath = Path.Combine(Application.dataPath, "Debug Jsons");
             GameplayBool[SettingKey.Debug] = true;
+            RootSaveDirectory = Path.Combine(Application.dataPath, "Save Files");
         #else
             if(SceneManager.GetActiveScene().name.Equals("Main Menu")) EngagedEditor.SetActive(false);
             Settings.appdataPath = Application.persistentDataPath;
             GameplayBool[SettingKey.Debug] = false;
+            RootSaveDirectory = Path.Combine(Application.persistentDataPath, "Save Files");
         #endif
 
         if(!Directory.Exists(Settings.appdataPath)) Directory.CreateDirectory(Settings.appdataPath);
