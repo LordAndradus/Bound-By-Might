@@ -26,6 +26,9 @@ public class Unit
     [SerializeField] public MoveType movement;
     [SerializeField] public int FieldCost = 10; //Depends on Traits. 12 if Merc, to 8 if Loyal
     [SerializeField] public int threat = 256;
+    [SerializeField] public bool DeathFlag = false;
+
+    private protected List<Pair<Unit, int>> DamageReport;
 
     [Header("Attribute Dictionary")]
     public SerializableDictionary<AttributeType, AttributeScore> UnitAttributes;
@@ -33,8 +36,8 @@ public class Unit
     [Header("Progession Meters")]
     [SerializeField] private protected int Level;
     [SerializeField] public int TierLevel;
-    [SerializeField] int PromotionPoints = 0;
-    [SerializeField] int ExperiencePoints = 0;
+    [SerializeField] public int PromotionPoints = 0;
+    [SerializeField] public int ExperiencePoints = 0;
 
     [Header("Progression Caps Per Level")]
     [SerializeField] private protected int PromotionCap; //Tier 1 = 500, Tier 2 = 3000, Tier 3 = 4500, MaxTier = 8000

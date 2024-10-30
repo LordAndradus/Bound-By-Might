@@ -4,10 +4,6 @@ using UnityEngine;
 [Serializable]
 public class Trait
 {
-    public event Action<Unit> addEffect;
-    public event Action<Unit> removeEffect;
-    public event Action<Unit> triggerEffect;
-
     public Sprite icon;
 
     public string UIFriendlyClassName;
@@ -24,13 +20,6 @@ public class Trait
     public Trait()
     {
         UIFriendlyClassName = UtilityClass.UIFriendlyClassName(GetType().Name);
-    }
-
-    public void AssignActions(Action<Unit> Add, Action<Unit> Remove, Action<Unit> Trigger)
-    {
-        Add += add;
-        Remove += remove;
-        Trigger += trigger;
     }
 
     public String getDescription()
