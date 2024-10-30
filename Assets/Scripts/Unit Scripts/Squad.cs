@@ -10,15 +10,16 @@ public class Squad
 {
     public event Action FieldedUnitsChanged;
 
+    [Header("Parameters")]
     public string Name;
+    public MoveType MovementType = default(MoveType);
+    public int MoveSpeed = 6;
 
-    [Header("Serialized privates")]
+    [Header("Information")]
+    public Unit Leader;
     [SerializeField] List<Unit> units = new();
     [SerializeField] Unit[,] fieldedUnits = new Unit[3,3];
     [SerializeField] Equipment[] equipment = new Equipment[3];
-    public MoveType MovementType = default(MoveType);
-
-    public int MoveSpeed = 6;
 
     public int TranslateMovementType(MoveType movement)
     {

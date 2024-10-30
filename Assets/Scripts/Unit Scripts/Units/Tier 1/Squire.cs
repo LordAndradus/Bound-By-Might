@@ -11,35 +11,63 @@ public class Squire : Unit
         spriteView = UtilityClass.Load<Sprite>("Sprites/Unit Sprites/Tier 1/Squire/Squire");
         Icon = UtilityClass.Load<Sprite>("Sprites/Unit Sprites/Tier 1/Squire/Squire Icon");
         movement = MoveType.Cavalry;
-
-        GoldCost = 175;
-        HorseCost = 1;
     }
 
     private protected override void SetAttributes()
     {
         TierLevel = 1;
 
-        HP = 80;
-        MaxHP = 80;
-        Armor = 15;
-        WeaponPower = 30;
-        Strength = 10;
-        Agility = 10;
-        Magic = 25;
-        Leadership = 25;
-
-        StrengthRequirement = 0;
-        AgilityRequirement = 0;
-        MagicRequirement = 0;
-
-        HPGrowth = Random.Range(0, 501) / 100f;
-        StrengthGrowth = Random.Range(0, 501) / 100f;
-        AgilityGrowth = Random.Range(0, 501) / 100f;
-        MagicGrowth = Random.Range(0, 501) / 100f;
-        LeadershipGrowth = Random.Range(0, 501) / 100f;
-
-        float GrowthTotal = HPGrowth + StrengthGrowth + AgilityGrowth + MagicGrowth + LeadershipGrowth;
+        UnitAttributes = new()
+        {
+            {
+                AttributeType.MaxHP,
+                new(
+                    80, Range(), 0, new(40, 60)
+                )
+            },
+            {
+                AttributeType.HP,
+                new(
+                    80, Range(), 0, new(40, 60)
+                )
+            },
+            {
+                AttributeType.Armor,
+                new(
+                    15, Range(), 0, new(0, 0)
+                )
+            },
+            {
+                AttributeType.Weapon,
+                new(
+                    30, Range(), 0, new(0, 0)
+                )
+            },
+            {
+                AttributeType.Strength,
+                new(
+                    10, Range(), 0, new(5, 10)
+                )
+            },
+            {
+                AttributeType.Agility,
+                new(
+                    10, Range(), 0, new(5, 15)
+                )
+            },
+            {
+                AttributeType.Magic,
+                new(
+                    25, Range(), 0, new(10, 20)
+                )
+            },
+            {
+                AttributeType.Leadership,
+                new(
+                    25, Range(), 0, new(10, 20)
+                )
+            }
+        };
     }
 
     private protected override void SetCosts()

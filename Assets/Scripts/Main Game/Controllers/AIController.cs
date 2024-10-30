@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,10 +14,29 @@ public class AIController : Controller
     AI Operator = new OperationAI();
     AI Tactician = new TacticsAI();
 
+    Coroutine MoveBack;
+
 
     public static Vector3 InitialPlayerViewport;
     public static float InitialOrthographicSize;
     bool PickSemaphore = false;
+    
+    private IEnumerator MoveCameraBack()
+    {
+        float TargetTime = 2f;
+        float MinPan = 4f;
+        float Distance = Vector3.Distance(InitialPlayerViewport, Camera.main.transform.position);
+        float UniformPan = Mathf.Max(Distance / TargetTime, MinPan);
+        while(Vector3.Distance(Camera.main.transform.position, InitialPlayerViewport) > 0.1f)
+        {
+            Vector3 Direction = (InitialPlayerViewport - Camera.main.transform.position).normalized;
+            Camera.main.transform.position += Direction * UniformPan * Time.deltaTime;
+            yield return null;
+        }
+
+        Finished = true;
+        MoveBack = null;
+    }
 
     Timer WaitToPick;
 
@@ -39,6 +59,8 @@ public class AIController : Controller
 
     public override void ControllerLogic()
     {
+        if(MoveBack != null) return;
+
         WaitToPick.update();
 
         foreach(SquadMovementHandler smh in SquadMoverList) smh.ClearHighlighting();
@@ -70,11 +92,12 @@ public class AIController : Controller
 
         if(IdleSquads.Count == 0)
         {
-            Finished = true;
+            //Finished = true;
             attackedSquad = null;
             selectedSquad = null;
-            Camera.main.transform.position = InitialPlayerViewport;
-            Camera.main.orthographicSize = InitialOrthographicSize;
+            //Camera.main.transform.position = InitialPlayerViewport;
+            //Camera.main.orthographicSize = InitialOrthographicSize;
+            MoveBack = StartCoroutine(MoveCameraBack());
             return;
         }
 
