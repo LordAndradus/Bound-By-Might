@@ -9,4 +9,9 @@ public class Mercenary : Trait, Loyalty
         FlavorText = "This soldier is only contractually obligated to aid you in your cause. Perhaps you can sway them to your side?";
         EffectText = "+2 Field Cost and a 100% increase in Gold cost to field";
     }
+
+    public bool IsLoyaltyTrait()
+    {
+        return true;
+    }
 }
