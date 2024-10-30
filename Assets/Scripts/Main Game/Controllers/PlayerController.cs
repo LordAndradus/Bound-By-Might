@@ -204,8 +204,8 @@ public class PlayerController : Controller
         {
             if(SquadMoverList.Contains(selectedSquad))
             {
-                if(attackedSquad != null) CombatGridSystem.instance.SetSquadAttackPath(selectedSquad, attackedSquad);
-                else CombatGridSystem.instance.SetSquadNormalPath(selectedSquad, UtilityClass.GetScreenMouseToWorld());
+                if(attackedSquad != null) if(!CombatGridSystem.instance.SetSquadAttackPath(selectedSquad, attackedSquad)) attackedSquad = null;
+                if(attackedSquad == null) CombatGridSystem.instance.SetSquadNormalPath(selectedSquad, UtilityClass.GetScreenMouseToWorld());
 
                 return;
             }
@@ -285,7 +285,7 @@ public class PlayerController : Controller
             Vector3 position = UtilityClass.CopyVector(selectedSquad.transform.position);
             position.z = Camera.main.transform.position.z;
             Camera.main.transform.position = position;
-            cc.ClampFollow(position);
+            cc.ClampFollow();
 
             return true;
         }

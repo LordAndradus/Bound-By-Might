@@ -27,6 +27,9 @@ public class AIController : Controller
 
         TeamNumbers.Add(this, TeamNumber);
 
+        InitialPlayerViewport = Camera.main.transform.position;
+        InitialOrthographicSize = 5f;
+
         WaitToPick = new(2f, true, () => {
             Debug.Log("Posting semaphore");
             PickSemaphore = true;
@@ -47,7 +50,7 @@ public class AIController : Controller
             selectedSquadPosition.z = -10f;
             Camera.main.transform.position = selectedSquadPosition;
 
-            Camera.main.transform.GetComponent<CameraController>().ClampFollow(selectedSquadPosition);
+            Camera.main.transform.GetComponent<CameraController>().ClampFollow();
             
             if(selectedSquad.moving) return;
         }

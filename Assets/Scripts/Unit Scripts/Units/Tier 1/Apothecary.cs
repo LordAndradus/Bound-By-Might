@@ -37,7 +37,6 @@ public class Apothecary : Unit
         LeadershipGrowth = Random.Range(0, 501) / 100f;
 
         float GrowthTotal = HPGrowth + StrengthGrowth + AgilityGrowth + MagicGrowth + LeadershipGrowth;
-        
     }
 
     private protected override void SetCosts()

@@ -74,6 +74,13 @@ public class UnitPositionGrid
 
     public void GetSquadCoordinate(SquadMovementHandler smh, out int x, out int y)
     {
+        if(!PositionMap.ContainsKey(smh))
+        {
+            Debug.LogError("PositionMap does not contain: " + smh.name);
+            x = 0;
+            y = 0;
+            return;
+        }
         Pair<int, int> pair = PositionMap[smh];
         x = pair.First;
         y = pair.Second;

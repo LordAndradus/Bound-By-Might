@@ -97,7 +97,7 @@ public class UnitDisplayer : MonoBehaviour
 
         foreach(Transform child in TraitViewParent.transform)
         {
-            Destroy(child.gameObject);    
+            Destroy(child.gameObject);
         }
 
         int elementNum = 0;

@@ -286,3 +286,13 @@ PathFinder pf = PathFinder.instance;
             sb.Append("END");
 
             Debug.Log(sb.ToString()); */
+
+void clampCameraPan(Vector3 ResetVector)
+{
+    //If Camera transform position exceeds the width and height bounds of the level, then reset the position to its initial position
+    Vector3 FauxCamPos = UtilityClass.CopyAbsVector(camera.transform.position) + new Vector3(camera.orthographicSize * camera.aspect, camera.orthographicSize);
+    //Reset X position of camera
+    if(FauxCamPos.x > Level.MapSize.First/2) camera.transform.position = new Vector3(ResetVector.x, camera.transform.position.y, camera.transform.position.z);
+    //Reset Y position of camera
+    if(FauxCamPos.y > Level.MapSize.Second/2) camera.transform.position = new Vector3(camera.transform.position.x, ResetVector.y, camera.transform.position.z);
+}

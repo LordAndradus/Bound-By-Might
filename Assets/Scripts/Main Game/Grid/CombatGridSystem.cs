@@ -192,9 +192,6 @@ public class CombatGridSystem
         //Check if the NeighborTile is within the AttackVector bounds
         Pair<int, int> NeighborCoordinate = new(NeighborTile.First, NeighborTile.Second);
         InCoordinate = attacking.GetAttackCoordinates().Any((coordinate) => {
-            Debug.Log("Coordinate = " + coordinate +
-            "\nNeighbor Coordinate = " + NeighborCoordinate + 
-            "\ncoordiante == NeighborCoordinate? " + coordinate.equals(NeighborCoordinate));
             return coordinate.equals(NeighborCoordinate);
         });
 
@@ -220,13 +217,13 @@ public class CombatGridSystem
 
         attacked.DeleteSquadCallback += () => {
             UnitGrid.RemoveSquad(attacked);
-            Controller.selectedSquad = null;
-            Controller.attackedSquad = null;
+            Controller.ClearSelections();
         };
 
         if(CurrentCoordinate.equals(NeighborTile)) attacking.moved = true;
 
         attacked.StartDeletionCallback(attacking);
+        attacking.StartMovementCallback();
 
         return true;
     }

@@ -10,7 +10,7 @@ public class Controller : MonoBehaviour
     public static SquadMovementHandler attackedSquad;
     [SerializeField] public int TurnNumber = 0;
     [SerializeField] public List<SquadMovementHandler> SquadMoverList = new();
-    [SerializeField] public List<(SquadMovementHandler, Pair<int, int>, Pair<int, int>)> TurnHistory; //Item 1 = The squad moving, Item 2 = The Previous Position, Item 3 = The Current Position
+    [SerializeField] public List<(SquadMovementHandler, Pair<int, int>, Pair<int, int>)> TurnHistory = new(); //Item 1 = The squad moving, Item 2 = The Previous Position, Item 3 = The Current Position
     [SerializeField] public List<SpawnTile> spawners = new();
     [SerializeField] public GameObject spawnerParent;
     //[SerializeField] private protected Relationship relation = Relationship.neutral;

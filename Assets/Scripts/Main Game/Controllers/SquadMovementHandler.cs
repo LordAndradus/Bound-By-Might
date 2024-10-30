@@ -145,7 +145,6 @@ public class SquadMovementHandler : InteractableObject
         }
 
         DeleteSquadCallback?.Invoke();
-        Controller.ClearSelections();
         FinishedMoving = null;
     }
 
@@ -157,6 +156,7 @@ public class SquadMovementHandler : InteractableObject
         }
 
         MovementCallback?.Invoke();
+        Deactivate();
         Controller.ClearSelections();
         FinishedMoving = null;
     }
@@ -165,7 +165,7 @@ public class SquadMovementHandler : InteractableObject
     {
         if(FinishedMoving != null) StopCoroutine(FinishedMoving);
         FinishedMoving = StartCoroutine(DeleteSquad(() => {
-            return Controller.attackedSquad != null && attacker.moved == true && attacker.moving == false;
+            return attacker.moved == true && attacker.moving == false;
         }));
     }
 

@@ -668,7 +668,6 @@ MonoBehaviour:
   DisabledColor: {r: 0.4, g: 0.4, b: 0.4, a: 0.4}
   squad:
     Name: Lord Andradus's Squad
-    units: []
     MovementType: 0
     MoveSpeed: 6
   EntrySide: 0
@@ -826,7 +825,6 @@ MonoBehaviour:
   DisabledColor: {r: 0.4, g: 0.4, b: 0.4, a: 0.4}
   squad:
     Name: Lord Andradus's Squad
-    units: []
     MovementType: 0
     MoveSpeed: 6
   EntrySide: 0
@@ -984,7 +982,6 @@ MonoBehaviour:
   DisabledColor: {r: 0.4, g: 0.4, b: 0.4, a: 0.4}
   squad:
     Name: Lord Andradus's Squad
-    units: []
     MovementType: 0
     MoveSpeed: 6
   EntrySide: 0
@@ -1385,7 +1382,6 @@ MonoBehaviour:
   DisabledColor: {r: 0.4, g: 0.4, b: 0.4, a: 0.4}
   squad:
     Name: Lord Andradus's Squad
-    units: []
     MovementType: 0
     MoveSpeed: 6
   EntrySide: 0
@@ -1580,7 +1576,6 @@ MonoBehaviour:
   DisabledColor: {r: 0.4, g: 0.4, b: 0.4, a: 0.4}
   squad:
     Name: Lord Andradus's Squad
-    units: []
     MovementType: 0
     MoveSpeed: 6
   EntrySide: 0
@@ -3326,7 +3321,7 @@ Transform:
   m_GameObject: {fileID: 634278549}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.05, y: -7.98, z: -10}
+  m_LocalPosition: {x: -4.25, y: -8, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -3548,7 +3543,6 @@ MonoBehaviour:
   DisabledColor: {r: 0.4, g: 0.4, b: 0.4, a: 0.4}
   squad:
     Name: 
-    units: []
     MovementType: 0
     MoveSpeed: 6
   EntrySide: 0
@@ -4581,7 +4575,7 @@ MonoBehaviour:
   spawnerParent: {fileID: 57077465}
   FollowCamera: {fileID: 0}
   MainCamera: {fileID: 0}
-  Finished: 0
+  Finished: 1
   ReserveSquadList: []
   cc: {fileID: 634278555}
   EndTurn: {fileID: 1292555801}
@@ -4963,7 +4957,6 @@ MonoBehaviour:
   DisabledColor: {r: 0.4, g: 0.4, b: 0.4, a: 0.4}
   squad:
     Name: 
-    units: []
     MovementType: 0
     MoveSpeed: 6
   EntrySide: 0
@@ -5155,7 +5148,6 @@ MonoBehaviour:
   DisabledColor: {r: 0.4, g: 0.4, b: 0.4, a: 0.4}
   squad:
     Name: Lord Andradus's Squad
-    units: []
     MovementType: 0
     MoveSpeed: 6
   EntrySide: 0
@@ -5523,7 +5515,6 @@ MonoBehaviour:
   DisabledColor: {r: 0.4, g: 0.4, b: 0.4, a: 0.4}
   squad:
     Name: Lord Andradus's Squad
-    units: []
     MovementType: 0
     MoveSpeed: 6
   EntrySide: 0
@@ -5681,7 +5672,6 @@ MonoBehaviour:
   DisabledColor: {r: 0.4, g: 0.4, b: 0.4, a: 0.4}
   squad:
     Name: 
-    units: []
     MovementType: 0
     MoveSpeed: 6
   EntrySide: 0
@@ -5992,7 +5982,6 @@ MonoBehaviour:
   DisabledColor: {r: 0.4, g: 0.4, b: 0.4, a: 0.4}
   squad:
     Name: 
-    units: []
     MovementType: 0
     MoveSpeed: 6
   EntrySide: 0
@@ -13303,7 +13292,6 @@ MonoBehaviour:
   DisabledColor: {r: 0.4, g: 0.4, b: 0.4, a: 0.4}
   squad:
     Name: 
-    units: []
     MovementType: 0
     MoveSpeed: 6
   EntrySide: 0
@@ -13829,7 +13817,6 @@ MonoBehaviour:
   DisabledColor: {r: 0.4, g: 0.4, b: 0.4, a: 0.4}
   squad:
     Name: 
-    units: []
     MovementType: 0
     MoveSpeed: 6
   EntrySide: 0
@@ -14992,7 +14979,6 @@ MonoBehaviour:
   DisabledColor: {r: 0.4, g: 0.4, b: 0.4, a: 0.4}
   squad:
     Name: Lord Andradus's Squad
-    units: []
     MovementType: 0
     MoveSpeed: 6
   EntrySide: 0
@@ -15319,7 +15305,6 @@ MonoBehaviour:
   DisabledColor: {r: 0.4, g: 0.4, b: 0.4, a: 0.4}
   squad:
     Name: Lord Andradus's Squad
-    units: []
     MovementType: 0
     MoveSpeed: 6
   EntrySide: 0
@@ -18255,7 +18240,6 @@ MonoBehaviour:
   DisabledColor: {r: 0.4, g: 0.4, b: 0.4, a: 0.4}
   squad:
     Name: 
-    units: []
     MovementType: 0
     MoveSpeed: 6
   EntrySide: 0
@@ -18786,7 +18770,6 @@ MonoBehaviour:
   DisabledColor: {r: 0.4, g: 0.4, b: 0.4, a: 0.4}
   squad:
     Name: Lord Andradus's Squad
-    units: []
     MovementType: 0
     MoveSpeed: 6
   EntrySide: 0
@@ -19131,7 +19114,6 @@ MonoBehaviour:
   DisabledColor: {r: 0.4, g: 0.4, b: 0.4, a: 0.4}
   squad:
     Name: Lord Andradus's Squad
-    units: []
     MovementType: 0
     MoveSpeed: 6
   EntrySide: 0
@@ -19289,7 +19271,6 @@ MonoBehaviour:
   DisabledColor: {r: 0.4, g: 0.4, b: 0.4, a: 0.4}
   squad:
     Name: Lord Andradus's Squad
-    units: []
     MovementType: 0
     MoveSpeed: 6
   EntrySide: 0
