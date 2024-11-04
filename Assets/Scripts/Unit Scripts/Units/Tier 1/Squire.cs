@@ -8,6 +8,7 @@ public class Squire : Unit
     public Squire()
     {
         AttackArea = new(1, 2);
+        Attack = AttackType.Melee;
         UIFriendlyClassName = "Squire";
         spriteView = UtilityClass.Load<Sprite>("Sprites/Unit Sprites/Tier 1/Squire/Squire");
         Icon = UtilityClass.Load<Sprite>("Sprites/Unit Sprites/Tier 1/Squire/Squire Icon");

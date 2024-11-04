@@ -9,6 +9,7 @@ public class NeophyteMagus : Unit
     {
         preference = AttackPreference.Middle;
         AttackArea = new(2, 2);
+        Attack = AttackType.Magic;
         UIFriendlyClassName = "Neophyte Magus";
         spriteView = UtilityClass.Load<Sprite>("Sprites/Unit Sprites/Tier 1/Neophyte Magus/Neophyte Magus");
         Icon = UtilityClass.Load<Sprite>("Sprites/Unit Sprites/Tier 1/Neophyte Magus/Neophyte Magus Icon");

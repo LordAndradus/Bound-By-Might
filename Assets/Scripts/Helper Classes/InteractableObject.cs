@@ -3,7 +3,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System.Collections.Generic;
-using UnityEditor.Timeline.Actions;
 
 [RequireComponent(typeof(BoxCollider2D), typeof(SpriteRenderer))]
 public class InteractableObject : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler

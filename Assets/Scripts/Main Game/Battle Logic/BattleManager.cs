@@ -19,8 +19,8 @@ public class BattleManager
 
     public BattleManager(Squad Attacking, Squad Attacked)
     {
-        SetBattleMap();
         LoadSquads(Attacking, Attacked);
+        SimulateBattle();
     }
 
     public void SimulateBattle()
@@ -36,12 +36,8 @@ public class BattleManager
         this.Attacked = Attacked;
 
         //Sequence of attacking => Magic -> Arhcery -> Melee -> Healing -> (Maybe) Firearms
-        
-    }
-
-    private void SetBattleMap()
-    {
-
+        foreach(Unit u in Attacking.RetrieveUnits()) AttackOrder.Add(u);
+        foreach(Unit u in Attacked.RetrieveUnits()) AttackOrder.Add(u);
     }
 
     private void SimluateRound()
@@ -52,7 +48,10 @@ public class BattleManager
 
     private void SimulateAttack()
     {
-
+        foreach(Unit unit in Attacking.RetrieveUnits())
+        {
+            UnitAction ua = new(unit, Attacking.RetrievePositionFromUnit(unit), Attacking, Attacked);
+        }
     }
 
     private void SimulateRetaliation()

@@ -670,11 +670,49 @@ MonoBehaviour:
     Name: Lord Andradus's Squad
     MovementType: 0
     MoveSpeed: 6
-    units: []
+    units:
+    - spriteView: {fileID: 21300000, guid: ee6071b1645fef546bb91126c97430ed, type: 3}
+      Name: Madrax
+      UIFriendlyClassName: Neophyte Magus
+      Description: 
+      Icon: {fileID: 21300000, guid: 47a938e97b58e1d47a206306a49e89c7, type: 3}
+      GrowthDefintion: 0
+      Attack: 0
+      AttackArea:
+        <First>k__BackingField: 2
+        <Second>k__BackingField: 2
+      preference: 0
+      CareerHistory:
+        elements: []
+      divisor: 0
+      MaxRange: 0
+      movement: 0
+      FieldCost: 0
+      threat: 0
+      DeathFlag: 0
+      UnitAttributes:
+        elements: []
+      Level: 0
+      TierLevel: 0
+      PromotionPoints: 0
+      ExperiencePoints: 0
+      ExperiencePointsDropped: 0
+      PromotionCap: 0
+      ExperienceCap: 0
+      GoldCost: 0
+      IronCost: 0
+      MagicGemCost: 0
+      HorseCost: 0
+      HolyTearCost: 0
+      AdamntiumCost: 0
+      MaxTraits: 0
     equipment:
     - Icon: {fileID: 0}
+      FlavorText: 
     - Icon: {fileID: 0}
+      FlavorText: 
     - Icon: {fileID: 0}
+      FlavorText: 
   EntrySide: 0
   moved: 0
   moving: 0
@@ -835,8 +873,11 @@ MonoBehaviour:
     units: []
     equipment:
     - Icon: {fileID: 0}
+      FlavorText: 
     - Icon: {fileID: 0}
+      FlavorText: 
     - Icon: {fileID: 0}
+      FlavorText: 
   EntrySide: 0
   moved: 0
   moving: 0
@@ -997,8 +1038,11 @@ MonoBehaviour:
     units: []
     equipment:
     - Icon: {fileID: 0}
+      FlavorText: 
     - Icon: {fileID: 0}
+      FlavorText: 
     - Icon: {fileID: 0}
+      FlavorText: 
   EntrySide: 0
   moved: 0
   moving: 0
@@ -1402,8 +1446,11 @@ MonoBehaviour:
     units: []
     equipment:
     - Icon: {fileID: 0}
+      FlavorText: 
     - Icon: {fileID: 0}
+      FlavorText: 
     - Icon: {fileID: 0}
+      FlavorText: 
   EntrySide: 0
   moved: 0
   moving: 0
@@ -1605,6 +1652,11 @@ MonoBehaviour:
       Description: Make sure to fill in the description, young game maker
       Icon: {fileID: 0}
       GrowthDefintion: 0
+      Attack: 0
+      AttackArea:
+        <First>k__BackingField: 1
+        <Second>k__BackingField: 1
+      preference: 0
       CareerHistory:
         elements: []
       divisor: 1000
@@ -1612,6 +1664,7 @@ MonoBehaviour:
       movement: 0
       FieldCost: 10
       threat: 1000
+      DeathFlag: 0
       UnitAttributes:
         elements:
         - key: 0
@@ -1629,6 +1682,7 @@ MonoBehaviour:
       TierLevel: 0
       PromotionPoints: 0
       ExperiencePoints: 0
+      ExperiencePointsDropped: 100
       PromotionCap: 0
       ExperienceCap: 0
       GoldCost: 0
@@ -1644,6 +1698,11 @@ MonoBehaviour:
       Description: Make sure to fill in the description, young game maker
       Icon: {fileID: 0}
       GrowthDefintion: 0
+      Attack: 0
+      AttackArea:
+        <First>k__BackingField: 1
+        <Second>k__BackingField: 1
+      preference: 0
       CareerHistory:
         elements: []
       divisor: 1000
@@ -1651,12 +1710,14 @@ MonoBehaviour:
       movement: 0
       FieldCost: 10
       threat: 1000
+      DeathFlag: 0
       UnitAttributes:
         elements: []
       Level: 0
       TierLevel: 0
       PromotionPoints: 0
       ExperiencePoints: 0
+      ExperiencePointsDropped: 100
       PromotionCap: 0
       ExperienceCap: 0
       GoldCost: 0
@@ -1668,8 +1729,11 @@ MonoBehaviour:
       MaxTraits: 6
     equipment:
     - Icon: {fileID: 0}
+      FlavorText: 
     - Icon: {fileID: 0}
+      FlavorText: 
     - Icon: {fileID: 0}
+      FlavorText: 
   EntrySide: 0
   moved: 0
   moving: 0
@@ -3640,8 +3704,11 @@ MonoBehaviour:
     units: []
     equipment:
     - Icon: {fileID: 0}
+      FlavorText: 
     - Icon: {fileID: 0}
+      FlavorText: 
     - Icon: {fileID: 0}
+      FlavorText: 
   EntrySide: 0
   moved: 0
   moving: 0
@@ -5059,8 +5126,11 @@ MonoBehaviour:
     units: []
     equipment:
     - Icon: {fileID: 0}
+      FlavorText: 
     - Icon: {fileID: 0}
+      FlavorText: 
     - Icon: {fileID: 0}
+      FlavorText: 
   EntrySide: 0
   moved: 0
   moving: 0
@@ -5255,8 +5325,11 @@ MonoBehaviour:
     units: []
     equipment:
     - Icon: {fileID: 0}
+      FlavorText: 
     - Icon: {fileID: 0}
+      FlavorText: 
     - Icon: {fileID: 0}
+      FlavorText: 
   EntrySide: 0
   moved: 0
   moving: 0
@@ -5627,8 +5700,11 @@ MonoBehaviour:
     units: []
     equipment:
     - Icon: {fileID: 0}
+      FlavorText: 
     - Icon: {fileID: 0}
+      FlavorText: 
     - Icon: {fileID: 0}
+      FlavorText: 
   EntrySide: 0
   moved: 0
   moving: 0
@@ -5789,8 +5865,11 @@ MonoBehaviour:
     units: []
     equipment:
     - Icon: {fileID: 0}
+      FlavorText: 
     - Icon: {fileID: 0}
+      FlavorText: 
     - Icon: {fileID: 0}
+      FlavorText: 
   EntrySide: 0
   moved: 0
   moving: 0
@@ -6104,8 +6183,11 @@ MonoBehaviour:
     units: []
     equipment:
     - Icon: {fileID: 0}
+      FlavorText: 
     - Icon: {fileID: 0}
+      FlavorText: 
     - Icon: {fileID: 0}
+      FlavorText: 
   EntrySide: 0
   moved: 0
   moving: 0
@@ -13419,8 +13501,11 @@ MonoBehaviour:
     units: []
     equipment:
     - Icon: {fileID: 0}
+      FlavorText: 
     - Icon: {fileID: 0}
+      FlavorText: 
     - Icon: {fileID: 0}
+      FlavorText: 
   EntrySide: 0
   moved: 0
   moving: 0
@@ -13949,8 +14034,11 @@ MonoBehaviour:
     units: []
     equipment:
     - Icon: {fileID: 0}
+      FlavorText: 
     - Icon: {fileID: 0}
+      FlavorText: 
     - Icon: {fileID: 0}
+      FlavorText: 
   EntrySide: 0
   moved: 0
   moving: 0
@@ -15116,8 +15204,11 @@ MonoBehaviour:
     units: []
     equipment:
     - Icon: {fileID: 0}
+      FlavorText: 
     - Icon: {fileID: 0}
+      FlavorText: 
     - Icon: {fileID: 0}
+      FlavorText: 
   EntrySide: 0
   moved: 0
   moving: 0
@@ -15447,8 +15538,11 @@ MonoBehaviour:
     units: []
     equipment:
     - Icon: {fileID: 0}
+      FlavorText: 
     - Icon: {fileID: 0}
+      FlavorText: 
     - Icon: {fileID: 0}
+      FlavorText: 
   EntrySide: 0
   moved: 0
   moving: 0
@@ -18384,11 +18478,49 @@ MonoBehaviour:
     Name: 
     MovementType: 0
     MoveSpeed: 6
-    units: []
+    units:
+    - spriteView: {fileID: 0}
+      Name: Fred
+      UIFriendlyClassName: Skirmisher
+      Description: Skirmy
+      Icon: {fileID: 21300000, guid: 49f5e615be683724aaef4cf1bd7ef543, type: 3}
+      GrowthDefintion: 0
+      Attack: 0
+      AttackArea:
+        <First>k__BackingField: 1
+        <Second>k__BackingField: 1
+      preference: 0
+      CareerHistory:
+        elements: []
+      divisor: 0
+      MaxRange: 0
+      movement: 0
+      FieldCost: 0
+      threat: 0
+      DeathFlag: 0
+      UnitAttributes:
+        elements: []
+      Level: 100
+      TierLevel: 0
+      PromotionPoints: 0
+      ExperiencePoints: 0
+      ExperiencePointsDropped: 0
+      PromotionCap: 0
+      ExperienceCap: 0
+      GoldCost: 0
+      IronCost: 0
+      MagicGemCost: 0
+      HorseCost: 0
+      HolyTearCost: 0
+      AdamntiumCost: 0
+      MaxTraits: 0
     equipment:
     - Icon: {fileID: 0}
+      FlavorText: 
     - Icon: {fileID: 0}
+      FlavorText: 
     - Icon: {fileID: 0}
+      FlavorText: 
   EntrySide: 0
   moved: 0
   moving: 0
@@ -18922,8 +19054,11 @@ MonoBehaviour:
     units: []
     equipment:
     - Icon: {fileID: 0}
+      FlavorText: 
     - Icon: {fileID: 0}
+      FlavorText: 
     - Icon: {fileID: 0}
+      FlavorText: 
   EntrySide: 0
   moved: 0
   moving: 0
@@ -19271,8 +19406,11 @@ MonoBehaviour:
     units: []
     equipment:
     - Icon: {fileID: 0}
+      FlavorText: 
     - Icon: {fileID: 0}
+      FlavorText: 
     - Icon: {fileID: 0}
+      FlavorText: 
   EntrySide: 0
   moved: 0
   moving: 0
@@ -19433,8 +19571,11 @@ MonoBehaviour:
     units: []
     equipment:
     - Icon: {fileID: 0}
+      FlavorText: 
     - Icon: {fileID: 0}
+      FlavorText: 
     - Icon: {fileID: 0}
+      FlavorText: 
   EntrySide: 0
   moved: 0
   moving: 0

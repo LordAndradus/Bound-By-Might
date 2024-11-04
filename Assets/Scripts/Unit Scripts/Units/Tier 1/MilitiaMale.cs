@@ -8,6 +8,7 @@ public class MilitiaMale : Unit
     public MilitiaMale()
     {
         UIFriendlyClassName = "Fighter";
+        Attack = AttackType.Melee;
         spriteView = UtilityClass.Load<Sprite>("Sprites/Unit Sprites/Tier 1/Fighter/Fighter2");
         Icon = UtilityClass.Load<Sprite>("Sprites/Unit Sprites/Tier 1/Fighter/Fighter Icon");
         movement = MoveType.Standard;

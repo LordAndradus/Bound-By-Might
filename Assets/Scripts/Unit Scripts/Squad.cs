@@ -108,7 +108,7 @@ public class Squad
 
         if(!units.Contains(unit)) AddUnit(unit);
         
-        UnitPositions.Add(unit, slot);
+        if(!UnitPositions.ContainsKey(unit)) UnitPositions.Add(unit, slot);
         fieldedUnits[slot.First, slot.Second] = unit;
         FieldedUnitsChanged?.Invoke();
     }
@@ -159,7 +159,7 @@ public class Squad
 
     public Unit RetrieveUnitFromPosition(Pair<int, int> position)
     {
-        return RetrieveUnitFromPosition(new(position.First, position.Second));
+        return RetrieveUnitFromPosition(position.First, position.Second);
     }
 
     public Unit RetrieveUnitFromPosition(int x, int y)

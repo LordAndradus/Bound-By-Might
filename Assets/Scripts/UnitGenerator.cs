@@ -105,10 +105,11 @@ public class UnitGenerator : MonoBehaviour
 
         List<Trait> traits = u.GetTraits();
 
-        foreach(Trait trait in traits)
+        for(int i = 0; i < traits.Count; i++)
         {
-            if(trait is Loyalty)
-            traits.Remove(trait);
+            Trait trait = traits[i];
+
+            if(trait is Loyalty) traits.Remove(trait);
         }
 
         traits.Add(new Mercenary());

@@ -145,6 +145,8 @@ public class Unit
     {
         StringBuilder sb = new();
 
+        if(traits == null) traits = new();
+
         sb.Append(string.Format("My nane is {0}; class = {1}; I have {2} traits\n", Name, GetType().Name, traits.Count));
 
         foreach(Trait trait in traits) sb.Append("Trait = " + trait.ToString() + "\n");

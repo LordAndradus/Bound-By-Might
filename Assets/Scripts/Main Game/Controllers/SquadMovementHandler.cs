@@ -10,6 +10,7 @@ public class SquadMovementHandler : InteractableObject
     Controller controller;
 
     public Coroutine FinishedMoving;
+    public Coroutine StartCombat;
     public event Action DeleteSquadCallback;
     public event Action MovementCallback;
 
@@ -161,19 +162,41 @@ public class SquadMovementHandler : InteractableObject
         FinishedMoving = null;
     }
 
+    private IEnumerator WaitForArrival(SquadMovementHandler Attacking, SquadMovementHandler Attacked)
+    {
+        while(!Attacking.Arrived())
+        {
+            yield return null;
+        }
+
+        BattleManager bm = new(Attacking.GetSquad(), Attacked.GetSquad());
+
+        StartCombat = null;
+    }
+
     public void StartDeletionCallback(SquadMovementHandler attacker)
     {
         if(FinishedMoving != null) StopCoroutine(FinishedMoving);
         FinishedMoving = StartCoroutine(DeleteSquad(() => {
-            return attacker.moved == true && attacker.moving == false;
+            return attacker.Arrived();
         }));
     }
 
     public void StartMovementCallback()
     {
         FinishedMoving = StartCoroutine(FinishMovement(() => {
-            return moved == true && moving == false;
+            return Arrived();
         }));
+    }
+
+    public void StartBattle(SquadMovementHandler Attacking, SquadMovementHandler Attacked)
+    {
+        StartCombat = StartCoroutine(WaitForArrival(Attacking, Attacked));
+    }
+
+    public bool Arrived()
+    {
+        return moved == true && moving == false;
     }
 
     public void Deactivate()

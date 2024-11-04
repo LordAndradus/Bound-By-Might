@@ -8,6 +8,7 @@ public class MilitiaFemale : Unit
     public MilitiaFemale()
     {
         UIFriendlyClassName = "Skirmisher";
+        Attack = AttackType.Melee;
         spriteView = UtilityClass.Load<Sprite>("Sprites/Unit Sprites/Tier 1/Skirmisher/Skirmisher");
         Icon = UtilityClass.Load<Sprite>("Sprites/Unit Sprites/Tier 1/Skirmisher/Skirmisher Icon");
         movement = MoveType.Light;

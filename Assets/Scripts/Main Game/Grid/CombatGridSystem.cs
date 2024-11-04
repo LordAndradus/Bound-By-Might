@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -142,6 +143,8 @@ public class CombatGridSystem
 
         if(smh.SetPathList(target)) UnitGrid.MoveSquad(originX, originY, targetX, targetY);
 
+        smh.StartMovementCallback();
+
         return true;
     }
 
@@ -222,12 +225,9 @@ public class CombatGridSystem
 
         if(CurrentCoordinate.equals(NeighborTile)) attacking.moved = true;
 
-
-        //Instead of deleting, we have a battle manager
-        BattleManager bm = new(attacking.GetSquad(), attacked.GetSquad());
-
         attacked.StartDeletionCallback(attacking);
-        attacking.StartMovementCallback();
+        //Instead of deleting, we have a battle manager
+        //attacking.StartBattle(attacking, attacked);
 
         return true;
     }
