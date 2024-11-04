@@ -36,4 +36,16 @@ public class AudioSettings : Settings, ISettings
     {
         
     }
+
+    public float ConvertToNormal(float db)
+    {
+        float min = -80f, max = 1f;
+        return (Mathf.Clamp(db, min, max) - min) / (max - min);
+    }
+
+    public float ConvertToDecibel(float normal)
+    {
+        float min = -80f, max = 1f;
+        return (Mathf.Clamp01(normal) * (max - min)) + min;
+    }
 }

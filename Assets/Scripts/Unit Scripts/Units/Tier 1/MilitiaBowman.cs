@@ -7,6 +7,7 @@ public class MilitiaBowman : Unit
 {
     public MilitiaBowman()
     {
+        preference = AttackPreference.Back;
         UIFriendlyClassName = "Tyro Bowman";
         spriteView = UtilityClass.Load<Sprite>("Sprites/Unit Sprites/Tier 1/MilitiaBowman/Militia Bowman");
         Icon = UtilityClass.Load<Sprite>(GlobalSettings.DefaultUnitSpriteIcon);

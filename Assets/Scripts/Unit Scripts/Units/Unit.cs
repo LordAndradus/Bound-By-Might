@@ -18,6 +18,9 @@ public class Unit
     public string Description = "Make sure to fill in the description, young game maker";
     public Sprite Icon;
     public GrowthType GrowthDefintion;
+    public AttackType Attack;
+    public Pair<int, int> AttackArea = new(1, 1);
+    public AttackPreference preference = AttackPreference.Front;
 
     [SerializeField] public SerializableDictionary<Type, Snapshot> CareerHistory = new();
     [SerializeField] public List<Type> UpgradePath = new();
@@ -28,7 +31,7 @@ public class Unit
     [SerializeField] public int threat = 256;
     [SerializeField] public bool DeathFlag = false;
 
-    private protected List<Pair<Unit, int>> DamageReport;
+    [NonSerialized] private protected List<Pair<Unit, int>> DamageReport;
 
     [Header("Attribute Dictionary")]
     public SerializableDictionary<AttributeType, AttributeScore> UnitAttributes;
@@ -38,6 +41,7 @@ public class Unit
     [SerializeField] public int TierLevel;
     [SerializeField] public int PromotionPoints = 0;
     [SerializeField] public int ExperiencePoints = 0;
+    [SerializeField] public int ExperiencePointsDropped = 100;
 
     [Header("Progression Caps Per Level")]
     [SerializeField] private protected int PromotionCap; //Tier 1 = 500, Tier 2 = 3000, Tier 3 = 4500, MaxTier = 8000
@@ -65,6 +69,7 @@ public class Unit
         SetAttributes();
         SetCosts();
         SetGrowthType();
+        SetUpgradePath();
 
         ExperienceCap = 500 * TierLevel;
 
@@ -94,6 +99,11 @@ public class Unit
     }
 
     private protected virtual void SetCosts()
+    {
+        return;
+    }
+
+    private protected virtual void SetUpgradePath()
     {
         return;
     }
@@ -430,6 +440,25 @@ public enum AttributeType
     Agility,
     Magic,
     Leadership
+}
+
+public enum AttackType
+{
+    Healing,
+    Magic,
+    Melee,
+    Archery,
+    Firearms //Imagine a musket or something
+}
+
+public enum AttackPreference
+{
+    Front,
+    Back,
+    Middle,
+    MostHP,
+    MostDefense,
+    Leader,
 }
 
 public enum GrowthType

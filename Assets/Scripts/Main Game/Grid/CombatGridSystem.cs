@@ -222,6 +222,10 @@ public class CombatGridSystem
 
         if(CurrentCoordinate.equals(NeighborTile)) attacking.moved = true;
 
+
+        //Instead of deleting, we have a battle manager
+        BattleManager bm = new(attacking.GetSquad(), attacked.GetSquad());
+
         attacked.StartDeletionCallback(attacking);
         attacking.StartMovementCallback();
 

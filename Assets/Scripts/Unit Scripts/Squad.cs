@@ -20,6 +20,8 @@ public class Squad
     [SerializeField] Unit[,] fieldedUnits = new Unit[3,3];
     [SerializeField] Equipment[] equipment = new Equipment[3];
 
+    Dictionary<Unit, Pair<int, int>> UnitPositions = new();
+
     public int TranslateMovementType(MoveType movement)
     {
         switch(movement)
@@ -105,6 +107,8 @@ public class Squad
         }
 
         if(!units.Contains(unit)) AddUnit(unit);
+        
+        UnitPositions.Add(unit, slot);
         fieldedUnits[slot.First, slot.Second] = unit;
         FieldedUnitsChanged?.Invoke();
     }
@@ -118,6 +122,19 @@ public class Squad
     public void UnfieldUnit(Pair<int, int> slot)
     {
         RemoveUnit(fieldedUnits[slot.First, slot.Second]);
+        
+        Unit unit = null;
+        foreach(var kv in UnitPositions)
+        {
+            if(kv.Value.Equals(slot))
+            {
+                unit = kv.Key;
+                break;
+            }
+        }
+
+        if(unit != null) UnitPositions.Remove(unit);
+
         fieldedUnits[slot.First, slot.Second] = null;
         FieldedUnitsChanged?.Invoke();
     }
@@ -142,7 +159,17 @@ public class Squad
 
     public Unit RetrieveUnitFromPosition(Pair<int, int> position)
     {
-        return fieldedUnits[position.First, position.Second];
+        return RetrieveUnitFromPosition(new(position.First, position.Second));
+    }
+
+    public Unit RetrieveUnitFromPosition(int x, int y)
+    {
+        return fieldedUnits[x, y];
+    }
+
+    public Pair<int, int> RetrievePositionFromUnit(Unit unit)
+    {
+        return UnitPositions[unit];
     }
 
     public void AddEquipment(Equipment e)
@@ -176,5 +203,15 @@ public class Squad
         ));
 
         return resources;
+    }
+
+    public int MaxLength()
+    {
+        return fieldedUnits.GetLength(1);
+    }
+
+    public int MaxHeight()
+    {
+        return fieldedUnits.GetLength(0);
     }
 }
