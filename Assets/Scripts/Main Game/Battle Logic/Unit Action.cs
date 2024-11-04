@@ -79,30 +79,41 @@ public class UnitAction
     {
         if(squad == null) squad = Enemy;
         
-        int[] max = new int[squad.MaxLength() * squad.MaxHeight()];
-        int Value = int.MinValue;
+        List<Pair<List<Unit>, int>> UnitListValues = new();
+        int Value = 0;
         int rows = squad.MaxLength();
         int cols = squad.MaxHeight();
 
         int SearchLength = Unit.AttackArea.First;
         int SearchHeight = Unit.AttackArea.Second;
 
-        for(int startY = 0; startY <= rows - SearchHeight; startY++)
+        for(int startY = 0; startY <= rows - SearchHeight; startY += SearchHeight)
         {
-            for(int startX = 0; startX <= cols - SearchLength; startX++)
+            for(int startX = 0; startX <= cols - SearchLength; startX += SearchLength)
             {
+                List<Unit> ListOfUnits = new();
+
                 for(int y = 0; y < startY + SearchHeight; y++)
                 {
                     for(int x = 0; x < startX + SearchLength; x++)
                     {
-                        Unit u = squad.RetrieveUnitFromPosition(x, y);
-                        Value += u.UnitAttributes[aType];
+                        ListOfUnits.Add(squad.RetrieveUnitFromPosition(x, y));
+                        Value += ListOfUnits[x + y].UnitAttributes[aType];
                     }
                 }
 
-                Value = int.MinValue;
+                UnitListValues.Add(new(ListOfUnits, Value));
+                Value = 0;
             }
         }
+        
+        int MaxValue = int.MinValue;
+        for(int i = 0, SelectedIndex = 0; i < UnitListValues.Count; i++)
+        {
+            if(UnitListValues[SelectedIndex].Second > MaxValue) SelectedIndex = i;
+        }
+
+        UnitsPicked = UnitListValues[SelectedIndex].First;
     }
 
     private void TargetLowestAttribute(AttributeType aType)
