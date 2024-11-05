@@ -45,7 +45,12 @@ public class Pair<F, S>
     public override bool Equals(object obj)
     {
         Debug.LogWarning("Did you mean \"equals\" instead of \"Equals\" in the pair?");
-        return base.Equals(obj);
+        return base.Equals(obj) || equals(this, obj);
+    }
+
+    public (F, S) ToTuple()
+    {
+        return (First, Second);
     }
 
     public override int GetHashCode()

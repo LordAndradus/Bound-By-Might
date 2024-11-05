@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using UnityEngine;
 
@@ -28,7 +29,7 @@ public class SerializableDictionary<TKey, TValue> : Dictionary<TKey, TValue>, IS
         foreach(KeyValuePair<TKey, TValue> entry in this) elements.Add(new SerializableDictionaryEntry<TKey, TValue>(entry.Key, entry.Value));
     }
 
-    public TKey getKey(TValue reference)
+    public TKey GetKey(TValue reference)
     {
         List<KeyValuePair<TKey, TValue>> kvList = new();
 
@@ -49,6 +50,18 @@ public class SerializableDictionary<TKey, TValue> : Dictionary<TKey, TValue>, IS
         }
 
         return kvList[0].Key;
+    }
+
+    public List<Pair<TKey, TValue>> ToPairedList()
+    {
+        List<Pair<TKey, TValue>> list = new();
+
+        List<TKey> keys = this.Keys.ToList();
+        List<TValue> values = this.Values.ToList();
+
+        for(int i = 0; i < Count; i++) list.Add(new(keys[i], values[i]));
+        
+        return list;
     }
 
     public string toString()

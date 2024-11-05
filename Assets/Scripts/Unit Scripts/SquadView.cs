@@ -13,14 +13,14 @@ public class SquadView : MonoBehaviour
         icons = transform.GetComponentsInChildren<Image>().ToList();
         icons.RemoveAt(0);
 
-        List<Pair<Unit, Pair<int, int>>> UnitPairs = squad.RetrieveUnitPairs();
+        List<Pair<Unit, (int, int)>> UnitPairs = squad.RetrieveUnitPairs();
 
         foreach(Image icon in icons) 
             icon.color = new Color(0f, 0f, 0f, 0f);
 
-        foreach(Pair<Unit, Pair<int, int>> UnitPair in UnitPairs)
+        foreach(Pair<Unit, (int, int)> UnitPair in UnitPairs)
         {
-            int UnitPairIndex = (UnitPair.Second.First * 3) + UnitPair.Second.Second;
+            int UnitPairIndex = (UnitPair.Second.Item1 * 3) + UnitPair.Second.Item2;
 
             if(UnitPair.First.Icon != null) icons[UnitPairIndex].sprite = UnitPair.First.Icon;
             else icons[UnitPairIndex].sprite = Resources.Load<Sprite>(GlobalSettings.DefaultUnitSpriteIcon);

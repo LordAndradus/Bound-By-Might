@@ -670,14 +670,55 @@ MonoBehaviour:
     Name: Lord Andradus's Squad
     MovementType: 0
     MoveSpeed: 6
+    Leader:
+      spriteView: {fileID: 0}
+      Name: 
+      UIFriendlyClassName: 
+      Description: Make sure to fill in the description, young game maker
+      Icon: {fileID: 0}
+      GrowthDefintion: 7
+      Attack: 0
+      AttackArea:
+        <First>k__BackingField: 1
+        <Second>k__BackingField: 1
+      preference: 0
+      CareerHistory:
+        elements: []
+      divisor: 1000
+      MaxRange: 5001
+      movement: 0
+      FieldCost: 10
+      threat: 256
+      DeathFlag: 0
+      UnitAttributes:
+        elements: []
+      Level: 0
+      TierLevel: 0
+      PromotionPoints: 0
+      ExperiencePoints: 0
+      ExperiencePointsDropped: 100
+      PromotionCap: 0
+      ExperienceCap: 0
+      GoldCost: 0
+      IronCost: 0
+      MagicGemCost: 0
+      HorseCost: 0
+      HolyTearCost: 0
+      AdamntiumCost: 0
+      MaxTraits: 6
     units: []
     equipment:
     - Icon: {fileID: 0}
     - Icon: {fileID: 0}
     - Icon: {fileID: 0}
+    UnitPositions:
+      elements: []
   EntrySide: 0
   moved: 0
   moving: 0
+  references:
+    version: 2
+    RefIds: []
 --- !u!61 &175233552
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -832,14 +873,55 @@ MonoBehaviour:
     Name: Lord Andradus's Squad
     MovementType: 0
     MoveSpeed: 6
+    Leader:
+      spriteView: {fileID: 0}
+      Name: 
+      UIFriendlyClassName: 
+      Description: Make sure to fill in the description, young game maker
+      Icon: {fileID: 0}
+      GrowthDefintion: 7
+      Attack: 0
+      AttackArea:
+        <First>k__BackingField: 1
+        <Second>k__BackingField: 1
+      preference: 0
+      CareerHistory:
+        elements: []
+      divisor: 1000
+      MaxRange: 5001
+      movement: 0
+      FieldCost: 10
+      threat: 256
+      DeathFlag: 0
+      UnitAttributes:
+        elements: []
+      Level: 0
+      TierLevel: 0
+      PromotionPoints: 0
+      ExperiencePoints: 0
+      ExperiencePointsDropped: 100
+      PromotionCap: 0
+      ExperienceCap: 0
+      GoldCost: 0
+      IronCost: 0
+      MagicGemCost: 0
+      HorseCost: 0
+      HolyTearCost: 0
+      AdamntiumCost: 0
+      MaxTraits: 6
     units: []
     equipment:
     - Icon: {fileID: 0}
     - Icon: {fileID: 0}
     - Icon: {fileID: 0}
+    UnitPositions:
+      elements: []
   EntrySide: 0
   moved: 0
   moving: 0
+  references:
+    version: 2
+    RefIds: []
 --- !u!61 &206294354
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -994,14 +1076,55 @@ MonoBehaviour:
     Name: Lord Andradus's Squad
     MovementType: 0
     MoveSpeed: 6
+    Leader:
+      spriteView: {fileID: 0}
+      Name: 
+      UIFriendlyClassName: 
+      Description: Make sure to fill in the description, young game maker
+      Icon: {fileID: 0}
+      GrowthDefintion: 7
+      Attack: 0
+      AttackArea:
+        <First>k__BackingField: 1
+        <Second>k__BackingField: 1
+      preference: 0
+      CareerHistory:
+        elements: []
+      divisor: 1000
+      MaxRange: 5001
+      movement: 0
+      FieldCost: 10
+      threat: 256
+      DeathFlag: 0
+      UnitAttributes:
+        elements: []
+      Level: 0
+      TierLevel: 0
+      PromotionPoints: 0
+      ExperiencePoints: 0
+      ExperiencePointsDropped: 100
+      PromotionCap: 0
+      ExperienceCap: 0
+      GoldCost: 0
+      IronCost: 0
+      MagicGemCost: 0
+      HorseCost: 0
+      HolyTearCost: 0
+      AdamntiumCost: 0
+      MaxTraits: 6
     units: []
     equipment:
     - Icon: {fileID: 0}
     - Icon: {fileID: 0}
     - Icon: {fileID: 0}
+    UnitPositions:
+      elements: []
   EntrySide: 0
   moved: 0
   moving: 0
+  references:
+    version: 2
+    RefIds: []
 --- !u!61 &218702282
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1399,14 +1522,55 @@ MonoBehaviour:
     Name: Lord Andradus's Squad
     MovementType: 0
     MoveSpeed: 6
+    Leader:
+      spriteView: {fileID: 0}
+      Name: 
+      UIFriendlyClassName: 
+      Description: Make sure to fill in the description, young game maker
+      Icon: {fileID: 0}
+      GrowthDefintion: 7
+      Attack: 0
+      AttackArea:
+        <First>k__BackingField: 1
+        <Second>k__BackingField: 1
+      preference: 0
+      CareerHistory:
+        elements: []
+      divisor: 1000
+      MaxRange: 5001
+      movement: 0
+      FieldCost: 10
+      threat: 256
+      DeathFlag: 0
+      UnitAttributes:
+        elements: []
+      Level: 0
+      TierLevel: 0
+      PromotionPoints: 0
+      ExperiencePoints: 0
+      ExperiencePointsDropped: 100
+      PromotionCap: 0
+      ExperienceCap: 0
+      GoldCost: 0
+      IronCost: 0
+      MagicGemCost: 0
+      HorseCost: 0
+      HolyTearCost: 0
+      AdamntiumCost: 0
+      MaxTraits: 6
     units: []
     equipment:
     - Icon: {fileID: 0}
     - Icon: {fileID: 0}
     - Icon: {fileID: 0}
+    UnitPositions:
+      elements: []
   EntrySide: 0
   moved: 0
   moving: 0
+  references:
+    version: 2
+    RefIds: []
 --- !u!61 &328717128
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1598,81 +1762,58 @@ MonoBehaviour:
     Name: Lord Andradus's Squad
     MovementType: 0
     MoveSpeed: 6
+    Leader:
+      spriteView: {fileID: 0}
+      Name: 
+      UIFriendlyClassName: 
+      Description: Make sure to fill in the description, young game maker
+      Icon: {fileID: 0}
+      GrowthDefintion: 7
+      Attack: 0
+      AttackArea:
+        <First>k__BackingField: 1
+        <Second>k__BackingField: 1
+      preference: 0
+      CareerHistory:
+        elements: []
+      divisor: 1000
+      MaxRange: 5001
+      movement: 0
+      FieldCost: 10
+      threat: 256
+      DeathFlag: 0
+      UnitAttributes:
+        elements: []
+      Level: 0
+      TierLevel: 0
+      PromotionPoints: 0
+      ExperiencePoints: 0
+      ExperiencePointsDropped: 100
+      PromotionCap: 0
+      ExperienceCap: 0
+      GoldCost: 0
+      IronCost: 0
+      MagicGemCost: 0
+      HorseCost: 0
+      HolyTearCost: 0
+      AdamntiumCost: 0
+      MaxTraits: 6
     units:
-    - spriteView: {fileID: 0}
-      Name: 
-      UIFriendlyClassName: 
-      Description: Make sure to fill in the description, young game maker
-      Icon: {fileID: 0}
-      GrowthDefintion: 0
-      CareerHistory:
-        elements: []
-      divisor: 1000
-      MaxRange: 5001
-      movement: 0
-      FieldCost: 10
-      threat: 1000
-      UnitAttributes:
-        elements:
-        - key: 0
-          value:
-            total: 0
-            value: 0
-            requirement: 0
-            growth: 0
-            leftover: 0
-            GenerationRange:
-              <First>k__BackingField: 0
-              <Second>k__BackingField: 0
-            additions: 
-      Level: 0
-      TierLevel: 0
-      PromotionPoints: 0
-      ExperiencePoints: 0
-      PromotionCap: 0
-      ExperienceCap: 0
-      GoldCost: 0
-      IronCost: 0
-      MagicGemCost: 0
-      HorseCost: 0
-      HolyTearCost: 0
-      AdamntiumCost: 0
-      MaxTraits: 6
-    - spriteView: {fileID: 0}
-      Name: 
-      UIFriendlyClassName: 
-      Description: Make sure to fill in the description, young game maker
-      Icon: {fileID: 0}
-      GrowthDefintion: 0
-      CareerHistory:
-        elements: []
-      divisor: 1000
-      MaxRange: 5001
-      movement: 0
-      FieldCost: 10
-      threat: 1000
-      UnitAttributes:
-        elements: []
-      Level: 0
-      TierLevel: 0
-      PromotionPoints: 0
-      ExperiencePoints: 0
-      PromotionCap: 0
-      ExperienceCap: 0
-      GoldCost: 0
-      IronCost: 0
-      MagicGemCost: 0
-      HorseCost: 0
-      HolyTearCost: 0
-      AdamntiumCost: 0
-      MaxTraits: 6
+    - rid: -2
     equipment:
     - Icon: {fileID: 0}
     - Icon: {fileID: 0}
     - Icon: {fileID: 0}
+    UnitPositions:
+      elements: []
   EntrySide: 0
   moved: 0
   moving: 0
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
 --- !u!61 &365504476
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3182,6 +3323,9 @@ MonoBehaviour:
   EndTurn: {fileID: 1292555801}
   confirm: {fileID: 162146719}
   SquadPicker: {fileID: 0}
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &571165381
 GameObject:
   m_ObjectHideFlags: 0
@@ -3637,14 +3781,55 @@ MonoBehaviour:
     Name: 
     MovementType: 0
     MoveSpeed: 6
+    Leader:
+      spriteView: {fileID: 0}
+      Name: 
+      UIFriendlyClassName: 
+      Description: Make sure to fill in the description, young game maker
+      Icon: {fileID: 0}
+      GrowthDefintion: 7
+      Attack: 0
+      AttackArea:
+        <First>k__BackingField: 1
+        <Second>k__BackingField: 1
+      preference: 0
+      CareerHistory:
+        elements: []
+      divisor: 1000
+      MaxRange: 5001
+      movement: 0
+      FieldCost: 10
+      threat: 256
+      DeathFlag: 0
+      UnitAttributes:
+        elements: []
+      Level: 0
+      TierLevel: 0
+      PromotionPoints: 0
+      ExperiencePoints: 0
+      ExperiencePointsDropped: 100
+      PromotionCap: 0
+      ExperienceCap: 0
+      GoldCost: 0
+      IronCost: 0
+      MagicGemCost: 0
+      HorseCost: 0
+      HolyTearCost: 0
+      AdamntiumCost: 0
+      MaxTraits: 6
     units: []
     equipment:
     - Icon: {fileID: 0}
     - Icon: {fileID: 0}
     - Icon: {fileID: 0}
+    UnitPositions:
+      elements: []
   EntrySide: 0
   moved: 0
   moving: 0
+  references:
+    version: 2
+    RefIds: []
 --- !u!61 &735779926
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4678,6 +4863,9 @@ MonoBehaviour:
   EndTurn: {fileID: 1292555801}
   confirm: {fileID: 162146719}
   SquadPicker: {fileID: 1735563173}
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &950044095
 GameObject:
   m_ObjectHideFlags: 0
@@ -5056,14 +5244,55 @@ MonoBehaviour:
     Name: 
     MovementType: 0
     MoveSpeed: 6
+    Leader:
+      spriteView: {fileID: 0}
+      Name: 
+      UIFriendlyClassName: 
+      Description: Make sure to fill in the description, young game maker
+      Icon: {fileID: 0}
+      GrowthDefintion: 7
+      Attack: 0
+      AttackArea:
+        <First>k__BackingField: 1
+        <Second>k__BackingField: 1
+      preference: 0
+      CareerHistory:
+        elements: []
+      divisor: 1000
+      MaxRange: 5001
+      movement: 0
+      FieldCost: 10
+      threat: 256
+      DeathFlag: 0
+      UnitAttributes:
+        elements: []
+      Level: 0
+      TierLevel: 0
+      PromotionPoints: 0
+      ExperiencePoints: 0
+      ExperiencePointsDropped: 100
+      PromotionCap: 0
+      ExperienceCap: 0
+      GoldCost: 0
+      IronCost: 0
+      MagicGemCost: 0
+      HorseCost: 0
+      HolyTearCost: 0
+      AdamntiumCost: 0
+      MaxTraits: 6
     units: []
     equipment:
     - Icon: {fileID: 0}
     - Icon: {fileID: 0}
     - Icon: {fileID: 0}
+    UnitPositions:
+      elements: []
   EntrySide: 0
   moved: 0
   moving: 0
+  references:
+    version: 2
+    RefIds: []
 --- !u!61 &1033982446
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5252,14 +5481,55 @@ MonoBehaviour:
     Name: Lord Andradus's Squad
     MovementType: 0
     MoveSpeed: 6
+    Leader:
+      spriteView: {fileID: 0}
+      Name: 
+      UIFriendlyClassName: 
+      Description: Make sure to fill in the description, young game maker
+      Icon: {fileID: 0}
+      GrowthDefintion: 7
+      Attack: 0
+      AttackArea:
+        <First>k__BackingField: 1
+        <Second>k__BackingField: 1
+      preference: 0
+      CareerHistory:
+        elements: []
+      divisor: 1000
+      MaxRange: 5001
+      movement: 0
+      FieldCost: 10
+      threat: 256
+      DeathFlag: 0
+      UnitAttributes:
+        elements: []
+      Level: 0
+      TierLevel: 0
+      PromotionPoints: 0
+      ExperiencePoints: 0
+      ExperiencePointsDropped: 100
+      PromotionCap: 0
+      ExperienceCap: 0
+      GoldCost: 0
+      IronCost: 0
+      MagicGemCost: 0
+      HorseCost: 0
+      HolyTearCost: 0
+      AdamntiumCost: 0
+      MaxTraits: 6
     units: []
     equipment:
     - Icon: {fileID: 0}
     - Icon: {fileID: 0}
     - Icon: {fileID: 0}
+    UnitPositions:
+      elements: []
   EntrySide: 0
   moved: 0
   moving: 0
+  references:
+    version: 2
+    RefIds: []
 --- !u!61 &1042476243
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5624,14 +5894,55 @@ MonoBehaviour:
     Name: Lord Andradus's Squad
     MovementType: 0
     MoveSpeed: 6
+    Leader:
+      spriteView: {fileID: 0}
+      Name: 
+      UIFriendlyClassName: 
+      Description: Make sure to fill in the description, young game maker
+      Icon: {fileID: 0}
+      GrowthDefintion: 7
+      Attack: 0
+      AttackArea:
+        <First>k__BackingField: 1
+        <Second>k__BackingField: 1
+      preference: 0
+      CareerHistory:
+        elements: []
+      divisor: 1000
+      MaxRange: 5001
+      movement: 0
+      FieldCost: 10
+      threat: 256
+      DeathFlag: 0
+      UnitAttributes:
+        elements: []
+      Level: 0
+      TierLevel: 0
+      PromotionPoints: 0
+      ExperiencePoints: 0
+      ExperiencePointsDropped: 100
+      PromotionCap: 0
+      ExperienceCap: 0
+      GoldCost: 0
+      IronCost: 0
+      MagicGemCost: 0
+      HorseCost: 0
+      HolyTearCost: 0
+      AdamntiumCost: 0
+      MaxTraits: 6
     units: []
     equipment:
     - Icon: {fileID: 0}
     - Icon: {fileID: 0}
     - Icon: {fileID: 0}
+    UnitPositions:
+      elements: []
   EntrySide: 0
   moved: 0
   moving: 0
+  references:
+    version: 2
+    RefIds: []
 --- !u!61 &1077863657
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5786,14 +6097,55 @@ MonoBehaviour:
     Name: 
     MovementType: 0
     MoveSpeed: 6
+    Leader:
+      spriteView: {fileID: 0}
+      Name: 
+      UIFriendlyClassName: 
+      Description: Make sure to fill in the description, young game maker
+      Icon: {fileID: 0}
+      GrowthDefintion: 7
+      Attack: 0
+      AttackArea:
+        <First>k__BackingField: 1
+        <Second>k__BackingField: 1
+      preference: 0
+      CareerHistory:
+        elements: []
+      divisor: 1000
+      MaxRange: 5001
+      movement: 0
+      FieldCost: 10
+      threat: 256
+      DeathFlag: 0
+      UnitAttributes:
+        elements: []
+      Level: 0
+      TierLevel: 0
+      PromotionPoints: 0
+      ExperiencePoints: 0
+      ExperiencePointsDropped: 100
+      PromotionCap: 0
+      ExperienceCap: 0
+      GoldCost: 0
+      IronCost: 0
+      MagicGemCost: 0
+      HorseCost: 0
+      HolyTearCost: 0
+      AdamntiumCost: 0
+      MaxTraits: 6
     units: []
     equipment:
     - Icon: {fileID: 0}
     - Icon: {fileID: 0}
     - Icon: {fileID: 0}
+    UnitPositions:
+      elements: []
   EntrySide: 0
   moved: 0
   moving: 0
+  references:
+    version: 2
+    RefIds: []
 --- !u!61 &1080698953
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6101,14 +6453,55 @@ MonoBehaviour:
     Name: 
     MovementType: 0
     MoveSpeed: 6
+    Leader:
+      spriteView: {fileID: 0}
+      Name: 
+      UIFriendlyClassName: 
+      Description: Make sure to fill in the description, young game maker
+      Icon: {fileID: 0}
+      GrowthDefintion: 7
+      Attack: 0
+      AttackArea:
+        <First>k__BackingField: 1
+        <Second>k__BackingField: 1
+      preference: 0
+      CareerHistory:
+        elements: []
+      divisor: 1000
+      MaxRange: 5001
+      movement: 0
+      FieldCost: 10
+      threat: 256
+      DeathFlag: 0
+      UnitAttributes:
+        elements: []
+      Level: 0
+      TierLevel: 0
+      PromotionPoints: 0
+      ExperiencePoints: 0
+      ExperiencePointsDropped: 100
+      PromotionCap: 0
+      ExperienceCap: 0
+      GoldCost: 0
+      IronCost: 0
+      MagicGemCost: 0
+      HorseCost: 0
+      HolyTearCost: 0
+      AdamntiumCost: 0
+      MaxTraits: 6
     units: []
     equipment:
     - Icon: {fileID: 0}
     - Icon: {fileID: 0}
     - Icon: {fileID: 0}
+    UnitPositions:
+      elements: []
   EntrySide: 0
   moved: 0
   moving: 0
+  references:
+    version: 2
+    RefIds: []
 --- !u!61 &1104347303
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -13416,14 +13809,55 @@ MonoBehaviour:
     Name: 
     MovementType: 0
     MoveSpeed: 6
+    Leader:
+      spriteView: {fileID: 0}
+      Name: 
+      UIFriendlyClassName: 
+      Description: Make sure to fill in the description, young game maker
+      Icon: {fileID: 0}
+      GrowthDefintion: 7
+      Attack: 0
+      AttackArea:
+        <First>k__BackingField: 1
+        <Second>k__BackingField: 1
+      preference: 0
+      CareerHistory:
+        elements: []
+      divisor: 1000
+      MaxRange: 5001
+      movement: 0
+      FieldCost: 10
+      threat: 256
+      DeathFlag: 0
+      UnitAttributes:
+        elements: []
+      Level: 0
+      TierLevel: 0
+      PromotionPoints: 0
+      ExperiencePoints: 0
+      ExperiencePointsDropped: 100
+      PromotionCap: 0
+      ExperienceCap: 0
+      GoldCost: 0
+      IronCost: 0
+      MagicGemCost: 0
+      HorseCost: 0
+      HolyTearCost: 0
+      AdamntiumCost: 0
+      MaxTraits: 6
     units: []
     equipment:
     - Icon: {fileID: 0}
     - Icon: {fileID: 0}
     - Icon: {fileID: 0}
+    UnitPositions:
+      elements: []
   EntrySide: 0
   moved: 0
   moving: 0
+  references:
+    version: 2
+    RefIds: []
 --- !u!61 &1219179602
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -13767,6 +14201,9 @@ MonoBehaviour:
   EndTurn: {fileID: 1292555801}
   confirm: {fileID: 162146719}
   SquadPicker: {fileID: 0}
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &1292555799
 GameObject:
   m_ObjectHideFlags: 0
@@ -13946,14 +14383,55 @@ MonoBehaviour:
     Name: 
     MovementType: 0
     MoveSpeed: 6
+    Leader:
+      spriteView: {fileID: 0}
+      Name: 
+      UIFriendlyClassName: 
+      Description: Make sure to fill in the description, young game maker
+      Icon: {fileID: 0}
+      GrowthDefintion: 7
+      Attack: 0
+      AttackArea:
+        <First>k__BackingField: 1
+        <Second>k__BackingField: 1
+      preference: 0
+      CareerHistory:
+        elements: []
+      divisor: 1000
+      MaxRange: 5001
+      movement: 0
+      FieldCost: 10
+      threat: 256
+      DeathFlag: 0
+      UnitAttributes:
+        elements: []
+      Level: 0
+      TierLevel: 0
+      PromotionPoints: 0
+      ExperiencePoints: 0
+      ExperiencePointsDropped: 100
+      PromotionCap: 0
+      ExperienceCap: 0
+      GoldCost: 0
+      IronCost: 0
+      MagicGemCost: 0
+      HorseCost: 0
+      HolyTearCost: 0
+      AdamntiumCost: 0
+      MaxTraits: 6
     units: []
     equipment:
     - Icon: {fileID: 0}
     - Icon: {fileID: 0}
     - Icon: {fileID: 0}
+    UnitPositions:
+      elements: []
   EntrySide: 0
   moved: 0
   moving: 0
+  references:
+    version: 2
+    RefIds: []
 --- !u!61 &1314954143
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -15113,14 +15591,55 @@ MonoBehaviour:
     Name: Lord Andradus's Squad
     MovementType: 0
     MoveSpeed: 6
+    Leader:
+      spriteView: {fileID: 0}
+      Name: 
+      UIFriendlyClassName: 
+      Description: Make sure to fill in the description, young game maker
+      Icon: {fileID: 0}
+      GrowthDefintion: 7
+      Attack: 0
+      AttackArea:
+        <First>k__BackingField: 1
+        <Second>k__BackingField: 1
+      preference: 0
+      CareerHistory:
+        elements: []
+      divisor: 1000
+      MaxRange: 5001
+      movement: 0
+      FieldCost: 10
+      threat: 256
+      DeathFlag: 0
+      UnitAttributes:
+        elements: []
+      Level: 0
+      TierLevel: 0
+      PromotionPoints: 0
+      ExperiencePoints: 0
+      ExperiencePointsDropped: 100
+      PromotionCap: 0
+      ExperienceCap: 0
+      GoldCost: 0
+      IronCost: 0
+      MagicGemCost: 0
+      HorseCost: 0
+      HolyTearCost: 0
+      AdamntiumCost: 0
+      MaxTraits: 6
     units: []
     equipment:
     - Icon: {fileID: 0}
     - Icon: {fileID: 0}
     - Icon: {fileID: 0}
+    UnitPositions:
+      elements: []
   EntrySide: 0
   moved: 0
   moving: 0
+  references:
+    version: 2
+    RefIds: []
 --- !u!61 &1858072564
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -15444,14 +15963,55 @@ MonoBehaviour:
     Name: Lord Andradus's Squad
     MovementType: 0
     MoveSpeed: 6
+    Leader:
+      spriteView: {fileID: 0}
+      Name: 
+      UIFriendlyClassName: 
+      Description: Make sure to fill in the description, young game maker
+      Icon: {fileID: 0}
+      GrowthDefintion: 7
+      Attack: 0
+      AttackArea:
+        <First>k__BackingField: 1
+        <Second>k__BackingField: 1
+      preference: 0
+      CareerHistory:
+        elements: []
+      divisor: 1000
+      MaxRange: 5001
+      movement: 0
+      FieldCost: 10
+      threat: 256
+      DeathFlag: 0
+      UnitAttributes:
+        elements: []
+      Level: 0
+      TierLevel: 0
+      PromotionPoints: 0
+      ExperiencePoints: 0
+      ExperiencePointsDropped: 100
+      PromotionCap: 0
+      ExperienceCap: 0
+      GoldCost: 0
+      IronCost: 0
+      MagicGemCost: 0
+      HorseCost: 0
+      HolyTearCost: 0
+      AdamntiumCost: 0
+      MaxTraits: 6
     units: []
     equipment:
     - Icon: {fileID: 0}
     - Icon: {fileID: 0}
     - Icon: {fileID: 0}
+    UnitPositions:
+      elements: []
   EntrySide: 0
   moved: 0
   moving: 0
+  references:
+    version: 2
+    RefIds: []
 --- !u!61 &1881300420
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -18384,14 +18944,55 @@ MonoBehaviour:
     Name: 
     MovementType: 0
     MoveSpeed: 6
+    Leader:
+      spriteView: {fileID: 0}
+      Name: 
+      UIFriendlyClassName: 
+      Description: Make sure to fill in the description, young game maker
+      Icon: {fileID: 0}
+      GrowthDefintion: 7
+      Attack: 0
+      AttackArea:
+        <First>k__BackingField: 1
+        <Second>k__BackingField: 1
+      preference: 0
+      CareerHistory:
+        elements: []
+      divisor: 1000
+      MaxRange: 5001
+      movement: 0
+      FieldCost: 10
+      threat: 256
+      DeathFlag: 0
+      UnitAttributes:
+        elements: []
+      Level: 0
+      TierLevel: 0
+      PromotionPoints: 0
+      ExperiencePoints: 0
+      ExperiencePointsDropped: 100
+      PromotionCap: 0
+      ExperienceCap: 0
+      GoldCost: 0
+      IronCost: 0
+      MagicGemCost: 0
+      HorseCost: 0
+      HolyTearCost: 0
+      AdamntiumCost: 0
+      MaxTraits: 6
     units: []
     equipment:
     - Icon: {fileID: 0}
     - Icon: {fileID: 0}
     - Icon: {fileID: 0}
+    UnitPositions:
+      elements: []
   EntrySide: 0
   moved: 0
   moving: 0
+  references:
+    version: 2
+    RefIds: []
 --- !u!61 &2040764094
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -18919,14 +19520,55 @@ MonoBehaviour:
     Name: Lord Andradus's Squad
     MovementType: 0
     MoveSpeed: 6
+    Leader:
+      spriteView: {fileID: 0}
+      Name: 
+      UIFriendlyClassName: 
+      Description: Make sure to fill in the description, young game maker
+      Icon: {fileID: 0}
+      GrowthDefintion: 7
+      Attack: 0
+      AttackArea:
+        <First>k__BackingField: 1
+        <Second>k__BackingField: 1
+      preference: 0
+      CareerHistory:
+        elements: []
+      divisor: 1000
+      MaxRange: 5001
+      movement: 0
+      FieldCost: 10
+      threat: 256
+      DeathFlag: 0
+      UnitAttributes:
+        elements: []
+      Level: 0
+      TierLevel: 0
+      PromotionPoints: 0
+      ExperiencePoints: 0
+      ExperiencePointsDropped: 100
+      PromotionCap: 0
+      ExperienceCap: 0
+      GoldCost: 0
+      IronCost: 0
+      MagicGemCost: 0
+      HorseCost: 0
+      HolyTearCost: 0
+      AdamntiumCost: 0
+      MaxTraits: 6
     units: []
     equipment:
     - Icon: {fileID: 0}
     - Icon: {fileID: 0}
     - Icon: {fileID: 0}
+    UnitPositions:
+      elements: []
   EntrySide: 0
   moved: 0
   moving: 0
+  references:
+    version: 2
+    RefIds: []
 --- !u!61 &2071058778
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -19268,14 +19910,55 @@ MonoBehaviour:
     Name: Lord Andradus's Squad
     MovementType: 0
     MoveSpeed: 6
+    Leader:
+      spriteView: {fileID: 0}
+      Name: 
+      UIFriendlyClassName: 
+      Description: Make sure to fill in the description, young game maker
+      Icon: {fileID: 0}
+      GrowthDefintion: 7
+      Attack: 0
+      AttackArea:
+        <First>k__BackingField: 1
+        <Second>k__BackingField: 1
+      preference: 0
+      CareerHistory:
+        elements: []
+      divisor: 1000
+      MaxRange: 5001
+      movement: 0
+      FieldCost: 10
+      threat: 256
+      DeathFlag: 0
+      UnitAttributes:
+        elements: []
+      Level: 0
+      TierLevel: 0
+      PromotionPoints: 0
+      ExperiencePoints: 0
+      ExperiencePointsDropped: 100
+      PromotionCap: 0
+      ExperienceCap: 0
+      GoldCost: 0
+      IronCost: 0
+      MagicGemCost: 0
+      HorseCost: 0
+      HolyTearCost: 0
+      AdamntiumCost: 0
+      MaxTraits: 6
     units: []
     equipment:
     - Icon: {fileID: 0}
     - Icon: {fileID: 0}
     - Icon: {fileID: 0}
+    UnitPositions:
+      elements: []
   EntrySide: 0
   moved: 0
   moving: 0
+  references:
+    version: 2
+    RefIds: []
 --- !u!61 &2126745012
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -19430,14 +20113,55 @@ MonoBehaviour:
     Name: Lord Andradus's Squad
     MovementType: 0
     MoveSpeed: 6
+    Leader:
+      spriteView: {fileID: 0}
+      Name: 
+      UIFriendlyClassName: 
+      Description: Make sure to fill in the description, young game maker
+      Icon: {fileID: 0}
+      GrowthDefintion: 7
+      Attack: 0
+      AttackArea:
+        <First>k__BackingField: 1
+        <Second>k__BackingField: 1
+      preference: 0
+      CareerHistory:
+        elements: []
+      divisor: 1000
+      MaxRange: 5001
+      movement: 0
+      FieldCost: 10
+      threat: 256
+      DeathFlag: 0
+      UnitAttributes:
+        elements: []
+      Level: 0
+      TierLevel: 0
+      PromotionPoints: 0
+      ExperiencePoints: 0
+      ExperiencePointsDropped: 100
+      PromotionCap: 0
+      ExperienceCap: 0
+      GoldCost: 0
+      IronCost: 0
+      MagicGemCost: 0
+      HorseCost: 0
+      HolyTearCost: 0
+      AdamntiumCost: 0
+      MaxTraits: 6
     units: []
     equipment:
     - Icon: {fileID: 0}
     - Icon: {fileID: 0}
     - Icon: {fileID: 0}
+    UnitPositions:
+      elements: []
   EntrySide: 0
   moved: 0
   moving: 0
+  references:
+    version: 2
+    RefIds: []
 --- !u!61 &2141697832
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -42,7 +42,7 @@ public class UnitGenerator : MonoBehaviour
                 bool AlreadyFielded = false;
                 foreach(var ugp in generic.RetrieveUnitPairs())
                 {
-                    if(ugp.Second.equals(pair)) AlreadyFielded = true;
+                    if(ugp.Second.Equals(pair)) AlreadyFielded = true;
                 }
 
                 if(AlreadyFielded) continue;
@@ -51,7 +51,7 @@ public class UnitGenerator : MonoBehaviour
             }while(true);
 
             if(generic.RetrieveUnits().Count == 0) generic.Name = u.Name + "'s Squad";
-            generic.FieldUnit(u, pair);
+            generic.FieldUnit(u, pair.ToTuple());
         }
         
         return generic;
