@@ -15,12 +15,13 @@ public class Squad
     public MoveType MovementType = default;
     public int MoveSpeed = 6;
 
-    [Header("Information")]
-    [SerializeField] List<Unit> units = new();
+    [Header("Squad Information")]
+    [SerializeField] Unit Leader;
+    [SerializeReference] List<Unit> units = new();
     [SerializeField] Unit[,] fieldedUnits = new Unit[3,3];
     [SerializeField] Equipment[] equipment = new Equipment[3];
 
-    Dictionary<Unit, Pair<int, int>> UnitPositions = new();
+    [SerializeField] SerializableDictionary<Unit, Pair<int, int>> UnitPositions = new();
 
     public int TranslateMovementType(MoveType movement)
     {
