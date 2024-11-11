@@ -50,12 +50,15 @@ public class BattleManager
     {
         foreach(Unit unit in Attacking.RetrieveUnits())
         {
-            UnitAction ua = new(unit, Attacking.RetrievePositionFromUnit(unit), Attacking, Attacked);
+            actions.Add(new(unit, Attacking.RetrievePositionFromUnit(unit), Attacking, Attacked));
         }
     }
 
     private void SimulateRetaliation()
     {
-
+        foreach(Unit unit in Attacked.RetrieveUnits())
+        {
+            actions.Add(new(unit, Attacked.RetrievePositionFromUnit(unit), Attacked, Attacking));
+        }
     }
 }

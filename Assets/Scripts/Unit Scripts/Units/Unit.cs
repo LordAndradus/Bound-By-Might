@@ -12,15 +12,22 @@ using UnityEngine;
 [Serializable]
 public class Unit
 {
+    //Will Change to ScriptableObject
     public Sprite spriteView;
-    public string Name;
     public string UIFriendlyClassName;
     public string Description = "Make sure to fill in the description, young game maker";
     public Sprite Icon;
-    public GrowthType GrowthDefintion;
     public AttackType Attack;
     public Pair<int, int> AttackArea = new(1, 1);
     public AttackPreference preference = AttackPreference.Front;
+
+    [Header("Data Container")]
+    [SerializeField] private protected UnitDataContainer information;
+
+    //Dynamic Data
+    public string Name;
+    public GrowthType GrowthDefintion;
+
 
     [SerializeField] public SerializableDictionary<Type, Snapshot> CareerHistory = new();
     [SerializeField] public List<Type> UpgradePath = new();
@@ -441,14 +448,15 @@ public enum AttributeType
     Strength,
     Agility,
     Magic,
-    Leadership
+    Leadership,
+    NA
 }
 
 public enum AttackType
 {
+    Melee,
     Healing,
     Magic,
-    Melee,
     Archery,
     Firearms //Imagine a musket or something
 }
@@ -460,6 +468,16 @@ public enum AttackPreference
     Middle,
     MostHP,
     MostDefense,
+    Leader,
+}
+
+public enum aPref
+{
+    Front,
+    Back,
+    Middle,
+    Most,
+    Least,
     Leader,
 }
 

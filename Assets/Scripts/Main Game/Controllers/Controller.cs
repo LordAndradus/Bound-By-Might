@@ -40,6 +40,9 @@ public class Controller : MonoBehaviour
             SquadMovementHandler smh = child.GetComponent<SquadMovementHandler>();
             smh.AssignController(this);
             SquadMoverList.Add(smh);
+
+            //Assign unique squad
+            smh.AssignSquad(UnitGenerator.GenerateSquad());
         }
         
         Awakened = true;

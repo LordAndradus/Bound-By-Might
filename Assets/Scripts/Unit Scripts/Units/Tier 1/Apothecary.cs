@@ -11,6 +11,8 @@ public class Apothecary : Unit
         spriteView = UtilityClass.Load<Sprite>("Sprites/Unit Sprites/Tier 1/Apothecary/Female Apothecary");
         Icon = UtilityClass.Load<Sprite>("Sprites/Unit Sprites/Tier 1/Apothecary/Apothecary Icon");
         movement = MoveType.Slow;
+
+        information.UIFriendlyClassName = UtilityClass.UIFriendlyClassName(this.GetType().Name);
     }
 
     private protected override void SetAttributes()
