@@ -6,21 +6,25 @@ using System.Linq;
 using System.Text;
 
 [Serializable]
-public class Squad
+public class Squad : ISerializationCallbackReceiver
 {
     public event Action FieldedUnitsChanged;
+    static readonly Pair<int, int> SquadSize = new(3, 3); //First one is width, second one is height
 
     [Header("Parameters")]
     public string Name;
     public MoveType MovementType = default;
     public int MoveSpeed = 6;
 
-    [Header("Information")]
-    [SerializeField] List<Unit> units = new();
-    [SerializeField] Unit[,] fieldedUnits = new Unit[3,3];
+    [Header("Squad Information")]
+    [SerializeField] Unit Leader;
     [SerializeField] Equipment[] equipment = new Equipment[3];
-
-    Dictionary<Unit, Pair<int, int>> UnitPositions = new();
+    [SerializeField] private SerializableDictionary<Pair<int, int>, Unit> _FieldedUnits;
+    [SerializeField] SerializableDictionary<(int, int), Unit> FieldedUnits = new(){
+        {(0, 0), null}, {(0, 1), null}, {(0, 2), null}, 
+        {(1, 0), null}, {(1, 1), null}, {(1, 2), null}, 
+        {(2, 0), null}, {(2, 1), null}, {(2, 2), null},
+    };
 
     public int TranslateMovementType(MoveType movement)
     {
@@ -42,41 +46,16 @@ public class Squad
                 MoveSpeed = 7;
                 break;
             case MoveType.Flying:
-            MoveSpeed = 7;
+                MoveSpeed = 8;
                 break;
         }
 
         return MoveSpeed;
     }
 
-    public Squad CreateNewSquad(Unit leader)
-    {
-        FieldUnit(leader, new Pair<int, int>(1, 1));
-
-        return this;
-    }
-
-    public List<Unit> RetrieveUnits()
-    {
-        return units;
-    }
-
-    public Unit RetrieveLeader()
-    {
-        return units[0];
-    }
-    
-    public List<Pair<Unit, Pair<int, int>>> RetrieveUnitPairs()
-    {
-        List<Pair<Unit, Pair<int, int>>> UnitCoord = new();
-
-        for(int i = 0; i < fieldedUnits.GetLength(0); i++) for(int j = 0; j < fieldedUnits.GetLength(1); j++) if(fieldedUnits[i, j] != null) UnitCoord.Add(new Pair<Unit, Pair<int, int>>(fieldedUnits[i, j], new Pair<int, int>(i, j)));
-
-        return UnitCoord;
-    }
-
     public void DetermineMoveType()
     {
+        List<Unit> units = RetrieveUnits();
         if(units.Count == 0) return;
         //Categorizes all Unit movement types and puts them in a dictionary with the MoveType as a key, and the sum of each unit's field cost if they're in that MoveType
         Dictionary<MoveType, int> sumByMovement = units.GroupBy(unit => unit.movement).ToDictionary(movementType => movementType.Key, MovementType => MovementType.Sum(unit => unit.GetFieldCost()));
@@ -85,114 +64,117 @@ public class Squad
         TranslateMovementType(MovementType);
     }
 
-    public void AddUnit(Unit unit)
+    public Squad CreateNewSquad(Unit leader)
     {
-        units.Add(unit);
-        DetermineMoveType();
+        Leader = leader;
+        
+        leader.SquadPosition = new(1, 1);
+
+        FieldUnit(leader, leader.SquadPosition.ToTuple());
+
+        return this;
     }
 
-    public void RemoveUnit(Unit unit)
+    public Unit RetrieveLeader()
     {
-        units.Remove(unit);
-        DetermineMoveType();
+        return Leader;
     }
 
-    public void FieldUnit(Unit unit, Pair<int, int> slot)
+    public List<Unit> RetrieveUnits()
     {
-        if(slot.First > fieldedUnits.GetLength(0) || slot.Second > fieldedUnits.GetLength(0) 
-        || slot.First < 0 || slot.Second < 0)
+        List<Unit> units = FieldedUnits.Values.ToList();
+        foreach(Unit u in units) if(u == null) units.Remove(u);
+        return units;
+    }
+
+    public List<Pair<Unit, (int, int)>> RetrieveUnitPairs()
+    {
+        List<Pair<(int, int), Unit>> DictionaryPairs = FieldedUnits.ToPairedList();
+
+        List<Pair<Unit, (int, int)>> pairs = new();
+
+        foreach(Pair<(int, int), Unit> DPair in DictionaryPairs)
         {
-            Debug.Log("For some reason the user passed something out of the normal array range...");
-            throw new Exception("Overbound Unit Field");
+            pairs.Add(new(DPair.Second, DPair.First));
         }
 
-        if(!units.Contains(unit)) AddUnit(unit);
-        
-        if(!UnitPositions.ContainsKey(unit)) UnitPositions.Add(unit, slot);
-        fieldedUnits[slot.First, slot.Second] = unit;
-        FieldedUnitsChanged?.Invoke();
-    }
-
-    public void FieldUnit(Unit unit, Pair<int, int> slot, int LastListPosition)
-    {
-        units.Insert(LastListPosition, unit);
-        FieldUnit(unit, slot);
-    }
-
-    public void UnfieldUnit(Pair<int, int> slot)
-    {
-        RemoveUnit(fieldedUnits[slot.First, slot.Second]);
-        
-        Unit unit = null;
-        foreach(var kv in UnitPositions)
-        {
-            if(kv.Value.Equals(slot))
-            {
-                unit = kv.Key;
-                break;
-            }
-        }
-
-        if(unit != null) UnitPositions.Remove(unit);
-
-        fieldedUnits[slot.First, slot.Second] = null;
-        FieldedUnitsChanged?.Invoke();
-    }
-
-    public (int, Unit) TemporaryUnfield(Pair<int, int> slot)
-    {
-        Unit unit = fieldedUnits[slot.First, slot.Second];
-        int position = units.FindIndex(unit => units.Contains(unit));
-
-        UnfieldUnit(slot);
-
-        return (position, unit);
-    }
-
-    public void MoveFieldedUnit(Pair<int, int> NewSlot, Pair<int, int> OldSlot)
-    {
-        Unit slottedUnit = fieldedUnits[NewSlot.First, NewSlot.Second];
-        fieldedUnits[NewSlot.First, NewSlot.Second] = fieldedUnits[OldSlot.First, OldSlot.Second];
-        fieldedUnits[OldSlot.First, OldSlot.Second] = slottedUnit;
-        FieldedUnitsChanged.Invoke();
-    }
-
-    public Unit RetrieveUnitFromPosition(Pair<int, int> position)
-    {
-        return RetrieveUnitFromPosition(position.First, position.Second);
+        return pairs;
     }
 
     public Unit RetrieveUnitFromPosition(int x, int y)
     {
-        return fieldedUnits[x, y];
+        return RetrieveUnitFromPosition((x, y));
     }
 
-    public Pair<int, int> RetrievePositionFromUnit(Unit unit)
+    public Unit RetrieveUnitFromPosition((int, int) slot)
     {
-        return UnitPositions[unit];
+        return FieldedUnits[slot];
     }
 
-    public void AddEquipment(Equipment e)
+    public (int, int) RetrievePositionSlotFromUnit(Unit u)
     {
-        bool equipped = false;
-
-        for(int i = 0; i < equipment.Length; i++) if(equipment[i] == null) 
+        if(!FieldedUnits.ContainsValue(u))
         {
-            equipment[i] = e;
-            equipped = true;
-            break;
+            Debug.LogError("Unit does not exist in Squad!\n" + u.ToString());
+            throw new SystemException("Unit not in squad");
         }
 
-        if(!equipped) Debug.Log("Could not equp item! Equipment is already full!");
+        u.SquadPosition = new(FieldedUnits.GetKey(u));
+        return u.SquadPosition.ToTuple();
     }
 
-    public Equipment[] GetEquipment()
+    public Pair<int, int> RetrievePositionFromUnit(Unit u)
+    {
+        return u.SquadPosition;
+    }
+
+    public Equipment[] RetrieveEquipment()
     {
         return equipment;
     }
 
+    public void FieldUnit(Unit unit, (int, int) slot)
+    {
+        if(slot.Item1 > SquadSize.First || slot.Item1 > SquadSize.Second || slot.Item1 < 0 || slot.Item1 < 0)
+        {
+            Debug.LogError("Slot passed in is out of the current squad bounds, slot passed = " + slot);
+            throw new Exception("Out-of-bounds Exception: Unit Field");
+        }
+
+        unit.SquadPosition = new(slot);
+        FieldedUnits[slot] = unit;
+        FieldedUnitsChanged?.Invoke();
+    }
+
+    public Unit UnfieldUnit((int, int) slot)
+    {
+        Unit unit = FieldedUnits[slot];
+        FieldedUnits[slot] = null;
+        unit.SquadPosition = null;
+        FieldedUnitsChanged?.Invoke();
+
+        return unit;
+    }
+
+    public void MoveFieldedUnit((int, int) slot1, (int, int) slot2)
+    {
+        (FieldedUnits[slot2], FieldedUnits[slot1]) = (FieldedUnits[slot1], FieldedUnits[slot2]);
+    }
+
+    public int MaxLength()
+    {
+        return SquadSize.First;
+    }
+
+    public int MaxHeight()
+    {
+        return SquadSize.Second;
+    }
+
     public (int, int, int, int, int, int) GetResourceCost()
     {
+        List<Unit> units = RetrieveUnits();
+        
         (int, int, int, int, int, int) resources = units.Aggregate((0, 0, 0, 0, 0, 0), (resources, unit) => (
             resources.Item1 + unit.GoldCost,
             resources.Item2 + unit.IronCost,
@@ -205,13 +187,28 @@ public class Squad
         return resources;
     }
 
-    public int MaxLength()
+    public void OnBeforeSerialize()
     {
-        return fieldedUnits.GetLength(1);
+        //Implement each pair inside the main readable dictionary (FieldedUnits) to the serialized dictionary (_FieldedUnits)
+        _FieldedUnits.Clear();
+        foreach(var kvp in FieldedUnits)
+        {
+            if(kvp.Value == null) continue;
+            (int, int) TuplePair = kvp.Key;
+            Unit unit = kvp.Value;
+            unit.SquadPosition = new(TuplePair);
+            _FieldedUnits.Add(new(TuplePair), unit);
+        }
     }
 
-    public int MaxHeight()
+    public void OnAfterDeserialize()
     {
-        return fieldedUnits.GetLength(0);
+        //Re-seat units into the main readable dictionary.
+        foreach(var kvp in _FieldedUnits)
+        {
+            Pair<int, int> KeyPair = kvp.Key;
+            Unit unit = kvp.Value;
+            FieldedUnits[KeyPair.ToTuple()] = unit;
+        }
     }
 }

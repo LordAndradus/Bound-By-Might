@@ -69,7 +69,7 @@ public class ControlSettings : Settings, ISettings
                 {
                     if(settings.ControlMap.ContainsValue(key)) 
                     {
-                        SettingKey k = settings.ControlMap.getKey(key);
+                        SettingKey k = settings.ControlMap.GetKey(key);
 
                         if(settings.ControlMap[SettingKey.Up + waitingIndex] == key)
                         {

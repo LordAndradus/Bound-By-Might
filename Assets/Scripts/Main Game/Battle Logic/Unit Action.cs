@@ -144,10 +144,10 @@ public class UnitAction
             case AttackPreference.Back:
                 TargetColumn(Column.Back);
                 break;
-            case AttackPreference.MostHP:
+            case AttackPreference.Most:
                 TargetHighestAttribute(AttributeType.HP);
                 break;
-            case AttackPreference.MostDefense:
+            case AttackPreference.Least:
                 TargetHighestAttribute(AttributeType.Armor);
                 break;
             case AttackPreference.Leader:

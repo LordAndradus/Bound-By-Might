@@ -20,6 +20,12 @@ public class Pair<F, S>
         this.Second = Second;
     }
 
+    public Pair((F, S) TupplePair)
+    {
+        this.First = TupplePair.Item1;
+        this.Second = TupplePair.Item2;
+    }
+
     public void set(F First, S Second)
     {
         this.First = First;
@@ -45,7 +51,12 @@ public class Pair<F, S>
     public override bool Equals(object obj)
     {
         Debug.LogWarning("Did you mean \"equals\" instead of \"Equals\" in the pair?");
-        return base.Equals(obj);
+        return base.Equals(obj) || equals(this, obj);
+    }
+
+    public (F, S) ToTuple()
+    {
+        return (First, Second);
     }
 
     public override int GetHashCode()

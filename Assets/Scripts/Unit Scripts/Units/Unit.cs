@@ -12,47 +12,20 @@ using UnityEngine;
 [Serializable]
 public class Unit
 {
-    //Will Change to ScriptableObject
+    //TEMP FIELDS - Will be taken up by a Data Container
+    [Header("Temporary Fields")]
     public Sprite spriteView;
     public string UIFriendlyClassName;
     public string Description = "Make sure to fill in the description, young game maker";
     public Sprite Icon;
     public AttackType Attack;
-    public Pair<int, int> AttackArea = new(1, 1);
-    public AttackPreference preference = AttackPreference.Front;
-
-    [Header("Data Container")]
-    [SerializeField] private protected UnitDataContainer information;
-
-    //Dynamic Data
-    public string Name;
-    public GrowthType GrowthDefintion;
-
-
-    [SerializeField] public SerializableDictionary<Type, Snapshot> CareerHistory = new();
-    [SerializeField] public List<Type> UpgradePath = new();
-    [SerializeField] float divisor = 1000;    
-    [SerializeField] int MaxRange = (5 * 1000) + 1;
+    public Pair<int, int> AttackArea = new(1, 1); 
     [SerializeField] public MoveType movement;
-    [SerializeField] public int FieldCost = 10; //Depends on Traits. 12 if Merc, to 8 if Loyal
-    [SerializeField] public int threat = 256;
-    [SerializeField] public bool DeathFlag = false;
-
-    [NonSerialized] private protected List<Pair<Unit, int>> DamageReport;
-
-    [Header("Attribute Dictionary")]
-    public SerializableDictionary<AttributeType, AttributeScore> UnitAttributes;
-
-    [Header("Progession Meters")]
-    [SerializeField] private protected int Level;
+    [SerializeField] readonly int MaxRange = (5 * 1000) + 1;
+    [SerializeField] public List<Type> UpgradePath = new();
+    public AttackPreference preference = AttackPreference.Front;
     [SerializeField] public int TierLevel;
-    [SerializeField] public int PromotionPoints = 0;
-    [SerializeField] public int ExperiencePoints = 0;
-    [SerializeField] public int ExperiencePointsDropped = 100;
 
-    [Header("Progression Caps Per Level")]
-    [SerializeField] private protected int PromotionCap; //Tier 1 = 500, Tier 2 = 3000, Tier 3 = 4500, MaxTier = 8000
-    [SerializeField] private protected int ExperienceCap; //The higher the tier, the higher the experience cap, yet the growth rate is multiplied by the tier
 
     //Cost when adding to squad, and when trying to spawn it
     [Header("Material Cost")]
@@ -64,6 +37,38 @@ public class Unit
     [Header("WIP Material Cost")]
     [SerializeField] public int HolyTearCost;
     [SerializeField] public int AdamntiumCost;
+
+    //END of temp fields, will be uniquely assigned to individual units
+    [Header("Unit Information")]
+    [SerializeField] private protected UnitDataContainer information;
+    UnitDataContainer GetInformation() { return information; }
+    public GrowthType GrowthDefintion;
+    public string Name;
+
+    [Header("Attributes")]
+    [SerializeField] public SerializableDictionary<Type, Snapshot> CareerHistory = new();
+    [SerializeField] float divisor = 1000;
+    [SerializeField] public int FieldCost = 10; //Depends on Traits. 12 if Merc, to 8 if Loyal
+    [SerializeField] public int threat = 256;
+    [SerializeField] public bool DeathFlag = false;
+
+    [SerializeField] public Pair<int, int> SquadPosition; //For when we reload the save file, we know what position to put the unit in
+
+    [NonSerialized] private protected List<Pair<Unit, int>> DamageReport;
+
+    [Header("Attribute Dictionary")]
+    public SerializableDictionary<AttributeType, AttributeScore> UnitAttributes;
+
+    [Header("Progession Meters")]
+    [SerializeField] private protected int Level;
+    [SerializeField] public int PromotionPoints = 0;
+    [SerializeField] public int ExperiencePoints = 0;
+    [SerializeField] public int ExperiencePointsDropped = 100;
+
+    [Header("Progression Caps Per Level")]
+    [SerializeField] private protected int PromotionCap; //Tier 1 = 500, Tier 2 = 3000, Tier 3 = 4500, MaxTier = 8000
+    [SerializeField] private protected int ExperienceCap; //The higher the tier, the higher the experience cap, yet the growth rate is multiplied by the tier
+
 
     [Header("Traits")]
     private protected List<Trait> traits;
@@ -151,8 +156,6 @@ public class Unit
     public override string ToString()
     {
         StringBuilder sb = new();
-
-        if(traits == null) traits = new();
 
         sb.Append(string.Format("My nane is {0}; class = {1}; I have {2} traits\n", Name, GetType().Name, traits.Count));
 
@@ -449,29 +452,19 @@ public enum AttributeType
     Agility,
     Magic,
     Leadership,
-    NA
+    NULL //For Unit attack AI in the battle simulator
 }
 
 public enum AttackType
 {
     Melee,
-    Healing,
-    Magic,
     Archery,
+    Magic,
+    Healing,
     Firearms //Imagine a musket or something
 }
 
 public enum AttackPreference
-{
-    Front,
-    Back,
-    Middle,
-    MostHP,
-    MostDefense,
-    Leader,
-}
-
-public enum aPref
 {
     Front,
     Back,

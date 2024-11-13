@@ -1,23 +1,23 @@
 using UnityEngine;
+using System.Collections.Generic;
 
-/**
- * Contains static data for certain units, IE sprite view
- */
-[CreateAssetMenu(fileName = "Unit", menuName = "Unit")]
-public class UnitDataContainer : ScriptableObject
+[CreateAssetMenu(fileName = "UnitData", menuName = "Unit Data", order = 0)]
+public class UnitDataContainer : ScriptableObject 
 {
     [Header("Image Information")]
     public Sprite spriteView;
     public Sprite Icon;
 
-    [Header("Text Information")]
+    [Header("Unit Information")]
     public string UIFriendlyClassName;
     public string Description = "Make sure to fill in the description, young game maker";
-    
-    [Header("Attack Information")]
-    public Pair<int, int> AttackArea = new(1, 1);
-    public AttackType Attack;
-    public Pair<aPref, AttributeType> AttackBehavior;
-    public AttackPreference preference = AttackPreference.Front;
+    [SerializeField] public MoveType movement;
 
+    [Header("Attack Information")]
+    public AttackType Attack;
+    public Pair<int, int> AttackArea = new(1, 1);
+    public Pair<AttackPreference, AttributeType> AttackAI = new(AttackPreference.Front, AttributeType.NULL);
+
+    [Header("Generation Information")]
+    [SerializeField] public List<UnitDataContainer> UpgradePath = new();
 }

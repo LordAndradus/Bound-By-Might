@@ -159,7 +159,7 @@ public class ArmyManagementController : MonoBehaviour
 
                 if(Input.GetMouseButtonUp(0))
                 {
-                    SquadToManage.FieldUnit(mc.UnitList[index], SquadCoordinateTracker);
+                    SquadToManage.FieldUnit(mc.UnitList[index], SquadCoordinateTracker.ToTuple());
                     mc.UnitList.Remove(mc.UnitList[index]);
                     StateMachine.Pop();
                 }
@@ -170,7 +170,7 @@ public class ArmyManagementController : MonoBehaviour
                 //Pop state machine, but refield unit at the exact same position
                 if(Input.GetMouseButtonUp(1) || Input.GetKeyUp(KeyCode.Escape))
                 {
-                    SquadToManage.FieldUnit(UnitToPlace, UnitLastPosition, UnitToPlaceListPosition);
+                    SquadToManage.FieldUnit(UnitToPlace, UnitLastPosition.ToTuple());
                     StateMachine.Pop();
                 }
 
@@ -269,10 +269,11 @@ public class ArmyManagementController : MonoBehaviour
                 SquadCoordinateTracker = null;
                 break;
             case ArmyManagementState.MoveUnit:
-                UnitToPlace = SquadToManage.RetrieveUnitFromPosition(SquadCoordinateTracker);
+                UnitToPlace = SquadToManage.RetrieveUnitFromPosition(SquadCoordinateTracker.ToTuple());
 
                 //Unfield unit temporarily
-                (int, Unit) pair = SquadToManage.TemporaryUnfield(SquadCoordinateTracker);
+                (int, Unit) pair = (0, new());
+                pair.Item2 = SquadToManage.UnfieldUnit(SquadCoordinateTracker.ToTuple());
 
                 UnitToPlace = pair.Item2;
                 UnitToPlaceListPosition = pair.Item1;
@@ -586,11 +587,11 @@ public class ArmyManagementController : MonoBehaviour
 
         if(TempField)
         {
-            SquadToManage.FieldUnit(UnitToPlace, coordinate, UnitToPlaceListPosition);
+            SquadToManage.FieldUnit(UnitToPlace, coordinate.ToTuple());
         }
         else
         {
-            SquadToManage.FieldUnit(UnitToPlace, coordinate);
+            SquadToManage.FieldUnit(UnitToPlace, coordinate.ToTuple());
 
             mc.UnitList.Remove(UnitToPlace);
         }
@@ -605,8 +606,8 @@ public class ArmyManagementController : MonoBehaviour
         if(squad == null) squad = SquadToManage;
         
         bool breakFlag = false;
-        List<Pair<Unit, Pair<int, int>>> list = squad.RetrieveUnitPairs();
-        foreach(var pair in list.ToList()) if(breakFlag = pair.Second.equals(coordinate)) break;
+        List<Pair<Unit, (int, int)>> list = squad.RetrieveUnitPairs();
+        foreach(var pair in list.ToList()) if(breakFlag = pair.Second.Equals(coordinate)) break;
         return breakFlag;
     }
 
@@ -626,7 +627,7 @@ public class ArmyManagementController : MonoBehaviour
 
         foreach(var unit in SquadToManage.RetrieveUnitPairs().ToList())
         {
-            int idx = (unit.Second.First * 3) + unit.Second.Second;
+            int idx = (unit.Second.ToTuple().Item1 * 3) + unit.Second.ToTuple().Item2;
 
             if(unit.First.spriteView != default || unit.First.spriteView != null) sr[idx].sprite = unit.First.spriteView;
             else sr[idx].sprite = Resources.Load<Sprite>(GlobalSettings.DefaultUnitSpriteView);
