@@ -189,6 +189,8 @@ public class Squad : ISerializationCallbackReceiver
 
     public void OnBeforeSerialize()
     {
+        if(_FieldedUnits != null) return;
+
         //Implement each pair inside the main readable dictionary (FieldedUnits) to the serialized dictionary (_FieldedUnits)
         _FieldedUnits.Clear();
         foreach(var kvp in FieldedUnits)
@@ -203,6 +205,8 @@ public class Squad : ISerializationCallbackReceiver
 
     public void OnAfterDeserialize()
     {
+        if(_FieldedUnits == null) return;
+
         //Re-seat units into the main readable dictionary.
         foreach(var kvp in _FieldedUnits)
         {

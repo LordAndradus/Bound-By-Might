@@ -12,12 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc50eadb0fb6b0e4aadd5481ee399c3a, type: 3}
   m_Name: NewbieBowman
   m_EditorClassIdentifier: 
-  spriteView: {fileID: 0}
-  UIFriendlyClassName: 
-  Description: Make sure to fill in the description, young game maker
-  Icon: {fileID: 0}
-  Attack: 0
+  spriteView: {fileID: 21300000, guid: a62030f5c9f2df649b6ccd9e458fec82, type: 3}
+  Icon: {fileID: 21300000, guid: 4c784a9b67e2d9643b7ce743fd0df10e, type: 3}
+  UIFriendlyClassName: Tyro Bowman
+  Description: Only given paltry training, his aim is quite something. Given enough
+    experience, one must wonder what heights this soldier will reachs...
   AttackArea:
     <First>k__BackingField: 1
     <Second>k__BackingField: 1
-  preference: 0
+  Attack: 3
+  AttackBehavior:
+    <First>k__BackingField: 1
+    <Second>k__BackingField: 6
+  preference: 3

@@ -5,8 +5,6 @@ public class CameraController : MonoBehaviour
 {
     [Header("Camera Controls")]
     [SerializeField] new Camera camera;
-    [SerializeField] Level currentLevel;
-
     [SerializeField] PathFinder pf;
 
     Vector3 CameraOrigin;
@@ -107,8 +105,8 @@ public class CameraController : MonoBehaviour
 
     void clampCameraToMap()
     {
-        float MapMaxWidth = Level.MapSize.First/2;
-        float MapMaxHeight = Level.MapSize.Second/2;
+        float MapMaxWidth = TurnManager.instance.CurrentLevel.MapSize.First/2;
+        float MapMaxHeight = TurnManager.instance.CurrentLevel.MapSize.Second/2;
 
         //Clamp Camera to MapSize
         Vector3 FauxCameraPosition = UtilityClass.CopyVector(camera.transform.position);
@@ -130,8 +128,8 @@ public class CameraController : MonoBehaviour
 
     void clampCameraZoom()
     {
-        float MapMaxWidth = Level.MapSize.First/2;
-        float MapMaxHeight = Level.MapSize.Second/2;
+        float MapMaxWidth = TurnManager.instance.CurrentLevel.MapSize.First/2;
+        float MapMaxHeight = TurnManager.instance.CurrentLevel.MapSize.Second/2;
 
         //Clamp camera size to size restriction
         Vector3 AbsFauxCamera = UtilityClass.CopyAbsVector(camera.transform.position) + new Vector3(camera.orthographicSize * camera.aspect, camera.orthographicSize);

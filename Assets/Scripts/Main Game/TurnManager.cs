@@ -4,7 +4,7 @@ using UnityEngine;
 public class TurnManager : MonoBehaviour 
 {
     public static TurnManager instance;
-    public static Level CurrentLevel;
+    public Level CurrentLevel;
     [SerializeField] public List<Controller> controllers;
     [SerializeField] public Stack<Pair<Vector3, Vector3>> MoveHistory = new();
     //private protected Dictionary<Controller, Controller.Relationship> diplomacy = new();
@@ -14,11 +14,24 @@ public class TurnManager : MonoBehaviour
 
     void Awake()
     {
-        instance = this;
-        
-        CurrentLevel = new Tutorial();
+        StartTurnManager(new Tutorial());
+    }
 
-        //Get children controllers
+    public void StartTurnManager(Level level)
+    {
+        //Remove prior instances of the level
+        if(controllers != null)
+        {
+            foreach(Controller controller in controllers) controller.spawners.Clear();
+            controllers.Clear();
+        }
+
+
+        //Add level instances
+        instance = this;
+
+        CurrentLevel = level;
+
         controllers.AddRange(transform.GetComponentsInChildren<Controller>());
 
         SpawnTile[] spawners = transform.GetComponentsInChildren<SpawnTile>();

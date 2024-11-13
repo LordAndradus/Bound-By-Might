@@ -711,8 +711,11 @@ MonoBehaviour:
       MaxTraits: 6
     equipment:
     - Icon: {fileID: 0}
+      FlavorText: 
     - Icon: {fileID: 0}
+      FlavorText: 
     - Icon: {fileID: 0}
+      FlavorText: 
     _FieldedUnits:
       elements:
       - key:
@@ -996,8 +999,11 @@ MonoBehaviour:
       MaxTraits: 6
     equipment:
     - Icon: {fileID: 0}
+      FlavorText: 
     - Icon: {fileID: 0}
+      FlavorText: 
     - Icon: {fileID: 0}
+      FlavorText: 
     _FieldedUnits:
       elements:
       - key:
@@ -1281,8 +1287,11 @@ MonoBehaviour:
       MaxTraits: 6
     equipment:
     - Icon: {fileID: 0}
+      FlavorText: 
     - Icon: {fileID: 0}
+      FlavorText: 
     - Icon: {fileID: 0}
+      FlavorText: 
     _FieldedUnits:
       elements:
       - key:
@@ -1808,8 +1817,11 @@ MonoBehaviour:
       MaxTraits: 6
     equipment:
     - Icon: {fileID: 0}
+      FlavorText: 
     - Icon: {fileID: 0}
+      FlavorText: 
     - Icon: {fileID: 0}
+      FlavorText: 
     _FieldedUnits:
       elements:
       - key:
@@ -2130,8 +2142,11 @@ MonoBehaviour:
       MaxTraits: 6
     equipment:
     - Icon: {fileID: 0}
+      FlavorText: 
     - Icon: {fileID: 0}
+      FlavorText: 
     - Icon: {fileID: 0}
+      FlavorText: 
     _FieldedUnits:
       elements:
       - key:
@@ -4223,8 +4238,11 @@ MonoBehaviour:
       MaxTraits: 6
     equipment:
     - Icon: {fileID: 0}
+      FlavorText: 
     - Icon: {fileID: 0}
+      FlavorText: 
     - Icon: {fileID: 0}
+      FlavorText: 
     _FieldedUnits:
       elements:
       - key:
@@ -5250,6 +5268,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 876919081}
   m_CullTransparentMesh: 1
+--- !u!1 &902578115
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 902578116}
+  m_Layer: 0
+  m_Name: Debug_Grid
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &902578116
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 902578115}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &947985768
 GameObject:
   m_ObjectHideFlags: 0
@@ -5666,6 +5715,37 @@ MonoBehaviour:
   ControllerNum: 0
   x: 0
   y: 0
+--- !u!1 &1023113443
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1023113444}
+  m_Layer: 0
+  m_Name: Debug_Grid
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1023113444
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1023113443}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1033982443
 GameObject:
   m_ObjectHideFlags: 0
@@ -5764,8 +5844,11 @@ MonoBehaviour:
       MaxTraits: 6
     equipment:
     - Icon: {fileID: 0}
+      FlavorText: 
     - Icon: {fileID: 0}
+      FlavorText: 
     - Icon: {fileID: 0}
+      FlavorText: 
     _FieldedUnits:
       elements:
       - key:
@@ -5960,6 +6043,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1036288674}
+  - component: {fileID: 1036288675}
   m_Layer: 0
   m_Name: Debugging
   m_TagString: Untagged
@@ -5985,6 +6069,20 @@ Transform:
   - {fileID: 1561240839}
   m_Father: {fileID: 1944318124}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1036288675
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1036288673}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd82982a438fba44b8414ed338b1bff8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ToPlay: {fileID: 0}
+  Check: 0
 --- !u!1 &1042476240
 GameObject:
   m_ObjectHideFlags: 0
@@ -6083,8 +6181,11 @@ MonoBehaviour:
       MaxTraits: 6
     equipment:
     - Icon: {fileID: 0}
+      FlavorText: 
     - Icon: {fileID: 0}
+      FlavorText: 
     - Icon: {fileID: 0}
+      FlavorText: 
     _FieldedUnits:
       elements:
       - key:
@@ -6578,8 +6679,11 @@ MonoBehaviour:
       MaxTraits: 6
     equipment:
     - Icon: {fileID: 0}
+      FlavorText: 
     - Icon: {fileID: 0}
+      FlavorText: 
     - Icon: {fileID: 0}
+      FlavorText: 
     _FieldedUnits:
       elements:
       - key:
@@ -7016,8 +7120,11 @@ MonoBehaviour:
       MaxTraits: 6
     equipment:
     - Icon: {fileID: 0}
+      FlavorText: 
     - Icon: {fileID: 0}
+      FlavorText: 
     - Icon: {fileID: 0}
+      FlavorText: 
     _FieldedUnits:
       elements:
       - key:
@@ -14453,8 +14560,11 @@ MonoBehaviour:
       MaxTraits: 6
     equipment:
     - Icon: {fileID: 0}
+      FlavorText: 
     - Icon: {fileID: 0}
+      FlavorText: 
     - Icon: {fileID: 0}
+      FlavorText: 
     _FieldedUnits:
       elements:
       - key:
@@ -15102,8 +15212,11 @@ MonoBehaviour:
       MaxTraits: 6
     equipment:
     - Icon: {fileID: 0}
+      FlavorText: 
     - Icon: {fileID: 0}
+      FlavorText: 
     - Icon: {fileID: 0}
+      FlavorText: 
     _FieldedUnits:
       elements:
       - key:
@@ -15553,6 +15666,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1481559101}
+  - component: {fileID: 1481559102}
   m_Layer: 0
   m_Name: Tutorial
   m_TagString: Untagged
@@ -15578,6 +15692,20 @@ Transform:
   - {fileID: 1237800485}
   m_Father: {fileID: 1944318124}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1481559102
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1481559100}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd82982a438fba44b8414ed338b1bff8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ToPlay: {fileID: 0}
+  Check: 0
 --- !u!1 &1540195979
 GameObject:
   m_ObjectHideFlags: 0
@@ -15976,6 +16104,37 @@ Transform:
   - {fileID: 544841691}
   m_Father: {fileID: 1123480787}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1692321892
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1692321893}
+  m_Layer: 0
+  m_Name: Debug_Grid
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1692321893
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1692321892}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1697132699
 GameObject:
   m_ObjectHideFlags: 0
@@ -16143,8 +16302,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1738916032}
+  - component: {fileID: 1738916033}
   m_Layer: 0
-  m_Name: Level1
+  m_Name: Level 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16168,6 +16328,20 @@ Transform:
   - {fileID: 1697132700}
   m_Father: {fileID: 1944318124}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1738916033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1738916031}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd82982a438fba44b8414ed338b1bff8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ToPlay: {fileID: 0}
+  Check: 0
 --- !u!1 &1797552621
 GameObject:
   m_ObjectHideFlags: 0
@@ -16561,8 +16735,11 @@ MonoBehaviour:
       MaxTraits: 6
     equipment:
     - Icon: {fileID: 0}
+      FlavorText: 
     - Icon: {fileID: 0}
+      FlavorText: 
     - Icon: {fileID: 0}
+      FlavorText: 
     _FieldedUnits:
       elements:
       - key:
@@ -16963,6 +17140,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd8342d5957bfb64295ae9619d7ccdc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CurrentLevel: {fileID: 0}
   controllers: []
 --- !u!1 &1959388812
 GameObject:
@@ -19624,8 +19802,11 @@ MonoBehaviour:
       MaxTraits: 6
     equipment:
     - Icon: {fileID: 0}
+      FlavorText: 
     - Icon: {fileID: 0}
+      FlavorText: 
     - Icon: {fileID: 0}
+      FlavorText: 
     _FieldedUnits:
       elements:
       - key:
@@ -20283,8 +20464,11 @@ MonoBehaviour:
       MaxTraits: 6
     equipment:
     - Icon: {fileID: 0}
+      FlavorText: 
     - Icon: {fileID: 0}
+      FlavorText: 
     - Icon: {fileID: 0}
+      FlavorText: 
     _FieldedUnits:
       elements:
       - key:
@@ -20754,8 +20938,11 @@ MonoBehaviour:
       MaxTraits: 6
     equipment:
     - Icon: {fileID: 0}
+      FlavorText: 
     - Icon: {fileID: 0}
+      FlavorText: 
     - Icon: {fileID: 0}
+      FlavorText: 
     _FieldedUnits:
       elements:
       - key:
@@ -21429,3 +21616,6 @@ SceneRoots:
   - {fileID: 659361841}
   - {fileID: 453055525}
   - {fileID: 586230845}
+  - {fileID: 1023113444}
+  - {fileID: 1692321893}
+  - {fileID: 902578116}

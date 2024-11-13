@@ -102,7 +102,7 @@ public class CombatGridSystem
                     }
                 }
 
-                if(x < 0 || y < 0 || x >= Level.MapSize.First || y >= Level.MapSize.Second || (x == xPos && y == yPos) || allyOccupied) continue;
+                if(x < 0 || y < 0 || x >= TurnManager.instance.CurrentLevel.MapSize.First || y >= TurnManager.instance.CurrentLevel.MapSize.Second || (x == xPos && y == yPos) || allyOccupied) continue;
                 
                 List<PathNode> path = PathGrid.FindPath(xPos, yPos, x, y, diagonal);
                 if(path == null) continue;
