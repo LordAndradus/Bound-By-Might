@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 
 [Serializable]
-public class Squad
+public class Squad : ISerializationCallbackReceiver
 {
     public event Action FieldedUnitsChanged;
     static readonly Pair<int, int> SquadSize = new(3, 3); //First one is width, second one is height
@@ -19,6 +19,7 @@ public class Squad
     [Header("Squad Information")]
     [SerializeField] Unit Leader;
     [SerializeField] Equipment[] equipment = new Equipment[3];
+    [SerializeField] private SerializableDictionary<Pair<int, int>, Unit> _FieldedUnits;
     [SerializeField] SerializableDictionary<(int, int), Unit> FieldedUnits = new(){
         {(0, 0), null}, {(0, 1), null}, {(0, 2), null}, 
         {(1, 0), null}, {(1, 1), null}, {(1, 2), null}, 
@@ -67,7 +68,9 @@ public class Squad
     {
         Leader = leader;
         
-        FieldUnit(leader, (1, 1));
+        leader.SquadPosition = new(1, 1);
+
+        FieldUnit(leader, leader.SquadPosition.ToTuple());
 
         return this;
     }
@@ -116,13 +119,13 @@ public class Squad
             throw new SystemException("Unit not in squad");
         }
 
-        return FieldedUnits.GetKey(u);
+        u.SquadPosition = new(FieldedUnits.GetKey(u));
+        return u.SquadPosition.ToTuple();
     }
 
     public Pair<int, int> RetrievePositionFromUnit(Unit u)
     {
-        (int, int) slot = RetrievePositionSlotFromUnit(u);
-        return new(slot.Item1, slot.Item2);
+        return u.SquadPosition;
     }
 
     public Equipment[] RetrieveEquipment()
@@ -138,6 +141,7 @@ public class Squad
             throw new Exception("Out-of-bounds Exception: Unit Field");
         }
 
+        unit.SquadPosition = new(slot);
         FieldedUnits[slot] = unit;
         FieldedUnitsChanged?.Invoke();
     }
@@ -146,6 +150,8 @@ public class Squad
     {
         Unit unit = FieldedUnits[slot];
         FieldedUnits[slot] = null;
+        unit.SquadPosition = null;
+        FieldedUnitsChanged?.Invoke();
 
         return unit;
     }
@@ -179,5 +185,30 @@ public class Squad
         ));
 
         return resources;
+    }
+
+    public void OnBeforeSerialize()
+    {
+        //Implement each pair inside the main readable dictionary (FieldedUnits) to the serialized dictionary (_FieldedUnits)
+        _FieldedUnits.Clear();
+        foreach(var kvp in FieldedUnits)
+        {
+            if(kvp.Value == null) continue;
+            (int, int) TuplePair = kvp.Key;
+            Unit unit = kvp.Value;
+            unit.SquadPosition = new(TuplePair);
+            _FieldedUnits.Add(new(TuplePair), unit);
+        }
+    }
+
+    public void OnAfterDeserialize()
+    {
+        //Re-seat units into the main readable dictionary.
+        foreach(var kvp in _FieldedUnits)
+        {
+            Pair<int, int> KeyPair = kvp.Key;
+            Unit unit = kvp.Value;
+            FieldedUnits[KeyPair.ToTuple()] = unit;
+        }
     }
 }

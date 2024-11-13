@@ -20,6 +20,12 @@ public class Pair<F, S>
         this.Second = Second;
     }
 
+    public Pair((F, S) TupplePair)
+    {
+        this.First = TupplePair.Item1;
+        this.Second = TupplePair.Item2;
+    }
+
     public void set(F First, S Second)
     {
         this.First = First;
