@@ -190,7 +190,7 @@ public class Squad : ISerializationCallbackReceiver
 
     public void OnBeforeSerialize()
     {
-        if(_FieldedUnits != null) return;
+        if(_FieldedUnits == null) return;
 
         //Implement each pair inside the main readable dictionary (FieldedUnits) to the serialized dictionary (_FieldedUnits)
         _FieldedUnits.Clear();
