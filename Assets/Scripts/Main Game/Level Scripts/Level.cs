@@ -4,31 +4,52 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Level", menuName = "Level", order = 0), Serializable]
 public class Level : ScriptableObject
 {
+    public Level instance;
     public PathFinder pf;
     public CombatGridSystem cgs;
 
     //Bounds -> First = Negative boundary, Second = Positive boundary : The bounds are in terms of how many tiles
     public Pair<float, float> MapSize { get; set; }
 
-    [SerializeField] int width;
-    [SerializeField] int height;
+    public string thisName;
+
+    [SerializeField] int width = 18;
+    [SerializeField] int height = 10;
 
     public Level()
     {
+        if(width < 18 || height < 10)
+        {
+            if(width < 18)
+            {
+                Debug.LogError(String.Format("Level Width of {1}, minimum is 18", width));
+                width = 18;
+            }
+
+            if(height < 10)
+            {
+                Debug.LogError(String.Format("Level Height of {1}, minimum is 10", height));
+                height = 10;
+            }
+        }
+
+        instance = this;
+
         MapSize = new(width, height);
-        
-        if(MapSize == null) throw new System.Exception("You need to declare a Map Size for the level!");
+    }   
 
-        cgs = new(width, height);
+    public void setLevelInstance()
+    {
+        instance = this;
     }
 
-    public Level(Pair<float, float> MapSize)
+    public int getWidth()
     {
-
+        return width;
     }
 
-    public void LoadLevelSquadlist()
+    public int getHeight()
     {
-        //Load squad list from current Save File
+        return height;
     }
 }

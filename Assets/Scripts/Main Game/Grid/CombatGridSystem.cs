@@ -15,7 +15,7 @@ public class CombatGridSystem
     Vector3 origin;
     float cellSize;
 
-    public CombatGridSystem(int width, int height) : this(width, height, new Vector3(-Mathf.Round(width * 2f) / 4f, -Mathf.Round(width * 2f) / 4f)) {}
+    public CombatGridSystem(int width, int height) : this(width, height, new Vector3(-Mathf.Round(width * 2f) / 4f, -Mathf.Round(height * 2f) / 4f)) {}
 
     public CombatGridSystem(int width, int height, Vector3 origin)
     {

@@ -82,9 +82,10 @@ public class Squad : ISerializationCallbackReceiver
 
     public List<Unit> RetrieveUnits()
     {
+        List<Unit> NonNullList = new(10);
         List<Unit> units = FieldedUnits.Values.ToList();
-        foreach(Unit u in units) if(u == null) units.Remove(u);
-        return units;
+        foreach(Unit u in units) if(u != null) NonNullList.Add(u);
+        return NonNullList;
     }
 
     public List<Pair<Unit, (int, int)>> RetrieveUnitPairs()

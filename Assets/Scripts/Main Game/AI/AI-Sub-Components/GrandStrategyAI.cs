@@ -8,8 +8,8 @@
 /// </summary>
 public class GrandStrategyAI : AI
 {
-    int GoalCompletion = 0;
-    static readonly int GoalCompletionCap = 10000;
+    //int GoalCompletion;
+    //static readonly int GoalCompletionCap = 10000;
     directive goal;
 
     public GrandStrategyAI(directive d)

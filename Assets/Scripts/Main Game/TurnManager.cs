@@ -12,11 +12,6 @@ public class TurnManager : MonoBehaviour
     private protected int ControllerTurn = 0;
     private protected int rounds = 0;
 
-    void Awake()
-    {
-        StartTurnManager(new Tutorial());
-    }
-
     public void StartTurnManager(Level level)
     {
         //Remove prior instances of the level
@@ -25,7 +20,6 @@ public class TurnManager : MonoBehaviour
             foreach(Controller controller in controllers) controller.spawners.Clear();
             controllers.Clear();
         }
-
 
         //Add level instances
         instance = this;

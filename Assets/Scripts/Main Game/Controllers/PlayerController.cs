@@ -31,6 +31,8 @@ public class PlayerController : Controller
 
         TeamNumbers.Add(this, 0);
 
+        SquadPicker = GameObject.Find("Canvas").GetComponentInChildren<ScrollRect>(true).gameObject;
+
         CloseSpawner();
         confirm.SetActive(false);
 

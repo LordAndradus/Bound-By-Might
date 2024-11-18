@@ -1,18 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class LevelJumpstarter : MonoBehaviour
 {
     [SerializeField] Level ToPlay;
-    [SerializeField] int Check;
 
-    // Start is called before the first frame update
+    public PathFinder pf;
+    public CombatGridSystem cgs;
+
     void Start()
     {
         if(ToPlay == null)
         {
-            throw new System.Exception("Did not pass level for initialization!");
+            Debug.LogError("A level was not passed for initialization!");
             
             #if UNITY_EDITOR
                 UnityEditor.EditorApplication.isPlaying = false;
@@ -21,8 +20,7 @@ public class LevelJumpstarter : MonoBehaviour
             #endif
         }
 
-        transform.parent.GetComponent<TurnManager>().StartTurnManager(null);
-        //Served its purpose, so get rid of it to save resources
-        Destroy(this);
+        transform.parent.GetComponent<TurnManager>().StartTurnManager(ToPlay);
+        cgs = new(ToPlay.getWidth(), ToPlay.getHeight());
     }
 }
