@@ -36,9 +36,8 @@ public class UnitAction
 
     private void FindEnemies()
     {
-        AttackPreference ap = Unit.preference;
-        AttackRowLength = Unit.AttackArea.First;
-        AttackColLength = Unit.AttackArea.Second;
+        AttackRowLength = Unit.GetInformation().AttackArea.First;
+        AttackColLength = Unit.GetInformation().AttackArea.Second;
         TotalAttackCount = AttackRowLength + AttackColLength;
 
         if(Unit.Attack == AttackType.Healing)
@@ -84,8 +83,8 @@ public class UnitAction
         int rows = squad.MaxLength();
         int cols = squad.MaxHeight();
 
-        int SearchLength = Unit.AttackArea.First;
-        int SearchHeight = Unit.AttackArea.Second;
+        int SearchLength = Unit.GetInformation().AttackArea.First;
+        int SearchHeight = Unit.GetInformation().AttackArea.Second;
 
         for(int startY = 0; startY <= rows - SearchHeight; startY++)
         {
@@ -98,7 +97,7 @@ public class UnitAction
                     for(int x = 0; x < SearchLength; x++)
                     {
                         ListOfUnits.Add(squad.RetrieveUnitFromPosition(x, y));
-                        Value += ListOfUnits[x + y].UnitAttributes[aType];
+                        Value += ListOfUnits[x + y].ThisAttributes[aType];
                     }
                 }
 

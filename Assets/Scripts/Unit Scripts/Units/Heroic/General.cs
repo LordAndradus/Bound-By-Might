@@ -10,16 +10,6 @@ public class General : Unit
 {
     public General()
     {
-        UIFriendlyClassName = "General";        
-    }
-
-    private protected override void SetAttributes()
-    {
-        
-    }
-
-    private protected override void SetCosts()
-    {
-
+            
     }
 }

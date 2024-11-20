@@ -56,7 +56,7 @@ public class UnitGenerator : MonoBehaviour
                 generic.CreateNewSquad(u);
             }
 
-            generic.FieldUnit(u, pair.ToTuple());
+            generic.FieldUnit(u, pair);
         }
         
         return generic;
@@ -91,12 +91,12 @@ public class UnitGenerator : MonoBehaviour
             traits.Add(t);
         }
 
-        List<AttributeType> attributes = new(u.UnitAttributes.Keys);
+        List<AttributeType> attributes = new(u.ThisAttributes.Keys);
 
         foreach(AttributeType aType in attributes)
         {
-            Pair<int, int> range = u.UnitAttributes[aType].GetGenerationRange();
-            u.UnitAttributes[aType] += UnityEngine.Random.Range(range.First, range.Second);
+            Pair<int, int> range = u.ThisAttributes[aType].GetGenerationRange();
+            u.ThisAttributes[aType] += UnityEngine.Random.Range(range.First, range.Second);
         }
     }
 

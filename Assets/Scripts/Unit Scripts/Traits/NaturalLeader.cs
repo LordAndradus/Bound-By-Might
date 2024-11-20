@@ -17,7 +17,7 @@ public class NaturalLeader : Trait, AttributeBooster
 
     public override void add(Unit u)
     {
-        AttributeScore leadership = u.UnitAttributes[AttributeType.Leadership];
+        AttributeScore leadership = u.ThisAttributes[AttributeType.Leadership];
         PreviousLeadership = leadership;
         int score = leadership;
         leadership.additions.Add((int) (score * 0.1f));
@@ -28,7 +28,7 @@ public class NaturalLeader : Trait, AttributeBooster
 
     public void Add(Unit u)
     {
-        AttributeScore leadership = u.UnitAttributes[AttributeType.Leadership];
+        AttributeScore leadership = u.ThisAttributes[AttributeType.Leadership];
 
         if(AddIndex != -1)
         {
@@ -43,7 +43,7 @@ public class NaturalLeader : Trait, AttributeBooster
 
     public void Remove(Unit u)
     {
-        AttributeScore leadership = u.UnitAttributes[AttributeType.Leadership];
+        AttributeScore leadership = u.ThisAttributes[AttributeType.Leadership];
         
         if(AddIndex != -1)
         {

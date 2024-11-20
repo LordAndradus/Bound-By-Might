@@ -11,16 +11,6 @@ public class Judge : Unit
 {
     public Judge()
     {
-        UIFriendlyClassName = "Judge";
-    }
-
-    private protected override void SetAttributes()
-    {
         
-    }
-
-    private protected override void SetCosts()
-    {
-
     }
 }

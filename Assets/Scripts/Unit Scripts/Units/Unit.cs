@@ -14,23 +14,20 @@ public class Unit
 {
     [Header("Unit Information")]
     [SerializeField] private protected UnitDataContainer information;
-    UnitDataContainer GetInformation() { return information; }
+    public UnitDataContainer GetInformation() { return information; }
     public GrowthType GrowthDefintion;
     public string Name;
 
     [Header("Attributes")]
-    [SerializeField] public SerializableDictionary<Type, Snapshot> CareerHistory = new();
-    [SerializeField] float divisor = 1000;
+    [SerializeField] public List<Snapshot> CareerHistory = new();
+    private int numerator = 5001;
+    private float divisor = 1000;
     [SerializeField] public int FieldCost = 10; //Depends on Traits. 12 if Merc, to 8 if Loyal
     [SerializeField] public int threat = 256;
     [SerializeField] public bool DeathFlag = false;
 
-    [SerializeField] public Pair<int, int> SquadPosition; //For when we reload the save file, we know what position to put the unit in
-
-    [NonSerialized] private protected List<Pair<Unit, int>> DamageReport;
-
     [Header("Attribute Dictionary")]
-    public SerializableDictionary<AttributeType, AttributeScore> UnitAttributes;
+    public SerializableDictionary<AttributeType, AttributeScore> ThisAttributes;
 
     [Header("Progession Meters")]
     [SerializeField] private protected int Level;
@@ -48,13 +45,18 @@ public class Unit
     public static readonly int AbsoluteMaxTraits = 6;
     [SerializeField] public int MaxTraits = 6; //How many traits the unit can learn in its lifetime. Absolute maxmium is 6
 
+    [Header("Combat")]
+    [NonSerialized] private protected List<Pair<Unit, int>> DamageReport; //Reports how much damage this unit sustained
+
+
+    public delegate void PromotionInvoker(Type Class);
+    public PromotionInvoker PromoteThis = (Type Class) => {
+        Debug.Log("Make sure to override thsi delegate when promoting!");
+    };
+
     public Unit() 
     {
-        UnitAttributes = new();
         SetAttributes();
-        SetCosts();
-        SetGrowthType();
-        SetUpgradePath();
 
         ExperienceCap = 500 * information.TierLevel;
 
@@ -80,28 +82,36 @@ public class Unit
 
     private protected virtual void SetAttributes()
     {
-        return;
-    }
+        ThisAttributes = new()
+        {
+            {AttributeType.MaxHP, new(information.MaxHP)},
+            {AttributeType.HP, new(information.HP)},
+            {AttributeType.Armor, new(information.Armor)},
+            {AttributeType.Weapon, new(information.Weapon)},
+            {AttributeType.Strength, new(information.Strength)},
+            {AttributeType.Agility, new(information.Agility)},
+            {AttributeType.Magic, new(information.Magic)},
+            {AttributeType.Leadership, new(information.Leadership)}
+        };
 
-    private protected virtual void SetCosts()
-    {
-        return;
-    }
+        //Generate Attributes
+        foreach(AttributeScore a in ThisAttributes.Values)
+        {
+            float GrowthValue = UnityEngine.Random.Range(0, numerator);
+            a.SetGrowthValue(GrowthValue);
+            
+            Pair<int, int> range = a.GetGenerationRange();
+            int value = UnityEngine.Random.Range(range.First, range.Second);
+            a.SetBaseValue(value);
+        }
 
-    private protected virtual void SetUpgradePath()
-    {
-        return;
-    }
-
-    private protected float Range()
-    {
-        return UnityEngine.Random.Range(0, 5001) / (float) divisor;
+        SetGrowthType();
     }
 
     private void SetGrowthType()
     {
-        float MaxGrowth =  (float) UnitAttributes.Count * 5001 / divisor;
-        float GrowthSum = UnitAttributes.Sum(pair => pair.Value.GetGrowthValue());
+        float MaxGrowth =  (float) ThisAttributes.Count * numerator / divisor;
+        float GrowthSum = ThisAttributes.Sum(pair => pair.Value.GetGrowthValue());
 
         if(GrowthSum <= 0f || MaxGrowth <= 0f)
         {
@@ -123,7 +133,7 @@ public class Unit
 
     public string displayQuickInfo()
     {
-        return string.Format("{0}\nSTR: {1}\nAGI: {2}\nMAG: {3}\nLDR: {4}\nFCC: {5}\nGRO: {6}", Name, UnitAttributes[AttributeType.Strength], UnitAttributes[AttributeType.Agility], UnitAttributes[AttributeType.Magic], UnitAttributes[AttributeType.Leadership], FieldCost, GrowthDefintion.ToString());
+        return string.Format("{0}\nSTR: {1}\nAGI: {2}\nMAG: {3}\nLDR: {4}\nFCC: {5}\nGRO: {6}", Name, ThisAttributes[AttributeType.Strength], ThisAttributes[AttributeType.Agility], ThisAttributes[AttributeType.Magic], ThisAttributes[AttributeType.Leadership], FieldCost, GrowthDefintion.ToString());
     }
     
     public override string ToString()
@@ -139,9 +149,31 @@ public class Unit
 
     public class Snapshot
     {
+        public Snapshot(Unit type, int PromotionPoints, int PromotionCap)
+        {
+            Career = type.GetType();
+            this.PromotionPoints = PromotionPoints;
+            this.PromotionCap = PromotionCap;
+        }
+
+        public Type getCareer()
+        {
+            return Career;
+        }
+
         Type Career;
         public int PromotionPoints;
         public int PromotionCap;
+    }
+
+    public void Promote(Unit UnitClass)
+    {
+        Snapshot ss = new(UnitClass, PromotionPoints, PromotionCap);
+        CareerHistory.Add(ss);
+        PromoteThis.Invoke(ss.getCareer());
+        PromoteThis = (Type Class) => {
+        Debug.Log("Make sure to override thsi delegate when promoting!");
+        };
     }
 
     //Getters and Setters for Attribute Scores
@@ -150,6 +182,33 @@ public class Unit
 
     public int GetLevel() { return Level; }
     public int GetFieldCost() { return FieldCost; }
+
+    public int GetIronCost() { return information.IronCost; }
+    public int GetMagicGemCost() { return information.MagicGemCost; }
+    public int GetHorseCost() { return information.HorseCost; }
+    public int GetAdamantiumCost() { return information.AdamntiumCost; }
+    public int GetHolyTearCost() { return information.HolyTearCost; }
+
+    // [Header("Image Information")]
+    // public Sprite spriteView;
+    // public Sprite Icon;
+
+    // [Header("Unit Information")]
+    // public string UIFriendlyClassName;
+    // public string Description = "Make sure to fill in the description, young game maker";
+    // [SerializeField] public MoveType movement;
+
+    // [Header("Attack Information")]
+    // public AttackType Attack;
+    // public Pair<int, int> AttackArea = new(1, 1);
+    // public Pair<AttackPreference, AttributeType> AttackAI = new(AttackPreference.Front, AttributeType.NULL);
+
+    // [Header("Generation Information")]
+    // public int TierLevel = 1;
+    // public List<UnitDataContainer> UpgradePath = new();
+
+    public Pair<int,int> AttackArea() { return information.AttackArea; }
+    public Sprite SpriteView() { return information.spriteView; }
 
     public int GetXPCap() { return ExperienceCap; }
     public int GetPPCap() { return PromotionCap; }
@@ -189,6 +248,17 @@ public class AttributeScore
         }
 
         this.value = value;
+    }
+
+    public void SetGrowthValue(float value)
+    {
+        if(growth < 0f)
+        {
+            Debug.LogError("There was a negative value being passed for growth!");
+            throw new SystemException("Negative value");
+        }
+
+        this.growth = value;
     }
 
     public void LevelUp()

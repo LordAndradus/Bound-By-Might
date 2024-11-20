@@ -72,17 +72,17 @@ public class UnitDisplayer : MonoBehaviour
     private void UpdateAttributes()
     {
         Threat.text = Display.threat.ToString();
-        Armor.text = Display.UnitAttributes[AttributeType.Armor].ToString();
-        Weapon.text = Display.UnitAttributes[AttributeType.Weapon].ToString();
-        Strength.text = Display.UnitAttributes[AttributeType.Strength].ToString();
-        Agility.text = Display.UnitAttributes[AttributeType.Agility].ToString();
-        Magic.text = Display.UnitAttributes[AttributeType.Magic].ToString();
-        Leadership.text = Display.UnitAttributes[AttributeType.Leadership].ToString();
+        Armor.text = Display.ThisAttributes[AttributeType.Armor].ToString();
+        Weapon.text = Display.ThisAttributes[AttributeType.Weapon].ToString();
+        Strength.text = Display.ThisAttributes[AttributeType.Strength].ToString();
+        Agility.text = Display.ThisAttributes[AttributeType.Agility].ToString();
+        Magic.text = Display.ThisAttributes[AttributeType.Magic].ToString();
+        Leadership.text = Display.ThisAttributes[AttributeType.Leadership].ToString();
     }
 
     private void UpdateBars()
     {
-        HPBar.SetToMax((float) Display.UnitAttributes[AttributeType.HP]);
+        HPBar.SetToMax((float) Display.ThisAttributes[AttributeType.HP]);
 
         XPBar.SetMaxValue(Display.GetXPCap());
         XPBar.SetValue(Display.GetXP());
@@ -153,7 +153,7 @@ public class UnitDisplayer : MonoBehaviour
     {
         UpdateSpriteView();
 
-        HPValDisplay.text = Display.UnitAttributes[AttributeType.HP].ToString() + "/" + Display.UnitAttributes[AttributeType.MaxHP].ToString();
+        HPValDisplay.text = Display.ThisAttributes[AttributeType.HP].ToString() + "/" + Display.ThisAttributes[AttributeType.MaxHP].ToString();
         Name.text = Display.Name;
         LevelAndClass.text = "Lvl " + Display.GetLevel() + " " + Display.UIFriendlyClassName;
         FieldCost.text = Display.GetFieldCost().ToString();
