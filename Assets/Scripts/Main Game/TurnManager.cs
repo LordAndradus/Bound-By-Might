@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -5,6 +6,7 @@ public class TurnManager : MonoBehaviour
 {
     public static TurnManager instance;
     public Level CurrentLevel;
+    private CombatGridSystem cgs;
     [SerializeField] public List<Controller> controllers;
     [SerializeField] public Stack<Pair<Vector3, Vector3>> MoveHistory = new();
     //private protected Dictionary<Controller, Controller.Relationship> diplomacy = new();
@@ -23,14 +25,26 @@ public class TurnManager : MonoBehaviour
 
         //Add level instances
         instance = this;
-
         CurrentLevel = level;
 
+        Debug.Log("I am a new instance of TurnManager");
+
         controllers.AddRange(transform.GetComponentsInChildren<Controller>());
+
+        cgs = new(level.getWidth(), level.getHeight());
 
         SpawnTile[] spawners = transform.GetComponentsInChildren<SpawnTile>();
 
         foreach (SpawnTile spawner in spawners) controllers[spawner.ControllerNum].spawners.Add(spawner);
+
+        foreach(Controller c in controllers)
+        {
+            if(c is PlayerController)
+            {
+                ((PlayerController) c).SetupPlayerController();
+                break;
+            }
+        }
     }
 
     private void Update()

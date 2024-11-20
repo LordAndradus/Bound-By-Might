@@ -20,7 +20,7 @@ public class LevelJumpstarter : MonoBehaviour
             #endif
         }
 
+        ToPlay.SetMapSize(ToPlay);
         transform.parent.GetComponent<TurnManager>().StartTurnManager(ToPlay);
-        cgs = new(ToPlay.getWidth(), ToPlay.getHeight());
     }
 }

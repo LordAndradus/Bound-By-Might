@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1d6fcfea165f6af48bfa21916a8c8be5, type: 3}
-  m_Name: Squire
+  m_Name: MilitiaMale
   m_EditorClassIdentifier: 
-  spriteView: {fileID: 21300000, guid: 7ed6449b7a3cc33428c83523bedb0c8f, type: 3}
-  Icon: {fileID: 21300000, guid: 2521a44fac31a0046b0956103c465d47, type: 3}
-  UIFriendlyClassName: 
+  spriteView: {fileID: 21300000, guid: 42db0cc507c9c4d4282b5af6d49320b7, type: 3}
+  Icon: {fileID: 21300000, guid: 2f7b3d529598cbe42ac68c792304e223, type: 3}
+  UIFriendlyClassName: Fighter
   Description: Make sure to fill in the description, young game maker
   movement: 0
   Attack: 0

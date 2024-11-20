@@ -13,6 +13,8 @@ public class Squire : Unit
         spriteView = UtilityClass.Load<Sprite>("Sprites/Unit Sprites/Tier 1/Squire/Squire");
         Icon = UtilityClass.Load<Sprite>("Sprites/Unit Sprites/Tier 1/Squire/Squire Icon");
         movement = MoveType.Cavalry;
+
+        information = UtilityClass.Load<UnitDataContainer>("Assets/Resources/Data Containers/Tier 1/Squire.asset");
     }
 
     private protected override void SetAttributes()

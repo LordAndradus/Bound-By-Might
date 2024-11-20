@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
+using UnityEditor.VersionControl;
 using UnityEngine;
 
 public class Apothecary : Unit
@@ -12,6 +13,7 @@ public class Apothecary : Unit
         Icon = UtilityClass.Load<Sprite>("Sprites/Unit Sprites/Tier 1/Apothecary/Apothecary Icon");
         movement = MoveType.Slow;
 
+        information = UtilityClass.Load<UnitDataContainer>("Assets/Resources/Data Containers/Tier 1/Apothecary.asset");
     }
 
     private protected override void SetAttributes()

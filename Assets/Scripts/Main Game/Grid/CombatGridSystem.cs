@@ -11,6 +11,7 @@ public class CombatGridSystem
     public static CombatGridSystem instance;
     public PathFinder PathGrid;
     public UnitPositionGrid UnitGrid;
+    public MapGridSystem MapGrid;
     int width, height;
     Vector3 origin;
     float cellSize;
@@ -25,6 +26,7 @@ public class CombatGridSystem
         this.width = width;
         this.height = height;
 
+        MapGrid = new(width, height, origin);
         PathGrid = new(width, height, origin);
         UnitGrid = new(width, height, origin);
 

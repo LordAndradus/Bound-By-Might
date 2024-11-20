@@ -40,18 +40,17 @@ public class Pair<F, S>
 
     public bool equals(Pair<F, S> compare)
     {
-        return this.First.Equals(compare.First) && this.Second.Equals(compare.Second);
-    }
-
-    public bool equals(object first, object second)
-    {
-        return First.Equals(first) && Second.Equals(second);
+        return First.Equals(compare.First) && Second.Equals(compare.Second);
     }
 
     public override bool Equals(object obj)
     {
-        Debug.LogWarning("Did you mean \"equals\" instead of \"Equals\" in the pair?");
-        return base.Equals(obj) || equals(this, obj);
+        if(obj is Pair<F,S> other)
+        {
+            return equals(other);
+        }
+
+        return base.Equals(obj);
     }
 
     public (F, S) ToTuple()
@@ -61,7 +60,7 @@ public class Pair<F, S>
 
     public override int GetHashCode()
     {
-        return base.GetHashCode();
+        return HashCode.Combine(First, Second);
     }
 
     public bool InList(List<Pair<F,S>> list)

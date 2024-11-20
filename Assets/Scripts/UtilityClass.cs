@@ -9,7 +9,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class UtilityClass
+public static class UtilityClass
 {
     public static Vector3 GetScreenMouseToWorldWithZ(Camera camera = null)
     {
@@ -23,8 +23,8 @@ public class UtilityClass
     /// <summary>
     /// Returns the Mouse position relative to where it is in the world coordinate system
     /// </summary>
-    /// <param name="camera"></param>
-    /// <returns></returns>
+    /// <param name="camera">The main Camera that Unity uses</param>
+    /// <returns>A Vector3 Position</returns>
     public static Vector3 GetScreenMouseToWorld(Camera camera = null)
     {
         Vector3 Pos = GetScreenMouseToWorldWithZ(camera);
@@ -80,6 +80,11 @@ public class UtilityClass
         return textMesh;
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="name"></param>
+    /// <returns>A string with spaces between uppercase letters</returns>
     public static string UIFriendlyClassName(string name)
     {
         return Regex.Replace(name, "(?<!^)([A-Z])", " $1");
@@ -92,6 +97,16 @@ public class UtilityClass
         uvs = new Vector2[6 * QuadCount];
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="parent"></param>
+    /// <param name="name"></param>
+    /// <param name="Size"></param>
+    /// <param name="Anchor"></param>
+    /// <param name="colors"></param>
+    /// <param name="Listener"></param>
+    /// <returns>A Button GameObject</returns>
     public static GameObject CreateClickableObject(Transform parent, string name, Vector2 Size, Vector2 Anchor = default, ColorBlock colors = default, UnityEngine.Events.UnityAction Listener = default)
     {
         GameObject b = new(name);
@@ -159,11 +174,15 @@ public class UtilityClass
         string[] parts = path.Split(Path.DirectorySeparatorChar);
         if(parts.Length == 1) parts = path.Split(Path.AltDirectorySeparatorChar);
 
+        if(parts[0] == "Assets") parts[0] = null;
+        
         StringBuilder sb = new();
+        bool SafeToAdd = !parts.Contains<String>("Resources");
         foreach(string part in parts)
         {
-            if(part.Equals("Resources") || part.Equals("Assets")) continue;
-            sb.Append(Path.GetFileNameWithoutExtension(part) + Path.DirectorySeparatorChar);
+            if(part == null) continue;
+            if(SafeToAdd) sb.Append(Path.GetFileNameWithoutExtension(part) + Path.DirectorySeparatorChar);
+            if(part.Equals("Resources")) SafeToAdd = true;
         }
 
         path = sb.ToString();
@@ -256,5 +275,74 @@ public class UtilityClass
     public static void DeleteListContentChildren<T>(GameObject parent) where T : Component
     {
         List<GameObject> ListContent = GetAllChildObjectsWithComponent<T>(parent);
+    }
+
+    public static List<((int, int)[,], T[,])> getSubArrays<T>(T[,] array, int searchWidth, int searchHeight) where T : UnityEngine.Object
+    {
+        int aHeight = array.GetLength(0);
+        int aWidth = array.GetLength(1);
+
+        List<((int, int)[,], T[,])> subArray = new();
+
+        for(int y = 0; y < aHeight - searchHeight; y++)
+        {
+            for(int x = 0; x < aWidth - searchWidth; x++)
+            {
+                (int, int)[,] indices = new (int, int)[searchHeight, searchWidth];
+                T[,] arr = new T[searchHeight, searchWidth];
+
+                for(int row = 0; row < searchWidth; row++)
+                {
+                    for(int col = 0; col < searchHeight; col++)
+                    {
+                        indices[row, col] = new(y + row, x + col);
+                        arr[row, col] = array[y + row, x + col];
+                    }
+                }
+
+                subArray.Add(new(indices, arr));
+            }
+        }
+
+        return subArray;
+    }
+
+
+    /// <summary>
+    /// Prints a 2D Array
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="array"></param>
+    public static void print2DArray<T>(T[,] array) where T : UnityEngine.Object
+    {
+        int width = array.GetLength(1);
+        int height = array.GetLength(0);
+
+        StringBuilder sb = new();
+
+        sb.Append("Array = [");
+        for(int i = 0; i < height - 1; i++)
+        {
+            T[] arr = new T[width];
+            for(int j = 0; j < width; j++) arr[j] = array[i, j];
+
+            for(int j = 0; j < width - 1; j++)
+            {
+                sb.Append(string.Format("{0}, ", arr[j].ToString()));
+            }
+            sb.Append(string.Format("{0}\n", arr[width - 1].ToString()));
+        }
+
+        for(int i = 0; i < width - 1; i++) sb.Append(string.Format("{0}, ", array[height - 1, i].ToString()));
+        sb.Append(string.Format("{0}]\n", array[height - 1, width - 1].ToString()));
+
+        Debug.Log(sb.ToString());
+    }
+
+    public static void printDeepArray(Array array)
+    {
+        int rank = array.Rank;
+
+        
     }
 }

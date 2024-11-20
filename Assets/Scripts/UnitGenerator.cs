@@ -50,7 +50,12 @@ public class UnitGenerator : MonoBehaviour
                 break;
             }while(true);
 
-            if(generic.RetrieveUnits().Count == 0) generic.Name = u.Name + "'s Squad";
+            if(generic.RetrieveUnits().Count == 0)
+            {
+                generic.Name = u.Name + "'s Squad";
+                generic.CreateNewSquad(u);
+            }
+
             generic.FieldUnit(u, pair.ToTuple());
         }
         

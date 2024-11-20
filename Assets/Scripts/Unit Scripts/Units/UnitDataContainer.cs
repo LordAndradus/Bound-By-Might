@@ -19,5 +19,23 @@ public class UnitDataContainer : ScriptableObject
     public Pair<AttackPreference, AttributeType> AttackAI = new(AttackPreference.Front, AttributeType.NULL);
 
     [Header("Generation Information")]
-    [SerializeField] public List<UnitDataContainer> UpgradePath = new();
+    public int TierLevel = 1;
+    public List<UnitDataContainer> UpgradePath = new();
+
+    [Header("Material Cost")]
+    public int GoldCost = 150;
+    public int IronCost = 0;
+    public int MagicGemCost = 1;
+    public int HorseCost = 0;
+    public int HolyTearCost = 0;
+    public int AdamntiumCost = 0;
+    
+
+    [Header("Attribute Scores")]
+    public AttributeScore HP, MaxHP;
+    public AttributeScore Armor, Weapon;
+    public AttributeScore Strength;
+    public AttributeScore Agility;
+    public AttributeScore Magic;
+    public AttributeScore Leadership;
 }

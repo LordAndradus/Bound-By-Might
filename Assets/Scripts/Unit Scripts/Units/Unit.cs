@@ -12,33 +12,6 @@ using UnityEngine;
 [Serializable]
 public class Unit
 {
-    //TEMP FIELDS - Will be taken up by a Data Container
-    [Header("Temporary Fields")]
-    public Sprite spriteView;
-    public string UIFriendlyClassName;
-    public string Description = "Make sure to fill in the description, young game maker";
-    public Sprite Icon;
-    public AttackType Attack;
-    public Pair<int, int> AttackArea = new(1, 1); 
-    [SerializeField] public MoveType movement;
-    [SerializeField] readonly int MaxRange = (5 * 1000) + 1;
-    [SerializeField] public List<Type> UpgradePath = new();
-    public AttackPreference preference = AttackPreference.Front;
-    [SerializeField] public int TierLevel;
-
-
-    //Cost when adding to squad, and when trying to spawn it
-    [Header("Material Cost")]
-    [SerializeField] public int GoldCost; 
-    [SerializeField] public int IronCost;
-    [SerializeField] public int MagicGemCost;
-    [SerializeField] public int HorseCost;
-
-    [Header("WIP Material Cost")]
-    [SerializeField] public int HolyTearCost;
-    [SerializeField] public int AdamntiumCost;
-
-    //END of temp fields, will be uniquely assigned to individual units
     [Header("Unit Information")]
     [SerializeField] private protected UnitDataContainer information;
     UnitDataContainer GetInformation() { return information; }
@@ -83,9 +56,9 @@ public class Unit
         SetGrowthType();
         SetUpgradePath();
 
-        ExperienceCap = 500 * TierLevel;
+        ExperienceCap = 500 * information.TierLevel;
 
-        switch(TierLevel)
+        switch(information.TierLevel)
         {
             case 1:
                 PromotionCap = 500;
@@ -122,12 +95,12 @@ public class Unit
 
     private protected float Range()
     {
-        return UnityEngine.Random.Range(0, MaxRange) / (float) divisor;
+        return UnityEngine.Random.Range(0, 5001) / (float) divisor;
     }
 
     private void SetGrowthType()
     {
-        float MaxGrowth =  (float) UnitAttributes.Count * MaxRange / divisor;
+        float MaxGrowth =  (float) UnitAttributes.Count * 5001 / divisor;
         float GrowthSum = UnitAttributes.Sum(pair => pair.Value.GetGrowthValue());
 
         if(GrowthSum <= 0f || MaxGrowth <= 0f)
@@ -171,17 +144,6 @@ public class Unit
         public int PromotionCap;
     }
 
-    public void LevelUp()
-    {
-        
-        CalculateTotals();
-    }
-
-    public void CalculateTotals()
-    {
-        
-    }
-
     //Getters and Setters for Attribute Scores
     public List<Trait> GetTraits() { return traits; }
     public void SetTraits(List<Trait> traits) { this.traits = traits; }
@@ -204,6 +166,8 @@ public class AttributeScore
     [SerializeField] float leftover;
     [SerializeField] Pair<int, int> GenerationRange;
     public List<int> additions;
+
+    public AttributeScore(AttributeScore a) : this(a.value, a.growth, a.requirement, a.GenerationRange) {}
 
     public AttributeScore(int value, float growth, int requirement, Pair<int, int> GenerationRange)
     {

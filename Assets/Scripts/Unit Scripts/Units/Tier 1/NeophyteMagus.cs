@@ -14,6 +14,8 @@ public class NeophyteMagus : Unit
         spriteView = UtilityClass.Load<Sprite>("Sprites/Unit Sprites/Tier 1/Neophyte Magus/Neophyte Magus");
         Icon = UtilityClass.Load<Sprite>("Sprites/Unit Sprites/Tier 1/Neophyte Magus/Neophyte Magus Icon");
         movement = MoveType.Slow;
+
+        information = UtilityClass.Load<UnitDataContainer>("Assets/Resources/Data Containers/Tier 1/NeophyteMagus.asset");
     }
 
     private protected override void SetAttributes()

@@ -1,5 +1,8 @@
 using UnityEngine;
 
+/**
+  * Takes care of picking up items or triggering special events during a specific level
+ */
 public class MapGridSystem
 {
     public static MapGridSystem instance;
@@ -12,10 +15,6 @@ public class MapGridSystem
     public MapGridSystem(int width, int height, Vector3 origin)
     {
         instance = this;
-        pf = new(width, height, origin);
-        upg = new(width, height, origin);
-
-        pf.GetGridSystem().drawDebugGrid();
     }
 
     public void MoveSquad(SquadMovementHandler smh, int destinationX, int destintaionY)

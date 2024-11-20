@@ -66,9 +66,9 @@ public class InteractableObject : MonoBehaviour, IPointerClickHandler, IPointerE
     public void InvokeEvent(EventInvoker e)
     {
         Debug.Log(ActionMap.ContainsKey(e));
+        Debug.Log(ActionMap[e].ToString());
 
-        ActionMap[EventInvoker.Right]?.Invoke();
-
+        ActionMap[e]?.Invoke();
     }
 
     public enum EventInvoker

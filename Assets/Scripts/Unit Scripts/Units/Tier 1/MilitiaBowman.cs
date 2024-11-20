@@ -13,6 +13,8 @@ public class MilitiaBowman : Unit
         spriteView = UtilityClass.Load<Sprite>("Sprites/Unit Sprites/Tier 1/MilitiaBowman/Militia Bowman");
         Icon = UtilityClass.Load<Sprite>(GlobalSettings.DefaultUnitSpriteIcon);
         movement = MoveType.Standard;
+
+        information = UtilityClass.Load<UnitDataContainer>("Assets/Resources/Data Containers/Tier 1/MilitiaBowman.asset");
     }
 
     private protected override void SetAttributes()

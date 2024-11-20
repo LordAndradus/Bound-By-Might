@@ -12,6 +12,8 @@ public class MilitiaMale : Unit
         spriteView = UtilityClass.Load<Sprite>("Sprites/Unit Sprites/Tier 1/Fighter/Fighter2");
         Icon = UtilityClass.Load<Sprite>("Sprites/Unit Sprites/Tier 1/Fighter/Fighter Icon");
         movement = MoveType.Standard;
+
+        information = UtilityClass.Load<UnitDataContainer>("Assets/Resources/Data Containers/Tier 1/MilitiaMale.asset");
     }
 
     private protected override void SetAttributes()

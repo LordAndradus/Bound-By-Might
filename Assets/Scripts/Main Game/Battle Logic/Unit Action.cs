@@ -87,15 +87,15 @@ public class UnitAction
         int SearchLength = Unit.AttackArea.First;
         int SearchHeight = Unit.AttackArea.Second;
 
-        for(int startY = 0; startY <= rows - SearchHeight; startY += SearchHeight)
+        for(int startY = 0; startY <= rows - SearchHeight; startY++)
         {
-            for(int startX = 0; startX <= cols - SearchLength; startX += SearchLength)
+            for(int startX = 0; startX <= cols - SearchLength; startX++)
             {
                 List<Unit> ListOfUnits = new();
 
-                for(int y = 0; y < startY + SearchHeight; y++)
+                for(int y = 0; y < SearchHeight; y++)
                 {
-                    for(int x = 0; x < startX + SearchLength; x++)
+                    for(int x = 0; x < SearchLength; x++)
                     {
                         ListOfUnits.Add(squad.RetrieveUnitFromPosition(x, y));
                         Value += ListOfUnits[x + y].UnitAttributes[aType];

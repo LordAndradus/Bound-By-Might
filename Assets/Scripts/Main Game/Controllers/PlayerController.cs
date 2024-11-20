@@ -23,13 +23,18 @@ public class PlayerController : Controller
     Stack<State> StateMachine = new();
     Dictionary<State, System.Action> ActionMap;
 
+    public void SetupPlayerController()
+    {
+        PathFindingGrid = PathFinder.instance.GetGridSystem();
+        TeamNumbers.Add(this, 0);
+
+        InitiateSpawners();
+    }
+
     private void Start()
     {
         //relation = Relationship.controllable;
         SquadList.CollectionChanged += OnSquadListChanged;
-        PathFindingGrid = PathFinder.instance.GetGridSystem();
-
-        TeamNumbers.Add(this, 0);
 
         SquadPicker = GameObject.Find("Canvas").GetComponentInChildren<ScrollRect>(true).gameObject;
 
@@ -57,56 +62,6 @@ public class PlayerController : Controller
             if(SquadsToMove == 0) FlagEndTurn();
             else confirm.SetActive(true);
         });
-
-        foreach(SpawnTile spawner in spawners)
-        {
-            spawner.SetXY(out int x, out int y);
-
-            spawner.RightClickEvent += () => {
-                if(StateMachine.Peek() == State.Spawning || spawner.IsOccupied()) return;
-
-                StateMachine.Push(State.Spawning);
-
-                //Set the squad list to active
-                SquadPicker.SetActive(true);
-
-                GameObject SquadButtons = SquadPicker.GetComponentInChildren<GridLayoutGroup>().transform.gameObject;
-
-                Button[] buttons = SquadPicker.GetComponentsInChildren<Button>();
-                buttons[buttons.Length - 1].onClick.AddListener(() => {
-                    CloseSpawner();
-                });
-
-                foreach(Transform child in SquadButtons.transform) 
-                    Destroy(child.gameObject);
-                
-                foreach(Squad squad in SquadList)
-                {
-                    GameObject SquadButton = UtilityClass.CreatePrefabObject("Assets/PreFabs/Main Game/PurchaseSquad.prefab", SquadButtons.transform, squad.Name);
-                    
-                    SquadDisplayer sd = SquadButton.GetComponent<SquadDisplayer>();
-                    sd.AssignSquad(squad);
-
-                    InteractableObject sbIO = SquadButton.GetComponent<InteractableObject>();
-
-                    sbIO.LeftClickEvent += () => {
-                        GameObject WorldSquad = CombatGridSystem.instance.CreateWorldSquad(squad, this, x, y);
-                        SquadList.Remove(squad);
-                        CloseSpawner();
-                    };
-
-                    sbIO.RightClickEvent += () => {
-                        Debug.Log("Opening a context menu");
-                    };
-
-                    sbIO.MiddleClickEvent += () => {
-                        Debug.Log("Middle mouse button, might debate on what to do with this");
-                    };
-                }
-            };
-
-            spawner.PopulateActionMap();
-        }
         
         //Randomly generate squads for now
         for(int i = Random.Range(4, 10); i >= 0; i--)
@@ -317,6 +272,59 @@ public class PlayerController : Controller
     {
         SquadPicker.SetActive(false);
         if(StateMachine.Count != 0) StateMachine.Pop();
+    }
+
+    public void InitiateSpawners()
+    {
+        foreach(SpawnTile spawner in spawners)
+        {
+            spawner.SetXY(out int x, out int y);
+
+            spawner.RightClickEvent += () => {
+                if(StateMachine.Peek() == State.Spawning || spawner.IsOccupied()) return;
+
+                StateMachine.Push(State.Spawning);
+
+                //Set the squad list to active
+                SquadPicker.SetActive(true);
+
+                GameObject SquadButtons = SquadPicker.GetComponentInChildren<GridLayoutGroup>().transform.gameObject;
+
+                Button[] buttons = SquadPicker.GetComponentsInChildren<Button>();
+                buttons[buttons.Length - 1].onClick.AddListener(() => {
+                    CloseSpawner();
+                });
+
+                foreach(Transform child in SquadButtons.transform) 
+                    Destroy(child.gameObject);
+                
+                foreach(Squad squad in SquadList)
+                {
+                    GameObject SquadButton = UtilityClass.CreatePrefabObject("Assets/PreFabs/Main Game/PurchaseSquad.prefab", SquadButtons.transform, squad.Name);
+                    
+                    SquadDisplayer sd = SquadButton.GetComponent<SquadDisplayer>();
+                    sd.AssignSquad(squad);
+
+                    InteractableObject sbIO = SquadButton.GetComponent<InteractableObject>();
+
+                    sbIO.LeftClickEvent += () => {
+                        GameObject WorldSquad = CombatGridSystem.instance.CreateWorldSquad(squad, this, x, y);
+                        SquadList.Remove(squad);
+                        CloseSpawner();
+                    };
+
+                    sbIO.RightClickEvent += () => {
+                        Debug.Log("Opening a context menu");
+                    };
+
+                    sbIO.MiddleClickEvent += () => {
+                        Debug.Log("Middle mouse button, might debate on what to do with this");
+                    };
+                }
+            };
+
+            spawner.PopulateActionMap();
+        }
     }
 }
 

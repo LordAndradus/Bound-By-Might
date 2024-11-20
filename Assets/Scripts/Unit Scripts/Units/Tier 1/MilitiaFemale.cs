@@ -12,11 +12,25 @@ public class MilitiaFemale : Unit
         spriteView = UtilityClass.Load<Sprite>("Sprites/Unit Sprites/Tier 1/Skirmisher/Skirmisher");
         Icon = UtilityClass.Load<Sprite>("Sprites/Unit Sprites/Tier 1/Skirmisher/Skirmisher Icon");
         movement = MoveType.Light;
+
+        information = UtilityClass.Load<UnitDataContainer>("Assets/Resources/Data Containers/Tier 1/MilitiaFemale.asset");
     }
 
     private protected override void SetAttributes()
     {
         TierLevel = 1;
+
+        UnitAttributes = new()
+        {
+            {AttributeType.MaxHP, new(information.MaxHP)},
+            {AttributeType.HP, new(information.HP)},
+            {AttributeType.Armor, new(information.Armor)},
+            {AttributeType.Weapon, new(information.Weapon)},
+            {AttributeType.Strength, new(information.Strength)},
+            {AttributeType.Agility, new(information.Agility)},
+            {AttributeType.Magic, new(information.Magic)},
+            {AttributeType.Leadership, new(information.Leadership)}
+        };
 
         UnitAttributes = new()
         {
