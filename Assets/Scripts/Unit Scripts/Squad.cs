@@ -58,7 +58,7 @@ public class Squad
         List<Unit> units = RetrieveUnits();
         if(units.Count == 0) return;
         //Categorizes all Unit movement types and puts them in a dictionary with the MoveType as a key, and the sum of each unit's field cost if they're in that MoveType
-        Dictionary<MoveType, int> sumByMovement = units.GroupBy(unit => unit.movement).ToDictionary(movementType => movementType.Key, MovementType => MovementType.Sum(unit => unit.GetFieldCost()));
+        Dictionary<MoveType, int> sumByMovement = units.GroupBy(unit => unit.movement()).ToDictionary(movementType => movementType.Key, MovementType => MovementType.Sum(unit => unit.GetFieldCost()));
         //Reorder dictionary to pick the highest sum which has the most weight. Set it as this squads MovementType
         MovementType = sumByMovement.OrderByDescending(pair => pair.Value).First().Key;
         TranslateMovementType(MovementType);
@@ -66,12 +66,13 @@ public class Squad
 
     public Squad CreateNewSquad(Unit leader)
     {
+        return CreateNewSquad(leader, new(1, 1));
+    }
+
+    public Squad CreateNewSquad(Unit leader, Pair<int, int> position)
+    {
         Leader = leader;
-        
-        leader.SquadPosition = new(1, 1);
-
-        FieldUnit(leader, leader.SquadPosition);
-
+        FieldUnit(Leader, position);
         return this;
     }
 
@@ -93,9 +94,8 @@ public class Squad
 
     public List<Unit> RetrieveUnits()
     {
-        List<Unit> NonNullList = new(10);
-        List<Unit> units = FieldedUnits.Values.ToList();
-        foreach(Unit u in units) if(u != null) NonNullList.Add(u);
+        List<Unit> NonNullList = new();
+        foreach(Unit u in FieldedUnits.Values.ToList()) if(u != null) NonNullList.Add(u);
         return NonNullList;
     }
 
@@ -107,6 +107,8 @@ public class Squad
 
         foreach(Pair<Pair<int, int>, Unit> DPair in DictionaryPairs)
         {
+            if(DPair.Second == null) 
+                continue;
             ReturnList.Add(new(DPair.Second, DPair.First));
         }
 
@@ -124,7 +126,7 @@ public class Squad
         return FieldedUnits[slot];
     }
 
-    public (int, int) RetrievePositionSlotFromUnit(Unit u)
+    public Pair<int, int> RetrievePositionFromUnit(Unit u)
     {
         if(!FieldedUnits.ContainsValue(u))
         {
@@ -132,13 +134,7 @@ public class Squad
             throw new SystemException("Unit not in squad");
         }
 
-        u.SquadPosition = new(FieldedUnits.GetKey(u));
-        return u.SquadPosition.ToTuple();
-    }
-
-    public Pair<int, int> RetrievePositionFromUnit(Unit u)
-    {
-        return u.SquadPosition;
+        return FieldedUnits.GetKey(u);
     }
 
     public Equipment[] RetrieveEquipment()
@@ -154,7 +150,6 @@ public class Squad
             throw new Exception("Out-of-bounds Exception: Unit Field");
         }
 
-        unit.SquadPosition = new(slot);
         FieldedUnits[slot] = unit;
         FieldedUnitsChanged?.Invoke();
     }
@@ -163,7 +158,6 @@ public class Squad
     {
         Unit unit = FieldedUnits[slot];
         FieldedUnits[slot] = null;
-        unit.SquadPosition = null;
         FieldedUnitsChanged?.Invoke();
 
         return unit;
@@ -204,43 +198,33 @@ public class Squad
         List<Unit> units = RetrieveUnits();
         
         (int, int, int, int, int, int) resources = units.Aggregate((0, 0, 0, 0, 0, 0), (resources, unit) => (
-            resources.Item1 + unit.GoldCost,
-            resources.Item2 + unit.IronCost,
-            resources.Item3 + unit.MagicGemCost,
-            resources.Item4 + unit.HorseCost,
-            resources.Item5 + unit.HolyTearCost,
-            resources.Item6 + unit.AdamntiumCost
+            resources.Item1 + unit.GoldCost(),
+            resources.Item2 + unit.IronCost(),
+            resources.Item3 + unit.MagicGemCost(),
+            resources.Item4 + unit.HorseCost(),
+            resources.Item5 + unit.HolyTearCost(),
+            resources.Item6 + unit.AdamantiumCost()
         ));
 
         return resources;
     }
 
-    /* public void OnBeforeSerialize()
+    public override string ToString()
     {
-        if(_FieldedUnits == null) return;
+        StringBuilder sb = new();
 
-        //Implement each pair inside the main readable dictionary (FieldedUnits) to the serialized dictionary (_FieldedUnits)
-        _FieldedUnits.Clear();
-        foreach(var kvp in FieldedUnits)
+        sb.Append("Leader: " + Leader.Name + "\n");
+
+        int count = 0;
+        foreach(Unit unit in RetrieveUnits())
         {
-            if(kvp.Value == null) continue;
-            (int, int) TuplePair = kvp.Key;
-            Unit unit = kvp.Value;
-            unit.SquadPosition = new(TuplePair);
-            _FieldedUnits.Add(new(TuplePair), unit);
+            if(unit != Leader) sb.Append(unit.Name).Append("\n");
+            if(unit == null) sb.Append("Open unit slot");
+            if(unit != null) count++;
         }
+
+        sb.Append("Number of units: " + count + "/" + FieldedUnits.Count);
+
+        return sb.ToString();
     }
-
-    public void OnAfterDeserialize()
-    {
-        if(_FieldedUnits == null) return;
-
-        //Re-seat units into the main readable dictionary.
-        foreach(var kvp in _FieldedUnits)
-        {
-            Pair<int, int> KeyPair = kvp.Key;
-            Unit unit = kvp.Value;
-            FieldedUnits[KeyPair.ToTuple()] = unit;
-        }
-    } */
 }

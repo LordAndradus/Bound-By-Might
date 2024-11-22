@@ -69,13 +69,14 @@ public class SquadMovementHandler : InteractableObject
     private Side GetSideTriangle(Vector3 MouseTarget)
     {
         //Convert world position to local space
-        float x = Mathf.Abs(MouseTarget.x) - Mathf.Abs(transform.position.x);
-        float y = Mathf.Abs(MouseTarget.y) - Mathf.Abs(transform.position.y);
+        float x = MouseTarget.x - transform.position.x;
+        float y = MouseTarget.y - transform.position.y;
 
-        if(y < x && y < -x) return Side.top;
-        if(y > x && y > -x) return Side.bottom;
-        if(y < x && y > -x) return Side.left;
-        if(y > x && y < -x) return Side.right;
+        //Use y > x and y > -x inequalities to solve for what triangle we entered
+        if(y < x && y < -x) return Side.bottom;
+        if(y > x && y > -x) return Side.top;
+        if(y < x && y > -x) return Side.right;
+        if(y > x && y < -x) return Side.left;
 
         return Side.none;
     }

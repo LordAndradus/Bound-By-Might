@@ -5,8 +5,9 @@ using UnityEngine;
 
 public class MilitiaBowman : Unit
 {
-    public MilitiaBowman()
+    public MilitiaBowman() : base() {}
+    private protected override void GetInformation()
     {
-        information = UtilityClass.Load<UnitDataContainer>("Assets/Resources/Data Containers/Tier 1/MilitiaBowman.asset");
+        information = UnitLoader.AssetBundle[typeof(MilitiaBowman)];
     }
 }

@@ -925,70 +925,242 @@ MonoBehaviour:
     Name: 
     MovementType: 0
     MoveSpeed: 6
+    Leader:
+      information: {fileID: 0}
+      GrowthDefintion: 0
+      Name: 
+      MarketCost: 0
+      FieldCost: 10
+      threat: 256
+      DeathFlag: 0
+      ThisAttributes:
+        elements: []
+      Level: 0
+      PromotionPoints: 0
+      ExperiencePoints: 0
+      ExperiencePointsDropped: 100
+      PromotionCap: 0
+      ExperienceCap: 0
+      MaxTraits: 6
+      UpgradePath: []
+    equipment:
+    - Icon: {fileID: 0}
+      FlavorText: 
+    - Icon: {fileID: 0}
+      FlavorText: 
+    - Icon: {fileID: 0}
+      FlavorText: 
+    _FieldedUnits:
+      elements: []
+    FieldedUnits:
+      elements:
+      - key:
+          <First>k__BackingField: 0
+          <Second>k__BackingField: 0
+        value:
+          information: {fileID: 0}
+          GrowthDefintion: 0
+          Name: 
+          MarketCost: 0
+          FieldCost: 10
+          threat: 256
+          DeathFlag: 0
+          ThisAttributes:
+            elements: []
+          Level: 0
+          PromotionPoints: 0
+          ExperiencePoints: 0
+          ExperiencePointsDropped: 100
+          PromotionCap: 0
+          ExperienceCap: 0
+          MaxTraits: 6
+          UpgradePath: []
+      - key:
+          <First>k__BackingField: 0
+          <Second>k__BackingField: 1
+        value:
+          information: {fileID: 0}
+          GrowthDefintion: 0
+          Name: 
+          MarketCost: 0
+          FieldCost: 10
+          threat: 256
+          DeathFlag: 0
+          ThisAttributes:
+            elements: []
+          Level: 0
+          PromotionPoints: 0
+          ExperiencePoints: 0
+          ExperiencePointsDropped: 100
+          PromotionCap: 0
+          ExperienceCap: 0
+          MaxTraits: 6
+          UpgradePath: []
+      - key:
+          <First>k__BackingField: 0
+          <Second>k__BackingField: 2
+        value:
+          information: {fileID: 0}
+          GrowthDefintion: 0
+          Name: 
+          MarketCost: 0
+          FieldCost: 10
+          threat: 256
+          DeathFlag: 0
+          ThisAttributes:
+            elements: []
+          Level: 0
+          PromotionPoints: 0
+          ExperiencePoints: 0
+          ExperiencePointsDropped: 100
+          PromotionCap: 0
+          ExperienceCap: 0
+          MaxTraits: 6
+          UpgradePath: []
+      - key:
+          <First>k__BackingField: 1
+          <Second>k__BackingField: 0
+        value:
+          information: {fileID: 0}
+          GrowthDefintion: 0
+          Name: 
+          MarketCost: 0
+          FieldCost: 10
+          threat: 256
+          DeathFlag: 0
+          ThisAttributes:
+            elements: []
+          Level: 0
+          PromotionPoints: 0
+          ExperiencePoints: 0
+          ExperiencePointsDropped: 100
+          PromotionCap: 0
+          ExperienceCap: 0
+          MaxTraits: 6
+          UpgradePath: []
+      - key:
+          <First>k__BackingField: 1
+          <Second>k__BackingField: 1
+        value:
+          information: {fileID: 0}
+          GrowthDefintion: 0
+          Name: 
+          MarketCost: 0
+          FieldCost: 10
+          threat: 256
+          DeathFlag: 0
+          ThisAttributes:
+            elements: []
+          Level: 0
+          PromotionPoints: 0
+          ExperiencePoints: 0
+          ExperiencePointsDropped: 100
+          PromotionCap: 0
+          ExperienceCap: 0
+          MaxTraits: 6
+          UpgradePath: []
+      - key:
+          <First>k__BackingField: 1
+          <Second>k__BackingField: 2
+        value:
+          information: {fileID: 0}
+          GrowthDefintion: 0
+          Name: 
+          MarketCost: 0
+          FieldCost: 10
+          threat: 256
+          DeathFlag: 0
+          ThisAttributes:
+            elements: []
+          Level: 0
+          PromotionPoints: 0
+          ExperiencePoints: 0
+          ExperiencePointsDropped: 100
+          PromotionCap: 0
+          ExperienceCap: 0
+          MaxTraits: 6
+          UpgradePath: []
+      - key:
+          <First>k__BackingField: 2
+          <Second>k__BackingField: 0
+        value:
+          information: {fileID: 0}
+          GrowthDefintion: 0
+          Name: 
+          MarketCost: 0
+          FieldCost: 10
+          threat: 256
+          DeathFlag: 0
+          ThisAttributes:
+            elements: []
+          Level: 0
+          PromotionPoints: 0
+          ExperiencePoints: 0
+          ExperiencePointsDropped: 100
+          PromotionCap: 0
+          ExperienceCap: 0
+          MaxTraits: 6
+          UpgradePath: []
+      - key:
+          <First>k__BackingField: 2
+          <Second>k__BackingField: 1
+        value:
+          information: {fileID: 0}
+          GrowthDefintion: 0
+          Name: 
+          MarketCost: 0
+          FieldCost: 10
+          threat: 256
+          DeathFlag: 0
+          ThisAttributes:
+            elements: []
+          Level: 0
+          PromotionPoints: 0
+          ExperiencePoints: 0
+          ExperiencePointsDropped: 100
+          PromotionCap: 0
+          ExperienceCap: 0
+          MaxTraits: 6
+          UpgradePath: []
+      - key:
+          <First>k__BackingField: 2
+          <Second>k__BackingField: 2
+        value:
+          information: {fileID: 0}
+          GrowthDefintion: 0
+          Name: 
+          MarketCost: 0
+          FieldCost: 10
+          threat: 256
+          DeathFlag: 0
+          ThisAttributes:
+            elements: []
+          Level: 0
+          PromotionPoints: 0
+          ExperiencePoints: 0
+          ExperiencePointsDropped: 100
+          PromotionCap: 0
+          ExperienceCap: 0
+          MaxTraits: 6
+          UpgradePath: []
   UnitToPlace:
-    spriteView: {fileID: 0}
+    information: {fileID: 0}
+    GrowthDefintion: 0
     Name: 
-    UIFriendlyClassName: 
-    Description: Make sure to fill in the description, young game maker
-    Icon: {fileID: 0}
-    movement: 0
-    Threat: 0
-    HP: 0
-    MaxHP: 0
-    Armor: 0
-    WeaponPower: 0
-    Strength: 0
-    Agility: 0
-    Magic: 0
-    Leadership: 0
+    MarketCost: 0
     FieldCost: 0
-    HPAdd: 
-    ArmorAdd: 
-    WeaponPowerAdd: 
-    StrengthAdd: 
-    AgilityAdd: 
-    MagicAdd: 
-    LeadershipAdd: 
-    TotalHP: 100
-    TotalArmor: 100
-    TotalWeapon: 100
-    TotalStrength: 100
-    TotalMagic: 100
-    TotalAgility: 100
-    TotalLeadership: 100
-    StrengthRequirement: 0
-    AgilityRequirement: 0
-    MagicRequirement: 0
-    Growth: 0
-    HPGrowth: 0
-    DexterityGrowth: 0
-    MagicGrowth: 0
-    LeadershipGrowth: 0
-    HPRange:
-      <First>k__BackingField: 0
-      <Second>k__BackingField: 0
-    DexterityRange:
-      <First>k__BackingField: 0
-      <Second>k__BackingField: 0
-    MagicRange:
-      <First>k__BackingField: 0
-      <Second>k__BackingField: 0
-    LeadershipRange:
-      <First>k__BackingField: 0
-      <Second>k__BackingField: 0
+    threat: 256
+    DeathFlag: 0
+    ThisAttributes:
+      elements: []
     Level: 0
-    TierLevel: 0
     PromotionPoints: 0
     ExperiencePoints: 0
+    ExperiencePointsDropped: 100
     PromotionCap: 0
     ExperienceCap: 0
-    GoldCost: 0
-    IronCost: 0
-    MagicGemCost: 0
-    HorseCost: 0
-    HolyTearCost: 0
-    AdamntiumCost: 0
     MaxTraits: 6
+    UpgradePath: []
   UnitToPlaceListPosition: 0
   sr: []
   ContextParent: {fileID: 890742784}
@@ -996,73 +1168,245 @@ MonoBehaviour:
   DefaultSquadContext: {fileID: 959122726}
   SquadManagerContext: {fileID: 18552478}
   _selectedUnit:
-    spriteView: {fileID: 0}
+    information: {fileID: 0}
+    GrowthDefintion: 0
     Name: 
-    UIFriendlyClassName: 
-    Description: Make sure to fill in the description, young game maker
-    Icon: {fileID: 0}
-    movement: 0
-    Threat: 0
-    HP: 0
-    MaxHP: 0
-    Armor: 0
-    WeaponPower: 0
-    Strength: 0
-    Agility: 0
-    Magic: 0
-    Leadership: 0
+    MarketCost: 0
     FieldCost: 0
-    HPAdd: 
-    ArmorAdd: 
-    WeaponPowerAdd: 
-    StrengthAdd: 
-    AgilityAdd: 
-    MagicAdd: 
-    LeadershipAdd: 
-    TotalHP: 100
-    TotalArmor: 100
-    TotalWeapon: 100
-    TotalStrength: 100
-    TotalMagic: 100
-    TotalAgility: 100
-    TotalLeadership: 100
-    StrengthRequirement: 0
-    AgilityRequirement: 0
-    MagicRequirement: 0
-    Growth: 0
-    HPGrowth: 0
-    DexterityGrowth: 0
-    MagicGrowth: 0
-    LeadershipGrowth: 0
-    HPRange:
-      <First>k__BackingField: 0
-      <Second>k__BackingField: 0
-    DexterityRange:
-      <First>k__BackingField: 0
-      <Second>k__BackingField: 0
-    MagicRange:
-      <First>k__BackingField: 0
-      <Second>k__BackingField: 0
-    LeadershipRange:
-      <First>k__BackingField: 0
-      <Second>k__BackingField: 0
+    threat: 256
+    DeathFlag: 0
+    ThisAttributes:
+      elements: []
     Level: 0
-    TierLevel: 0
     PromotionPoints: 0
     ExperiencePoints: 0
+    ExperiencePointsDropped: 100
     PromotionCap: 0
     ExperienceCap: 0
-    GoldCost: 0
-    IronCost: 0
-    MagicGemCost: 0
-    HorseCost: 0
-    HolyTearCost: 0
-    AdamntiumCost: 0
     MaxTraits: 6
+    UpgradePath: []
   _selectedSquad:
     Name: 
     MovementType: 0
     MoveSpeed: 6
+    Leader:
+      information: {fileID: 0}
+      GrowthDefintion: 0
+      Name: 
+      MarketCost: 0
+      FieldCost: 10
+      threat: 256
+      DeathFlag: 0
+      ThisAttributes:
+        elements: []
+      Level: 0
+      PromotionPoints: 0
+      ExperiencePoints: 0
+      ExperiencePointsDropped: 100
+      PromotionCap: 0
+      ExperienceCap: 0
+      MaxTraits: 6
+      UpgradePath: []
+    equipment:
+    - Icon: {fileID: 0}
+      FlavorText: 
+    - Icon: {fileID: 0}
+      FlavorText: 
+    - Icon: {fileID: 0}
+      FlavorText: 
+    _FieldedUnits:
+      elements: []
+    FieldedUnits:
+      elements:
+      - key:
+          <First>k__BackingField: 0
+          <Second>k__BackingField: 0
+        value:
+          information: {fileID: 0}
+          GrowthDefintion: 0
+          Name: 
+          MarketCost: 0
+          FieldCost: 10
+          threat: 256
+          DeathFlag: 0
+          ThisAttributes:
+            elements: []
+          Level: 0
+          PromotionPoints: 0
+          ExperiencePoints: 0
+          ExperiencePointsDropped: 100
+          PromotionCap: 0
+          ExperienceCap: 0
+          MaxTraits: 6
+          UpgradePath: []
+      - key:
+          <First>k__BackingField: 0
+          <Second>k__BackingField: 1
+        value:
+          information: {fileID: 0}
+          GrowthDefintion: 0
+          Name: 
+          MarketCost: 0
+          FieldCost: 10
+          threat: 256
+          DeathFlag: 0
+          ThisAttributes:
+            elements: []
+          Level: 0
+          PromotionPoints: 0
+          ExperiencePoints: 0
+          ExperiencePointsDropped: 100
+          PromotionCap: 0
+          ExperienceCap: 0
+          MaxTraits: 6
+          UpgradePath: []
+      - key:
+          <First>k__BackingField: 0
+          <Second>k__BackingField: 2
+        value:
+          information: {fileID: 0}
+          GrowthDefintion: 0
+          Name: 
+          MarketCost: 0
+          FieldCost: 10
+          threat: 256
+          DeathFlag: 0
+          ThisAttributes:
+            elements: []
+          Level: 0
+          PromotionPoints: 0
+          ExperiencePoints: 0
+          ExperiencePointsDropped: 100
+          PromotionCap: 0
+          ExperienceCap: 0
+          MaxTraits: 6
+          UpgradePath: []
+      - key:
+          <First>k__BackingField: 1
+          <Second>k__BackingField: 0
+        value:
+          information: {fileID: 0}
+          GrowthDefintion: 0
+          Name: 
+          MarketCost: 0
+          FieldCost: 10
+          threat: 256
+          DeathFlag: 0
+          ThisAttributes:
+            elements: []
+          Level: 0
+          PromotionPoints: 0
+          ExperiencePoints: 0
+          ExperiencePointsDropped: 100
+          PromotionCap: 0
+          ExperienceCap: 0
+          MaxTraits: 6
+          UpgradePath: []
+      - key:
+          <First>k__BackingField: 1
+          <Second>k__BackingField: 1
+        value:
+          information: {fileID: 0}
+          GrowthDefintion: 0
+          Name: 
+          MarketCost: 0
+          FieldCost: 10
+          threat: 256
+          DeathFlag: 0
+          ThisAttributes:
+            elements: []
+          Level: 0
+          PromotionPoints: 0
+          ExperiencePoints: 0
+          ExperiencePointsDropped: 100
+          PromotionCap: 0
+          ExperienceCap: 0
+          MaxTraits: 6
+          UpgradePath: []
+      - key:
+          <First>k__BackingField: 1
+          <Second>k__BackingField: 2
+        value:
+          information: {fileID: 0}
+          GrowthDefintion: 0
+          Name: 
+          MarketCost: 0
+          FieldCost: 10
+          threat: 256
+          DeathFlag: 0
+          ThisAttributes:
+            elements: []
+          Level: 0
+          PromotionPoints: 0
+          ExperiencePoints: 0
+          ExperiencePointsDropped: 100
+          PromotionCap: 0
+          ExperienceCap: 0
+          MaxTraits: 6
+          UpgradePath: []
+      - key:
+          <First>k__BackingField: 2
+          <Second>k__BackingField: 0
+        value:
+          information: {fileID: 0}
+          GrowthDefintion: 0
+          Name: 
+          MarketCost: 0
+          FieldCost: 10
+          threat: 256
+          DeathFlag: 0
+          ThisAttributes:
+            elements: []
+          Level: 0
+          PromotionPoints: 0
+          ExperiencePoints: 0
+          ExperiencePointsDropped: 100
+          PromotionCap: 0
+          ExperienceCap: 0
+          MaxTraits: 6
+          UpgradePath: []
+      - key:
+          <First>k__BackingField: 2
+          <Second>k__BackingField: 1
+        value:
+          information: {fileID: 0}
+          GrowthDefintion: 0
+          Name: 
+          MarketCost: 0
+          FieldCost: 10
+          threat: 256
+          DeathFlag: 0
+          ThisAttributes:
+            elements: []
+          Level: 0
+          PromotionPoints: 0
+          ExperiencePoints: 0
+          ExperiencePointsDropped: 100
+          PromotionCap: 0
+          ExperienceCap: 0
+          MaxTraits: 6
+          UpgradePath: []
+      - key:
+          <First>k__BackingField: 2
+          <Second>k__BackingField: 2
+        value:
+          information: {fileID: 0}
+          GrowthDefintion: 0
+          Name: 
+          MarketCost: 0
+          FieldCost: 10
+          threat: 256
+          DeathFlag: 0
+          ThisAttributes:
+            elements: []
+          Level: 0
+          PromotionPoints: 0
+          ExperiencePoints: 0
+          ExperiencePointsDropped: 100
+          PromotionCap: 0
+          ExperienceCap: 0
+          MaxTraits: 6
+          UpgradePath: []
   SelectedUnitText: {fileID: 971872610}
   SelectedSquadText: {fileID: 1397250037}
 --- !u!1 &129892149
@@ -11486,6 +11830,7 @@ GameObject:
   - component: {fileID: 976589697}
   - component: {fileID: 976589696}
   - component: {fileID: 976589698}
+  - component: {fileID: 976589699}
   m_Layer: 0
   m_Name: MainController
   m_TagString: Untagged
@@ -11506,7 +11851,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   camera: {fileID: 2027867812}
-  GridDebugger: {fileID: 0}
 --- !u!4 &976589697
 Transform:
   m_ObjectHideFlags: 0
@@ -11555,6 +11899,18 @@ MonoBehaviour:
   ArenaInterface: {fileID: 2142783345}
   CompanionInterface: {fileID: 1089530601}
   SaveInterface: {fileID: 1443773850}
+--- !u!114 &976589699
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 976589695}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 286427a954011ec428ad65c94b1779f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &989839443
 GameObject:
   m_ObjectHideFlags: 0
@@ -17143,7 +17499,6 @@ MonoBehaviour:
   RosterContent: {fileID: 669126964}
   ActiveSaveInteractable: {fileID: 0}
   SaveFiles: []
-  ActiveSave: 
   ActiveSFW:
     NewGamePlus: 0
     SaveFileDateTime: 
@@ -19091,6 +19446,7 @@ GameObject:
   - component: {fileID: 1628369576}
   - component: {fileID: 1628369575}
   - component: {fileID: 1628369574}
+  - component: {fileID: 1628369577}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -19148,6 +19504,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1628369577
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1628369573}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 286427a954011ec428ad65c94b1779f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1633159853
 GameObject:
   m_ObjectHideFlags: 0
@@ -23095,6 +23463,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   OutlineOrHighlight: 0
+  TargetImage: {fileID: 0}
   NormalColor: {r: 0.4, g: 0.4, b: 0.4, a: 0.4}
   HoveredColor: {r: 0.4, g: 0.4, b: 0.4, a: 0.4}
   ClickedColor: {r: 0.4, g: 0.4, b: 0.4, a: 0.4}

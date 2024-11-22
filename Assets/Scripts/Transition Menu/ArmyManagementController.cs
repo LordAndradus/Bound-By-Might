@@ -122,7 +122,7 @@ public class ArmyManagementController : MonoBehaviour
                     if(OccupiedSpot(SquadCoordinateTracker)) break;
 
                     //If space is initially empty, display what the sprite would look like if it was placed there
-                    SetSpritePosition(UnitToPlace.spriteView);
+                    SetSpritePosition(UnitToPlace.spriteView());
                 }
                 break;
 
@@ -155,11 +155,11 @@ public class ArmyManagementController : MonoBehaviour
 
                 if(!foundUnit) break;
 
-                SetSpritePosition(mc.UnitList[index].spriteView);
+                SetSpritePosition(mc.UnitList[index].spriteView());
 
                 if(Input.GetMouseButtonUp(0))
                 {
-                    SquadToManage.FieldUnit(mc.UnitList[index], SquadCoordinateTracker.ToTuple());
+                    SquadToManage.FieldUnit(mc.UnitList[index], SquadCoordinateTracker);
                     mc.UnitList.Remove(mc.UnitList[index]);
                     StateMachine.Pop();
                 }
@@ -170,7 +170,7 @@ public class ArmyManagementController : MonoBehaviour
                 //Pop state machine, but refield unit at the exact same position
                 if(Input.GetMouseButtonUp(1) || Input.GetKeyUp(KeyCode.Escape))
                 {
-                    SquadToManage.FieldUnit(UnitToPlace, UnitLastPosition.ToTuple());
+                    SquadToManage.FieldUnit(UnitToPlace, UnitLastPosition);
                     StateMachine.Pop();
                 }
 
@@ -182,7 +182,7 @@ public class ArmyManagementController : MonoBehaviour
                     if(OccupiedSpot(SquadCoordinateTracker)) break;
 
                     //If space is initially empty, display what the sprite would look like if it was placed there
-                    SetSpritePosition(UnitToPlace.spriteView);
+                    SetSpritePosition(UnitToPlace.spriteView());
                 }
                 break;
         }
@@ -269,11 +269,11 @@ public class ArmyManagementController : MonoBehaviour
                 SquadCoordinateTracker = null;
                 break;
             case ArmyManagementState.MoveUnit:
-                UnitToPlace = SquadToManage.RetrieveUnitFromPosition(SquadCoordinateTracker.ToTuple());
+                UnitToPlace = SquadToManage.RetrieveUnitFromPosition(SquadCoordinateTracker);
 
                 //Unfield unit temporarily
                 (int, Unit) pair = (0, new());
-                pair.Item2 = SquadToManage.UnfieldUnit(SquadCoordinateTracker.ToTuple());
+                pair.Item2 = SquadToManage.UnfieldUnit(SquadCoordinateTracker);
 
                 UnitToPlace = pair.Item2;
                 UnitToPlaceListPosition = pair.Item1;
@@ -362,7 +362,7 @@ public class ArmyManagementController : MonoBehaviour
 
             TextMeshProUGUI[] tmpT = elementInList.GetComponentsInChildren<TextMeshProUGUI>();
             tmpT[0].text = unit.displayQuickInfo();
-            tmpT[1].text = "<" + unit.UIFriendlyClassName + ">";
+            tmpT[1].text = "<" + unit.UIFriendlyClassName() + ">";
 
             List<Image> Images = elementInList.GetComponentsInChildren<Image>().ToList<Image>();
             List<Image> TraitImages = new();
@@ -375,7 +375,7 @@ public class ArmyManagementController : MonoBehaviour
             }
 
             //Load trait images & battle sprite here
-            elementInList.GetComponentsInChildren<Image>()[1].sprite = unit.spriteView;
+            elementInList.GetComponentsInChildren<Image>()[1].sprite = unit.spriteView();
         }
     }
 
@@ -587,11 +587,11 @@ public class ArmyManagementController : MonoBehaviour
 
         if(TempField)
         {
-            SquadToManage.FieldUnit(UnitToPlace, coordinate.ToTuple());
+            SquadToManage.FieldUnit(UnitToPlace, coordinate);
         }
         else
         {
-            SquadToManage.FieldUnit(UnitToPlace, coordinate.ToTuple());
+            SquadToManage.FieldUnit(UnitToPlace, coordinate);
 
             mc.UnitList.Remove(UnitToPlace);
         }
@@ -606,7 +606,7 @@ public class ArmyManagementController : MonoBehaviour
         if(squad == null) squad = SquadToManage;
         
         bool breakFlag = false;
-        List<Pair<Unit, (int, int)>> list = squad.RetrieveUnitPairs();
+        List<Pair<Unit, Pair<int, int>>> list = squad.RetrieveUnitPairs();
         foreach(var pair in list.ToList()) if(breakFlag = pair.Second.Equals(coordinate)) break;
         return breakFlag;
     }
@@ -629,7 +629,7 @@ public class ArmyManagementController : MonoBehaviour
         {
             int idx = (unit.Second.ToTuple().Item1 * 3) + unit.Second.ToTuple().Item2;
 
-            if(unit.First.spriteView != default || unit.First.spriteView != null) sr[idx].sprite = unit.First.spriteView;
+            if(unit.First.spriteView() != default || unit.First.spriteView() != null) sr[idx].sprite = unit.First.spriteView();
             else sr[idx].sprite = Resources.Load<Sprite>(GlobalSettings.DefaultUnitSpriteView);
 
             sr[idx].enabled = true;

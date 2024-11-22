@@ -671,36 +671,14 @@ MonoBehaviour:
     MovementType: 0
     MoveSpeed: 6
     Leader:
-      spriteView: {fileID: 0}
-      UIFriendlyClassName: 
-      Description: Make sure to fill in the description, young game maker
-      Icon: {fileID: 0}
-      Attack: 0
-      AttackArea:
-        <First>k__BackingField: 1
-        <Second>k__BackingField: 1
-      movement: 0
-      preference: 0
-      TierLevel: 0
-      GoldCost: 0
-      IronCost: 0
-      MagicGemCost: 0
-      HorseCost: 0
-      HolyTearCost: 0
-      AdamntiumCost: 0
       information: {fileID: 0}
       GrowthDefintion: 7
       Name: 
-      CareerHistory:
-        elements: []
-      divisor: 1000
+      MarketCost: 0
       FieldCost: 10
       threat: 256
       DeathFlag: 0
-      SquadPosition:
-        <First>k__BackingField: 0
-        <Second>k__BackingField: 0
-      UnitAttributes:
+      ThisAttributes:
         elements: []
       Level: 0
       PromotionPoints: 0
@@ -709,6 +687,7 @@ MonoBehaviour:
       PromotionCap: 0
       ExperienceCap: 0
       MaxTraits: 6
+      UpgradePath: []
     equipment:
     - Icon: {fileID: 0}
       FlavorText: 
@@ -722,36 +701,14 @@ MonoBehaviour:
           <First>k__BackingField: 0
           <Second>k__BackingField: 0
         value:
-          spriteView: {fileID: 0}
-          UIFriendlyClassName: 
-          Description: Make sure to fill in the description, young game maker
-          Icon: {fileID: 0}
-          Attack: 0
-          AttackArea:
-            <First>k__BackingField: 1
-            <Second>k__BackingField: 1
-          movement: 0
-          preference: 0
-          TierLevel: 0
-          GoldCost: 0
-          IronCost: 0
-          MagicGemCost: 0
-          HorseCost: 0
-          HolyTearCost: 0
-          AdamntiumCost: 0
           information: {fileID: 0}
           GrowthDefintion: 7
           Name: 
-          CareerHistory:
-            elements: []
-          divisor: 1000
+          MarketCost: 0
           FieldCost: 10
           threat: 256
           DeathFlag: 0
-          SquadPosition:
-            <First>k__BackingField: 0
-            <Second>k__BackingField: 0
-          UnitAttributes:
+          ThisAttributes:
             elements: []
           Level: 0
           PromotionPoints: 0
@@ -760,39 +717,21 @@ MonoBehaviour:
           PromotionCap: 0
           ExperienceCap: 0
           MaxTraits: 6
+          UpgradePath: []
     FieldedUnits:
       elements:
-      - value:
-          spriteView: {fileID: 0}
-          UIFriendlyClassName: 
-          Description: Make sure to fill in the description, young game maker
-          Icon: {fileID: 0}
-          Attack: 0
-          AttackArea:
-            <First>k__BackingField: 1
-            <Second>k__BackingField: 1
-          movement: 0
-          preference: 0
-          TierLevel: 0
-          GoldCost: 0
-          IronCost: 0
-          MagicGemCost: 0
-          HorseCost: 0
-          HolyTearCost: 0
-          AdamntiumCost: 0
+      - key:
+          <First>k__BackingField: 0
+          <Second>k__BackingField: 0
+        value:
           information: {fileID: 0}
           GrowthDefintion: 7
           Name: 
-          CareerHistory:
-            elements: []
-          divisor: 1000
+          MarketCost: 0
           FieldCost: 10
           threat: 256
           DeathFlag: 0
-          SquadPosition:
-            <First>k__BackingField: 0
-            <Second>k__BackingField: 0
-          UnitAttributes:
+          ThisAttributes:
             elements: []
           Level: 0
           PromotionPoints: 0
@@ -801,6 +740,7 @@ MonoBehaviour:
           PromotionCap: 0
           ExperienceCap: 0
           MaxTraits: 6
+          UpgradePath: []
   EntrySide: 0
   moved: 0
   moving: 0
@@ -959,36 +899,14 @@ MonoBehaviour:
     MovementType: 0
     MoveSpeed: 6
     Leader:
-      spriteView: {fileID: 0}
-      UIFriendlyClassName: 
-      Description: Make sure to fill in the description, young game maker
-      Icon: {fileID: 0}
-      Attack: 0
-      AttackArea:
-        <First>k__BackingField: 1
-        <Second>k__BackingField: 1
-      movement: 0
-      preference: 0
-      TierLevel: 0
-      GoldCost: 0
-      IronCost: 0
-      MagicGemCost: 0
-      HorseCost: 0
-      HolyTearCost: 0
-      AdamntiumCost: 0
       information: {fileID: 0}
       GrowthDefintion: 7
       Name: 
-      CareerHistory:
-        elements: []
-      divisor: 1000
+      MarketCost: 0
       FieldCost: 10
       threat: 256
       DeathFlag: 0
-      SquadPosition:
-        <First>k__BackingField: 0
-        <Second>k__BackingField: 0
-      UnitAttributes:
+      ThisAttributes:
         elements: []
       Level: 0
       PromotionPoints: 0
@@ -997,6 +915,7 @@ MonoBehaviour:
       PromotionCap: 0
       ExperienceCap: 0
       MaxTraits: 6
+      UpgradePath: []
     equipment:
     - Icon: {fileID: 0}
       FlavorText: 
@@ -1010,36 +929,14 @@ MonoBehaviour:
           <First>k__BackingField: 0
           <Second>k__BackingField: 0
         value:
-          spriteView: {fileID: 0}
-          UIFriendlyClassName: 
-          Description: Make sure to fill in the description, young game maker
-          Icon: {fileID: 0}
-          Attack: 0
-          AttackArea:
-            <First>k__BackingField: 1
-            <Second>k__BackingField: 1
-          movement: 0
-          preference: 0
-          TierLevel: 0
-          GoldCost: 0
-          IronCost: 0
-          MagicGemCost: 0
-          HorseCost: 0
-          HolyTearCost: 0
-          AdamntiumCost: 0
           information: {fileID: 0}
           GrowthDefintion: 7
           Name: 
-          CareerHistory:
-            elements: []
-          divisor: 1000
+          MarketCost: 0
           FieldCost: 10
           threat: 256
           DeathFlag: 0
-          SquadPosition:
-            <First>k__BackingField: 0
-            <Second>k__BackingField: 0
-          UnitAttributes:
+          ThisAttributes:
             elements: []
           Level: 0
           PromotionPoints: 0
@@ -1048,39 +945,21 @@ MonoBehaviour:
           PromotionCap: 0
           ExperienceCap: 0
           MaxTraits: 6
+          UpgradePath: []
     FieldedUnits:
       elements:
-      - value:
-          spriteView: {fileID: 0}
-          UIFriendlyClassName: 
-          Description: Make sure to fill in the description, young game maker
-          Icon: {fileID: 0}
-          Attack: 0
-          AttackArea:
-            <First>k__BackingField: 1
-            <Second>k__BackingField: 1
-          movement: 0
-          preference: 0
-          TierLevel: 0
-          GoldCost: 0
-          IronCost: 0
-          MagicGemCost: 0
-          HorseCost: 0
-          HolyTearCost: 0
-          AdamntiumCost: 0
+      - key:
+          <First>k__BackingField: 0
+          <Second>k__BackingField: 0
+        value:
           information: {fileID: 0}
           GrowthDefintion: 7
           Name: 
-          CareerHistory:
-            elements: []
-          divisor: 1000
+          MarketCost: 0
           FieldCost: 10
           threat: 256
           DeathFlag: 0
-          SquadPosition:
-            <First>k__BackingField: 0
-            <Second>k__BackingField: 0
-          UnitAttributes:
+          ThisAttributes:
             elements: []
           Level: 0
           PromotionPoints: 0
@@ -1089,6 +968,7 @@ MonoBehaviour:
           PromotionCap: 0
           ExperienceCap: 0
           MaxTraits: 6
+          UpgradePath: []
   EntrySide: 0
   moved: 0
   moving: 0
@@ -1247,36 +1127,14 @@ MonoBehaviour:
     MovementType: 0
     MoveSpeed: 6
     Leader:
-      spriteView: {fileID: 0}
-      UIFriendlyClassName: 
-      Description: Make sure to fill in the description, young game maker
-      Icon: {fileID: 0}
-      Attack: 0
-      AttackArea:
-        <First>k__BackingField: 1
-        <Second>k__BackingField: 1
-      movement: 0
-      preference: 0
-      TierLevel: 0
-      GoldCost: 0
-      IronCost: 0
-      MagicGemCost: 0
-      HorseCost: 0
-      HolyTearCost: 0
-      AdamntiumCost: 0
       information: {fileID: 0}
       GrowthDefintion: 7
       Name: 
-      CareerHistory:
-        elements: []
-      divisor: 1000
+      MarketCost: 0
       FieldCost: 10
       threat: 256
       DeathFlag: 0
-      SquadPosition:
-        <First>k__BackingField: 0
-        <Second>k__BackingField: 0
-      UnitAttributes:
+      ThisAttributes:
         elements: []
       Level: 0
       PromotionPoints: 0
@@ -1285,6 +1143,7 @@ MonoBehaviour:
       PromotionCap: 0
       ExperienceCap: 0
       MaxTraits: 6
+      UpgradePath: []
     equipment:
     - Icon: {fileID: 0}
       FlavorText: 
@@ -1298,36 +1157,14 @@ MonoBehaviour:
           <First>k__BackingField: 0
           <Second>k__BackingField: 0
         value:
-          spriteView: {fileID: 0}
-          UIFriendlyClassName: 
-          Description: Make sure to fill in the description, young game maker
-          Icon: {fileID: 0}
-          Attack: 0
-          AttackArea:
-            <First>k__BackingField: 1
-            <Second>k__BackingField: 1
-          movement: 0
-          preference: 0
-          TierLevel: 0
-          GoldCost: 0
-          IronCost: 0
-          MagicGemCost: 0
-          HorseCost: 0
-          HolyTearCost: 0
-          AdamntiumCost: 0
           information: {fileID: 0}
           GrowthDefintion: 7
           Name: 
-          CareerHistory:
-            elements: []
-          divisor: 1000
+          MarketCost: 0
           FieldCost: 10
           threat: 256
           DeathFlag: 0
-          SquadPosition:
-            <First>k__BackingField: 0
-            <Second>k__BackingField: 0
-          UnitAttributes:
+          ThisAttributes:
             elements: []
           Level: 0
           PromotionPoints: 0
@@ -1336,39 +1173,21 @@ MonoBehaviour:
           PromotionCap: 0
           ExperienceCap: 0
           MaxTraits: 6
+          UpgradePath: []
     FieldedUnits:
       elements:
-      - value:
-          spriteView: {fileID: 0}
-          UIFriendlyClassName: 
-          Description: Make sure to fill in the description, young game maker
-          Icon: {fileID: 0}
-          Attack: 0
-          AttackArea:
-            <First>k__BackingField: 1
-            <Second>k__BackingField: 1
-          movement: 0
-          preference: 0
-          TierLevel: 0
-          GoldCost: 0
-          IronCost: 0
-          MagicGemCost: 0
-          HorseCost: 0
-          HolyTearCost: 0
-          AdamntiumCost: 0
+      - key:
+          <First>k__BackingField: 0
+          <Second>k__BackingField: 0
+        value:
           information: {fileID: 0}
           GrowthDefintion: 7
           Name: 
-          CareerHistory:
-            elements: []
-          divisor: 1000
+          MarketCost: 0
           FieldCost: 10
           threat: 256
           DeathFlag: 0
-          SquadPosition:
-            <First>k__BackingField: 0
-            <Second>k__BackingField: 0
-          UnitAttributes:
+          ThisAttributes:
             elements: []
           Level: 0
           PromotionPoints: 0
@@ -1377,6 +1196,7 @@ MonoBehaviour:
           PromotionCap: 0
           ExperienceCap: 0
           MaxTraits: 6
+          UpgradePath: []
   EntrySide: 0
   moved: 0
   moving: 0
@@ -1777,36 +1597,14 @@ MonoBehaviour:
     MovementType: 0
     MoveSpeed: 6
     Leader:
-      spriteView: {fileID: 0}
-      UIFriendlyClassName: 
-      Description: Make sure to fill in the description, young game maker
-      Icon: {fileID: 0}
-      Attack: 0
-      AttackArea:
-        <First>k__BackingField: 1
-        <Second>k__BackingField: 1
-      movement: 0
-      preference: 0
-      TierLevel: 0
-      GoldCost: 0
-      IronCost: 0
-      MagicGemCost: 0
-      HorseCost: 0
-      HolyTearCost: 0
-      AdamntiumCost: 0
       information: {fileID: 0}
       GrowthDefintion: 7
       Name: 
-      CareerHistory:
-        elements: []
-      divisor: 1000
+      MarketCost: 0
       FieldCost: 10
       threat: 256
       DeathFlag: 0
-      SquadPosition:
-        <First>k__BackingField: 0
-        <Second>k__BackingField: 0
-      UnitAttributes:
+      ThisAttributes:
         elements: []
       Level: 0
       PromotionPoints: 0
@@ -1815,6 +1613,7 @@ MonoBehaviour:
       PromotionCap: 0
       ExperienceCap: 0
       MaxTraits: 6
+      UpgradePath: []
     equipment:
     - Icon: {fileID: 0}
       FlavorText: 
@@ -1828,36 +1627,14 @@ MonoBehaviour:
           <First>k__BackingField: 0
           <Second>k__BackingField: 0
         value:
-          spriteView: {fileID: 0}
-          UIFriendlyClassName: 
-          Description: Make sure to fill in the description, young game maker
-          Icon: {fileID: 0}
-          Attack: 0
-          AttackArea:
-            <First>k__BackingField: 1
-            <Second>k__BackingField: 1
-          movement: 0
-          preference: 0
-          TierLevel: 0
-          GoldCost: 0
-          IronCost: 0
-          MagicGemCost: 0
-          HorseCost: 0
-          HolyTearCost: 0
-          AdamntiumCost: 0
           information: {fileID: 0}
           GrowthDefintion: 7
           Name: 
-          CareerHistory:
-            elements: []
-          divisor: 1000
+          MarketCost: 0
           FieldCost: 10
           threat: 256
           DeathFlag: 0
-          SquadPosition:
-            <First>k__BackingField: 0
-            <Second>k__BackingField: 0
-          UnitAttributes:
+          ThisAttributes:
             elements: []
           Level: 0
           PromotionPoints: 0
@@ -1866,39 +1643,21 @@ MonoBehaviour:
           PromotionCap: 0
           ExperienceCap: 0
           MaxTraits: 6
+          UpgradePath: []
     FieldedUnits:
       elements:
-      - value:
-          spriteView: {fileID: 0}
-          UIFriendlyClassName: 
-          Description: Make sure to fill in the description, young game maker
-          Icon: {fileID: 0}
-          Attack: 0
-          AttackArea:
-            <First>k__BackingField: 1
-            <Second>k__BackingField: 1
-          movement: 0
-          preference: 0
-          TierLevel: 0
-          GoldCost: 0
-          IronCost: 0
-          MagicGemCost: 0
-          HorseCost: 0
-          HolyTearCost: 0
-          AdamntiumCost: 0
+      - key:
+          <First>k__BackingField: 0
+          <Second>k__BackingField: 0
+        value:
           information: {fileID: 0}
           GrowthDefintion: 7
           Name: 
-          CareerHistory:
-            elements: []
-          divisor: 1000
+          MarketCost: 0
           FieldCost: 10
           threat: 256
           DeathFlag: 0
-          SquadPosition:
-            <First>k__BackingField: 0
-            <Second>k__BackingField: 0
-          UnitAttributes:
+          ThisAttributes:
             elements: []
           Level: 0
           PromotionPoints: 0
@@ -1907,6 +1666,7 @@ MonoBehaviour:
           PromotionCap: 0
           ExperienceCap: 0
           MaxTraits: 6
+          UpgradePath: []
   EntrySide: 0
   moved: 0
   moving: 0
@@ -2102,36 +1862,14 @@ MonoBehaviour:
     MovementType: 0
     MoveSpeed: 6
     Leader:
-      spriteView: {fileID: 0}
-      UIFriendlyClassName: 
-      Description: Make sure to fill in the description, young game maker
-      Icon: {fileID: 0}
-      Attack: 0
-      AttackArea:
-        <First>k__BackingField: 1
-        <Second>k__BackingField: 1
-      movement: 0
-      preference: 0
-      TierLevel: 0
-      GoldCost: 0
-      IronCost: 0
-      MagicGemCost: 0
-      HorseCost: 0
-      HolyTearCost: 0
-      AdamntiumCost: 0
       information: {fileID: 0}
       GrowthDefintion: 7
       Name: 
-      CareerHistory:
-        elements: []
-      divisor: 1000
+      MarketCost: 0
       FieldCost: 10
       threat: 256
       DeathFlag: 0
-      SquadPosition:
-        <First>k__BackingField: 0
-        <Second>k__BackingField: 0
-      UnitAttributes:
+      ThisAttributes:
         elements: []
       Level: 0
       PromotionPoints: 0
@@ -2140,6 +1878,7 @@ MonoBehaviour:
       PromotionCap: 0
       ExperienceCap: 0
       MaxTraits: 6
+      UpgradePath: []
     equipment:
     - Icon: {fileID: 0}
       FlavorText: 
@@ -2153,36 +1892,14 @@ MonoBehaviour:
           <First>k__BackingField: 0
           <Second>k__BackingField: 0
         value:
-          spriteView: {fileID: 0}
-          UIFriendlyClassName: 
-          Description: Make sure to fill in the description, young game maker
-          Icon: {fileID: 0}
-          Attack: 0
-          AttackArea:
-            <First>k__BackingField: 1
-            <Second>k__BackingField: 1
-          movement: 0
-          preference: 0
-          TierLevel: 0
-          GoldCost: 0
-          IronCost: 0
-          MagicGemCost: 0
-          HorseCost: 0
-          HolyTearCost: 0
-          AdamntiumCost: 0
           information: {fileID: 0}
           GrowthDefintion: 7
           Name: 
-          CareerHistory:
-            elements: []
-          divisor: 1000
+          MarketCost: 0
           FieldCost: 10
           threat: 256
           DeathFlag: 0
-          SquadPosition:
-            <First>k__BackingField: 0
-            <Second>k__BackingField: 0
-          UnitAttributes:
+          ThisAttributes:
             elements: []
           Level: 0
           PromotionPoints: 0
@@ -2191,39 +1908,21 @@ MonoBehaviour:
           PromotionCap: 0
           ExperienceCap: 0
           MaxTraits: 6
+          UpgradePath: []
     FieldedUnits:
       elements:
-      - value:
-          spriteView: {fileID: 0}
-          UIFriendlyClassName: 
-          Description: Make sure to fill in the description, young game maker
-          Icon: {fileID: 0}
-          Attack: 0
-          AttackArea:
-            <First>k__BackingField: 1
-            <Second>k__BackingField: 1
-          movement: 0
-          preference: 0
-          TierLevel: 0
-          GoldCost: 0
-          IronCost: 0
-          MagicGemCost: 0
-          HorseCost: 0
-          HolyTearCost: 0
-          AdamntiumCost: 0
+      - key:
+          <First>k__BackingField: 0
+          <Second>k__BackingField: 0
+        value:
           information: {fileID: 0}
           GrowthDefintion: 7
           Name: 
-          CareerHistory:
-            elements: []
-          divisor: 1000
+          MarketCost: 0
           FieldCost: 10
           threat: 256
           DeathFlag: 0
-          SquadPosition:
-            <First>k__BackingField: 0
-            <Second>k__BackingField: 0
-          UnitAttributes:
+          ThisAttributes:
             elements: []
           Level: 0
           PromotionPoints: 0
@@ -2232,6 +1931,7 @@ MonoBehaviour:
           PromotionCap: 0
           ExperienceCap: 0
           MaxTraits: 6
+          UpgradePath: []
   EntrySide: 0
   moved: 0
   moving: 0
@@ -2349,7 +2049,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &392755400
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4350,36 +4050,14 @@ MonoBehaviour:
     MovementType: 0
     MoveSpeed: 6
     Leader:
-      spriteView: {fileID: 0}
-      UIFriendlyClassName: 
-      Description: Make sure to fill in the description, young game maker
-      Icon: {fileID: 0}
-      Attack: 0
-      AttackArea:
-        <First>k__BackingField: 1
-        <Second>k__BackingField: 1
-      movement: 0
-      preference: 0
-      TierLevel: 0
-      GoldCost: 0
-      IronCost: 0
-      MagicGemCost: 0
-      HorseCost: 0
-      HolyTearCost: 0
-      AdamntiumCost: 0
       information: {fileID: 0}
       GrowthDefintion: 7
       Name: 
-      CareerHistory:
-        elements: []
-      divisor: 1000
+      MarketCost: 0
       FieldCost: 10
       threat: 256
       DeathFlag: 0
-      SquadPosition:
-        <First>k__BackingField: 0
-        <Second>k__BackingField: 0
-      UnitAttributes:
+      ThisAttributes:
         elements: []
       Level: 0
       PromotionPoints: 0
@@ -4388,6 +4066,7 @@ MonoBehaviour:
       PromotionCap: 0
       ExperienceCap: 0
       MaxTraits: 6
+      UpgradePath: []
     equipment:
     - Icon: {fileID: 0}
       FlavorText: 
@@ -4401,36 +4080,14 @@ MonoBehaviour:
           <First>k__BackingField: 0
           <Second>k__BackingField: 0
         value:
-          spriteView: {fileID: 0}
-          UIFriendlyClassName: 
-          Description: Make sure to fill in the description, young game maker
-          Icon: {fileID: 0}
-          Attack: 0
-          AttackArea:
-            <First>k__BackingField: 1
-            <Second>k__BackingField: 1
-          movement: 0
-          preference: 0
-          TierLevel: 0
-          GoldCost: 0
-          IronCost: 0
-          MagicGemCost: 0
-          HorseCost: 0
-          HolyTearCost: 0
-          AdamntiumCost: 0
           information: {fileID: 0}
           GrowthDefintion: 7
           Name: 
-          CareerHistory:
-            elements: []
-          divisor: 1000
+          MarketCost: 0
           FieldCost: 10
           threat: 256
           DeathFlag: 0
-          SquadPosition:
-            <First>k__BackingField: 0
-            <Second>k__BackingField: 0
-          UnitAttributes:
+          ThisAttributes:
             elements: []
           Level: 0
           PromotionPoints: 0
@@ -4439,39 +4096,21 @@ MonoBehaviour:
           PromotionCap: 0
           ExperienceCap: 0
           MaxTraits: 6
+          UpgradePath: []
     FieldedUnits:
       elements:
-      - value:
-          spriteView: {fileID: 0}
-          UIFriendlyClassName: 
-          Description: Make sure to fill in the description, young game maker
-          Icon: {fileID: 0}
-          Attack: 0
-          AttackArea:
-            <First>k__BackingField: 1
-            <Second>k__BackingField: 1
-          movement: 0
-          preference: 0
-          TierLevel: 0
-          GoldCost: 0
-          IronCost: 0
-          MagicGemCost: 0
-          HorseCost: 0
-          HolyTearCost: 0
-          AdamntiumCost: 0
+      - key:
+          <First>k__BackingField: 0
+          <Second>k__BackingField: 0
+        value:
           information: {fileID: 0}
           GrowthDefintion: 7
           Name: 
-          CareerHistory:
-            elements: []
-          divisor: 1000
+          MarketCost: 0
           FieldCost: 10
           threat: 256
           DeathFlag: 0
-          SquadPosition:
-            <First>k__BackingField: 0
-            <Second>k__BackingField: 0
-          UnitAttributes:
+          ThisAttributes:
             elements: []
           Level: 0
           PromotionPoints: 0
@@ -4480,6 +4119,7 @@ MonoBehaviour:
           PromotionCap: 0
           ExperienceCap: 0
           MaxTraits: 6
+          UpgradePath: []
   EntrySide: 0
   moved: 0
   moving: 0
@@ -5895,7 +5535,7 @@ Transform:
   m_GameObject: {fileID: 1033982443}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -6.5, y: -4.5, z: 0.346218}
+  m_LocalPosition: {x: -4.5, y: -4.5, z: 0.346218}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -5925,36 +5565,14 @@ MonoBehaviour:
     MovementType: 0
     MoveSpeed: 6
     Leader:
-      spriteView: {fileID: 0}
-      UIFriendlyClassName: 
-      Description: Make sure to fill in the description, young game maker
-      Icon: {fileID: 0}
-      Attack: 0
-      AttackArea:
-        <First>k__BackingField: 1
-        <Second>k__BackingField: 1
-      movement: 0
-      preference: 0
-      TierLevel: 0
-      GoldCost: 0
-      IronCost: 0
-      MagicGemCost: 0
-      HorseCost: 0
-      HolyTearCost: 0
-      AdamntiumCost: 0
       information: {fileID: 0}
       GrowthDefintion: 7
       Name: 
-      CareerHistory:
-        elements: []
-      divisor: 1000
+      MarketCost: 0
       FieldCost: 10
       threat: 256
       DeathFlag: 0
-      SquadPosition:
-        <First>k__BackingField: 0
-        <Second>k__BackingField: 0
-      UnitAttributes:
+      ThisAttributes:
         elements: []
       Level: 0
       PromotionPoints: 0
@@ -5963,6 +5581,7 @@ MonoBehaviour:
       PromotionCap: 0
       ExperienceCap: 0
       MaxTraits: 6
+      UpgradePath: []
     equipment:
     - Icon: {fileID: 0}
       FlavorText: 
@@ -5976,36 +5595,14 @@ MonoBehaviour:
           <First>k__BackingField: 0
           <Second>k__BackingField: 0
         value:
-          spriteView: {fileID: 0}
-          UIFriendlyClassName: 
-          Description: Make sure to fill in the description, young game maker
-          Icon: {fileID: 0}
-          Attack: 0
-          AttackArea:
-            <First>k__BackingField: 1
-            <Second>k__BackingField: 1
-          movement: 0
-          preference: 0
-          TierLevel: 0
-          GoldCost: 0
-          IronCost: 0
-          MagicGemCost: 0
-          HorseCost: 0
-          HolyTearCost: 0
-          AdamntiumCost: 0
           information: {fileID: 0}
           GrowthDefintion: 7
           Name: 
-          CareerHistory:
-            elements: []
-          divisor: 1000
+          MarketCost: 0
           FieldCost: 10
           threat: 256
           DeathFlag: 0
-          SquadPosition:
-            <First>k__BackingField: 0
-            <Second>k__BackingField: 0
-          UnitAttributes:
+          ThisAttributes:
             elements: []
           Level: 0
           PromotionPoints: 0
@@ -6014,39 +5611,21 @@ MonoBehaviour:
           PromotionCap: 0
           ExperienceCap: 0
           MaxTraits: 6
+          UpgradePath: []
     FieldedUnits:
       elements:
-      - value:
-          spriteView: {fileID: 0}
-          UIFriendlyClassName: 
-          Description: Make sure to fill in the description, young game maker
-          Icon: {fileID: 0}
-          Attack: 0
-          AttackArea:
-            <First>k__BackingField: 1
-            <Second>k__BackingField: 1
-          movement: 0
-          preference: 0
-          TierLevel: 0
-          GoldCost: 0
-          IronCost: 0
-          MagicGemCost: 0
-          HorseCost: 0
-          HolyTearCost: 0
-          AdamntiumCost: 0
+      - key:
+          <First>k__BackingField: 0
+          <Second>k__BackingField: 0
+        value:
           information: {fileID: 0}
           GrowthDefintion: 7
           Name: 
-          CareerHistory:
-            elements: []
-          divisor: 1000
+          MarketCost: 0
           FieldCost: 10
           threat: 256
           DeathFlag: 0
-          SquadPosition:
-            <First>k__BackingField: 0
-            <Second>k__BackingField: 0
-          UnitAttributes:
+          ThisAttributes:
             elements: []
           Level: 0
           PromotionPoints: 0
@@ -6055,6 +5634,7 @@ MonoBehaviour:
           PromotionCap: 0
           ExperienceCap: 0
           MaxTraits: 6
+          UpgradePath: []
   EntrySide: 0
   moved: 0
   moving: 0
@@ -6261,36 +5841,14 @@ MonoBehaviour:
     MovementType: 0
     MoveSpeed: 6
     Leader:
-      spriteView: {fileID: 0}
-      UIFriendlyClassName: 
-      Description: Make sure to fill in the description, young game maker
-      Icon: {fileID: 0}
-      Attack: 0
-      AttackArea:
-        <First>k__BackingField: 1
-        <Second>k__BackingField: 1
-      movement: 0
-      preference: 0
-      TierLevel: 0
-      GoldCost: 0
-      IronCost: 0
-      MagicGemCost: 0
-      HorseCost: 0
-      HolyTearCost: 0
-      AdamntiumCost: 0
       information: {fileID: 0}
       GrowthDefintion: 7
       Name: 
-      CareerHistory:
-        elements: []
-      divisor: 1000
+      MarketCost: 0
       FieldCost: 10
       threat: 256
       DeathFlag: 0
-      SquadPosition:
-        <First>k__BackingField: 0
-        <Second>k__BackingField: 0
-      UnitAttributes:
+      ThisAttributes:
         elements: []
       Level: 0
       PromotionPoints: 0
@@ -6299,6 +5857,7 @@ MonoBehaviour:
       PromotionCap: 0
       ExperienceCap: 0
       MaxTraits: 6
+      UpgradePath: []
     equipment:
     - Icon: {fileID: 0}
       FlavorText: 
@@ -6312,36 +5871,14 @@ MonoBehaviour:
           <First>k__BackingField: 0
           <Second>k__BackingField: 0
         value:
-          spriteView: {fileID: 0}
-          UIFriendlyClassName: 
-          Description: Make sure to fill in the description, young game maker
-          Icon: {fileID: 0}
-          Attack: 0
-          AttackArea:
-            <First>k__BackingField: 1
-            <Second>k__BackingField: 1
-          movement: 0
-          preference: 0
-          TierLevel: 0
-          GoldCost: 0
-          IronCost: 0
-          MagicGemCost: 0
-          HorseCost: 0
-          HolyTearCost: 0
-          AdamntiumCost: 0
           information: {fileID: 0}
           GrowthDefintion: 7
           Name: 
-          CareerHistory:
-            elements: []
-          divisor: 1000
+          MarketCost: 0
           FieldCost: 10
           threat: 256
           DeathFlag: 0
-          SquadPosition:
-            <First>k__BackingField: 0
-            <Second>k__BackingField: 0
-          UnitAttributes:
+          ThisAttributes:
             elements: []
           Level: 0
           PromotionPoints: 0
@@ -6350,39 +5887,21 @@ MonoBehaviour:
           PromotionCap: 0
           ExperienceCap: 0
           MaxTraits: 6
+          UpgradePath: []
     FieldedUnits:
       elements:
-      - value:
-          spriteView: {fileID: 0}
-          UIFriendlyClassName: 
-          Description: Make sure to fill in the description, young game maker
-          Icon: {fileID: 0}
-          Attack: 0
-          AttackArea:
-            <First>k__BackingField: 1
-            <Second>k__BackingField: 1
-          movement: 0
-          preference: 0
-          TierLevel: 0
-          GoldCost: 0
-          IronCost: 0
-          MagicGemCost: 0
-          HorseCost: 0
-          HolyTearCost: 0
-          AdamntiumCost: 0
+      - key:
+          <First>k__BackingField: 0
+          <Second>k__BackingField: 0
+        value:
           information: {fileID: 0}
           GrowthDefintion: 7
           Name: 
-          CareerHistory:
-            elements: []
-          divisor: 1000
+          MarketCost: 0
           FieldCost: 10
           threat: 256
           DeathFlag: 0
-          SquadPosition:
-            <First>k__BackingField: 0
-            <Second>k__BackingField: 0
-          UnitAttributes:
+          ThisAttributes:
             elements: []
           Level: 0
           PromotionPoints: 0
@@ -6391,6 +5910,7 @@ MonoBehaviour:
           PromotionCap: 0
           ExperienceCap: 0
           MaxTraits: 6
+          UpgradePath: []
   EntrySide: 0
   moved: 0
   moving: 0
@@ -6759,36 +6279,14 @@ MonoBehaviour:
     MovementType: 0
     MoveSpeed: 6
     Leader:
-      spriteView: {fileID: 0}
-      UIFriendlyClassName: 
-      Description: Make sure to fill in the description, young game maker
-      Icon: {fileID: 0}
-      Attack: 0
-      AttackArea:
-        <First>k__BackingField: 1
-        <Second>k__BackingField: 1
-      movement: 0
-      preference: 0
-      TierLevel: 0
-      GoldCost: 0
-      IronCost: 0
-      MagicGemCost: 0
-      HorseCost: 0
-      HolyTearCost: 0
-      AdamntiumCost: 0
       information: {fileID: 0}
       GrowthDefintion: 7
       Name: 
-      CareerHistory:
-        elements: []
-      divisor: 1000
+      MarketCost: 0
       FieldCost: 10
       threat: 256
       DeathFlag: 0
-      SquadPosition:
-        <First>k__BackingField: 0
-        <Second>k__BackingField: 0
-      UnitAttributes:
+      ThisAttributes:
         elements: []
       Level: 0
       PromotionPoints: 0
@@ -6797,6 +6295,7 @@ MonoBehaviour:
       PromotionCap: 0
       ExperienceCap: 0
       MaxTraits: 6
+      UpgradePath: []
     equipment:
     - Icon: {fileID: 0}
       FlavorText: 
@@ -6810,36 +6309,14 @@ MonoBehaviour:
           <First>k__BackingField: 0
           <Second>k__BackingField: 0
         value:
-          spriteView: {fileID: 0}
-          UIFriendlyClassName: 
-          Description: Make sure to fill in the description, young game maker
-          Icon: {fileID: 0}
-          Attack: 0
-          AttackArea:
-            <First>k__BackingField: 1
-            <Second>k__BackingField: 1
-          movement: 0
-          preference: 0
-          TierLevel: 0
-          GoldCost: 0
-          IronCost: 0
-          MagicGemCost: 0
-          HorseCost: 0
-          HolyTearCost: 0
-          AdamntiumCost: 0
           information: {fileID: 0}
           GrowthDefintion: 7
           Name: 
-          CareerHistory:
-            elements: []
-          divisor: 1000
+          MarketCost: 0
           FieldCost: 10
           threat: 256
           DeathFlag: 0
-          SquadPosition:
-            <First>k__BackingField: 0
-            <Second>k__BackingField: 0
-          UnitAttributes:
+          ThisAttributes:
             elements: []
           Level: 0
           PromotionPoints: 0
@@ -6848,39 +6325,21 @@ MonoBehaviour:
           PromotionCap: 0
           ExperienceCap: 0
           MaxTraits: 6
+          UpgradePath: []
     FieldedUnits:
       elements:
-      - value:
-          spriteView: {fileID: 0}
-          UIFriendlyClassName: 
-          Description: Make sure to fill in the description, young game maker
-          Icon: {fileID: 0}
-          Attack: 0
-          AttackArea:
-            <First>k__BackingField: 1
-            <Second>k__BackingField: 1
-          movement: 0
-          preference: 0
-          TierLevel: 0
-          GoldCost: 0
-          IronCost: 0
-          MagicGemCost: 0
-          HorseCost: 0
-          HolyTearCost: 0
-          AdamntiumCost: 0
+      - key:
+          <First>k__BackingField: 0
+          <Second>k__BackingField: 0
+        value:
           information: {fileID: 0}
           GrowthDefintion: 7
           Name: 
-          CareerHistory:
-            elements: []
-          divisor: 1000
+          MarketCost: 0
           FieldCost: 10
           threat: 256
           DeathFlag: 0
-          SquadPosition:
-            <First>k__BackingField: 0
-            <Second>k__BackingField: 0
-          UnitAttributes:
+          ThisAttributes:
             elements: []
           Level: 0
           PromotionPoints: 0
@@ -6889,6 +6348,7 @@ MonoBehaviour:
           PromotionCap: 0
           ExperienceCap: 0
           MaxTraits: 6
+          UpgradePath: []
   EntrySide: 0
   moved: 0
   moving: 0
@@ -7200,36 +6660,14 @@ MonoBehaviour:
     MovementType: 0
     MoveSpeed: 6
     Leader:
-      spriteView: {fileID: 0}
-      UIFriendlyClassName: 
-      Description: Make sure to fill in the description, young game maker
-      Icon: {fileID: 0}
-      Attack: 0
-      AttackArea:
-        <First>k__BackingField: 1
-        <Second>k__BackingField: 1
-      movement: 0
-      preference: 0
-      TierLevel: 0
-      GoldCost: 0
-      IronCost: 0
-      MagicGemCost: 0
-      HorseCost: 0
-      HolyTearCost: 0
-      AdamntiumCost: 0
       information: {fileID: 0}
       GrowthDefintion: 7
       Name: 
-      CareerHistory:
-        elements: []
-      divisor: 1000
+      MarketCost: 0
       FieldCost: 10
       threat: 256
       DeathFlag: 0
-      SquadPosition:
-        <First>k__BackingField: 0
-        <Second>k__BackingField: 0
-      UnitAttributes:
+      ThisAttributes:
         elements: []
       Level: 0
       PromotionPoints: 0
@@ -7238,6 +6676,7 @@ MonoBehaviour:
       PromotionCap: 0
       ExperienceCap: 0
       MaxTraits: 6
+      UpgradePath: []
     equipment:
     - Icon: {fileID: 0}
       FlavorText: 
@@ -7251,36 +6690,14 @@ MonoBehaviour:
           <First>k__BackingField: 0
           <Second>k__BackingField: 0
         value:
-          spriteView: {fileID: 0}
-          UIFriendlyClassName: 
-          Description: Make sure to fill in the description, young game maker
-          Icon: {fileID: 0}
-          Attack: 0
-          AttackArea:
-            <First>k__BackingField: 1
-            <Second>k__BackingField: 1
-          movement: 0
-          preference: 0
-          TierLevel: 0
-          GoldCost: 0
-          IronCost: 0
-          MagicGemCost: 0
-          HorseCost: 0
-          HolyTearCost: 0
-          AdamntiumCost: 0
           information: {fileID: 0}
           GrowthDefintion: 7
           Name: 
-          CareerHistory:
-            elements: []
-          divisor: 1000
+          MarketCost: 0
           FieldCost: 10
           threat: 256
           DeathFlag: 0
-          SquadPosition:
-            <First>k__BackingField: 0
-            <Second>k__BackingField: 0
-          UnitAttributes:
+          ThisAttributes:
             elements: []
           Level: 0
           PromotionPoints: 0
@@ -7289,39 +6706,21 @@ MonoBehaviour:
           PromotionCap: 0
           ExperienceCap: 0
           MaxTraits: 6
+          UpgradePath: []
     FieldedUnits:
       elements:
-      - value:
-          spriteView: {fileID: 0}
-          UIFriendlyClassName: 
-          Description: Make sure to fill in the description, young game maker
-          Icon: {fileID: 0}
-          Attack: 0
-          AttackArea:
-            <First>k__BackingField: 1
-            <Second>k__BackingField: 1
-          movement: 0
-          preference: 0
-          TierLevel: 0
-          GoldCost: 0
-          IronCost: 0
-          MagicGemCost: 0
-          HorseCost: 0
-          HolyTearCost: 0
-          AdamntiumCost: 0
+      - key:
+          <First>k__BackingField: 0
+          <Second>k__BackingField: 0
+        value:
           information: {fileID: 0}
           GrowthDefintion: 7
           Name: 
-          CareerHistory:
-            elements: []
-          divisor: 1000
+          MarketCost: 0
           FieldCost: 10
           threat: 256
           DeathFlag: 0
-          SquadPosition:
-            <First>k__BackingField: 0
-            <Second>k__BackingField: 0
-          UnitAttributes:
+          ThisAttributes:
             elements: []
           Level: 0
           PromotionPoints: 0
@@ -7330,6 +6729,7 @@ MonoBehaviour:
           PromotionCap: 0
           ExperienceCap: 0
           MaxTraits: 6
+          UpgradePath: []
   EntrySide: 0
   moved: 0
   moving: 0
@@ -14640,36 +14040,14 @@ MonoBehaviour:
     MovementType: 0
     MoveSpeed: 6
     Leader:
-      spriteView: {fileID: 0}
-      UIFriendlyClassName: 
-      Description: Make sure to fill in the description, young game maker
-      Icon: {fileID: 0}
-      Attack: 0
-      AttackArea:
-        <First>k__BackingField: 1
-        <Second>k__BackingField: 1
-      movement: 0
-      preference: 0
-      TierLevel: 0
-      GoldCost: 0
-      IronCost: 0
-      MagicGemCost: 0
-      HorseCost: 0
-      HolyTearCost: 0
-      AdamntiumCost: 0
       information: {fileID: 0}
       GrowthDefintion: 7
       Name: 
-      CareerHistory:
-        elements: []
-      divisor: 1000
+      MarketCost: 0
       FieldCost: 10
       threat: 256
       DeathFlag: 0
-      SquadPosition:
-        <First>k__BackingField: 0
-        <Second>k__BackingField: 0
-      UnitAttributes:
+      ThisAttributes:
         elements: []
       Level: 0
       PromotionPoints: 0
@@ -14678,6 +14056,7 @@ MonoBehaviour:
       PromotionCap: 0
       ExperienceCap: 0
       MaxTraits: 6
+      UpgradePath: []
     equipment:
     - Icon: {fileID: 0}
       FlavorText: 
@@ -14691,36 +14070,14 @@ MonoBehaviour:
           <First>k__BackingField: 0
           <Second>k__BackingField: 0
         value:
-          spriteView: {fileID: 0}
-          UIFriendlyClassName: 
-          Description: Make sure to fill in the description, young game maker
-          Icon: {fileID: 0}
-          Attack: 0
-          AttackArea:
-            <First>k__BackingField: 1
-            <Second>k__BackingField: 1
-          movement: 0
-          preference: 0
-          TierLevel: 0
-          GoldCost: 0
-          IronCost: 0
-          MagicGemCost: 0
-          HorseCost: 0
-          HolyTearCost: 0
-          AdamntiumCost: 0
           information: {fileID: 0}
           GrowthDefintion: 7
           Name: 
-          CareerHistory:
-            elements: []
-          divisor: 1000
+          MarketCost: 0
           FieldCost: 10
           threat: 256
           DeathFlag: 0
-          SquadPosition:
-            <First>k__BackingField: 0
-            <Second>k__BackingField: 0
-          UnitAttributes:
+          ThisAttributes:
             elements: []
           Level: 0
           PromotionPoints: 0
@@ -14729,39 +14086,21 @@ MonoBehaviour:
           PromotionCap: 0
           ExperienceCap: 0
           MaxTraits: 6
+          UpgradePath: []
     FieldedUnits:
       elements:
-      - value:
-          spriteView: {fileID: 0}
-          UIFriendlyClassName: 
-          Description: Make sure to fill in the description, young game maker
-          Icon: {fileID: 0}
-          Attack: 0
-          AttackArea:
-            <First>k__BackingField: 1
-            <Second>k__BackingField: 1
-          movement: 0
-          preference: 0
-          TierLevel: 0
-          GoldCost: 0
-          IronCost: 0
-          MagicGemCost: 0
-          HorseCost: 0
-          HolyTearCost: 0
-          AdamntiumCost: 0
+      - key:
+          <First>k__BackingField: 0
+          <Second>k__BackingField: 0
+        value:
           information: {fileID: 0}
           GrowthDefintion: 7
           Name: 
-          CareerHistory:
-            elements: []
-          divisor: 1000
+          MarketCost: 0
           FieldCost: 10
           threat: 256
           DeathFlag: 0
-          SquadPosition:
-            <First>k__BackingField: 0
-            <Second>k__BackingField: 0
-          UnitAttributes:
+          ThisAttributes:
             elements: []
           Level: 0
           PromotionPoints: 0
@@ -14770,6 +14109,7 @@ MonoBehaviour:
           PromotionCap: 0
           ExperienceCap: 0
           MaxTraits: 6
+          UpgradePath: []
   EntrySide: 0
   moved: 0
   moving: 0
@@ -15292,36 +14632,14 @@ MonoBehaviour:
     MovementType: 0
     MoveSpeed: 6
     Leader:
-      spriteView: {fileID: 0}
-      UIFriendlyClassName: 
-      Description: Make sure to fill in the description, young game maker
-      Icon: {fileID: 0}
-      Attack: 0
-      AttackArea:
-        <First>k__BackingField: 1
-        <Second>k__BackingField: 1
-      movement: 0
-      preference: 0
-      TierLevel: 0
-      GoldCost: 0
-      IronCost: 0
-      MagicGemCost: 0
-      HorseCost: 0
-      HolyTearCost: 0
-      AdamntiumCost: 0
       information: {fileID: 0}
       GrowthDefintion: 7
       Name: 
-      CareerHistory:
-        elements: []
-      divisor: 1000
+      MarketCost: 0
       FieldCost: 10
       threat: 256
       DeathFlag: 0
-      SquadPosition:
-        <First>k__BackingField: 0
-        <Second>k__BackingField: 0
-      UnitAttributes:
+      ThisAttributes:
         elements: []
       Level: 0
       PromotionPoints: 0
@@ -15330,6 +14648,7 @@ MonoBehaviour:
       PromotionCap: 0
       ExperienceCap: 0
       MaxTraits: 6
+      UpgradePath: []
     equipment:
     - Icon: {fileID: 0}
       FlavorText: 
@@ -15343,36 +14662,14 @@ MonoBehaviour:
           <First>k__BackingField: 0
           <Second>k__BackingField: 0
         value:
-          spriteView: {fileID: 0}
-          UIFriendlyClassName: 
-          Description: Make sure to fill in the description, young game maker
-          Icon: {fileID: 0}
-          Attack: 0
-          AttackArea:
-            <First>k__BackingField: 1
-            <Second>k__BackingField: 1
-          movement: 0
-          preference: 0
-          TierLevel: 0
-          GoldCost: 0
-          IronCost: 0
-          MagicGemCost: 0
-          HorseCost: 0
-          HolyTearCost: 0
-          AdamntiumCost: 0
           information: {fileID: 0}
           GrowthDefintion: 7
           Name: 
-          CareerHistory:
-            elements: []
-          divisor: 1000
+          MarketCost: 0
           FieldCost: 10
           threat: 256
           DeathFlag: 0
-          SquadPosition:
-            <First>k__BackingField: 0
-            <Second>k__BackingField: 0
-          UnitAttributes:
+          ThisAttributes:
             elements: []
           Level: 0
           PromotionPoints: 0
@@ -15381,39 +14678,21 @@ MonoBehaviour:
           PromotionCap: 0
           ExperienceCap: 0
           MaxTraits: 6
+          UpgradePath: []
     FieldedUnits:
       elements:
-      - value:
-          spriteView: {fileID: 0}
-          UIFriendlyClassName: 
-          Description: Make sure to fill in the description, young game maker
-          Icon: {fileID: 0}
-          Attack: 0
-          AttackArea:
-            <First>k__BackingField: 1
-            <Second>k__BackingField: 1
-          movement: 0
-          preference: 0
-          TierLevel: 0
-          GoldCost: 0
-          IronCost: 0
-          MagicGemCost: 0
-          HorseCost: 0
-          HolyTearCost: 0
-          AdamntiumCost: 0
+      - key:
+          <First>k__BackingField: 0
+          <Second>k__BackingField: 0
+        value:
           information: {fileID: 0}
           GrowthDefintion: 7
           Name: 
-          CareerHistory:
-            elements: []
-          divisor: 1000
+          MarketCost: 0
           FieldCost: 10
           threat: 256
           DeathFlag: 0
-          SquadPosition:
-            <First>k__BackingField: 0
-            <Second>k__BackingField: 0
-          UnitAttributes:
+          ThisAttributes:
             elements: []
           Level: 0
           PromotionPoints: 0
@@ -15422,6 +14701,7 @@ MonoBehaviour:
           PromotionCap: 0
           ExperienceCap: 0
           MaxTraits: 6
+          UpgradePath: []
   EntrySide: 0
   moved: 0
   moving: 0
@@ -16857,36 +16137,14 @@ MonoBehaviour:
     MovementType: 0
     MoveSpeed: 6
     Leader:
-      spriteView: {fileID: 0}
-      UIFriendlyClassName: 
-      Description: Make sure to fill in the description, young game maker
-      Icon: {fileID: 0}
-      Attack: 0
-      AttackArea:
-        <First>k__BackingField: 1
-        <Second>k__BackingField: 1
-      movement: 0
-      preference: 0
-      TierLevel: 0
-      GoldCost: 0
-      IronCost: 0
-      MagicGemCost: 0
-      HorseCost: 0
-      HolyTearCost: 0
-      AdamntiumCost: 0
       information: {fileID: 0}
       GrowthDefintion: 7
       Name: 
-      CareerHistory:
-        elements: []
-      divisor: 1000
+      MarketCost: 0
       FieldCost: 10
       threat: 256
       DeathFlag: 0
-      SquadPosition:
-        <First>k__BackingField: 0
-        <Second>k__BackingField: 0
-      UnitAttributes:
+      ThisAttributes:
         elements: []
       Level: 0
       PromotionPoints: 0
@@ -16895,6 +16153,7 @@ MonoBehaviour:
       PromotionCap: 0
       ExperienceCap: 0
       MaxTraits: 6
+      UpgradePath: []
     equipment:
     - Icon: {fileID: 0}
       FlavorText: 
@@ -16908,36 +16167,14 @@ MonoBehaviour:
           <First>k__BackingField: 0
           <Second>k__BackingField: 0
         value:
-          spriteView: {fileID: 0}
-          UIFriendlyClassName: 
-          Description: Make sure to fill in the description, young game maker
-          Icon: {fileID: 0}
-          Attack: 0
-          AttackArea:
-            <First>k__BackingField: 1
-            <Second>k__BackingField: 1
-          movement: 0
-          preference: 0
-          TierLevel: 0
-          GoldCost: 0
-          IronCost: 0
-          MagicGemCost: 0
-          HorseCost: 0
-          HolyTearCost: 0
-          AdamntiumCost: 0
           information: {fileID: 0}
           GrowthDefintion: 7
           Name: 
-          CareerHistory:
-            elements: []
-          divisor: 1000
+          MarketCost: 0
           FieldCost: 10
           threat: 256
           DeathFlag: 0
-          SquadPosition:
-            <First>k__BackingField: 0
-            <Second>k__BackingField: 0
-          UnitAttributes:
+          ThisAttributes:
             elements: []
           Level: 0
           PromotionPoints: 0
@@ -16946,39 +16183,21 @@ MonoBehaviour:
           PromotionCap: 0
           ExperienceCap: 0
           MaxTraits: 6
+          UpgradePath: []
     FieldedUnits:
       elements:
-      - value:
-          spriteView: {fileID: 0}
-          UIFriendlyClassName: 
-          Description: Make sure to fill in the description, young game maker
-          Icon: {fileID: 0}
-          Attack: 0
-          AttackArea:
-            <First>k__BackingField: 1
-            <Second>k__BackingField: 1
-          movement: 0
-          preference: 0
-          TierLevel: 0
-          GoldCost: 0
-          IronCost: 0
-          MagicGemCost: 0
-          HorseCost: 0
-          HolyTearCost: 0
-          AdamntiumCost: 0
+      - key:
+          <First>k__BackingField: 0
+          <Second>k__BackingField: 0
+        value:
           information: {fileID: 0}
           GrowthDefintion: 7
           Name: 
-          CareerHistory:
-            elements: []
-          divisor: 1000
+          MarketCost: 0
           FieldCost: 10
           threat: 256
           DeathFlag: 0
-          SquadPosition:
-            <First>k__BackingField: 0
-            <Second>k__BackingField: 0
-          UnitAttributes:
+          ThisAttributes:
             elements: []
           Level: 0
           PromotionPoints: 0
@@ -16987,6 +16206,7 @@ MonoBehaviour:
           PromotionCap: 0
           ExperienceCap: 0
           MaxTraits: 6
+          UpgradePath: []
   EntrySide: 0
   moved: 0
   moving: 0
@@ -19924,36 +19144,14 @@ MonoBehaviour:
     MovementType: 0
     MoveSpeed: 6
     Leader:
-      spriteView: {fileID: 0}
-      UIFriendlyClassName: 
-      Description: Make sure to fill in the description, young game maker
-      Icon: {fileID: 0}
-      Attack: 0
-      AttackArea:
-        <First>k__BackingField: 1
-        <Second>k__BackingField: 1
-      movement: 0
-      preference: 0
-      TierLevel: 0
-      GoldCost: 0
-      IronCost: 0
-      MagicGemCost: 0
-      HorseCost: 0
-      HolyTearCost: 0
-      AdamntiumCost: 0
       information: {fileID: 0}
       GrowthDefintion: 7
       Name: 
-      CareerHistory:
-        elements: []
-      divisor: 1000
+      MarketCost: 0
       FieldCost: 10
       threat: 256
       DeathFlag: 0
-      SquadPosition:
-        <First>k__BackingField: 0
-        <Second>k__BackingField: 0
-      UnitAttributes:
+      ThisAttributes:
         elements: []
       Level: 0
       PromotionPoints: 0
@@ -19962,6 +19160,7 @@ MonoBehaviour:
       PromotionCap: 0
       ExperienceCap: 0
       MaxTraits: 6
+      UpgradePath: []
     equipment:
     - Icon: {fileID: 0}
       FlavorText: 
@@ -19975,36 +19174,14 @@ MonoBehaviour:
           <First>k__BackingField: 0
           <Second>k__BackingField: 0
         value:
-          spriteView: {fileID: 0}
-          UIFriendlyClassName: 
-          Description: Make sure to fill in the description, young game maker
-          Icon: {fileID: 0}
-          Attack: 0
-          AttackArea:
-            <First>k__BackingField: 1
-            <Second>k__BackingField: 1
-          movement: 0
-          preference: 0
-          TierLevel: 0
-          GoldCost: 0
-          IronCost: 0
-          MagicGemCost: 0
-          HorseCost: 0
-          HolyTearCost: 0
-          AdamntiumCost: 0
           information: {fileID: 0}
           GrowthDefintion: 7
           Name: 
-          CareerHistory:
-            elements: []
-          divisor: 1000
+          MarketCost: 0
           FieldCost: 10
           threat: 256
           DeathFlag: 0
-          SquadPosition:
-            <First>k__BackingField: 0
-            <Second>k__BackingField: 0
-          UnitAttributes:
+          ThisAttributes:
             elements: []
           Level: 0
           PromotionPoints: 0
@@ -20013,39 +19190,21 @@ MonoBehaviour:
           PromotionCap: 0
           ExperienceCap: 0
           MaxTraits: 6
+          UpgradePath: []
     FieldedUnits:
       elements:
-      - value:
-          spriteView: {fileID: 0}
-          UIFriendlyClassName: 
-          Description: Make sure to fill in the description, young game maker
-          Icon: {fileID: 0}
-          Attack: 0
-          AttackArea:
-            <First>k__BackingField: 1
-            <Second>k__BackingField: 1
-          movement: 0
-          preference: 0
-          TierLevel: 0
-          GoldCost: 0
-          IronCost: 0
-          MagicGemCost: 0
-          HorseCost: 0
-          HolyTearCost: 0
-          AdamntiumCost: 0
+      - key:
+          <First>k__BackingField: 0
+          <Second>k__BackingField: 0
+        value:
           information: {fileID: 0}
           GrowthDefintion: 7
           Name: 
-          CareerHistory:
-            elements: []
-          divisor: 1000
+          MarketCost: 0
           FieldCost: 10
           threat: 256
           DeathFlag: 0
-          SquadPosition:
-            <First>k__BackingField: 0
-            <Second>k__BackingField: 0
-          UnitAttributes:
+          ThisAttributes:
             elements: []
           Level: 0
           PromotionPoints: 0
@@ -20054,6 +19213,7 @@ MonoBehaviour:
           PromotionCap: 0
           ExperienceCap: 0
           MaxTraits: 6
+          UpgradePath: []
   EntrySide: 0
   moved: 0
   moving: 0
@@ -20587,36 +19747,14 @@ MonoBehaviour:
     MovementType: 0
     MoveSpeed: 6
     Leader:
-      spriteView: {fileID: 0}
-      UIFriendlyClassName: 
-      Description: Make sure to fill in the description, young game maker
-      Icon: {fileID: 0}
-      Attack: 0
-      AttackArea:
-        <First>k__BackingField: 1
-        <Second>k__BackingField: 1
-      movement: 0
-      preference: 0
-      TierLevel: 0
-      GoldCost: 0
-      IronCost: 0
-      MagicGemCost: 0
-      HorseCost: 0
-      HolyTearCost: 0
-      AdamntiumCost: 0
       information: {fileID: 0}
       GrowthDefintion: 7
       Name: 
-      CareerHistory:
-        elements: []
-      divisor: 1000
+      MarketCost: 0
       FieldCost: 10
       threat: 256
       DeathFlag: 0
-      SquadPosition:
-        <First>k__BackingField: 0
-        <Second>k__BackingField: 0
-      UnitAttributes:
+      ThisAttributes:
         elements: []
       Level: 0
       PromotionPoints: 0
@@ -20625,6 +19763,7 @@ MonoBehaviour:
       PromotionCap: 0
       ExperienceCap: 0
       MaxTraits: 6
+      UpgradePath: []
     equipment:
     - Icon: {fileID: 0}
       FlavorText: 
@@ -20638,36 +19777,14 @@ MonoBehaviour:
           <First>k__BackingField: 0
           <Second>k__BackingField: 0
         value:
-          spriteView: {fileID: 0}
-          UIFriendlyClassName: 
-          Description: Make sure to fill in the description, young game maker
-          Icon: {fileID: 0}
-          Attack: 0
-          AttackArea:
-            <First>k__BackingField: 1
-            <Second>k__BackingField: 1
-          movement: 0
-          preference: 0
-          TierLevel: 0
-          GoldCost: 0
-          IronCost: 0
-          MagicGemCost: 0
-          HorseCost: 0
-          HolyTearCost: 0
-          AdamntiumCost: 0
           information: {fileID: 0}
           GrowthDefintion: 7
           Name: 
-          CareerHistory:
-            elements: []
-          divisor: 1000
+          MarketCost: 0
           FieldCost: 10
           threat: 256
           DeathFlag: 0
-          SquadPosition:
-            <First>k__BackingField: 0
-            <Second>k__BackingField: 0
-          UnitAttributes:
+          ThisAttributes:
             elements: []
           Level: 0
           PromotionPoints: 0
@@ -20676,39 +19793,21 @@ MonoBehaviour:
           PromotionCap: 0
           ExperienceCap: 0
           MaxTraits: 6
+          UpgradePath: []
     FieldedUnits:
       elements:
-      - value:
-          spriteView: {fileID: 0}
-          UIFriendlyClassName: 
-          Description: Make sure to fill in the description, young game maker
-          Icon: {fileID: 0}
-          Attack: 0
-          AttackArea:
-            <First>k__BackingField: 1
-            <Second>k__BackingField: 1
-          movement: 0
-          preference: 0
-          TierLevel: 0
-          GoldCost: 0
-          IronCost: 0
-          MagicGemCost: 0
-          HorseCost: 0
-          HolyTearCost: 0
-          AdamntiumCost: 0
+      - key:
+          <First>k__BackingField: 0
+          <Second>k__BackingField: 0
+        value:
           information: {fileID: 0}
           GrowthDefintion: 7
           Name: 
-          CareerHistory:
-            elements: []
-          divisor: 1000
+          MarketCost: 0
           FieldCost: 10
           threat: 256
           DeathFlag: 0
-          SquadPosition:
-            <First>k__BackingField: 0
-            <Second>k__BackingField: 0
-          UnitAttributes:
+          ThisAttributes:
             elements: []
           Level: 0
           PromotionPoints: 0
@@ -20717,6 +19816,7 @@ MonoBehaviour:
           PromotionCap: 0
           ExperienceCap: 0
           MaxTraits: 6
+          UpgradePath: []
   EntrySide: 0
   moved: 0
   moving: 0
@@ -21061,36 +20161,14 @@ MonoBehaviour:
     MovementType: 0
     MoveSpeed: 6
     Leader:
-      spriteView: {fileID: 0}
-      UIFriendlyClassName: 
-      Description: Make sure to fill in the description, young game maker
-      Icon: {fileID: 0}
-      Attack: 0
-      AttackArea:
-        <First>k__BackingField: 1
-        <Second>k__BackingField: 1
-      movement: 0
-      preference: 0
-      TierLevel: 0
-      GoldCost: 0
-      IronCost: 0
-      MagicGemCost: 0
-      HorseCost: 0
-      HolyTearCost: 0
-      AdamntiumCost: 0
       information: {fileID: 0}
       GrowthDefintion: 7
       Name: 
-      CareerHistory:
-        elements: []
-      divisor: 1000
+      MarketCost: 0
       FieldCost: 10
       threat: 256
       DeathFlag: 0
-      SquadPosition:
-        <First>k__BackingField: 0
-        <Second>k__BackingField: 0
-      UnitAttributes:
+      ThisAttributes:
         elements: []
       Level: 0
       PromotionPoints: 0
@@ -21099,6 +20177,7 @@ MonoBehaviour:
       PromotionCap: 0
       ExperienceCap: 0
       MaxTraits: 6
+      UpgradePath: []
     equipment:
     - Icon: {fileID: 0}
       FlavorText: 
@@ -21112,36 +20191,14 @@ MonoBehaviour:
           <First>k__BackingField: 0
           <Second>k__BackingField: 0
         value:
-          spriteView: {fileID: 0}
-          UIFriendlyClassName: 
-          Description: Make sure to fill in the description, young game maker
-          Icon: {fileID: 0}
-          Attack: 0
-          AttackArea:
-            <First>k__BackingField: 1
-            <Second>k__BackingField: 1
-          movement: 0
-          preference: 0
-          TierLevel: 0
-          GoldCost: 0
-          IronCost: 0
-          MagicGemCost: 0
-          HorseCost: 0
-          HolyTearCost: 0
-          AdamntiumCost: 0
           information: {fileID: 0}
           GrowthDefintion: 7
           Name: 
-          CareerHistory:
-            elements: []
-          divisor: 1000
+          MarketCost: 0
           FieldCost: 10
           threat: 256
           DeathFlag: 0
-          SquadPosition:
-            <First>k__BackingField: 0
-            <Second>k__BackingField: 0
-          UnitAttributes:
+          ThisAttributes:
             elements: []
           Level: 0
           PromotionPoints: 0
@@ -21150,39 +20207,21 @@ MonoBehaviour:
           PromotionCap: 0
           ExperienceCap: 0
           MaxTraits: 6
+          UpgradePath: []
     FieldedUnits:
       elements:
-      - value:
-          spriteView: {fileID: 0}
-          UIFriendlyClassName: 
-          Description: Make sure to fill in the description, young game maker
-          Icon: {fileID: 0}
-          Attack: 0
-          AttackArea:
-            <First>k__BackingField: 1
-            <Second>k__BackingField: 1
-          movement: 0
-          preference: 0
-          TierLevel: 0
-          GoldCost: 0
-          IronCost: 0
-          MagicGemCost: 0
-          HorseCost: 0
-          HolyTearCost: 0
-          AdamntiumCost: 0
+      - key:
+          <First>k__BackingField: 0
+          <Second>k__BackingField: 0
+        value:
           information: {fileID: 0}
           GrowthDefintion: 7
           Name: 
-          CareerHistory:
-            elements: []
-          divisor: 1000
+          MarketCost: 0
           FieldCost: 10
           threat: 256
           DeathFlag: 0
-          SquadPosition:
-            <First>k__BackingField: 0
-            <Second>k__BackingField: 0
-          UnitAttributes:
+          ThisAttributes:
             elements: []
           Level: 0
           PromotionPoints: 0
@@ -21191,6 +20230,7 @@ MonoBehaviour:
           PromotionCap: 0
           ExperienceCap: 0
           MaxTraits: 6
+          UpgradePath: []
   EntrySide: 0
   moved: 0
   moving: 0

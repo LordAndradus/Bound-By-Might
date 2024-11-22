@@ -57,7 +57,7 @@ public class CombatGridSystem
     public GameObject CreateWorldSquad(Squad squad, Controller controller, int x, int y)
     {
         GameObject WorldSquad = UtilityClass.CreatePrefabObject("Assets/PreFabs/Main Game/SquadEntity.prefab", controller.transform, squad.Name +"_World_Squad");
-        WorldSquad.GetComponent<SpriteRenderer>().sprite = squad.RetrieveLeader().Icon;
+        WorldSquad.GetComponent<SpriteRenderer>().sprite = squad.RetrieveLeader().Icon();
         WorldSquad.SetActive(true);
 
         SquadMovementHandler smh = WorldSquad.GetComponent<SquadMovementHandler>();
@@ -194,19 +194,21 @@ public class CombatGridSystem
             return false;
         }
 
-        //Check if the NeighborTile is within the AttackVector bounds
-        Pair<int, int> NeighborCoordinate = new(NeighborTile.First, NeighborTile.Second);
-        InCoordinate = attacking.GetAttackCoordinates().Any((coordinate) => {
-            return coordinate.equals(NeighborCoordinate);
+        //Check if the NeighborTile is a valid move, or if it's the same position
+        InCoordinate = attacking.GetValidCoordinates().Any((coordinate) => {
+            return coordinate.equals(NeighborTile);
         });
 
-        if(!InCoordinate) InCoordinate = CurrentCoordinate.equals(NeighborCoordinate);
+        if(!InCoordinate) InCoordinate = CurrentCoordinate.equals(NeighborTile);
 
         if(!InCoordinate)
         {
             Debug.LogError("The controller tried to attack outside of the Attack Vector bounds" +
             "\nController = " + attacking.GetController().ToString() +
             "\nEntry Side = " + attacked.EntrySide.ToString());
+
+            Debug.LogError("Neighbor Tile: " + NeighborTile + "\nAttack Side: " + attacked.EntrySide);
+
             return false;
         }
 

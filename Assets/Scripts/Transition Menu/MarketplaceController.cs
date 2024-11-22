@@ -146,20 +146,20 @@ public void UpdateUnitRoster()
             Debug.Log("Set this to be the active object");
             EventSystem.current.SetSelectedGameObject(element);
             DisplayUnit.AssignUnit(UnitCost.First);
-            AdditionalInfo.text = UnitCost.First.Description;
+            AdditionalInfo.text = UnitCost.First.Description();
         };
 
         text[0].text = UnitCost.First.Name;
         text[1].text = UnitCost.Second.ToString();
 
-        if(UnitCost.First.Icon == null) spriteIcon.sprite = Resources.Load<Sprite>(GlobalSettings.DefaultUnitSpriteIcon);
-        else spriteIcon.sprite = UnitCost.First.Icon;
+        if(UnitCost.First.Icon() == null) spriteIcon.sprite = Resources.Load<Sprite>(GlobalSettings.DefaultUnitSpriteIcon);
+        else spriteIcon.sprite = UnitCost.First.Icon();
         
         ElementTracker++;
     }
 
     DisplayUnit.AssignUnit(UnitsToEnlist[0].First);
-    AdditionalInfo.text = UnitsToEnlist[0].First.Description;
+    AdditionalInfo.text = UnitsToEnlist[0].First.Description();
 }
 
 void PurchaseAction(Pair<Unit, int> pair)

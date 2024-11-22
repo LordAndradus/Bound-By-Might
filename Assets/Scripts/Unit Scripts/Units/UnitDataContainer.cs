@@ -28,14 +28,14 @@ public class UnitDataContainer : ScriptableObject
     public int MagicGemCost = 1;
     public int HorseCost = 0;
     public int HolyTearCost = 0;
-    public int AdamntiumCost = 0;
+    public int AdamantiumCost = 0;
     
 
     [Header("Attribute Scores")]
-    public AttributeScore HP, MaxHP;
-    public AttributeScore Armor, Weapon;
-    public AttributeScore Strength;
-    public AttributeScore Agility;
-    public AttributeScore Magic;
-    public AttributeScore Leadership;
+    public AttributeScore HP = new(), MaxHP = new();
+    public AttributeScore Armor = new(), Weapon = new();
+    public AttributeScore Strength = new();
+    public AttributeScore Agility = new();
+    public AttributeScore Magic = new();
+    public AttributeScore Leadership = new();
 }

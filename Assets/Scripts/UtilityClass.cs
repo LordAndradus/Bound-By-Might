@@ -189,7 +189,14 @@ public static class UtilityClass
 
         path = Path.Combine(Path.GetDirectoryName(path), Path.GetFileNameWithoutExtension(path));
 
-        return Resources.Load<T>(path);
+        T data = Resources.Load<T>(path);
+
+        if(data == null)
+        {
+            throw new SystemException("Loaded data is not present!");
+        }
+
+        return data;
     }
 
     public static GameObject GetHoverObject(string tag = null)

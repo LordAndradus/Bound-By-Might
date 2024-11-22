@@ -5,8 +5,10 @@ using UnityEngine;
 
 public class Squire : Unit
 {
-    public Squire()
+    public Squire() : base() {}
+
+    private protected override void GetInformation()
     {
-        information = UtilityClass.Load<UnitDataContainer>("Assets/Resources/Data Containers/Tier 1/Squire.asset");
+        information = UnitLoader.AssetBundle[typeof(Squire)];
     }
 }

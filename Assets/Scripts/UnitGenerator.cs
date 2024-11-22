@@ -6,21 +6,26 @@ using UnityEngine;
 
 public class UnitGenerator : MonoBehaviour
 {
-    public static Unit generate<T>() where T : Unit, new()
+    public static Unit generate<T>(bool merc = false) where T : Unit, new()
     {
         UnitFactory uf = new();
 
-        Unit u = uf.get<T>(false);
+        Unit u = uf.get<T>();
+
+        u.InitializeUnit();
 
         AssignUnitQualities(u);
 
         return u;
     }
-    public static Unit generate()
+
+    public static Unit generate(bool merc = false)
     {
         UnitFactory uf = new();
 
-        Unit u = uf.get(false);
+        Unit u = uf.get(merc);
+
+        u.InitializeUnit();
         
         AssignUnitQualities(u);
 
@@ -39,11 +44,7 @@ public class UnitGenerator : MonoBehaviour
             do{
                 pair = new Pair<int, int>(UnityEngine.Random.Range(0, 3), UnityEngine.Random.Range(0, 3));
 
-                bool AlreadyFielded = false;
-                foreach(var ugp in generic.RetrieveUnitPairs())
-                {
-                    if(ugp.Second.Equals(pair)) AlreadyFielded = true;
-                }
+                bool AlreadyFielded = generic.RetrieveUnitFromPosition(pair) != null;
 
                 if(AlreadyFielded) continue;
                 
@@ -54,6 +55,7 @@ public class UnitGenerator : MonoBehaviour
             {
                 generic.Name = u.Name + "'s Squad";
                 generic.CreateNewSquad(u);
+                continue;
             }
 
             generic.FieldUnit(u, pair);
@@ -90,14 +92,6 @@ public class UnitGenerator : MonoBehaviour
 
             traits.Add(t);
         }
-
-        List<AttributeType> attributes = new(u.ThisAttributes.Keys);
-
-        foreach(AttributeType aType in attributes)
-        {
-            Pair<int, int> range = u.ThisAttributes[aType].GetGenerationRange();
-            u.ThisAttributes[aType] += UnityEngine.Random.Range(range.First, range.Second);
-        }
     }
 
     public static Unit generateMerc()
@@ -105,6 +99,7 @@ public class UnitGenerator : MonoBehaviour
         UnitFactory uf = new();
 
         Unit u = uf.get(true);
+        u.InitializeUnit();
 
         AssignUnitQualities(u);
 
@@ -177,7 +172,7 @@ class UnitFactory
         list.AddRange(classes);
     }
 
-    public Unit get<T>(bool merc) where T : Unit, new()
+    public Unit get<T>(bool merc = false) where T : Unit, new()
     {
         Unit u;
         if(merc) u = Mercenaries[random.Next(Mercenaries.Count)]();
@@ -188,7 +183,7 @@ class UnitFactory
         return u;
     }
 
-    public Unit get(bool merc)
+    public Unit get(bool merc = false)
     {
         List<Func<Unit>> list = merc ? Mercenaries : Novice;
 

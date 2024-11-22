@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Unity.VisualScripting;
 using UnityEngine;
 
 /* TODO
@@ -14,7 +15,6 @@ public class Unit
 {
     [Header("Unit Information")]
     [SerializeField] private protected UnitDataContainer information;
-    public UnitDataContainer GetInformation() { return information; }
     public GrowthType GrowthDefintion;
     public string Name;
 
@@ -22,9 +22,11 @@ public class Unit
     [SerializeField] public List<Snapshot> CareerHistory = new();
     private int numerator = 5001;
     private float divisor = 1000;
+    [SerializeField] public int MarketCost = 0;
     [SerializeField] public int FieldCost = 10; //Depends on Traits. 12 if Merc, to 8 if Loyal
     [SerializeField] public int threat = 256;
     [SerializeField] public bool DeathFlag = false;
+    [SerializeField] public bool InvalidBit = true;
 
     [Header("Attribute Dictionary")]
     public SerializableDictionary<AttributeType, AttributeScore> ThisAttributes;
@@ -56,7 +58,16 @@ public class Unit
 
     public Unit() 
     {
+        //InitializeUnit();
+    }
+
+    public void InitializeUnit()
+    {
+        GetInformation();
+        ThisAttributes = new();
         SetAttributes();
+
+        InvalidBit = false;
 
         ExperienceCap = 500 * information.TierLevel;
 
@@ -80,8 +91,18 @@ public class Unit
         }
     }
 
+    private protected virtual void GetInformation() 
+    {
+        if(information == null) information = UnitLoader.AssetBundle[typeof(Apothecary)];
+    }
+
     private protected virtual void SetAttributes()
     {
+        if(information == null)
+        {
+            throw new SystemException("Information must not be empty!");
+        }
+
         ThisAttributes = new()
         {
             {AttributeType.MaxHP, new(information.MaxHP)},
@@ -95,7 +116,8 @@ public class Unit
         };
 
         //Generate Attributes
-        foreach(AttributeScore a in ThisAttributes.Values)
+        AttributeScore[] atr = ThisAttributes.Values.ToArray();
+        foreach(AttributeScore a in atr)
         {
             float GrowthValue = UnityEngine.Random.Range(0, numerator);
             a.SetGrowthValue(GrowthValue);
@@ -133,7 +155,18 @@ public class Unit
 
     public string displayQuickInfo()
     {
-        return string.Format("{0}\nSTR: {1}\nAGI: {2}\nMAG: {3}\nLDR: {4}\nFCC: {5}\nGRO: {6}", Name, ThisAttributes[AttributeType.Strength], ThisAttributes[AttributeType.Agility], ThisAttributes[AttributeType.Magic], ThisAttributes[AttributeType.Leadership], FieldCost, GrowthDefintion.ToString());
+        StringBuilder sb = new();
+        sb.Append(Name + "\n");
+
+        sb.Append("STR: " + ThisAttributes[AttributeType.Strength] + "\n");
+        sb.Append("AGI: " + ThisAttributes[AttributeType.Agility] + "\n");
+        sb.Append("MAG: " + ThisAttributes[AttributeType.Magic] + "\n");
+        sb.Append("LDR: " + ThisAttributes[AttributeType.Leadership] + "\n");
+        sb.Append("FCC: " + FieldCost + "\n");
+        sb.Append("GRO: " + GrowthDefintion + "\n");
+
+        return sb.ToString();
+        //return string.Format("{0}\nSTR: {1}\nAGI: {2}\nMAG: {3}\nLDR: {4}\nFCC: {5}\nGRO: {6}", Name, ThisAttributes[AttributeType.Strength], ThisAttributes[AttributeType.Agility], ThisAttributes[AttributeType.Magic], ThisAttributes[AttributeType.Leadership], FieldCost, GrowthDefintion.ToString());
     }
     
     public override string ToString()
@@ -183,310 +216,29 @@ public class Unit
     public int GetLevel() { return Level; }
     public int GetFieldCost() { return FieldCost; }
 
-    public int GetIronCost() { return information.IronCost; }
-    public int GetMagicGemCost() { return information.MagicGemCost; }
-    public int GetHorseCost() { return information.HorseCost; }
-    public int GetAdamantiumCost() { return information.AdamntiumCost; }
-    public int GetHolyTearCost() { return information.HolyTearCost; }
+    public int GoldCost() { return information.GoldCost; }
+    public int IronCost() { return information.IronCost; }
+    public int MagicGemCost() { return information.MagicGemCost; }
+    public int HorseCost() { return information.HorseCost; }
+    public int AdamantiumCost() { return information.AdamantiumCost; }
+    public int HolyTearCost() { return information.HolyTearCost; }
 
-    // [Header("Image Information")]
-    // public Sprite spriteView;
-    // public Sprite Icon;
-
-    // [Header("Unit Information")]
-    // public string UIFriendlyClassName;
-    // public string Description = "Make sure to fill in the description, young game maker";
-    // [SerializeField] public MoveType movement;
-
-    // [Header("Attack Information")]
-    // public AttackType Attack;
-    // public Pair<int, int> AttackArea = new(1, 1);
-    // public Pair<AttackPreference, AttributeType> AttackAI = new(AttackPreference.Front, AttributeType.NULL);
-
-    // [Header("Generation Information")]
-    // public int TierLevel = 1;
-    // public List<UnitDataContainer> UpgradePath = new();
-
-    public Pair<int,int> AttackArea() { return information.AttackArea; }
-    public Sprite SpriteView() { return information.spriteView; }
+    //DataUnitContainer information
+    public Sprite spriteView() { return information.spriteView; }
+    public Sprite Icon() { return information.Icon; }
+    public string UIFriendlyClassName() { return information.UIFriendlyClassName; }
+    public string Description() { return information.Description; }
+    public MoveType movement() { return information.movement; }
+    public AttackType Attack() { return information.Attack; }
+    public Pair<int, int> AttackArea() { return information.AttackArea; }
+    public Pair<AttackPreference, AttributeType> AttackAI() { return information.AttackAI; }
+    public int TierLevel() { return information.TierLevel; }
+    public List<UnitDataContainer> UpgradePath = new();
 
     public int GetXPCap() { return ExperienceCap; }
     public int GetPPCap() { return PromotionCap; }
     public int GetXP() { return ExperiencePoints; }
     public int GetPP() { return PromotionPoints; }
-}
-
-[Serializable]
-public class AttributeScore
-{
-    [SerializeField] int total;
-    [SerializeField] int value, requirement;
-    [SerializeField] float growth;
-    [SerializeField] float leftover;
-    [SerializeField] Pair<int, int> GenerationRange;
-    public List<int> additions;
-
-    public AttributeScore(AttributeScore a) : this(a.value, a.growth, a.requirement, a.GenerationRange) {}
-
-    public AttributeScore(int value, float growth, int requirement, Pair<int, int> GenerationRange)
-    {
-        this.value = value;
-        this.growth = growth;
-        this.requirement = requirement;
-        this.GenerationRange = GenerationRange;
-        additions = new();
-        leftover = 0f;
-        SetTotal();
-    }
-
-    public void SetBaseValue(int value)
-    {
-        if(value < 0)
-        {
-            Debug.LogError("There is a negative value being passed in attribute. What. The. Fuck.");
-            return;
-        }
-
-        this.value = value;
-    }
-
-    public void SetGrowthValue(float value)
-    {
-        if(growth < 0f)
-        {
-            Debug.LogError("There was a negative value being passed for growth!");
-            throw new SystemException("Negative value");
-        }
-
-        this.growth = value;
-    }
-
-    public void LevelUp()
-    {
-        float val = (float) value + growth + leftover;
-        value = (int) val;
-        leftover = val - value;
-    }
-
-    public void SetTotal()
-    {
-        total = value + additions.Sum();
-    }
-
-    public int GetTotal()
-    {
-        return total;
-    }
-
-    public int GetRequirement()
-    {
-        return requirement;
-    }
-
-    public float GetGrowthValue()
-    {
-        return growth;
-    }
-
-    public Pair<int, int> GetGenerationRange()
-    {
-        return GenerationRange;
-    }
-
-    public override string ToString()
-    {
-        return value.ToString();
-    }
-
-    public static implicit operator int(AttributeScore a)
-    {
-        return a.value;
-    }
-
-    //Operations
-    public static AttributeScore operator +(AttributeScore a1, AttributeScore a2)
-    {
-        a1.value += a2.value;
-        return a1;
-    }
-
-    public static AttributeScore operator +(AttributeScore asVal, int val)
-    {
-        asVal.value += val;
-        return asVal;
-    }
-
-    public static int operator +(int val, AttributeScore asVal)
-    {
-        val += asVal.value;
-        return val;
-    }
-
-    public static AttributeScore operator -(AttributeScore a1, AttributeScore a2)
-    {
-        a1.value -= a2.value;
-        return a1;
-    }
-
-    public static AttributeScore operator -(AttributeScore asVal, int val)
-    {
-        asVal.value -= val;
-        return asVal;
-    }
-
-    public static int operator -(int val, AttributeScore asVal)
-    {
-        val -= asVal.value;
-        return val;
-    }
-
-    public static AttributeScore operator *(AttributeScore a1, AttributeScore a2)
-    {
-        a1.value *= a2.value;
-        return a1;
-    }
-
-    public static AttributeScore operator *(AttributeScore asVal, int val)
-    {
-        asVal.value *= val;
-        return asVal;
-    }
-
-    public static int operator *(int val, AttributeScore asVal)
-    {
-        val *= asVal.value;
-        return val;
-    }
-
-    public static AttributeScore operator /(AttributeScore a1, AttributeScore a2)
-    {
-        a1.value /= a2.value;
-        return a1;
-    }
-
-    public static AttributeScore operator /(AttributeScore asVal, int val)
-    {
-        asVal.value /= val;
-        return asVal;
-    }
-
-    public static int operator /(int val, AttributeScore asVal)
-    {
-        val /= asVal.value;
-        return val;
-    }
-
-    public static bool operator ==(AttributeScore a1, AttributeScore a2)
-    {
-        return a1.value == a2.value;
-    }
-
-    public static bool operator ==(AttributeScore asVal, int val)
-    {
-        return asVal.value == val;
-    }
-
-    public static bool operator ==(int val, AttributeScore asVal)
-    {
-        return asVal.value == val;
-    }
-
-    public static bool operator !=(AttributeScore a1, AttributeScore a2)
-    {
-        return a1.value != a2.value;
-    }
-
-    public static bool operator !=(AttributeScore asVal, int val)
-    {
-        return asVal.value != val;
-    }
-
-    public static bool operator !=(int val, AttributeScore asVal)
-    {
-        return asVal.value != val;
-    }
-
-    public static bool operator <=(AttributeScore a1, AttributeScore a2)
-    {
-        return a1.value <= a2.value;
-    }
-
-    public static bool operator <=(AttributeScore asVal, int val)
-    {
-        return asVal.value <= val;
-    }
-
-    public static bool operator <=(int val, AttributeScore asVal)
-    {
-        return val <= asVal.value;
-    }
-
-    public static bool operator >=(AttributeScore a1, AttributeScore a2)
-    {
-        return a1.value >= a2.value;
-    }
-
-    public static bool operator >=(AttributeScore asVal, int val)
-    {
-        return asVal.value >= val;
-    }
-
-    public static bool operator >=(int val, AttributeScore asVal)
-    {
-        return val >= asVal.value;
-    }
-
-    public static bool operator <(AttributeScore a1, AttributeScore a2)
-    {
-        return a1.value < a2.value;
-    }
-
-    public static bool operator <(AttributeScore asVal, int val)
-    {
-        return asVal.value < val;
-    }
-
-    public static bool operator <(int val, AttributeScore asVal)
-    {
-        return val < asVal.value;
-    }
-
-    public static bool operator >(AttributeScore a1, AttributeScore a2)
-    {
-        return a1.value > a2.value;
-    }
-
-    public static bool operator >(AttributeScore asVal, int val)
-    {
-        return asVal.value > val;
-    }
-
-    public static bool operator >(int val, AttributeScore asVal)
-    {
-        return val > asVal.value;
-    }
-
-    public override bool Equals(object obj)
-    {
-        return base.Equals(obj);
-    }
-
-    public override int GetHashCode()
-    {
-        return base.GetHashCode();
-    }
-}
-
-public enum AttributeType
-{
-    Armor,
-    Weapon,
-    HP, MaxHP,
-    Strength,
-    Agility,
-    Magic,
-    Leadership,
-    NULL //For Unit attack AI in the battle simulator
 }
 
 public enum AttackType

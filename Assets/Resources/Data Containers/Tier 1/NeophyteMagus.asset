@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spriteView: {fileID: 21300000, guid: 75730f8404e84d24cad7ffb2dd4514d8, type: 3}
   Icon: {fileID: 21300000, guid: 44dcfbf269e61154b9d19dbaf4e5ddfc, type: 3}
-  UIFriendlyClassName: 
+  UIFriendlyClassName: Neophyte Magus
   Description: Make sure to fill in the description, young game maker
   movement: 0
   Attack: 2
@@ -24,4 +24,91 @@ MonoBehaviour:
   AttackAI:
     <First>k__BackingField: 3
     <Second>k__BackingField: 2
+  TierLevel: 1
   UpgradePath: []
+  GoldCost: 150
+  IronCost: 0
+  MagicGemCost: 1
+  HorseCost: 0
+  HolyTearCost: 0
+  AdamantiumCost: 0
+  HP:
+    total: 100
+    value: 100
+    requirement: 0
+    growth: 5
+    leftover: 0
+    GenerationRange:
+      <First>k__BackingField: 20
+      <Second>k__BackingField: 40
+    additions: 
+  MaxHP:
+    total: 100
+    value: 100
+    requirement: 0
+    growth: 5
+    leftover: 0
+    GenerationRange:
+      <First>k__BackingField: 20
+      <Second>k__BackingField: 40
+    additions: 
+  Armor:
+    total: 100
+    value: 100
+    requirement: 0
+    growth: 5
+    leftover: 0
+    GenerationRange:
+      <First>k__BackingField: 20
+      <Second>k__BackingField: 40
+    additions: 
+  Weapon:
+    total: 100
+    value: 100
+    requirement: 0
+    growth: 5
+    leftover: 0
+    GenerationRange:
+      <First>k__BackingField: 20
+      <Second>k__BackingField: 40
+    additions: 
+  Strength:
+    total: 100
+    value: 100
+    requirement: 0
+    growth: 5
+    leftover: 0
+    GenerationRange:
+      <First>k__BackingField: 20
+      <Second>k__BackingField: 40
+    additions: 
+  Agility:
+    total: 100
+    value: 100
+    requirement: 0
+    growth: 5
+    leftover: 0
+    GenerationRange:
+      <First>k__BackingField: 20
+      <Second>k__BackingField: 40
+    additions: 
+  Magic:
+    total: 100
+    value: 100
+    requirement: 0
+    growth: 5
+    leftover: 0
+    GenerationRange:
+      <First>k__BackingField: 20
+      <Second>k__BackingField: 40
+    additions: 
+  Leadership:
+    total: 100
+    value: 100
+    requirement: 0
+    growth: 5
+    leftover: 0
+    GenerationRange:
+      <First>k__BackingField: 20
+      <Second>k__BackingField: 40
+    additions: 

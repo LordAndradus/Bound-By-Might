@@ -203,6 +203,7 @@ public class SaveController : MonoBehaviour
             index = 0;
             foreach(Unit unit in squad.RetrieveUnits())
             {
+                if(unit.InvalidBit) continue;
                 GameObject UnitButton = PopulateRoster(unit, index++);
             }
         }
@@ -216,8 +217,8 @@ public class SaveController : MonoBehaviour
 
         TextMeshProUGUI[] text = UnitButton.GetComponentsInChildren<TextMeshProUGUI>();
         text[0].text = unit.displayQuickInfo();
-        text[1].text = unit.UIFriendlyClassName;
-        UnitButton.transform.GetChild(2).GetComponent<Image>().sprite = unit.spriteView;
+        text[1].text = unit.UIFriendlyClassName();
+        UnitButton.transform.GetChild(2).GetComponent<Image>().sprite = unit.spriteView();
         return UnitButton;
     }
 
@@ -280,12 +281,17 @@ public class SaveController : MonoBehaviour
         mc.UnitList.AddRange(sfw.units);
         mc.SquadList.AddRange(sfw.squads);
         
+        //Remove supposedly NULL values from Json
         foreach(Squad squad in sfw.squads)
         {
-            Debug.Log(squad.Name);
-            foreach(Unit unit in squad.RetrieveUnits())
+            List<Pair<Unit, Pair<int, int>>> pairs = squad.RetrieveUnitPairs();
+
+            for(int i = 0; i < pairs.Count; i++)
             {
-                Debug.Log(unit.Name);
+                if(pairs[i].First.InvalidBit)
+                {
+                    squad.UnfieldUnit(pairs[i].Second);
+                }
             }
         }
     }

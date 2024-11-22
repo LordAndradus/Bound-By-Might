@@ -136,11 +136,11 @@ public class UnitDisplayer : MonoBehaviour
 
     private void UpdateResourceCosts()
     {
-        CheckCost(IronCost, Display.IronCost);
-        CheckCost(MagicGemCost, Display.MagicGemCost);
-        CheckCost(HorseCost, Display.HorseCost);
-        CheckCost(HolyTearsCost, Display.HolyTearCost);
-        CheckCost(AdamantiumCost, Display.AdamntiumCost);
+        CheckCost(IronCost, Display.IronCost());
+        CheckCost(MagicGemCost, Display.MagicGemCost());
+        CheckCost(HorseCost, Display.HorseCost());
+        CheckCost(HolyTearsCost, Display.HolyTearCost());
+        CheckCost(AdamantiumCost, Display.AdamantiumCost());
     }
 
     private void CheckCost(GameObject pair, int cost)
@@ -155,7 +155,7 @@ public class UnitDisplayer : MonoBehaviour
 
         HPValDisplay.text = Display.ThisAttributes[AttributeType.HP].ToString() + "/" + Display.ThisAttributes[AttributeType.MaxHP].ToString();
         Name.text = Display.Name;
-        LevelAndClass.text = "Lvl " + Display.GetLevel() + " " + Display.UIFriendlyClassName;
+        LevelAndClass.text = "Lvl " + Display.GetLevel() + " " + Display.UIFriendlyClassName();
         FieldCost.text = Display.GetFieldCost().ToString();
     }
 
@@ -163,7 +163,7 @@ public class UnitDisplayer : MonoBehaviour
     {
         Image DisplaySprite = SpriteView.GetComponent<Image>();
 
-        if(Display.spriteView == null) DisplaySprite.sprite = Resources.Load<Sprite>(GlobalSettings.DefaultUnitSpriteView);
-        else DisplaySprite.sprite = Display.spriteView;
+        if(Display.spriteView() == null) DisplaySprite.sprite = Resources.Load<Sprite>(GlobalSettings.DefaultUnitSpriteView);
+        else DisplaySprite.sprite = Display.spriteView();
     }
 }

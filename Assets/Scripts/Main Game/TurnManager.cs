@@ -27,8 +27,6 @@ public class TurnManager : MonoBehaviour
         instance = this;
         CurrentLevel = level;
 
-        Debug.Log("I am a new instance of TurnManager");
-
         controllers.AddRange(transform.GetComponentsInChildren<Controller>());
 
         cgs = new(level.getWidth(), level.getHeight());

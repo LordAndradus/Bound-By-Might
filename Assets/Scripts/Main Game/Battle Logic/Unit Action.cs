@@ -36,11 +36,12 @@ public class UnitAction
 
     private void FindEnemies()
     {
-        AttackRowLength = Unit.GetInformation().AttackArea.First;
-        AttackColLength = Unit.GetInformation().AttackArea.Second;
+        AttackPreference ap = Unit.AttackAI().First;
+        AttackRowLength = Unit.AttackArea().First;
+        AttackColLength = Unit.AttackArea().Second;
         TotalAttackCount = AttackRowLength + AttackColLength;
 
-        if(Unit.Attack == AttackType.Healing)
+        if(Unit.Attack() == AttackType.Healing)
         {
             //Populate with allies
             return;
@@ -83,8 +84,8 @@ public class UnitAction
         int rows = squad.MaxLength();
         int cols = squad.MaxHeight();
 
-        int SearchLength = Unit.GetInformation().AttackArea.First;
-        int SearchHeight = Unit.GetInformation().AttackArea.Second;
+        int SearchLength = Unit.AttackArea().First;
+        int SearchHeight = Unit.AttackArea().Second;
 
         for(int startY = 0; startY <= rows - SearchHeight; startY++)
         {

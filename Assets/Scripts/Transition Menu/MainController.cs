@@ -44,6 +44,8 @@ public class MainController : MonoBehaviour
 
     public void Awake()
     {
+        GetComponent<UnitLoader>().Start();
+
         UnitList.CollectionChanged += UnitList_CollectionChanged;
         SquadList.CollectionChanged += SquadList_CollectionChanged;
 
@@ -167,7 +169,7 @@ public class MainController : MonoBehaviour
             }while(true);
 
             if(generic.RetrieveUnits().Count == 0) generic.Name = u.Name + "'s Squad";
-            generic.FieldUnit(u, pair.ToTuple());
+            generic.FieldUnit(u, pair);
         }
         
         return generic;

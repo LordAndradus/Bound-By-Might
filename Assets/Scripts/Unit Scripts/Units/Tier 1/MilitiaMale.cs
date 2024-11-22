@@ -5,8 +5,10 @@ using UnityEngine;
 
 public class MilitiaMale : Unit
 {
-    public MilitiaMale()
+    public MilitiaMale() : base() {}
+
+    private protected override void GetInformation()
     {
-        information = UtilityClass.Load<UnitDataContainer>("Assets/Resources/Data Containers/Tier 1/MilitiaMale.asset");
+        information = UnitLoader.AssetBundle[typeof(MilitiaMale)];
     }
 }
