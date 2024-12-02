@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-public enum AttributeType
+public enum AttrType
 {
     Armor,
     Weapon,
@@ -16,7 +16,7 @@ public enum AttributeType
 }
 
 [Serializable]
-public class AttributeScore
+public class AttrScore
 {
     [SerializeField] int total;
     [SerializeField] int value, requirement;
@@ -25,9 +25,9 @@ public class AttributeScore
     [SerializeField] Pair<int, int> GenerationRange;
     public List<int> additions;
 
-    public AttributeScore(AttributeScore a) : this(a.value, a.growth, a.requirement, a.GenerationRange) {}
+    public AttrScore(AttrScore a) : this(a.value, a.growth, a.requirement, a.GenerationRange) {}
 
-    public AttributeScore(int value, float growth, int requirement, Pair<int, int> GenerationRange)
+    public AttrScore(int value, float growth, int requirement, Pair<int, int> GenerationRange)
     {
         this.value = value;
         this.growth = growth;
@@ -38,7 +38,7 @@ public class AttributeScore
         SetTotal();
     }
 
-    public AttributeScore() : this(100, 5.0f, 0, new(20, 40)) {}
+    public AttrScore() : this(100, 5.0f, 0, new(20, 40)) {}
 
     public void SetBaseValue(int value)
     {
@@ -99,170 +99,170 @@ public class AttributeScore
         return value.ToString();
     }
 
-    public static implicit operator int(AttributeScore a)
+    public static implicit operator int(AttrScore a)
     {
         return a.value;
     }
 
     //Operations
-    public static AttributeScore operator +(AttributeScore a1, AttributeScore a2)
+    public static AttrScore operator +(AttrScore a1, AttrScore a2)
     {
         a1.value += a2.value;
         return a1;
     }
 
-    public static AttributeScore operator +(AttributeScore asVal, int val)
+    public static AttrScore operator +(AttrScore asVal, int val)
     {
         asVal.value += val;
         return asVal;
     }
 
-    public static int operator +(int val, AttributeScore asVal)
+    public static int operator +(int val, AttrScore asVal)
     {
         val += asVal.value;
         return val;
     }
 
-    public static AttributeScore operator -(AttributeScore a1, AttributeScore a2)
+    public static AttrScore operator -(AttrScore a1, AttrScore a2)
     {
         a1.value -= a2.value;
         return a1;
     }
 
-    public static AttributeScore operator -(AttributeScore asVal, int val)
+    public static AttrScore operator -(AttrScore asVal, int val)
     {
         asVal.value -= val;
         return asVal;
     }
 
-    public static int operator -(int val, AttributeScore asVal)
+    public static int operator -(int val, AttrScore asVal)
     {
         val -= asVal.value;
         return val;
     }
 
-    public static AttributeScore operator *(AttributeScore a1, AttributeScore a2)
+    public static AttrScore operator *(AttrScore a1, AttrScore a2)
     {
         a1.value *= a2.value;
         return a1;
     }
 
-    public static AttributeScore operator *(AttributeScore asVal, int val)
+    public static AttrScore operator *(AttrScore asVal, int val)
     {
         asVal.value *= val;
         return asVal;
     }
 
-    public static int operator *(int val, AttributeScore asVal)
+    public static int operator *(int val, AttrScore asVal)
     {
         val *= asVal.value;
         return val;
     }
 
-    public static AttributeScore operator /(AttributeScore a1, AttributeScore a2)
+    public static AttrScore operator /(AttrScore a1, AttrScore a2)
     {
         a1.value /= a2.value;
         return a1;
     }
 
-    public static AttributeScore operator /(AttributeScore asVal, int val)
+    public static AttrScore operator /(AttrScore asVal, int val)
     {
         asVal.value /= val;
         return asVal;
     }
 
-    public static int operator /(int val, AttributeScore asVal)
+    public static int operator /(int val, AttrScore asVal)
     {
         val /= asVal.value;
         return val;
     }
 
-    public static bool operator ==(AttributeScore a1, AttributeScore a2)
+    public static bool operator ==(AttrScore a1, AttrScore a2)
     {
         return a1.value == a2.value;
     }
 
-    public static bool operator ==(AttributeScore asVal, int val)
+    public static bool operator ==(AttrScore asVal, int val)
     {
         return asVal.value == val;
     }
 
-    public static bool operator ==(int val, AttributeScore asVal)
+    public static bool operator ==(int val, AttrScore asVal)
     {
         return asVal.value == val;
     }
 
-    public static bool operator !=(AttributeScore a1, AttributeScore a2)
+    public static bool operator !=(AttrScore a1, AttrScore a2)
     {
         return a1.value != a2.value;
     }
 
-    public static bool operator !=(AttributeScore asVal, int val)
+    public static bool operator !=(AttrScore asVal, int val)
     {
         return asVal.value != val;
     }
 
-    public static bool operator !=(int val, AttributeScore asVal)
+    public static bool operator !=(int val, AttrScore asVal)
     {
         return asVal.value != val;
     }
 
-    public static bool operator <=(AttributeScore a1, AttributeScore a2)
+    public static bool operator <=(AttrScore a1, AttrScore a2)
     {
         return a1.value <= a2.value;
     }
 
-    public static bool operator <=(AttributeScore asVal, int val)
+    public static bool operator <=(AttrScore asVal, int val)
     {
         return asVal.value <= val;
     }
 
-    public static bool operator <=(int val, AttributeScore asVal)
+    public static bool operator <=(int val, AttrScore asVal)
     {
         return val <= asVal.value;
     }
 
-    public static bool operator >=(AttributeScore a1, AttributeScore a2)
+    public static bool operator >=(AttrScore a1, AttrScore a2)
     {
         return a1.value >= a2.value;
     }
 
-    public static bool operator >=(AttributeScore asVal, int val)
+    public static bool operator >=(AttrScore asVal, int val)
     {
         return asVal.value >= val;
     }
 
-    public static bool operator >=(int val, AttributeScore asVal)
+    public static bool operator >=(int val, AttrScore asVal)
     {
         return val >= asVal.value;
     }
 
-    public static bool operator <(AttributeScore a1, AttributeScore a2)
+    public static bool operator <(AttrScore a1, AttrScore a2)
     {
         return a1.value < a2.value;
     }
 
-    public static bool operator <(AttributeScore asVal, int val)
+    public static bool operator <(AttrScore asVal, int val)
     {
         return asVal.value < val;
     }
 
-    public static bool operator <(int val, AttributeScore asVal)
+    public static bool operator <(int val, AttrScore asVal)
     {
         return val < asVal.value;
     }
 
-    public static bool operator >(AttributeScore a1, AttributeScore a2)
+    public static bool operator >(AttrScore a1, AttrScore a2)
     {
         return a1.value > a2.value;
     }
 
-    public static bool operator >(AttributeScore asVal, int val)
+    public static bool operator >(AttrScore asVal, int val)
     {
         return asVal.value > val;
     }
 
-    public static bool operator >(int val, AttributeScore asVal)
+    public static bool operator >(int val, AttrScore asVal)
     {
         return val > asVal.value;
     }

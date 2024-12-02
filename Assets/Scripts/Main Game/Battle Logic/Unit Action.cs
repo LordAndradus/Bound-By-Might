@@ -12,7 +12,6 @@ public class UnitAction
 
     int AttackRowLength;
     int AttackColLength;
-    int TotalAttackCount;
 
     int SelectedIndex;
     List<Unit> UnitsPicked;
@@ -26,12 +25,11 @@ public class UnitAction
         this.Enemy = Enemy;
 
         FindEnemies();
-        ApplyAction();
     }
 
-    private void ApplyAction()
+    public List<Unit> affected()
     {
-
+        return UnitsPicked;
     }
 
     private void FindEnemies()
@@ -39,7 +37,6 @@ public class UnitAction
         AttackPreference ap = Unit.AttackAI().First;
         AttackRowLength = Unit.AttackArea().First;
         AttackColLength = Unit.AttackArea().Second;
-        TotalAttackCount = AttackRowLength + AttackColLength;
 
         if(Unit.Attack() == AttackType.Healing)
         {
@@ -75,50 +72,42 @@ public class UnitAction
         RemoveEmptyLists();
     }
 
-    private void TargetHighestAttribute(AttributeType aType, Squad squad = null)
+    private void TargetAttributes(AttrType aType, bool highest = true, Squad squad = null)
     {
         if(squad == null) squad = Enemy;
-        
-        List<Pair<List<Unit>, int>> UnitListValues = new();
-        int Value = 0;
-        int rows = squad.MaxLength();
-        int cols = squad.MaxHeight();
-
         int SearchLength = Unit.AttackArea().First;
         int SearchHeight = Unit.AttackArea().Second;
 
-        for(int startY = 0; startY <= rows - SearchHeight; startY++)
+        List<((int, int)[,], Unit[,])> UnitArrays = UtilityClass.getSubArrays(squad.getUnitGrid(), SearchLength, SearchHeight);
+
+        int value = highest ? int.MinValue : int.MaxValue;
+        (int, int)[,] SelectedIndices;
+        Unit[,] SelectedUnits;
+        foreach(((int, int)[,], Unit[,]) pairs in UnitArrays)
         {
-            for(int startX = 0; startX <= cols - SearchLength; startX++)
+            (int, int)[,] Indices = pairs.Item1;
+            Unit[,] UnitGroups = pairs.Item2;
+
+            int SetValue = 0;
+
+            foreach(Unit unit in UnitGroups)
             {
-                List<Unit> ListOfUnits = new();
+                SetValue += unit.ThisAttributes[aType];
+            }
 
-                for(int y = 0; y < SearchHeight; y++)
-                {
-                    for(int x = 0; x < SearchLength; x++)
-                    {
-                        ListOfUnits.Add(squad.RetrieveUnitFromPosition(x, y));
-                        Value += ListOfUnits[x + y].ThisAttributes[aType];
-                    }
-                }
-
-                UnitListValues.Add(new(ListOfUnits, Value));
-                Value = 0;
+            if(highest && value < SetValue)
+            {
+                value = SetValue;
+                SelectedIndices = Indices;
+                SelectedUnits = UnitGroups;
+            }
+            else if(!highest && value > SetValue)
+            {
+                value = SetValue;
+                SelectedIndices = Indices;
+                SelectedUnits = UnitGroups;
             }
         }
-        
-        int MaxValue = int.MinValue;
-        for(int i = 0, SelectedIndex = 0; i < UnitListValues.Count; i++)
-        {
-            if(UnitListValues[SelectedIndex].Second > MaxValue) SelectedIndex = i;
-        }
-
-        UnitsPicked = UnitListValues[SelectedIndex].First;
-    }
-
-    private void TargetLowestAttribute(AttributeType aType)
-    {
-
     }
 
     private void TargetLeader()
@@ -145,10 +134,10 @@ public class UnitAction
                 TargetColumn(Column.Back);
                 break;
             case AttackPreference.Most:
-                TargetHighestAttribute(AttributeType.HP);
+                TargetAttributes(AttrType.HP, true);
                 break;
             case AttackPreference.Least:
-                TargetHighestAttribute(AttributeType.Armor);
+                TargetAttributes(AttrType.Armor, true);
                 break;
             case AttackPreference.Leader:
                 TargetLeader();

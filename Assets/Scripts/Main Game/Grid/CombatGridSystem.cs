@@ -222,16 +222,9 @@ public class CombatGridSystem
 
         SetSquadNormalPath(attacking, GetWorldPosition(NeighborTile.First, NeighborTile.Second));
 
-        attacked.DeleteSquadCallback += () => {
-            UnitGrid.RemoveSquad(attacked);
-            Controller.ClearSelections();
-        };
-
         if(CurrentCoordinate.equals(NeighborTile)) attacking.moved = true;
 
-        attacked.StartDeletionCallback(attacking);
-        //Instead of deleting, we have a battle manager
-        //attacking.StartBattle(attacking, attacked);
+        attacked.StartBattle(UnitGrid, attacking, attacked);
 
         return true;
     }

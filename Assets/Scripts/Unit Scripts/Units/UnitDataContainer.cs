@@ -16,7 +16,7 @@ public class UnitDataContainer : ScriptableObject
     [Header("Attack Information")]
     public AttackType Attack;
     public Pair<int, int> AttackArea = new(1, 1);
-    public Pair<AttackPreference, AttributeType> AttackAI = new(AttackPreference.Front, AttributeType.NULL);
+    public Pair<AttackPreference, AttrType> AttackAI = new(AttackPreference.Front, AttrType.NULL);
 
     [Header("Generation Information")]
     public int TierLevel = 1;
@@ -32,10 +32,10 @@ public class UnitDataContainer : ScriptableObject
     
 
     [Header("Attribute Scores")]
-    public AttributeScore HP = new(), MaxHP = new();
-    public AttributeScore Armor = new(), Weapon = new();
-    public AttributeScore Strength = new();
-    public AttributeScore Agility = new();
-    public AttributeScore Magic = new();
-    public AttributeScore Leadership = new();
+    public AttrScore HP = new(), MaxHP = new();
+    public AttrScore Armor = new(), Weapon = new();
+    public AttrScore Strength = new();
+    public AttrScore Agility = new();
+    public AttrScore Magic = new();
+    public AttrScore Leadership = new();
 }

@@ -280,19 +280,9 @@ public class SaveController : MonoBehaviour
         mc.SquadList.Clear();
         mc.UnitList.AddRange(sfw.units);
         mc.SquadList.AddRange(sfw.squads);
-        
-        //Remove supposedly NULL values from Json
-        foreach(Squad squad in sfw.squads)
-        {
-            List<Pair<Unit, Pair<int, int>>> pairs = squad.RetrieveUnitPairs();
 
-            for(int i = 0; i < pairs.Count; i++)
-            {
-                if(pairs[i].First.InvalidBit)
-                {
-                    squad.UnfieldUnit(pairs[i].Second);
-                }
-            }
-        }
+
+        //Remove invalid units (IE Default/null) by setting those to actual null, not serialized null
+        sfw.squads.ForEach(squad => squad.ClearExtraneous());
     }
 }

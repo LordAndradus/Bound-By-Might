@@ -284,7 +284,7 @@ public static class UtilityClass
         List<GameObject> ListContent = GetAllChildObjectsWithComponent<T>(parent);
     }
 
-    public static List<((int, int)[,], T[,])> getSubArrays<T>(T[,] array, int searchWidth, int searchHeight) where T : UnityEngine.Object
+    public static List<((int, int)[,], T[,])> getSubArrays<T>(T[,] array, int searchWidth, int searchHeight)
     {
         int aHeight = array.GetLength(0);
         int aWidth = array.GetLength(1);

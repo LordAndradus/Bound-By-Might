@@ -22,14 +22,18 @@ public class Unit
     [SerializeField] public List<Snapshot> CareerHistory = new();
     private int numerator = 5001;
     private float divisor = 1000;
-    [SerializeField] public int MarketCost = 0;
-    [SerializeField] public int FieldCost = 10; //Depends on Traits. 12 if Merc, to 8 if Loyal
-    [SerializeField] public int threat = 256;
-    [SerializeField] public bool DeathFlag = false;
-    [SerializeField] public bool InvalidBit = true;
+    public int MarketCost = 0;
+    public int FieldCost = 10; //Depends on Traits. 12 if Merc, to 8 if Loyal
+    public int threat = 256;
+    private int maxSpread = 17;
+    private int minSpread = 17;
+    public int getMinSpread() { return minSpread; }
+    public int getMaxSpread() { return maxSpread; }
+    public bool DeathFlag = false;
+    public bool InvalidBit = true;
 
     [Header("Attribute Dictionary")]
-    public SerializableDictionary<AttributeType, AttributeScore> ThisAttributes;
+    public SerializableDictionary<AttrType, AttrScore> ThisAttributes;
 
     [Header("Progession Meters")]
     [SerializeField] private protected int Level;
@@ -105,19 +109,19 @@ public class Unit
 
         ThisAttributes = new()
         {
-            {AttributeType.MaxHP, new(information.MaxHP)},
-            {AttributeType.HP, new(information.HP)},
-            {AttributeType.Armor, new(information.Armor)},
-            {AttributeType.Weapon, new(information.Weapon)},
-            {AttributeType.Strength, new(information.Strength)},
-            {AttributeType.Agility, new(information.Agility)},
-            {AttributeType.Magic, new(information.Magic)},
-            {AttributeType.Leadership, new(information.Leadership)}
+            {AttrType.MaxHP, new(information.MaxHP)},
+            {AttrType.HP, new(information.HP)},
+            {AttrType.Armor, new(information.Armor)},
+            {AttrType.Weapon, new(information.Weapon)},
+            {AttrType.Strength, new(information.Strength)},
+            {AttrType.Agility, new(information.Agility)},
+            {AttrType.Magic, new(information.Magic)},
+            {AttrType.Leadership, new(information.Leadership)}
         };
 
         //Generate Attributes
-        AttributeScore[] atr = ThisAttributes.Values.ToArray();
-        foreach(AttributeScore a in atr)
+        AttrScore[] atr = ThisAttributes.Values.ToArray();
+        foreach(AttrScore a in atr)
         {
             float GrowthValue = UnityEngine.Random.Range(0, numerator);
             a.SetGrowthValue(GrowthValue);
@@ -158,10 +162,10 @@ public class Unit
         StringBuilder sb = new();
         sb.Append(Name + "\n");
 
-        sb.Append("STR: " + ThisAttributes[AttributeType.Strength] + "\n");
-        sb.Append("AGI: " + ThisAttributes[AttributeType.Agility] + "\n");
-        sb.Append("MAG: " + ThisAttributes[AttributeType.Magic] + "\n");
-        sb.Append("LDR: " + ThisAttributes[AttributeType.Leadership] + "\n");
+        sb.Append("STR: " + ThisAttributes[AttrType.Strength] + "\n");
+        sb.Append("AGI: " + ThisAttributes[AttrType.Agility] + "\n");
+        sb.Append("MAG: " + ThisAttributes[AttrType.Magic] + "\n");
+        sb.Append("LDR: " + ThisAttributes[AttrType.Leadership] + "\n");
         sb.Append("FCC: " + FieldCost + "\n");
         sb.Append("GRO: " + GrowthDefintion + "\n");
 
@@ -213,9 +217,11 @@ public class Unit
     public List<Trait> GetTraits() { return traits; }
     public void SetTraits(List<Trait> traits) { this.traits = traits; }
 
+    //Get level and cost
     public int GetLevel() { return Level; }
     public int GetFieldCost() { return FieldCost; }
 
+    //Get costs
     public int GoldCost() { return information.GoldCost; }
     public int IronCost() { return information.IronCost; }
     public int MagicGemCost() { return information.MagicGemCost; }
@@ -231,14 +237,22 @@ public class Unit
     public MoveType movement() { return information.movement; }
     public AttackType Attack() { return information.Attack; }
     public Pair<int, int> AttackArea() { return information.AttackArea; }
-    public Pair<AttackPreference, AttributeType> AttackAI() { return information.AttackAI; }
+    public Pair<AttackPreference, AttrType> AttackAI() { return information.AttackAI; }
     public int TierLevel() { return information.TierLevel; }
     public List<UnitDataContainer> UpgradePath = new();
 
+    //Get progression stats
     public int GetXPCap() { return ExperienceCap; }
     public int GetPPCap() { return PromotionCap; }
     public int GetXP() { return ExperiencePoints; }
     public int GetPP() { return PromotionPoints; }
+
+    //Battle specific
+    public void damage(int damage)
+    {
+        ThisAttributes[AttrType.HP] -= damage;
+        if(ThisAttributes[AttrType.HP] <= 0) DeathFlag = true;
+    }
 }
 
 public enum AttackType

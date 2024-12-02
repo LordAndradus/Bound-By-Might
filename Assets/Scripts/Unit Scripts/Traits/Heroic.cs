@@ -25,7 +25,7 @@ public class Heroic : Trait, TraitTrigger
         //Reset the trigger as the unit is dead dead.
         if(!DeathDefied)
         {
-            if(AddIndex != -1) u.ThisAttributes[AttributeType.Weapon].additions.RemoveAt(AddIndex);
+            if(AddIndex != -1) u.ThisAttributes[AttrType.Weapon].additions.RemoveAt(AddIndex);
             return;
         }
 
@@ -33,9 +33,9 @@ public class Heroic : Trait, TraitTrigger
         {
             u.DeathFlag = false;
 
-            int val = u.ThisAttributes[AttributeType.Weapon];
-            AddIndex = u.ThisAttributes[AttributeType.Weapon].additions.Count;
-            u.ThisAttributes[AttributeType.Weapon].additions.Insert(AddIndex - 1, val);
+            int val = u.ThisAttributes[AttrType.Weapon];
+            AddIndex = u.ThisAttributes[AttrType.Weapon].additions.Count;
+            u.ThisAttributes[AttrType.Weapon].additions.Insert(AddIndex - 1, val);
         }
     }
 }

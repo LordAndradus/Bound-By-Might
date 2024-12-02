@@ -26,6 +26,12 @@ public class Squad
         {new(2, 0), null}, {new(2, 1), null}, {new(2, 2), null},
     };
 
+    [SerializeField] SerializableDictionary<Pair<int, int>, Unit> DeadUnits = new(){
+        {new(0, 0), null}, {new(0, 1), null}, {new(0, 2), null}, 
+        {new(1, 0), null}, {new(1, 1), null}, {new(1, 2), null}, 
+        {new(2, 0), null}, {new(2, 1), null}, {new(2, 2), null},
+    };
+
     public int TranslateMovementType(MoveType movement)
     {
         switch(movement)
@@ -126,6 +132,11 @@ public class Squad
         return FieldedUnits[slot];
     }
 
+    public bool ContainsUnit(Unit unit)
+    {
+        return FieldedUnits.ContainsValue(unit);
+    }
+
     public Pair<int, int> RetrievePositionFromUnit(Unit u)
     {
         if(!FieldedUnits.ContainsValue(u))
@@ -163,6 +174,24 @@ public class Squad
         return unit;
     }
 
+    public void UnitDied(Unit unit)
+    {
+        if(!FieldedUnits.ContainsValue(unit)) throw new SystemException(string.Format("{0} does not exist in Fielded Units", unit.displayQuickInfo()));
+        Pair<int, int> pos = RetrievePositionFromUnit(unit);
+        UnfieldUnit(pos);
+        DeadUnits[pos] = unit;
+    }
+
+    public void UnitRevived(Unit unit)
+    {
+        if(!DeadUnits.ContainsValue(unit)) throw new SystemException(string.Format("{0} does not exist in Dead Units", unit.displayQuickInfo()));
+        Pair<int, int> pos = DeadUnits.GetKey(unit);
+        unit.DeathFlag = false;
+        unit.ThisAttributes[AttrType.HP] = unit.ThisAttributes[AttrType.MaxHP];
+        FieldUnit(unit, pos);
+        DeadUnits[pos] = null;
+    }
+
     public void MoveFieldedUnit(Pair<int, int> slot1, Pair<int, int> slot2)
     {
         (FieldedUnits[slot2], FieldedUnits[slot1]) = (FieldedUnits[slot1], FieldedUnits[slot2]);
@@ -176,6 +205,18 @@ public class Squad
     public int MaxHeight()
     {
         return SquadSize.Second;
+    }
+
+    /// <summary>
+    /// Because Serialization for C# is such a pain in the ass to work with, null cannot be captured.
+    /// However, it does create a default state for objects, and by setting an invalidation parameter, I can capture what is invalid
+    /// When I see what is invalid, I will simply remove it from the important lists for OnSerialization and BeforeSeralization
+    /// </summary>
+    public void ClearExtraneous()
+    {
+        List<Pair<int, int>> slots = FieldedUnits.Keys.ToList();
+        foreach(Pair<int, int> slot in slots) if(FieldedUnits[slot].InvalidBit) FieldedUnits[slot] = null;
+        foreach(Pair<int, int> slot in slots) if(DeadUnits[slot].InvalidBit) DeadUnits[slot] = null;
     }
 
     public Unit[,] getUnitGrid()
@@ -207,6 +248,11 @@ public class Squad
         ));
 
         return resources;
+    }
+
+    public int Count()
+    {
+        return FieldedUnits.Count;
     }
 
     public override string ToString()

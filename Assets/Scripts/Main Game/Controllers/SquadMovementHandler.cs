@@ -163,14 +163,11 @@ public class SquadMovementHandler : InteractableObject
         FinishedMoving = null;
     }
 
-    private IEnumerator WaitForArrival(SquadMovementHandler Attacking, SquadMovementHandler Attacked)
+    private IEnumerator InitiateCombat(UnitPositionGrid upg, SquadMovementHandler Attacking, SquadMovementHandler Attacked)
     {
-        while(!Attacking.Arrived())
-        {
-            yield return null;
-        }
+        while(!Attacking.Arrived()) yield return null;
 
-        BattleManager bm = new(Attacking.GetSquad(), Attacked.GetSquad());
+        BattleManager bm = new(upg, Attacking, Attacked);
 
         StartCombat = null;
     }
@@ -190,9 +187,9 @@ public class SquadMovementHandler : InteractableObject
         }));
     }
 
-    public void StartBattle(SquadMovementHandler Attacking, SquadMovementHandler Attacked)
+    public void StartBattle(UnitPositionGrid upg, SquadMovementHandler Attacking, SquadMovementHandler Attacked)
     {
-        StartCombat = StartCoroutine(WaitForArrival(Attacking, Attacked));
+        StartCombat = StartCoroutine(InitiateCombat(upg, Attacking, Attacked));
     }
 
     public bool Arrived()
