@@ -45,10 +45,13 @@ public class UnitAction
         if(unit.Attack() == AttackType.Healing)
         {
             //Populate with allies
+            TargetAttributes(AttrType.HP, false, Ally);
             return;
         }
 
         //TODO: If we couldn't populate the list, we will continue doing things until we reach a listable outcome
+
+        
 
         PopulateList(ap);
     }

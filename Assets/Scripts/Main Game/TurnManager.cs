@@ -19,7 +19,9 @@ public class TurnManager : MonoBehaviour
     [Header("User Interfaces")]
     public Button EndTurn;
     public GameObject confirm;
+    public GameObject ResourceDropdown;
     public GameObject SquadPicker;
+    public GameObject BattleSimulator;
 
     public void StartTurnManager(Level level)
     {
