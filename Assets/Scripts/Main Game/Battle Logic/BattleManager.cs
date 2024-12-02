@@ -88,7 +88,7 @@ public class BattleManager
             //Skip dead units
             if(unit.DeathFlag) continue;
 
-            UnitAction ua = new(unit, Attacked.RetrievePositionFromUnit(unit), init, take);
+            UnitAction ua = new(unit, init.RetrievePositionFromUnit(unit), init, take);
 
             int damage = DamageFormula(unit);
 

@@ -67,6 +67,7 @@ public class Unit
 
     public void InitializeUnit()
     {
+        UnitLoader.AddBundles();
         GetInformation();
         ThisAttributes = new();
         SetAttributes();

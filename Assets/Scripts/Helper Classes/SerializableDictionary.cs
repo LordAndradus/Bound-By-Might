@@ -33,7 +33,9 @@ public class SerializableDictionary<TKey, TValue> : Dictionary<TKey, TValue>, IS
     {
         List<KeyValuePair<TKey, TValue>> kvList = new();
 
-        foreach(var entry in this) if(entry.Value.Equals(reference)) kvList.Add(entry);
+        foreach(var entry in this)
+            if(entry.Value != null && entry.Value.Equals(reference))
+                kvList.Add(entry);
 
         if(kvList.Count == 0) throw new Exception("Key does not exist for the value. Passed = " + reference);
         else if(kvList.Count > 1)
@@ -45,8 +47,6 @@ public class SerializableDictionary<TKey, TValue> : Dictionary<TKey, TValue>, IS
             foreach(var entry in kvList) ErrorLog.Append("Key = " + entry.Key + " | Value = " + entry.Value + "\n");
             ErrorLog.Append("Sending first key in this list.");
             Debug.Log(ErrorLog.ToString());
-
-            throw new Exception("Too many keys to fetch inside dictionary!");
         }
 
         return kvList[0].Key;

@@ -5,21 +5,25 @@ using UnityEngine.UIElements;
 
 public class UnitAction
 {
-    Unit Unit;
+    //Basic information
+    Unit unit;
     Pair<int, int> Position;
     Squad Ally;
     Squad Enemy;
 
+    //Unit data
+    AttackPreference aPref;
     int AttackRowLength;
     int AttackColLength;
 
+    //Selected units for carnage
     int SelectedIndex;
     List<Unit> UnitsPicked;
     List<List<Unit>> UnitPickerLists;
 
-    public UnitAction(Unit Unit, Pair<int, int> Position, Squad Ally, Squad Enemy)
+    public UnitAction(Unit unit, Pair<int, int> Position, Squad Ally, Squad Enemy)
     {
-        this.Unit = Unit;
+        this.unit = unit;
         this.Position = Position;
         this.Ally = Ally;
         this.Enemy = Enemy;
@@ -34,23 +38,19 @@ public class UnitAction
 
     private void FindEnemies()
     {
-        AttackPreference ap = Unit.AttackAI().First;
-        AttackRowLength = Unit.AttackArea().First;
-        AttackColLength = Unit.AttackArea().Second;
+        AttackPreference ap = unit.AttackAI().First;
+        AttackRowLength = unit.AttackArea().First;
+        AttackColLength = unit.AttackArea().Second;
 
-        if(Unit.Attack() == AttackType.Healing)
+        if(unit.Attack() == AttackType.Healing)
         {
             //Populate with allies
             return;
         }
-        
-        if(PopulateList((AttackPreference) (((int) ap + 0) % ((int) AttackPreference.Back + 1)))
-        && PopulateList((AttackPreference) (((int) ap + 1) % ((int) AttackPreference.Back + 1)))
-        && PopulateList((AttackPreference) (((int) ap + 2) % ((int) AttackPreference.Back + 1))))
-        {
-            Debug.LogError("Could not find any units in the enemy squad at all!");
-            throw new SystemException("No units found in enemy squad");
-        }
+
+        //TODO: If we couldn't populate the list, we will continue doing things until we reach a listable outcome
+
+        PopulateList(ap);
     }
 
     private void TargetColumn(Column column)
@@ -75,8 +75,8 @@ public class UnitAction
     private void TargetAttributes(AttrType aType, bool highest = true, Squad squad = null)
     {
         if(squad == null) squad = Enemy;
-        int SearchLength = Unit.AttackArea().First;
-        int SearchHeight = Unit.AttackArea().Second;
+        int SearchLength = unit.AttackArea().First;
+        int SearchHeight = unit.AttackArea().Second;
 
         List<((int, int)[,], Unit[,])> UnitArrays = UtilityClass.getSubArrays(squad.getUnitGrid(), SearchLength, SearchHeight);
 

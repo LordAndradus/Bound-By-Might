@@ -1,9 +1,11 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TurnManager : MonoBehaviour 
 {
+    [Header("Turn Information")]
     public static TurnManager instance;
     public Level CurrentLevel;
     private CombatGridSystem cgs;
@@ -13,6 +15,11 @@ public class TurnManager : MonoBehaviour
     private SaveSystem.QuickSaveInformation qsi = new();
     private protected int ControllerTurn = 0;
     private protected int rounds = 0;
+
+    [Header("User Interfaces")]
+    public Button EndTurn;
+    public GameObject confirm;
+    public GameObject SquadPicker;
 
     public void StartTurnManager(Level level)
     {

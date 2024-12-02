@@ -14,10 +14,8 @@ public class PlayerController : Controller
     [SerializeField] public List<Squad> ReserveSquadList = new(); //Only for being viewed in the Inspector
     [SerializeField] public CameraController cc;
     [SerializeField] public GridSystem<PathNode> PathFindingGrid;
-    [SerializeField] Button EndTurn;
-    [SerializeField] GameObject confirm;
-    [SerializeField] GameObject SquadPicker;
 
+    TurnManager tm;
     List<Timer> timers;
     SquadMovementHandler CurrentSelection;
     Stack<State> StateMachine = new();
@@ -25,33 +23,27 @@ public class PlayerController : Controller
 
     public void SetupPlayerController()
     {
+        tm = TurnManager.instance;
+
         PathFindingGrid = PathFinder.instance.GetGridSystem();
         TeamNumbers.Add(this, 0);
 
-        InitiateSpawners();
-    }
-
-    private void Start()
-    {
-        //relation = Relationship.controllable;
-        SquadList.CollectionChanged += OnSquadListChanged;
-
-        SquadPicker = GameObject.Find("Canvas").GetComponentInChildren<ScrollRect>(true).gameObject;
-
         CloseSpawner();
-        confirm.SetActive(false);
+        tm.confirm.SetActive(false);
+
+        InitiateSpawners();
 
         InitializeStateMap();
 
-        Button[] ConfirmButtons = confirm.GetComponentsInChildren<Button>();
+        Button[] ConfirmButtons = tm.confirm.GetComponentsInChildren<Button>();
 
         ConfirmButtons[0].onClick.AddListener(FlagEndTurn);
         ConfirmButtons[1].onClick.AddListener(() => {
-            confirm.SetActive(false);
+            tm.confirm.SetActive(false);
         });
 
-        EndTurn.onClick.AddListener(() => {
-            TextMeshProUGUI SquadsLeft = confirm.GetComponentInChildren<TextMeshProUGUI>();
+        tm.EndTurn.onClick.AddListener(() => {
+            TextMeshProUGUI SquadsLeft = tm.confirm.GetComponentInChildren<TextMeshProUGUI>();
             int SquadsToMove = SquadMoverList.Count(squad => !squad.moved);
 
             AIController.InitialPlayerViewport = Camera.main.transform.position;
@@ -60,7 +52,7 @@ public class PlayerController : Controller
             SquadsLeft.text = string.Format("You have {0} {1} left to move.", SquadsToMove, SquadsToMove == 1 ? "squad" : "squads");
 
             if(SquadsToMove == 0) FlagEndTurn();
-            else confirm.SetActive(true);
+            else tm.confirm.SetActive(true);
         });
         
         //Randomly generate squads for now
@@ -71,6 +63,13 @@ public class PlayerController : Controller
 
         SetupTimers();
     }
+
+    private void Start()
+    {        
+        //relation = Relationship.controllable;
+        SquadList.CollectionChanged += OnSquadListChanged;
+    }
+    
     private void InitializeStateMap()
     {
         ActionMap = new(){
@@ -194,9 +193,9 @@ public class PlayerController : Controller
 //General methods
     private void FlagEndTurn()
     {
-        EndTurn.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "Turn: " + (TurnNumber + 1);
+        tm.EndTurn.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "Turn: " + (TurnNumber + 1);
         StateMachine.Clear();
-        confirm.SetActive(false);
+        tm.confirm.SetActive(false);
         Finished = true;
     }
 
@@ -270,7 +269,7 @@ public class PlayerController : Controller
 
     public void CloseSpawner()
     {
-        SquadPicker.SetActive(false);
+        tm.SquadPicker.SetActive(false);
         if(StateMachine.Count != 0) StateMachine.Pop();
     }
 
@@ -286,11 +285,11 @@ public class PlayerController : Controller
                 StateMachine.Push(State.Spawning);
 
                 //Set the squad list to active
-                SquadPicker.SetActive(true);
+                tm.SquadPicker.SetActive(true);
 
-                GameObject SquadButtons = SquadPicker.GetComponentInChildren<GridLayoutGroup>().transform.gameObject;
+                GameObject SquadButtons = tm.SquadPicker.GetComponentInChildren<GridLayoutGroup>().transform.gameObject;
 
-                Button[] buttons = SquadPicker.GetComponentsInChildren<Button>();
+                Button[] buttons = tm.SquadPicker.GetComponentsInChildren<Button>();
                 buttons[buttons.Length - 1].onClick.AddListener(() => {
                     CloseSpawner();
                 });

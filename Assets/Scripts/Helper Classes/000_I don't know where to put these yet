@@ -378,3 +378,11 @@ void clampCameraPan(Vector3 ResetVector)
             FieldedUnits[KeyPair.ToTuple()] = unit;
         }
     } */
+
+    if(PopulateList((AttackPreference) (((int) ap + 0) % ((int) AttackPreference.Back + 1)))
+        && PopulateList((AttackPreference) (((int) ap + 1) % ((int) AttackPreference.Back + 1)))
+        && PopulateList((AttackPreference) (((int) ap + 2) % ((int) AttackPreference.Back + 1))))
+        {
+            Debug.LogError("Could not find any units in the enemy squad at all!");
+            throw new SystemException("No units found in enemy squad");
+        }

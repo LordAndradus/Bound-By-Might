@@ -14,7 +14,6 @@ public class Controller : MonoBehaviour
     [SerializeField] public List<SpawnTile> spawners = new();
     [SerializeField] public GameObject spawnerParent;
     //[SerializeField] private protected Relationship relation = Relationship.neutral;
-    [SerializeField] private protected Camera FollowCamera;
     
     private protected static Dictionary<Controller, int> TeamNumbers = new();
     //private protected static Dictionary<Controller, Relationship> RelationshipMap = new();
