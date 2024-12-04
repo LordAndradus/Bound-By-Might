@@ -172,6 +172,13 @@ public class SquadMovementHandler : InteractableObject
         StartCombat = null;
     }
 
+    public void StartDeletionCallback()
+    {
+        FinishedMoving = StartCoroutine(DeleteSquad(() => {
+            return true;
+        }));
+    }
+
     public void StartDeletionCallback(SquadMovementHandler attacker)
     {
         if(FinishedMoving != null) StopCoroutine(FinishedMoving);
@@ -284,6 +291,11 @@ public class SquadMovementHandler : InteractableObject
     public Squad GetSquad()
     {
         return squad;
+    }
+
+    public bool Empty()
+    {
+        return GetSquad().Count() <= 0;
     }
 
     public enum Side //For the sides of the rectangle <- This is used to choose where the unit is while attacking

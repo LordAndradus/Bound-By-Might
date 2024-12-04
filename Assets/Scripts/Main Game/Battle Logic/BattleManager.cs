@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 public class BattleManager
 {
-    Squad Attacking, Attacked;
+    SquadMovementHandler Attacking, Attacked;
 
     UnitPositionGrid upg;
 
@@ -29,9 +29,9 @@ public class BattleManager
     public BattleManager(UnitPositionGrid UnitGrid, SquadMovementHandler Attacking, SquadMovementHandler Attacked)
     {
         upg = UnitGrid;
-        this.Attacking = Attacking.GetSquad();
-        this.Attacked = Attacked.GetSquad();
-        LoadSquads(this.Attacking, this.Attacked);
+        this.Attacking = Attacking;
+        this.Attacked = Attacked;
+        LoadSquads();
         
         SimulateBattle();
 
@@ -59,14 +59,14 @@ public class BattleManager
         //Now we report the actions to an animator
     }
 
-    private void LoadSquads(Squad Attacking, Squad Attacked)
+    private void LoadSquads()
     {
-        this.Attacking = Attacking;
-        this.Attacked = Attacked;
+        Squad attacking = Attacking.GetSquad();
+        Squad attacked = Attacked.GetSquad();
 
         //Sequence of attacking => Magic -> Arhcery -> Melee -> Healing -> (Maybe) Firearms
-        foreach(Unit u in Attacking.RetrieveUnits()) AttackOrder.Enqueue(u);
-        foreach(Unit u in Attacked.RetrieveUnits()) AttackOrder.Enqueue(u);
+        foreach(Unit u in attacking.RetrieveUnits()) AttackOrder.Enqueue(u);
+        foreach(Unit u in attacked.RetrieveUnits()) AttackOrder.Enqueue(u);
     }
 
     private void SimulateRound()
@@ -77,38 +77,33 @@ public class BattleManager
 
     private void Simulate(bool Initiator)
     {
-        Squad init = Initiator ? Attacking : Attacked;
-        Squad take = Initiator ? Attacked : Attacking;
+        SquadMovementHandler init = Initiator ? Attacking : Attacked;
+        SquadMovementHandler take = Initiator ? Attacked : Attacking;
+
+        if(init.Empty() || take.Empty()) return;
 
         for(int i = 0; i < AttackOrder.Count; i++)
         {
             Unit unit = AttackOrder.Dequeue();
 
-            if(!init.ContainsUnit(unit)) break;
+            if(!init.GetSquad().ContainsUnit(unit)) break;
 
-            //Skip dead units
-            if(unit.DeathFlag) continue;
+            //Check if squad is now empty, if so then call deletion
+            if(unit.DeathFlag)
+            {
+                if(take.Empty())
+                {
+                    take.StartDeletionCallback();
+                    break;  
+                }
+                continue;
+            }
 
-            UnitAction ua = new(unit, init.RetrievePositionFromUnit(unit), init, take);
+            UnitAction ua = new(unit, init.GetSquad().RetrievePositionFromUnit(unit), init.GetSquad(), take.GetSquad());
             actions.Add(ua);
 
             //Requeue the unit so it's at the back
             AttackOrder.Enqueue(unit);
-        }
-
-        foreach(Unit unit in AttackOrder)
-        {
-            if(!init.ContainsUnit(unit)) break; //We reach the point in the attack order where 
-
-            //Skip dead units and remove them from queue
-            if(unit.DeathFlag)
-            {
-                AttackOrder.Dequeue();
-                continue;
-            }
-
-            UnitAction ua = new(unit, Attacked.RetrievePositionFromUnit(unit), init, take);
-            actions.Add(ua);
         }
     }
 
