@@ -17,7 +17,7 @@ public class BattleManager
     Queue<Unit> AttackOrder = new();
     
     //Create a replay for the animation
-    List<UnitAction> actions;
+    List<UnitAction> actions = new();
 
     /// <summary>
     /// Bit 0 - Attacking destroyed
@@ -54,8 +54,9 @@ public class BattleManager
     public void SimulateBattle()
     {
         //Each battle has 2 rounds
-        SimluateRound();
-        SimluateRound();
+        for(int i = 0; i < 2; i++) SimulateRound();
+        
+        //Now we report the actions to an animator
     }
 
     private void LoadSquads(Squad Attacking, Squad Attacked)
@@ -68,7 +69,7 @@ public class BattleManager
         foreach(Unit u in Attacked.RetrieveUnits()) AttackOrder.Enqueue(u);
     }
 
-    private void SimluateRound()
+    private void SimulateRound()
     {
         Simulate(true); //Attack!
         Simulate(false); //Retaliate!
@@ -89,19 +90,7 @@ public class BattleManager
             if(unit.DeathFlag) continue;
 
             UnitAction ua = new(unit, init.RetrievePositionFromUnit(unit), init, take);
-
-            int damage = DamageFormula(unit);
-
-            foreach(Unit u in ua.affected())
-            {
-                int d = UnityEngine.Random.Range(damage - unit.getMinSpread(), damage + unit.getMaxSpread());
-                
-                if(unit.Attack() != AttackType.Healing) u.damage(d);
-                else u.damage(-d);
-
-                //Remove dead units
-                if(u.DeathFlag) take.UnitDied(u);
-            }
+            actions.Add(ua);
 
             //Requeue the unit so it's at the back
             AttackOrder.Enqueue(unit);
@@ -120,33 +109,16 @@ public class BattleManager
 
             UnitAction ua = new(unit, Attacked.RetrievePositionFromUnit(unit), init, take);
             actions.Add(ua);
-
-            //Apply new action
-            int damage = DamageFormula(unit);
-            
-            foreach(Unit u in ua.affected())
-            {
-                int d = UnityEngine.Random.Range(damage - unit.getMinSpread(), damage + unit.getMaxSpread());
-                
-                if(unit.Attack() != AttackType.Healing) u.damage(d);
-                else u.damage(-d);
-
-                //Remove dead units
-                if(u.DeathFlag) take.UnitDied(u);
-            }
         }
-
-        //TODO: Report actions to Battle Animator
     }
 
-    private int DamageFormula(Unit unit)
+    public static int DamageFormula(Unit unit)
     {
-        UnityEngine.Debug.LogWarning("You need to implement a damage formula, for now returning 15");
         int damage = 0;
 
         //Basic formula. The main stat adds 1 points each, while the side-points add 0.1 points. The points can be truncated.
         //Another factor is the weapon. The weapon stat, unless the main stat, is a multiplicative property out of 255.
-        //So if weapon is 20, then it's (255 + 20) / 255 * damage, otherwise if it is the main stat, then add 2 points per.
+        //So if weapon is 20, then it's ((255 + 20) / 255) * damage, otherwise if it is the main stat, then add 2 points per.
 
         AttackType unitAttack = unit.Attack(); 
 

@@ -9,6 +9,7 @@ public class UnitLoader : MonoBehaviour
     public void Start()
     {
         AddBundles();
+        PrepopulateUnits();
     } 
 
     public static void AddBundles()
@@ -20,5 +21,19 @@ public class UnitLoader : MonoBehaviour
         AssetBundle.Add(typeof(MilitiaBowman), UtilityClass.Load<UnitDataContainer>("Assets/Data Containers/Tier 1/MilitiaBowman.asset"));
         AssetBundle.Add(typeof(NeophyteMagus), UtilityClass.Load<UnitDataContainer>("Assets/Data Containers/Tier 1/NeophyteMagus.asset"));
         AssetBundle.Add(typeof(Squire), UtilityClass.Load<UnitDataContainer>("Assets/Data Containers/Tier 1/Squire.asset"));
+    }
+
+    private static void PrepopulateUnits()
+    {
+        //Populate pre-placed units
+        SquadMovementHandler[] squads = FindObjectsOfType<SquadMovementHandler>(false);
+
+        foreach(SquadMovementHandler smh in squads)
+        {
+            foreach(Unit u in smh.GetSquad().RetrieveUnits())
+            {
+                UnitGenerator.GenerateQualities(u);
+            }
+        }
     }
 }

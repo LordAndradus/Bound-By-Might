@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -13,13 +14,18 @@ public class UnitAction
 
     //Unit data
     AttackPreference aPref;
+    AttrType targetAttr;
     int AttackRowLength;
     int AttackColLength;
 
     //Selected units for carnage
-    int SelectedIndex;
     List<Unit> UnitsPicked;
-    List<List<Unit>> UnitPickerLists;
+
+    //Stats needed for a battle animator
+    List<Pair<Unit, int>> DamageReport = new();
+
+    public List<Pair<Unit, int>> Report() { return DamageReport; }
+    public List<Unit> affected() { return UnitsPicked; }
 
     public UnitAction(Unit unit, Pair<int, int> Position, Squad Ally, Squad Enemy)
     {
@@ -28,94 +34,153 @@ public class UnitAction
         this.Ally = Ally;
         this.Enemy = Enemy;
 
-        FindEnemies();
-    }
+        aPref = unit.AttackAI().First;
+        targetAttr = unit.AttackAI().Second;
+        AttackRowLength = unit.AttackArea().First;
+        AttackColLength = unit.AttackArea().Second;
 
-    public List<Unit> affected()
-    {
-        return UnitsPicked;
+        UnitsPicked = new();
+
+        FindEnemies();
+        ApplyAction();
     }
 
     private void FindEnemies()
     {
-        AttackPreference ap = unit.AttackAI().First;
-        AttackRowLength = unit.AttackArea().First;
-        AttackColLength = unit.AttackArea().Second;
-
         if(unit.Attack() == AttackType.Healing)
         {
             //Populate with allies
-            TargetAttributes(AttrType.HP, false, Ally);
+            TargetAttributes(false, Ally);
             return;
         }
 
         //TODO: If we couldn't populate the list, we will continue doing things until we reach a listable outcome
-
-        
-
-        PopulateList(ap);
-    }
-
-    private void TargetColumn(Column column)
-    {
-        int col = (int) column;
-        AddAttackArea(Position.First + 0, col);
-        if(Position.First + 1 < Enemy.MaxHeight()) AddAttackArea(Position.First + 1, col);
-        else UnitPickerLists.Add(new());
-        if(Position.First - 1 > 0) AddAttackArea(Position.First - 1, col);
-        else UnitPickerLists.Add(new());
-
-        SelectedIndex = 0;
-
-        for(int i = 1; i < UnitPickerLists.Count; i++)
+        int SizeOfAttackPreference = Enum.GetValues(typeof(AttackPreference)).Length;
+        for(int i = 0; UnitsPicked.Count <= 0 && i <= SizeOfAttackPreference; i++)
         {
-            SelectedIndex = UnitPickerLists[i - 1].Count < UnitPickerLists[i + 0].Count ? i : SelectedIndex;
+            AttackPreference ap = (AttackPreference) (((int) aPref + i) % SizeOfAttackPreference);
+            PopulateList(ap);
         }
 
-        RemoveEmptyLists();
+        //Remove NULL values
+        for(int i = 0; i < UnitsPicked.Count; i++) if(UnitsPicked[i] == null) UnitsPicked.RemoveAt(i--);
+
+        //If we couldn't find any units at all for whatever reason, pick a single unit and return it
+        if(UnitsPicked.Count == 0)
+        {
+            foreach(Unit u in Enemy.RetrieveUnits()) if(u != null) 
+            {
+                Debug.LogError("Could not find units based on preferences");
+                UnitsPicked.Add(u);
+                break;
+            }
+
+            if(UnitsPicked.Count == 0) throw new SystemException("There are no units in the enemy squad???");
+        }
     }
 
-    private void TargetAttributes(AttrType aType, bool highest = true, Squad squad = null)
+    private void ApplyAction()
+    {
+        int damage = BattleManager.DamageFormula(unit);
+
+        foreach(Unit u in UnitsPicked)
+        {
+            int d = UnityEngine.Random.Range(damage - unit.getMinSpread(), damage + unit.getMaxSpread());
+            
+            if(unit.Attack() == AttackType.Healing) d = -d;
+
+            u.damage(d);
+
+            //Remove dead units
+            if(u.DeathFlag) Enemy.UnitDied(u);
+
+            DamageReport.Add(new(u, d));
+        }
+    }
+
+    //TODO: Add Attack Area to this column
+    private void TargetColumn(Column column, Squad squad = null)
     {
         if(squad == null) squad = Enemy;
-        int SearchLength = unit.AttackArea().First;
-        int SearchHeight = unit.AttackArea().Second;
 
-        List<((int, int)[,], Unit[,])> UnitArrays = UtilityClass.getSubArrays(squad.getUnitGrid(), SearchLength, SearchHeight);
+        int col = (int) column;
+        List<((int, int)[,], Unit[,])> SubArrs = UtilityClass.getSubArrays(squad.getUnitGrid(), AttackRowLength, AttackColLength);
 
-        int value = highest ? int.MinValue : int.MaxValue;
-        (int, int)[,] SelectedIndices;
-        Unit[,] SelectedUnits;
+        //Check to make sure the column has at least 1 unit
+        
+        //TODO: For now just return the first unit found in the squad
+        foreach(Unit u in squad.getUnitGrid()) if(u != null) 
+        {
+            UnitsPicked.Add(u);
+            break;
+        }
+    }
+
+    private void TargetAttributes(bool highest = true, Squad squad = null)
+    {    
+        if(targetAttr == AttrType.NULL) throw new SystemException("You cannot pass NULL for this AttrType");
+        if(squad == null) squad = Enemy;
+
+        List<((int, int)[,], Unit[,])> UnitArrays = UtilityClass.getSubArrays(squad.getUnitGrid(), AttackRowLength, AttackColLength);
+
+        List<Unit[,]> units = new();
+
+        foreach(((int, int)[,], Unit[,]) Group in UnitArrays) units.Add(Group.Item2);
+
+        Unit[,] SelectedUnits = GetTargets(units, highest);
+
+        foreach(Unit u in SelectedUnits) UnitsPicked.Add(u);
+    }
+
+    private void TargetLeader(Squad squad = null)
+    {
+        if(targetAttr == AttrType.NULL) targetAttr = AttrType.HP;
+        if(squad == null) squad = Enemy;
+
+        List<((int, int)[,], Unit[,])> UnitArrays = UtilityClass.getSubArrays(squad.getUnitGrid(), AttackRowLength, AttackColLength);
+
+        List<Unit[,]> LeaderArrays = new();
+
+        Unit Leader = squad.RetrieveLeader();
+
         foreach(((int, int)[,], Unit[,]) pairs in UnitArrays)
         {
-            (int, int)[,] Indices = pairs.Item1;
-            Unit[,] UnitGroups = pairs.Item2;
+            Unit[,] units = pairs.Item2;
+            if(SubArrayContains(units, Leader)) LeaderArrays.Add(units);
+        }
 
+        Unit[,] SelectedUnits = GetTargets(LeaderArrays, false);
+
+        foreach(Unit u in SelectedUnits) UnitsPicked.Add(u);
+    }
+
+    private Unit[,] GetTargets(List<Unit[,]> units, bool highest = true)
+    {
+        int value = highest ? int.MinValue : int.MaxValue;
+        Unit[,] SelectedUnits = null;
+        foreach(Unit[,] UnitGroup in units)
+        {
             int SetValue = 0;
 
-            foreach(Unit unit in UnitGroups)
+            foreach(Unit unit in UnitGroup)
             {
-                SetValue += unit.ThisAttributes[aType];
+                if(unit == null) continue;
+                SetValue += unit.ThisAttributes[targetAttr];
             }
 
             if(highest && value < SetValue)
             {
                 value = SetValue;
-                SelectedIndices = Indices;
-                SelectedUnits = UnitGroups;
+                SelectedUnits = UnitGroup;
             }
             else if(!highest && value > SetValue)
             {
                 value = SetValue;
-                SelectedIndices = Indices;
-                SelectedUnits = UnitGroups;
+                SelectedUnits = UnitGroup;
             }
         }
-    }
 
-    private void TargetLeader()
-    {
-        AddAttackArea(Enemy.RetrievePositionFromUnit(Enemy.RetrieveLeader()));
+        return SelectedUnits;
     }
 
     private void AddAttackArea(int First, int Second)
@@ -137,24 +202,23 @@ public class UnitAction
                 TargetColumn(Column.Back);
                 break;
             case AttackPreference.Most:
-                TargetAttributes(AttrType.HP, true);
+                TargetAttributes(true);
                 break;
             case AttackPreference.Least:
-                TargetAttributes(AttrType.Armor, true);
+                TargetAttributes();
                 break;
             case AttackPreference.Leader:
                 TargetLeader();
                 break;
         }
 
-        return UnitPickerLists.Count == 0;
+        return UnitsPicked.Count == 0;
     }
 
     private void AddAttackArea(Pair<int, int> InitialPosition, Squad squad = null)
     {
         if(squad == null) squad = Enemy;
 
-        UnitsPicked = new();
         for(int x = 0; x < AttackRowLength; x++)
         {
             for(int y = 0; y < AttackColLength; y++)
@@ -164,22 +228,15 @@ public class UnitAction
                 if(u != null) UnitsPicked.Add(u);
             }
         }
-        UnitPickerLists.Add(UnitsPicked);
     }
 
-    private void RemoveEmptyLists()
+    bool SubArrayContains(Unit[,] squad, Unit target)
     {
-        foreach(List<Unit> list in UnitPickerLists)
-        {
-            if(list.Count == 0) UnitPickerLists.Remove(list);
-        }
-    }
+        HashSet<Unit> UnitSet = new();
 
-    public enum ActionType
-    {
-        Heal,
-        Damage,
-        Defend
+        foreach(Unit u in squad) UnitSet.Add(u);
+
+        return UnitSet.Contains(target);
     }
 
     private enum Column

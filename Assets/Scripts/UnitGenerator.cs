@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Unity.Collections.LowLevel.Unsafe;
 using UnityEngine;
 
 public class UnitGenerator : MonoBehaviour
@@ -62,6 +61,14 @@ public class UnitGenerator : MonoBehaviour
         }
         
         return generic;
+    }
+
+    public static void GenerateQualities(Unit u)
+    {
+        UnitFactory uf = new();
+        u.InitializeUnit();
+        AssignUnitQualities(u);
+        uf.AssignName(u);
     }
 
     private static void AssignUnitQualities(Unit u)
@@ -194,7 +201,7 @@ class UnitFactory
         return u;
     } 
 
-    void AssignName(Unit u)
+    public void AssignName(Unit u)
     {
         switch(u)
         {

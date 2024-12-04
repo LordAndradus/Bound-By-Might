@@ -4528,13 +4528,9 @@ MonoBehaviour:
   SquadMoverList: []
   spawners: []
   spawnerParent: {fileID: 0}
-  FollowCamera: {fileID: 0}
   Finished: 0
   ReserveSquadList: []
   cc: {fileID: 634278555}
-  EndTurn: {fileID: 1292555801}
-  confirm: {fileID: 162146719}
-  SquadPicker: {fileID: 0}
 --- !u!1 &571165381
 GameObject:
   m_ObjectHideFlags: 0
@@ -4588,7 +4584,6 @@ MonoBehaviour:
   SquadMoverList: []
   spawners: []
   spawnerParent: {fileID: 130869319}
-  FollowCamera: {fileID: 0}
   Finished: 0
   TeamNumber: 1
 --- !u!1 &586230843
@@ -6366,13 +6361,9 @@ MonoBehaviour:
   SquadMoverList: []
   spawners: []
   spawnerParent: {fileID: 57077465}
-  FollowCamera: {fileID: 0}
   Finished: 0
   ReserveSquadList: []
   cc: {fileID: 634278555}
-  EndTurn: {fileID: 1292555801}
-  confirm: {fileID: 162146719}
-  SquadPicker: {fileID: 1735563173}
 --- !u!1 &950044095
 GameObject:
   m_ObjectHideFlags: 0
@@ -8943,7 +8934,6 @@ MonoBehaviour:
   SquadMoverList: []
   spawners: []
   spawnerParent: {fileID: 0}
-  FollowCamera: {fileID: 0}
   Finished: 0
   TeamNumber: 1
 --- !u!1 &1149796546
@@ -16678,13 +16668,9 @@ MonoBehaviour:
   SquadMoverList: []
   spawners: []
   spawnerParent: {fileID: 724338885}
-  FollowCamera: {fileID: 0}
   Finished: 0
   ReserveSquadList: []
   cc: {fileID: 634278555}
-  EndTurn: {fileID: 1292555801}
-  confirm: {fileID: 162146719}
-  SquadPicker: {fileID: 0}
 --- !u!1 &1292555799
 GameObject:
   m_ObjectHideFlags: 0
@@ -19163,6 +19149,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CurrentLevel: {fileID: 0}
   controllers: []
+  EndTurn: {fileID: 1292555801}
+  confirm: {fileID: 162146719}
+  ResourceDropdown: {fileID: 1858464036}
+  SquadPicker: {fileID: 1735563173}
+  BattleSimulator: {fileID: 392755399}
 --- !u!1 &1959388812
 GameObject:
   m_ObjectHideFlags: 0
@@ -23011,7 +23002,6 @@ MonoBehaviour:
   SquadMoverList: []
   spawners: []
   spawnerParent: {fileID: 2059417128}
-  FollowCamera: {fileID: 0}
   Finished: 0
   TeamNumber: 1
 --- !u!1 &2099423083

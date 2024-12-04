@@ -7,6 +7,7 @@ public class Level : ScriptableObject
 {
     public PathFinder pf;
     public CombatGridSystem cgs;
+    public LevelFinishCondition lfc;
 
     //Bounds -> First = Negative boundary, Second = Positive boundary : The bounds are in terms of how many tiles
     public Pair<float, float> MapSize { get; set; }
@@ -45,4 +46,16 @@ public class Level : ScriptableObject
     {
         return height;
     }
+}
+
+[Serializable]
+public enum LevelFinishCondition
+{
+    CaptureObjective,
+    MoveToCoordinate,
+    KillSquad,
+    SurviveWaves,
+    Annihilation,
+    GatherResources,
+    //TODO: Add more objectives if I work on this in the future
 }

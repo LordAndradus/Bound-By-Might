@@ -99,6 +99,7 @@ public class Unit
     private protected virtual void GetInformation() 
     {
         if(information == null) information = UnitLoader.AssetBundle[typeof(Apothecary)];
+        information = UnitLoader.AssetBundle[typeof(MilitiaMale)];
     }
 
     private protected virtual void SetAttributes()

@@ -291,18 +291,18 @@ public static class UtilityClass
 
         List<((int, int)[,], T[,])> subArray = new();
 
-        for(int y = 0; y < aHeight - searchHeight; y++)
+        for(int y = 0; y <= aHeight - searchHeight; y++)
         {
-            for(int x = 0; x < aWidth - searchWidth; x++)
+            for(int x = 0; x <= aWidth - searchWidth; x++)
             {
                 (int, int)[,] indices = new (int, int)[searchHeight, searchWidth];
                 T[,] arr = new T[searchHeight, searchWidth];
 
-                for(int row = 0; row < searchWidth; row++)
+                for(int row = 0; row < searchHeight; row++)
                 {
-                    for(int col = 0; col < searchHeight; col++)
+                    for(int col = 0; col < searchWidth; col++)
                     {
-                        indices[row, col] = new(y + row, x + col);
+                        indices[row, col] = (y + row, x + col);
                         arr[row, col] = array[y + row, x + col];
                     }
                 }
@@ -313,7 +313,6 @@ public static class UtilityClass
 
         return subArray;
     }
-
 
     /// <summary>
     /// Prints a 2D Array

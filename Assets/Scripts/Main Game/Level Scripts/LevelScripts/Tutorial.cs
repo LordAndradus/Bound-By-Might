@@ -2,7 +2,8 @@ using System;
 using UnityEngine;
 
 public class Tutorial : Level
-{    
+{
+    
     public Tutorial()
     {
         MapSize = new(26, 26);
