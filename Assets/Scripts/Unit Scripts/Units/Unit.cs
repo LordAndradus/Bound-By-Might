@@ -133,6 +133,8 @@ public class Unit
             a.SetBaseValue(value);
         }
 
+        ThisAttributes[AttrType.HP] = ThisAttributes[AttrType.MaxHP];
+
         SetGrowthType();
     }
 
@@ -259,9 +261,9 @@ public class Unit
 
 public enum AttackType
 {
-    Melee,
-    Archery,
     Magic,
+    Archery,
+    Melee,
     Healing,
     Firearms //Imagine a musket or something
 }

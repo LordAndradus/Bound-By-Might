@@ -7,33 +7,35 @@
 //I MIGHT add in different tactics: IE Aggressive. Units in the order of events target Highest HP first, Cautious: Increase Armor by 50, but decrease attack by 30
 
 using System.Collections.Generic;
+using UnityEngine;
 
 public class BattleManager
 {
+    public static BattleManager instance;
+
     SquadMovementHandler Attacking, Attacked;
 
     UnitPositionGrid upg;
 
-    Queue<Unit> AttackOrder = new();
+    List<Unit> AttackOrder = new();
+
+    //State of the battle for the animator
+    public int round = 1;
+    public bool retaliate = false;
+    public bool finished = false;
     
     //Create a replay for the animation
-    List<UnitAction> actions = new();
-
-    /// <summary>
-    /// Bit 0 - Attacking destroyed
-    /// Bit 1 - Attacked destroyed
-    /// Bit 2 - 
-    /// </summary>
-    byte flags;
+    List<UnitAction> actions;
 
     public BattleManager(UnitPositionGrid UnitGrid, SquadMovementHandler Attacking, SquadMovementHandler Attacked)
     {
+        instance = this;
         upg = UnitGrid;
         this.Attacking = Attacking;
         this.Attacked = Attacked;
         LoadSquads();
         
-        SimulateBattle();
+        BattleAnimator.instance.SetupAnimator(Attacking.GetSquad(), Attacked.GetSquad());
 
         //If Attacking is empty, or Attacked is empty, then add a deletion callback.
         AddDeleteCallback(Attacking);
@@ -51,60 +53,86 @@ public class BattleManager
         }
     }
 
-    public void SimulateBattle()
-    {
-        //Each battle has 2 rounds
-        for(int i = 0; i < 2; i++) SimulateRound();
-        
-        //Now we report the actions to an animator
-    }
-
     private void LoadSquads()
     {
         Squad attacking = Attacking.GetSquad();
         Squad attacked = Attacked.GetSquad();
 
-        //Sequence of attacking => Magic -> Arhcery -> Melee -> Healing -> (Maybe) Firearms
-        foreach(Unit u in attacking.RetrieveUnits()) AttackOrder.Enqueue(u);
-        foreach(Unit u in attacked.RetrieveUnits()) AttackOrder.Enqueue(u);
+        EnqueueSquad(attacking);
+        AttackOrder.Add(null); //Null value to separate the squads
+        EnqueueSquad(attacked);
     }
 
-    private void SimulateRound()
+    private void EnqueueSquad(Squad squad)
     {
-        Simulate(true); //Attack!
-        Simulate(false); //Retaliate!
+        //Sequence of attacking => Magic -> Archery -> Melee -> Healing -> (Maybe) Firearms
+        List<Unit> units = squad.RetrieveUnits();
+        //Sort the current list by AttackType as prescribed above
+        units.Sort((x, y) => {
+            return x.Attack().CompareTo(y.Attack());
+        });
+        //Lastly, add it in the attack order
+        foreach(Unit unit in units) AttackOrder.Add(unit);
     }
 
-    private void Simulate(bool Initiator)
+    public void Simulate()
     {
-        SquadMovementHandler init = Initiator ? Attacking : Attacked;
-        SquadMovementHandler take = Initiator ? Attacked : Attacking;
+        actions = new();
 
-        if(init.Empty() || take.Empty()) return;
+        SquadMovementHandler init = retaliate ?  Attacked : Attacking;
+        SquadMovementHandler take = retaliate ? Attacking : Attacked;
 
         for(int i = 0; i < AttackOrder.Count; i++)
         {
-            Unit unit = AttackOrder.Dequeue();
+            Unit unit = AttackOrder[0];
+            AttackOrder.RemoveAt(0);
+
+            //We reached the break point to separate squads, enqueue to back and break out to report
+            if(unit == null)
+            {
+                AttackOrder.Add(null);
+                break;
+            }
 
             if(!init.GetSquad().ContainsUnit(unit)) break;
-
-            //Check if squad is now empty, if so then call deletion
-            if(unit.DeathFlag)
-            {
-                if(take.Empty())
-                {
-                    take.StartDeletionCallback();
-                    break;  
-                }
-                continue;
-            }
 
             UnitAction ua = new(unit, init.GetSquad().RetrievePositionFromUnit(unit), init.GetSquad(), take.GetSquad());
             actions.Add(ua);
 
+            //Remove dead units from queue
+            for(int j = 0; j < AttackOrder.Count; j++)
+            {
+                Unit u = AttackOrder[j];
+
+                if(u == null) continue;
+                if(u.DeathFlag)
+                {
+                    AttackOrder.RemoveAt(j);
+                }
+            }
+
+            //Check if there are any squads fully depleted
+            if(take.Empty() || init.Empty())
+            {
+                if(take.Empty()) take.StartDeletionCallback();
+                if(init.Empty()) init.StartDeletionCallback();
+                finished = true;
+                break;
+            }
+
             //Requeue the unit so it's at the back
-            AttackOrder.Enqueue(unit);
+            AttackOrder.Add(unit);
         }
+
+        //Revert actions going backwards
+        for(int i = actions.Count - 1; i >= 0; i--) actions[i].RevertAction();
+
+        //Now we report the actions to an animator
+        BattleAnimator.instance.NotifyDataset(actions);
+
+        retaliate = !retaliate;
+        if(!retaliate) round++;
+        if(round == 3) finished = true;
     }
 
     public static int DamageFormula(Unit unit)

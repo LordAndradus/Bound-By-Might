@@ -22,9 +22,9 @@ public class UnitAction
     List<Unit> UnitsPicked;
 
     //Stats needed for a battle animator
-    List<Pair<Unit, int>> DamageReport = new();
+    Dictionary<Unit, int> DamageReport = new();
 
-    public List<Pair<Unit, int>> Report() { return DamageReport; }
+    public Dictionary<Unit, int> Report() { return DamageReport; }
     public List<Unit> affected() { return UnitsPicked; }
 
     public UnitAction(Unit unit, Pair<int, int> Position, Squad Ally, Squad Enemy)
@@ -42,6 +42,9 @@ public class UnitAction
         UnitsPicked = new();
 
         FindEnemies();
+
+        //Generate damage report then apply action
+        GenerateDamageReport();
         ApplyAction();
     }
 
@@ -59,11 +62,8 @@ public class UnitAction
         for(int i = 0; UnitsPicked.Count <= 0 && i <= SizeOfAttackPreference; i++)
         {
             AttackPreference ap = (AttackPreference) (((int) aPref + i) % SizeOfAttackPreference);
-            PopulateList(ap);
+            if(!PopulateList(ap)) continue;
         }
-
-        //Remove NULL values
-        for(int i = 0; i < UnitsPicked.Count; i++) if(UnitsPicked[i] == null) UnitsPicked.RemoveAt(i--);
 
         //If we couldn't find any units at all for whatever reason, pick a single unit and return it
         if(UnitsPicked.Count == 0)
@@ -79,7 +79,7 @@ public class UnitAction
         }
     }
 
-    private void ApplyAction()
+    private void GenerateDamageReport()
     {
         int damage = BattleManager.DamageFormula(unit);
 
@@ -89,12 +89,34 @@ public class UnitAction
             
             if(unit.Attack() == AttackType.Healing) d = -d;
 
-            u.damage(d);
+            DamageReport.Add(u, d);
+        }
+    }
+
+    public void ApplyAction()
+    {
+        foreach(Unit u in DamageReport.Keys)
+        {
+            u.damage(DamageReport[u]);
 
             //Remove dead units
-            if(u.DeathFlag) Enemy.UnitDied(u);
+            if(u.DeathFlag)
+            {
+                Enemy.UnitDied(u);
+            }
+        }
+    }
 
-            DamageReport.Add(new(u, d));
+    public void RevertAction()
+    {
+        foreach(Unit u in DamageReport.Keys)
+        {
+            if(u.DeathFlag)
+            {
+                Enemy.RevertUnitDeath(u);
+            }
+
+            u.damage(-DamageReport[u]);
         }
     }
 
@@ -118,7 +140,11 @@ public class UnitAction
 
     private void TargetAttributes(bool highest = true, Squad squad = null)
     {    
-        if(targetAttr == AttrType.NULL) throw new SystemException("You cannot pass NULL for this AttrType");
+        if(targetAttr == AttrType.NULL)
+        {
+            Debug.LogWarning("You cannot pass NULL for this AttrType. Defaulting to HP");
+            targetAttr = AttrType.HP;
+        }
         if(squad == null) squad = Enemy;
 
         List<((int, int)[,], Unit[,])> UnitArrays = UtilityClass.getSubArrays(squad.getUnitGrid(), AttackRowLength, AttackColLength);
@@ -129,6 +155,11 @@ public class UnitAction
 
         Unit[,] SelectedUnits = GetTargets(units, highest);
 
+        if(SelectedUnits == null)
+        {
+            Debug.LogError("This fucker didn't get anything:\n" + unit.ToString());
+        }
+
         foreach(Unit u in SelectedUnits) UnitsPicked.Add(u);
     }
 
@@ -136,6 +167,7 @@ public class UnitAction
     {
         if(targetAttr == AttrType.NULL) targetAttr = AttrType.HP;
         if(squad == null) squad = Enemy;
+        if(squad.RetrieveLeader().DeathFlag) return;
 
         List<((int, int)[,], Unit[,])> UnitArrays = UtilityClass.getSubArrays(squad.getUnitGrid(), AttackRowLength, AttackColLength);
 
@@ -158,15 +190,20 @@ public class UnitAction
     {
         int value = highest ? int.MinValue : int.MaxValue;
         Unit[,] SelectedUnits = null;
+        bool FoundValue;
         foreach(Unit[,] UnitGroup in units)
         {
             int SetValue = 0;
+            FoundValue = false;
 
             foreach(Unit unit in UnitGroup)
             {
                 if(unit == null) continue;
+                FoundValue = true;
                 SetValue += unit.ThisAttributes[targetAttr];
             }
+
+            if(!FoundValue) continue;
 
             if(highest && value < SetValue)
             {
@@ -211,6 +248,9 @@ public class UnitAction
                 TargetLeader();
                 break;
         }
+
+        //Remove NULL values
+        for(int i = 0; i < UnitsPicked.Count; i++) if(UnitsPicked[i] == null) UnitsPicked.RemoveAt(i--);
 
         return UnitsPicked.Count == 0;
     }

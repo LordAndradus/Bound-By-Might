@@ -18,7 +18,7 @@ public enum AttrType
 [Serializable]
 public class AttrScore
 {
-    [SerializeField] int total;
+    [SerializeField] public int total;
     [SerializeField] int value, requirement;
     [SerializeField] float growth;
     [SerializeField] float leftover;

@@ -70,6 +70,11 @@ public class Squad
         TranslateMovementType(MovementType);
     }
 
+    public void PromoteToLeader(Unit leader)
+    {
+        Leader = leader;
+    }
+
     public Squad CreateNewSquad(Unit leader)
     {
         return CreateNewSquad(leader, new(1, 1));
@@ -107,19 +112,28 @@ public class Squad
 
     public List<Pair<Unit, Pair<int, int>>> RetrieveUnitPairs()
     {
-        List<Pair<Pair<int, int>, Unit>> DictionaryPairs = FieldedUnits.ToPairedList();
+        return GetDictionaryPair(FieldedUnits);
+    }
 
-        List<Pair<Unit, Pair<int, int>>> ReturnList = new();
+    public List<Pair<Unit, Pair<int, int>>> RetrieveDeadPairs()
+    {
+        return GetDictionaryPair(DeadUnits);
+    }
+
+    private List<Pair<Unit, Pair<int, int>>> GetDictionaryPair(SerializableDictionary<Pair<int, int>, Unit> sd)
+    {
+        List<Pair<Pair<int, int>, Unit>> DictionaryPairs = sd.ToPairedList();
+
+        List<Pair<Unit, Pair<int, int>>> SwappedList = new();
 
         foreach(Pair<Pair<int, int>, Unit> DPair in DictionaryPairs)
         {
             if(DPair.Second == null) 
                 continue;
-            ReturnList.Add(new(DPair.Second, DPair.First));
+            SwappedList.Add(new(DPair.Second, DPair.First));
         }
 
-
-        return ReturnList;
+        return SwappedList;
     }
 
     public Unit RetrieveUnitFromPosition(int x, int y)
@@ -182,14 +196,19 @@ public class Squad
         DeadUnits[pos] = unit;
     }
 
-    public void UnitRevived(Unit unit)
+    public void RevertUnitDeath(Unit unit)
     {
         if(!DeadUnits.ContainsValue(unit)) throw new SystemException(string.Format("{0} does not exist in Dead Units", unit.displayQuickInfo()));
         Pair<int, int> pos = DeadUnits.GetKey(unit);
         unit.DeathFlag = false;
-        unit.ThisAttributes[AttrType.HP] = unit.ThisAttributes[AttrType.MaxHP];
         FieldUnit(unit, pos);
         DeadUnits[pos] = null;
+    }
+
+    public void UnitRevived(Unit unit)
+    {
+        RevertUnitDeath(unit);
+        unit.ThisAttributes[AttrType.HP] = unit.ThisAttributes[AttrType.MaxHP];
     }
 
     public void MoveFieldedUnit(Pair<int, int> slot1, Pair<int, int> slot2)
@@ -252,7 +271,9 @@ public class Squad
 
     public int Count()
     {
-        return FieldedUnits.Count;
+        int count = 0;
+        foreach(Unit u in FieldedUnits.Values) if(u != null) count++;
+        return count;
     }
 
     public override string ToString()

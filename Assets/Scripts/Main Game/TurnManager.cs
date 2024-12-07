@@ -52,6 +52,8 @@ public class TurnManager : MonoBehaviour
                 break;
             }
         }
+
+        BattleSimulator.GetComponent<BattleAnimator>().init();
     }
 
     private void Update()

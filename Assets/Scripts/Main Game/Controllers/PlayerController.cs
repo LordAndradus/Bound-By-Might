@@ -76,6 +76,7 @@ public class PlayerController : Controller
             {State.Normal, NormalUpdates},
             {State.Spawning, SpawnSquad},
             {State.SquadSelected, MoveSquad},
+            {State.Combat, SimulateBattle}
         };
     }
 
@@ -117,6 +118,7 @@ public class PlayerController : Controller
         Spawning,
         //Squad Specific States
         SquadSelected,
+        Combat,
     }
 
 //*****************************************************************************************************************************
@@ -160,7 +162,12 @@ public class PlayerController : Controller
         {
             if(SquadMoverList.Contains(selectedSquad))
             {
-                if(attackedSquad != null) if(!CombatGridSystem.instance.SetSquadAttackPath(selectedSquad, attackedSquad)) attackedSquad = null;
+                if(attackedSquad != null) if(!CombatGridSystem.instance.SetSquadAttackPath(selectedSquad, attackedSquad))
+                {
+                    attackedSquad = null;
+                    StateMachine.Push(State.Combat);
+                }
+
                 if(attackedSquad == null) CombatGridSystem.instance.SetSquadNormalPath(selectedSquad, UtilityClass.GetScreenMouseToWorld());
 
                 return;
@@ -186,6 +193,19 @@ public class PlayerController : Controller
         if(Input.GetKeyUp(GlobalSettings.HardCodedKeys[SettingKey.Escape]))
         {
             CloseSpawner();
+        }
+    }
+
+    private void SimulateBattle()
+    {
+        if(Input.GetKeyUp(GlobalSettings.HardCodedKeys[SettingKey.Escape]) || Input.GetMouseButton((int) GlobalSettings.MouseMap[SettingKey.RightClick]))
+        {
+            BattleAnimator.instance.RushSimulation();
+        }
+
+        if(!BattleAnimator.instance.CloseAnimator())
+        {
+            StateMachine.Pop();
         }
     }
 

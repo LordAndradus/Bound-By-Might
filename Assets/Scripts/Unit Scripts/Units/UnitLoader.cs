@@ -30,10 +30,18 @@ public class UnitLoader : MonoBehaviour
 
         foreach(SquadMovementHandler smh in squads)
         {
+            if(smh.GetSquad().Count() == 0)
+            {
+                Debug.LogWarning("Empty pre-placed squad, creating from scratch");
+                smh.SetSquad(UnitGenerator.GenerateSquad());
+            }
+
             foreach(Unit u in smh.GetSquad().RetrieveUnits())
             {
                 UnitGenerator.GenerateQualities(u);
             }
+
+            if(smh.GetSquad().RetrieveLeader() == null) smh.GetSquad().PromoteToLeader(smh.GetSquad().RetrieveUnits()[0]);
         }
     }
 }

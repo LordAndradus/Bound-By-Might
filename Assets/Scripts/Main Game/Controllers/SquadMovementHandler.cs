@@ -166,9 +166,7 @@ public class SquadMovementHandler : InteractableObject
     private IEnumerator InitiateCombat(UnitPositionGrid upg, SquadMovementHandler Attacking, SquadMovementHandler Attacked)
     {
         while(!Attacking.Arrived()) yield return null;
-
         BattleManager bm = new(upg, Attacking, Attacked);
-
         StartCombat = null;
     }
 
@@ -291,6 +289,11 @@ public class SquadMovementHandler : InteractableObject
     public Squad GetSquad()
     {
         return squad;
+    }
+
+    public void SetSquad(Squad squad)
+    {
+        this.squad = squad;
     }
 
     public bool Empty()

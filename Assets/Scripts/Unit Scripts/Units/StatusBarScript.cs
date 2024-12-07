@@ -28,4 +28,10 @@ public class StatusBar : MonoBehaviour
         slider.value = value;
         fill.color = gradient.Evaluate(slider.normalizedValue);
     }
+
+    public void SetValue(int val, int max)
+    {
+        float set = ((float) val / (float) max);
+        SetValue(set);
+    }
 }
