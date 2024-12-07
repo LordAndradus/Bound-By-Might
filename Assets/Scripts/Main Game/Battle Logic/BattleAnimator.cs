@@ -92,6 +92,7 @@ public class BattleAnimator : MonoBehaviour
             //The BattleManager hasn't detected that turns ran out, nor that one squad is destroyed. Something went wrong.
             if(!BattleManager.instance.finished)
             {
+                FinishedAnimation();
                 Debug.LogError("Could not find dataset, something went wrong");
                 Debug.Log(string.Format("Battle Manager State:\nRound: {0}\nRetaliate? {1}\nFinished? {2}", BattleManager.instance.round, BattleManager.instance.retaliate, BattleManager.instance.finished));
             }
@@ -110,9 +111,8 @@ public class BattleAnimator : MonoBehaviour
         //When finished with current data-set, get another one
         if(index == dataSize)
         {
-            BattleManager.instance.Simulate();
-
-            if(BattleManager.instance.finished)
+            if(!BattleManager.instance.finished) BattleManager.instance.Simulate();
+            else
             {
                 FinishedAnimation();
                 yield break;

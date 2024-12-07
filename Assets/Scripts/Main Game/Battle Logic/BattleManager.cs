@@ -36,21 +36,6 @@ public class BattleManager
         LoadSquads();
         
         BattleAnimator.instance.SetupAnimator(Attacking.GetSquad(), Attacked.GetSquad());
-
-        //If Attacking is empty, or Attacked is empty, then add a deletion callback.
-        AddDeleteCallback(Attacking);
-        AddDeleteCallback(Attacked);
-    }
-
-    private void AddDeleteCallback(SquadMovementHandler squad)
-    {
-        if(squad.GetSquad().Count() <= 0)
-        {
-            squad.DeleteSquadCallback += () => {
-                upg.RemoveSquad(squad);
-                Controller.ClearSelections();
-            };
-        }
     }
 
     private void LoadSquads()
@@ -114,8 +99,26 @@ public class BattleManager
             //Check if there are any squads fully depleted
             if(take.Empty() || init.Empty())
             {
-                if(take.Empty()) take.StartDeletionCallback();
-                if(init.Empty()) init.StartDeletionCallback();
+                if(take.Empty()) 
+                {
+                    take.DeleteSquadCallback += () => {
+                        upg.RemoveSquad(take);
+                        Controller.ClearSelections();
+                        GameObject.Destroy(take.gameObject);
+                    };
+                    take.StartDeletionCallback();
+                }
+                
+                if(init.Empty()) 
+                {
+                    init.DeleteSquadCallback += () => {
+
+                        upg.RemoveSquad(init);
+                        Controller.ClearSelections();
+                        GameObject.Destroy(init.gameObject);
+                    };
+                    init.StartDeletionCallback();
+                }
                 finished = true;
                 break;
             }
