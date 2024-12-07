@@ -20,13 +20,15 @@ public class MouseCursor : MonoBehaviour
         sr.sortingOrder = 0;
     } */
 
+    public static Pair<float, float> CursorPosition = new(1, 1);
+
     void Update()
     {
         Vector3 camPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         
         float xPos = camPos.x <= 0 ? Mathf.Floor(camPos.x) + 0.5f : Mathf.Ceil(camPos.x) - 0.5f;
         float yPos = camPos.y <= 0 ? Mathf.Floor(camPos.y) + 0.5f : Mathf.Ceil(camPos.y) - 0.5f;
-
+        CursorPosition.set(xPos + 0.5f, yPos + 0.5f);
         transform.position = new Vector3(xPos, yPos, 0);
     }
 }

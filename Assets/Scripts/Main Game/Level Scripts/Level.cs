@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -11,6 +12,8 @@ public class Level : ScriptableObject
 
     //Bounds -> First = Negative boundary, Second = Positive boundary : The bounds are in terms of how many tiles
     public Pair<float, float> MapSize { get; set; }
+
+    public List<Pair<int, int>> UnwalkableSpaces = new();
 
     [SerializeField] int width = 18;
     [SerializeField] int height = 10;

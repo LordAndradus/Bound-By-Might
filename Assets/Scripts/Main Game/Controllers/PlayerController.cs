@@ -14,6 +14,7 @@ public class PlayerController : Controller
     [SerializeField] public List<Squad> ReserveSquadList = new(); //Only for being viewed in the Inspector
     [SerializeField] public CameraController cc;
     [SerializeField] public GridSystem<PathNode> PathFindingGrid;
+    [SerializeField] TextMeshProUGUI CursorDisplay;
 
     TurnManager tm;
     List<Timer> timers;
@@ -43,7 +44,8 @@ public class PlayerController : Controller
         });
 
         tm.EndTurn.onClick.AddListener(() => {
-            TextMeshProUGUI SquadsLeft = tm.confirm.GetComponentInChildren<TextMeshProUGUI>();
+            TextMeshProUGUI SquadsLeft = tm.confirm.GetComponentsInChildren<TextMeshProUGUI>()[0];
+            TextMeshProUGUI CursorPosi = tm.confirm.GetComponentsInChildren<TextMeshProUGUI>()[1];
             int SquadsToMove = SquadMoverList.Count(squad => !squad.moved);
 
             AIController.InitialPlayerViewport = Camera.main.transform.position;
@@ -54,6 +56,7 @@ public class PlayerController : Controller
             if(SquadsToMove == 0) FlagEndTurn();
             else tm.confirm.SetActive(true);
         });
+
         
         //Randomly generate squads for now
         for(int i = Random.Range(4, 10); i >= 0; i--)
@@ -103,6 +106,8 @@ public class PlayerController : Controller
     //Handles all the logic for a typical Controller
     public override void ControllerLogic()
     {
+        CursorDisplay.text = string.Format("({0:0},{1:0})", MouseCursor.CursorPosition.First, MouseCursor.CursorPosition.Second);
+        
         if(StateMachine.Count == 0) StateMachine.Push(State.Normal);
 
         if(timers != null && timers.Count != 0) timers.ForEach(timer => timer.update());
