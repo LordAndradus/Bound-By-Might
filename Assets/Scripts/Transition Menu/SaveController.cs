@@ -48,6 +48,7 @@ public class SaveController : MonoBehaviour
 
         FileContent.transform.GetChild(0).AddComponent<InteractableObject>().LeftClickEvent += () => {
             SaveCurrentInformation();
+            MainController.MenuSoundboard.PlayCheckbox();
         };
     }
 
@@ -117,10 +118,12 @@ public class SaveController : MonoBehaviour
                     //Debug.Log(string.Format("{0} information", operation == SaveOp.save ? "Saving" : "Loading"));
                     if(operation == SaveOp.save) SaveCurrentInformation();
                     else LoadCurrentInformation(file);
+                    MainController.MenuSoundboard.PlaySlider();
                     return;
                 }
 
                 ActiveSaveInteractable = SaveFile;
+                MainController.MenuSoundboard.PlayButton();
             };
 
             //OnEnter -> Set Appropriate information
@@ -135,6 +138,7 @@ public class SaveController : MonoBehaviour
                 Debug.LogError("Name of file: " + SaveFiles[InstanceIndex]);
                 System.IO.File.Delete(Path.Combine(GlobalSettings.RootSaveDirectory, SaveFiles[InstanceIndex]));
                 LoadSaveFiles();
+                MainController.MenuSoundboard.PlayCancel();
             };
         }
     }

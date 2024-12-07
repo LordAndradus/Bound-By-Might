@@ -331,6 +331,7 @@ public class ArmyManagementController : MonoBehaviour
             InteractableObject iObj = elementInList.GetComponent<InteractableObject>();
 
             iObj.LeftClickEvent += () => {
+                MainController.MenuSoundboard.PlayButton();
                 if(StateMachine.Peek() == ArmyManagementState.Default) 
                 {
                     if(selectedUnit != unit)
@@ -352,12 +353,17 @@ public class ArmyManagementController : MonoBehaviour
 
             iObj.RightClickEvent += () => {
                 selectedUnit = unit;
-
                 SetContextMenu(DefaultUnitContext);
+                MainController.MenuSoundboard.PlayCheckbox();
             };
 
             iObj.MiddleClickEvent += () => {
+                MainController.MenuSoundboard.PlayButton();
                 if(StateMachine.Peek() == ArmyManagementState.Default) CreateSquad(unit);
+            };
+
+            iObj.OnEnter += () => {
+                MainController.MenuSoundboard.PlaySlider();
             };
 
             TextMeshProUGUI[] tmpT = elementInList.GetComponentsInChildren<TextMeshProUGUI>();
@@ -427,6 +433,7 @@ public class ArmyManagementController : MonoBehaviour
             InteractableObject iObj = SquadButton.GetComponent<InteractableObject>();
 
             iObj.LeftClickEvent += () => {
+                MainController.MenuSoundboard.PlayButton();
                 if(StateMachine.Peek() == ArmyManagementState.Default) 
                 {
                     SelectedSquadButton(squad, i);
@@ -443,9 +450,11 @@ public class ArmyManagementController : MonoBehaviour
             iObj.RightClickEvent += () => {
                 selectedSquad = squad;
                 SetContextMenu(DefaultSquadContext);
+                MainController.MenuSoundboard.PlayCheckbox();
             };
 
             iObj.MiddleClickEvent += () => {
+                MainController.MenuSoundboard.PlayCheckbox();
                 Debug.Log("Reorder squad action");
             };
 

@@ -43,24 +43,29 @@ public class MarketplaceController : MonoBehaviour
         BackButton.onClick.AddListener(() => {
             transform.gameObject.SetActive(false);
             MainMenu.SetActive(true);
+            MainController.MenuSoundboard.PlayCancel();
         });
         Enlistment.onClick.AddListener(() => {
             DisableAllViews();
             EnlistView.SetActive(true);
+            MainController.MenuSoundboard.PlayButton();
         });
         Artificer.onClick.AddListener(() => {
             DisableAllViews();
             ArtificerView.SetActive(true);
+            MainController.MenuSoundboard.PlayButton();
         });
         Pawnshop.onClick.AddListener(() => {
             DisableAllViews();
             PawnshopView.SetActive(true);
+            MainController.MenuSoundboard.PlayButton();
         });
         MarketExchange.onClick.AddListener(() => {
             DisableAllViews();
             MarketExchangeView.SetActive(true);
+            MainController.MenuSoundboard.PlayButton();
         });
-    
+
         //Generate random list of units
         GenerateUnitPurchaseList();
         GenerateEquipmentPurchaseList(); //Need to implement
@@ -140,6 +145,7 @@ public void UpdateUnitRoster()
 
         ClickHandler.RightClickEvent += () => {
             Debug.Log("Right click detected");
+            MainController.MenuSoundboard.PlayCancel();
         };
 
         ClickHandler.OnEnter += () => {
@@ -166,10 +172,13 @@ void PurchaseAction(Pair<Unit, int> pair)
 {
     if(UnitResourceManager.Gold - pair.Second < 0)
     {
+        MainController.MenuSoundboard.PlayCancel();
         Debug.LogError("More gold is required!");
         return;
     }
 
+    MainController.MenuSoundboard.PlayButton();
+    
     //Deduct gold amount
     UnitResourceManager.Gold -= pair.Second;
 

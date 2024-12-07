@@ -180,6 +180,7 @@ public class GlobalSettings : MonoBehaviour
 
     public void checkSync()
     {
+        
         Debug.Log("Need to check if there are unapplied changes!");
     }
 

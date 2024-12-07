@@ -51,6 +51,8 @@ public class SquadGridHandler : MonoBehaviour
 
     private void OnMouseEnter()
     {
+        MainController.MenuSoundboard.PlaySlider();
+
         ArmyManagementState vs = amc.GetCurrentState();
 
 
@@ -105,6 +107,9 @@ public class SquadGridHandler : MonoBehaviour
 
     private void OnMouseOver()
     {
+        if(Input.GetMouseButtonUp(0)) MainController.MenuSoundboard.PlayButton();
+        if(Input.GetMouseButtonUp(1)) MainController.MenuSoundboard.PlayCancel();
+        if(Input.GetMouseButtonUp(2)) MainController.MenuSoundboard.PlayCheckbox();
 
         ArmyManagementState vs = amc.GetCurrentState();
 

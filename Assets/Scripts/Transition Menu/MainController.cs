@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -26,6 +27,8 @@ public class MainController : MonoBehaviour
     [SerializeField] TextMeshProUGUI Horses;
 
     [Header("Menu Buttons")]
+    [SerializeField] Button OpenMenu;
+    [SerializeField] Button CloseMenu;
     [SerializeField] Button PlayMission;
     [SerializeField] Button ManageArmy;
     [SerializeField] Button Marketplace;
@@ -42,8 +45,21 @@ public class MainController : MonoBehaviour
     [SerializeField] GameObject CompanionInterface;
     [SerializeField] GameObject SaveInterface;
 
+    [Header("Audio Interfacing")]
+    [SerializeField] AudioSource uiSound;
+    [SerializeField] AudioSource musicSound;
+    [SerializeField] AudioClip buttonClick;
+    [SerializeField] AudioClip checkBoxClick;
+    [SerializeField] AudioClip sliderSound;
+    [SerializeField] AudioClip cancelClick;
+    [SerializeField] List<AudioClip> musicList = new();
+
     public void Awake()
     {
+        MenuSoundboard.SetupSoundboard(uiSound, buttonClick, checkBoxClick, sliderSound, cancelClick);
+
+        StartCoroutine(MusicReel());
+
         GetComponent<UnitLoader>().Start();
 
         UnitList.CollectionChanged += UnitList_CollectionChanged;
@@ -51,37 +67,50 @@ public class MainController : MonoBehaviour
 
         //Assign buttons
         PlayMission.onClick.AddListener(() => {
-            PlayerController.LoadSquadList(this);
-            SceneManager.LoadScene("Main Game");
+            StartCoroutine(WaitForStartGame());
         });
         ManageArmy.onClick.AddListener(() => {
             DisableAllInterfaces();
             ManageArmyInterface.SetActive(true);
+            MenuSoundboard.PlayButton();
         });
         Marketplace.onClick.AddListener(() => {
             DisableAllInterfaces();
             MarketplaceInterface.SetActive(true);
+            MenuSoundboard.PlayButton();
         });
         Arena.onClick.AddListener(() => {
             DisableAllInterfaces();
             ArenaInterface.SetActive(true);
+            MenuSoundboard.PlayButton();
         });
         Companion.onClick.AddListener(() => {
             DisableAllInterfaces();
             CompanionInterface.SetActive(true);
+            MenuSoundboard.PlayButton();
         });
         Save.onClick.AddListener(() => {
             DisableAllInterfaces();
             SaveInterface.GetComponent<SaveController>().operation = SaveController.SaveOp.save;
             SaveInterface.SetActive(true);
+            MenuSoundboard.PlayButton();
         });
         Load.onClick.AddListener(() => {
             DisableAllInterfaces();
             SaveInterface.GetComponent<SaveController>().operation = SaveController.SaveOp.load;
             SaveInterface.SetActive(true);
+            MenuSoundboard.PlayButton();
         });
         MainMenu.onClick.AddListener(() => {
-            SceneManager.LoadScene("Main Menu");
+            StartCoroutine(WaitForMainMenu());
+        });
+
+        OpenMenu.onClick.AddListener(() => {
+            MenuSoundboard.PlayButton();
+        });
+
+        CloseMenu.onClick.AddListener(() => {
+            MenuSoundboard.PlayCancel();
         });
 
         //Typically this would load units from file, but for now we generate units. This is going to be used in new game!
@@ -183,5 +212,81 @@ public class MainController : MonoBehaviour
     public List<Squad> RetrieveSerializedSquad()
     {
         return SerializedSquadList;
+    }
+
+    System.Collections.IEnumerator WaitForStartGame()
+    {
+        if(!uiSound.isPlaying) MenuSoundboard.PlayButton();
+        while(uiSound.isPlaying) yield return null;
+
+        PlayerController.LoadSquadList(this);
+        SceneManager.LoadScene("Main Game");
+    }
+
+    System.Collections.IEnumerator WaitForMainMenu()
+    {
+        if(!uiSound.isPlaying) MenuSoundboard.PlayButton();
+        while(uiSound.isPlaying) yield return null;
+
+        SceneManager.LoadScene("Main Menu");
+    }
+
+    int musicIdx = 0;
+    System.Collections.IEnumerator MusicReel()
+    {
+        while(true)
+        {
+            if(!musicSound.isPlaying)
+            {
+                musicSound.clip = musicList[musicIdx++];
+                musicIdx = musicIdx % musicList.Count;
+                musicSound.Play();
+            }
+
+            yield return null;
+        }
+    }
+
+    public static class MenuSoundboard
+    {
+        [Header("Audio Interfacing")]
+        static AudioSource uiSound;
+        static AudioClip buttonClick;
+        static AudioClip checkBoxClick;
+        static AudioClip sliderSound;
+        static AudioClip cancelClick;
+
+        public static void SetupSoundboard(AudioSource uiSound, AudioClip button, AudioClip checkbox, AudioClip slider, AudioClip cancel)
+        {
+            MenuSoundboard.uiSound = uiSound;
+            buttonClick = button;
+            checkBoxClick = checkbox;
+            sliderSound = slider;
+            cancelClick = cancel;
+        }
+
+        public static void PlayButton()
+        {
+            uiSound.clip = buttonClick;
+            uiSound.Play();
+        }
+
+        public static void PlayCheckbox()
+        {
+            uiSound.clip = checkBoxClick;
+            uiSound.Play();
+        }
+
+        public static void PlayCancel()
+        {
+            uiSound.clip = cancelClick;
+            uiSound.Play();
+        }
+
+        public static void PlaySlider()
+        {
+            uiSound.clip = sliderSound;
+            uiSound.Play();
+        }
     }
 }
