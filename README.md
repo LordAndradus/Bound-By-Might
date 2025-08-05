@@ -1,2 +1,2 @@
 # Bound-By-Might
-My little baby
+Nephilim Saga meets Ogre Tactics
